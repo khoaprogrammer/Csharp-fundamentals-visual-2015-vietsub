@@ -1,44 +1,44 @@
 1
 00:00:01,000 --> 00:00:06,000
-In this course, we will use a tool from Microsoft named Visual Studio to work with C#.
+Trong khóa này, chúng ta sẽ sử dụng Visual Studio của MS để lập trình C#.
 
 2
 00:00:06,000 --> 00:00:12,000
-Visual Studio is a Windows-only application, but there is a free version called Visual Studio Community.
+VS là phần mềm chỉ chạy trên windows, và nó có một phiên bản miễn phí với tên gọi Visual Studio Community.
 
 3
 00:00:12,000 --> 00:00:19,000
-All you need to do is go to www.visualstudio.com and click on Download Visual Studio Community,
+Bạn chỉ cần truy cập www.visualstudio.com và chọn Download Visual Studio Community.
 
 4
 00:00:19,000 --> 00:00:21,000
-start the installation running, and take all the default options.
+tiến hành cài đặt, và chọn mặc định các tùy chọn.
 
 5
 00:00:21,000 --> 00:00:27,000
-After that, you will have installed Visual Studio Community, currently the 2015 version.
+Sau đó, bạn đã hoàn tất quá trình cài VS Community, bản 2015.
 
 6
 00:00:27,000 --> 00:00:32,000
-If you have access to a different edition of Visual Studio, like Visual Studio Professional,
+Nếu bạn sử dụng một phiên bản khác của VS như bản Professional,
 
 7
 00:00:32,000 --> 00:00:35,000
-everything I'm going to show you in this course will work in there to.
+Bạn hoàn toàn có thể theo học khóa này mà không gặp trở ngại.
 
 8
 00:00:35,000 --> 00:00:41,000
-And if you're using an older version of Visual Studio, like Visual Studio 2013 or 2010, then 95% of the
+Và nếu bạn sử dụng phiên bản cũ hơn, như 2013 hoặc 2010 thì 95%
 
 9
 00:00:41,000 --> 00:00:45,000
-things I cover in this course will work there too. There are only a few topics near the end of this course that
+nội dung trong khóa học này bạn vẫn có thể học. Duy chỉ có một số chủ để nằm ở cuối khóa sẽ
 
 10
 00:00:45,000 --> 00:00:52,000
-will require 2013 or above. Once you're installation has finished, you should be able to launch Visual Studio
+yêu cầu VS 2013 hoặc hơn. Một khi bạn đã cài hoàn tất, bạn có thể chạy VS ngay
 
 11
 00:00:52,000 --> 00:59:00,000
-and write your first program. But before we jump in, let's take a moment to understand what we have installed.
+và viết cho mình chương trình đầu tiên. Nhưng trước khi bắt đầu hãy tìm hiểu chúng ta vừa cài cái gì.
 

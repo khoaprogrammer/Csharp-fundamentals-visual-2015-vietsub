@@ -1,0 +1,448 @@
+1
+00:00:00,000 --> 00:00:02,000
+When I use the new keyword and then the name of the class
+
+2
+00:00:02,000 --> 00:00:06,000
+with parentheses, this is instantiating an instance
+
+3
+00:00:06,000 --> 00:00:08,000
+of that class, it's creating an object.
+
+4
+00:00:08,000 --> 00:00:11,000
+And instantiating a class will invoke a special method
+
+5
+00:00:11,000 --> 00:00:13,000
+we call a constructor, because a constructor
+
+6
+00:00:13,000 --> 00:00:15,000
+helps construct an object.
+
+7
+00:00:15,000 --> 00:00:17,000
+Every class will have a default constructor
+
+8
+00:00:17,000 --> 00:00:20,000
+that exists implicitly, unless I do something special.
+
+9
+00:00:20,000 --> 00:00:23,000
+And this is why I can create an instance of GradeBook
+
+10
+00:00:23,000 --> 00:00:25,000
+and use it even though I don't have a constructor
+
+11
+00:00:25,000 --> 00:00:27,000
+explicitly defined in that class.
+
+12
+00:00:27,000 --> 00:00:29,000
+If I do want to define my own constructor,
+
+13
+00:00:29,000 --> 00:00:31,000
+it's very much like defining a method.
+
+14
+00:00:31,000 --> 00:00:34,000
+I'll use the public keyword and then the name of the class
+
+15
+00:00:34,000 --> 00:00:36,000
+followed by parentheses.
+
+16
+00:00:36,000 --> 00:00:38,000
+Just like a method, I had those parentheses
+
+17
+00:00:38,000 --> 00:00:40,000
+at the end of my curly braces to denote the start
+
+18
+00:00:40,000 --> 00:00:42,000
+and the end of the method.
+
+19
+00:00:42,000 --> 00:00:44,000
+There are many scenarios where you will want to write
+
+20
+00:00:44,000 --> 00:00:46,000
+your own constructor for a class,
+
+21
+00:00:46,000 --> 00:00:48,000
+because writing your own constructor gives you control
+
+22
+00:00:48,000 --> 00:00:51,000
+over the initialization of an object.
+
+23
+00:00:51,000 --> 00:00:53,000
+You can initialize fields and data for the object.
+
+24
+00:00:53,000 --> 00:00:55,000
+You can set default values.
+
+25
+00:00:55,000 --> 00:00:57,000
+You can create other objects that your object uses.
+
+26
+00:00:57,000 --> 00:01:00,000
+And you can even have multiple constructors defined,
+
+27
+00:01:00,000 --> 00:01:02,000
+but we'll look at that later in the course.
+
+28
+00:01:02,000 --> 00:01:04,000
+For now, let's look at implementing a constructor
+
+29
+00:01:04,000 --> 00:01:06,000
+for our GradeBook.
+
+30
+00:01:06,000 --> 00:01:09,000
+Currently in my program, when I say new GradeBook,
+
+31
+00:01:09,000 --> 00:01:11,000
+we will be using an implicit constructor
+
+32
+00:01:11,000 --> 00:01:13,000
+that is defined for us, because we never wrote
+
+33
+00:01:13,000 --> 00:01:15,000
+an explicit constructor for GradeBook.
+
+34
+00:01:15,000 --> 00:01:18,000
+But now let's take control over the initialization
+
+35
+00:01:18,000 --> 00:01:20,000
+of a GradeBook, and write a constructor.
+
+36
+00:01:20,000 --> 00:01:23,000
+There's a very easy way to do this in Visual Studio.
+
+37
+00:01:23,000 --> 00:01:26,000
+If I just typed ctor,
+
+38
+00:01:26,000 --> 00:01:29,000
+those characters are recognized as one of the code snippets
+
+39
+00:01:29,000 --> 00:01:30,000
+in Visual Studio.
+
+40
+00:01:30,000 --> 00:01:33,000
+What a code snippet allows you to do is just type
+
+41
+00:01:33,000 --> 00:01:36,000
+some short sequence of characters, like ctor,
+
+42
+00:01:36,000 --> 00:01:38,000
+and this is the code snippet for a constructor.
+
+43
+00:01:38,000 --> 00:01:41,000
+And if I press tab twice,
+
+44
+00:01:41,000 --> 00:01:44,000
+Visual Studio will do a little bit of code generation
+
+45
+00:01:44,000 --> 00:01:46,000
+and write the constructor for me.
+
+46
+00:01:46,000 --> 00:01:48,000
+I already have the public keyword in place,
+
+47
+00:01:48,000 --> 00:01:50,000
+and a constructor is a method definition
+
+48
+00:01:50,000 --> 00:01:52,000
+where the method name is the same as the class.
+
+49
+00:01:52,000 --> 00:01:54,000
+Like every method, it has some parentheses
+
+50
+00:01:54,000 --> 00:01:56,000
+where I can take parameters, and then the opening
+
+51
+00:01:56,000 --> 00:01:58,000
+and closing curly braces.
+
+52
+00:01:58,000 --> 00:02:00,000
+There's some other snippets that we'll see
+
+53
+00:02:00,000 --> 00:02:01,000
+throughout this course, but ctor,
+
+54
+00:02:01,000 --> 00:02:02,000
+that's one I use every day.
+
+55
+00:02:02,000 --> 00:02:05,000
+It's short for constructor, that's easy to remember.
+
+56
+00:02:05,000 --> 00:02:07,000
+And now it's inside of this constructor
+
+57
+00:02:07,000 --> 00:02:09,000
+where I can take explicit control over the initialization
+
+58
+00:02:09,000 --> 00:02:11,000
+of my object.
+
+59
+00:02:11,000 --> 00:02:13,000
+It turns out we're already doing some initialization
+
+60
+00:02:13,000 --> 00:02:15,000
+during the construction of a GradeBook,
+
+61
+00:02:15,000 --> 00:02:17,000
+because when we defined this field,
+
+62
+00:02:17,000 --> 00:02:19,000
+this field being grades, I'm using what's known
+
+63
+00:02:19,000 --> 00:02:22,000
+as a field initializer syntax here.
+
+64
+00:02:22,000 --> 00:02:24,000
+I'm saying I want a field named grades,
+
+65
+00:02:24,000 --> 00:02:26,000
+and I want to immediately initialize it to a new list
+
+66
+00:02:26,000 --> 00:02:28,000
+for each GradeBook that is constructed.
+
+67
+00:02:28,000 --> 00:02:33,000
+So each GradeBook maintains its own list of grades.
+
+68
+00:02:33,000 --> 00:02:35,000
+Instead of using field initializer syntax,
+
+69
+00:02:35,000 --> 00:02:38,000
+I could cut this line of code out of here
+
+70
+00:02:38,000 --> 00:02:39,000
+and inside of the constructor, say
+
+71
+00:02:39,000 --> 00:02:43,000
+grade equals a new list of float.
+
+72
+00:02:43,000 --> 00:02:45,000
+For the most part, it doesn't matter if you use
+
+73
+00:02:45,000 --> 00:02:48,000
+that field initializer syntax or if you initialize
+
+74
+00:02:48,000 --> 00:02:50,000
+a field and constructor.
+
+75
+00:02:50,000 --> 00:02:52,000
+There's no obvious differences in terms of performance.
+
+76
+00:02:52,000 --> 00:02:54,000
+It really comes down to the syntax
+
+77
+00:02:54,000 --> 00:02:55,000
+that you're most comfortable with,
+
+78
+00:02:55,000 --> 00:02:57,000
+and also some special circumstances.
+
+79
+00:02:57,000 --> 00:03:00,000
+For example, in a constructor, since it is a method,
+
+80
+00:03:00,000 --> 00:03:02,000
+I can take some parameters here like maybe I want
+
+81
+00:03:02,000 --> 00:03:05,000
+the maximum grade or the maximum number of items
+
+82
+00:03:05,000 --> 00:03:07,000
+that I'm going to store in a grade,
+
+83
+00:03:07,000 --> 00:03:09,000
+and then I need that parameter to pass along
+
+84
+00:03:09,000 --> 00:03:10,000
+to other constructors.
+
+85
+00:03:10,000 --> 00:03:12,000
+That's a case where I probably wouldn't use
+
+86
+00:03:12,000 --> 00:03:14,000
+field initializer syntax.
+
+87
+00:03:14,000 --> 00:03:18,000
+I would use explicit initialization inside of a constructor.
+
+88
+00:03:18,000 --> 00:03:20,000
+But for right now, let's keep what is known
+
+89
+00:03:20,000 --> 00:03:21,000
+as a default constructor.
+
+90
+00:03:21,000 --> 00:03:23,000
+A default constructor is a constructor
+
+91
+00:03:23,000 --> 00:03:25,000
+that doesn't take any parameters.
+
+92
+00:03:25,000 --> 00:03:27,000
+So when someone initializes a GradeBook
+
+93
+00:03:27,000 --> 00:03:29,000
+and creates an instance using the new keyword,
+
+94
+00:03:29,000 --> 00:03:32,000
+they don't have to pass any parameters that arrive here
+
+95
+00:03:32,000 --> 00:03:34,000
+to the constructor method.
+
+96
+00:03:34,000 --> 00:03:36,000
+Just like I'm using the default constructor
+
+97
+00:03:36,000 --> 00:03:39,000
+for a list of float, I'm using the new keyword
+
+98
+00:03:39,000 --> 00:03:40,000
+and invoking that constructor,
+
+99
+00:03:40,000 --> 00:03:42,000
+and I don't pass any parameters along.
+
+100
+00:03:42,000 --> 00:03:44,000
+And the important concept to take away here
+
+101
+00:03:44,000 --> 00:03:47,000
+is that GradeBook is a class, it's a blueprint
+
+102
+00:03:47,000 --> 00:03:48,000
+for creating objects.
+
+103
+00:03:48,000 --> 00:03:49,000
+It's a cookie-cutter.
+
+104
+00:03:49,000 --> 00:03:51,000
+In order to get an object that is an instance
+
+105
+00:03:51,000 --> 00:03:53,000
+of this GradeBook class, something that I can use
+
+106
+00:03:53,000 --> 00:03:56,000
+and something that I can actually add grades to,
+
+107
+00:03:56,000 --> 00:03:57,000
+I need to create an object.
+
+108
+00:03:57,000 --> 00:03:59,000
+And I do that using the new keyword.
+
+109
+00:03:59,000 --> 00:04:02,000
+I want a new GradeBook or a new list of float.
+
+110
+00:04:02,000 --> 00:04:04,000
+And now that we know a little bit more about constructors,
+
+111
+00:04:04,000 --> 00:04:07,000
+let's really drill into the details about the differences
+
+112
+00:04:07,000 --> 00:59:00,000
+between objects and variables.
+

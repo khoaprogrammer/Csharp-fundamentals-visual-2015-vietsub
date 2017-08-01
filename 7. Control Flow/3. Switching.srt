@@ -1,0 +1,172 @@
+1
+00:00:01,000 --> 00:00:06,000
+The C# language also includes a switch statement. What the switch statement allows you to do is branch the
+
+2
+00:00:06,000 --> 00:00:13,000
+execution of a program to a set of statements that are inside of a case label, which you create with the keyword case.
+
+3
+00:00:13,000 --> 00:00:19,000
+The switch statement does this by matching the value inside the switch against the values that you specify in
+
+4
+00:00:19,000 --> 00:00:24,000
+each case label. These values for each case statement, they must be compile-time constants,
+
+5
+00:00:24,000 --> 00:00:30,000
+and we can see in the code on the screen, we're checking a variable to see if the name is equal to one of the
+
+6
+00:00:30,000 --> 00:00:37,000
+string literals, Scott or Alex. If the name is Scott, we execute the method ServeSoda, and then we break out
+
+7
+00:00:37,000 --> 00:00:41,000
+of the switch, that is we jump to the line of code following the switch.
+
+8
+00:00:41,000 --> 00:00:46,000
+So we only execute the code inside of a single case. You can have multiple statements and multiple lines of
+
+9
+00:00:46,000 --> 00:00:52,000
+code inside of a case, but you also must have a break statement in each case, that's a little bit different
+
+10
+00:00:52,000 --> 00:00:57,000
+form other languages like C++ where you can fall through from one case to the next.
+
+11
+00:00:57,000 --> 00:01:02,000
+Now if the value you are switching on does not match any of the values in the case statements,
+
+12
+00:01:02,000 --> 00:01:08,000
+then the default path can be chosen, but you don't need to have a default label, so that's entirely optional.
+
+13
+00:01:08,000 --> 00:01:11,000
+Let's take a look in code.
+
+14
+00:01:11,000 --> 00:01:17,000
+Back in the Grades project, it might be useful to provide a textual description of the letter grade,
+
+15
+00:01:17,000 --> 00:01:22,000
+that is a grade of A should produce text like excellent, while a grade of F should produce text like failing.
+
+16
+00:01:22,000 --> 00:01:28,000
+This type of logic I could also add to GradeStatistics, and I could do this as another property.
+
+17
+00:01:28,000 --> 00:01:34,000
+So in addition to the LetterGrade property, here is another public property of type string,
+
+18
+00:01:34,000 --> 00:01:40,000
+let's call it Description, and just like LetterGrade, this will have only a get accessor.
+
+19
+00:01:40,000 --> 00:01:43,000
+And inside of here, I could look at the average grade, but I could also look at the letter grade.
+
+20
+00:01:43,000 --> 00:01:48,000
+I could say okay, if the letter grade is an A, let's produce this text, and if it's a B let's produce this
+
+21
+00:01:48,000 --> 00:01:53,000
+text, and that's the type of logic I could do with if else statements, but since we're looking at switch,
+
+22
+00:01:53,000 --> 00:01:59,000
+let's do a switch on LetterGrade instead. A switch statement is very much like a series of if else if
+
+23
+00:01:59,000 --> 00:02:06,000
+statements, and what I can do case the letter grade is the string A, let's execute the following code.
+
+24
+00:02:06,000 --> 00:02:11,000
+And what I want to do ultimately is compute some result, just like I did with LetterGrade,
+
+25
+00:02:11,000 --> 00:02:17,000
+and then return that result at the bottom of the property. So when we have a capital A, let's say that the
+
+26
+00:02:17,000 --> 00:02:28,000
+result = Excellent, and then you can think about this as else, if I have the sting B, the result would be
+
+27
+00:02:28,000 --> 00:02:34,000
+equal to Good, or we could say Above Average, and notice I have a compiler error right now because it's
+
+28
+00:02:34,000 --> 00:02:40,000
+illegal to fall through from one case label to another. And there's a couple ways to solve that error,
+
+29
+00:02:40,000 --> 00:02:46,000
+but by far the most common approach is to use a break statement, and what the break statement will do is
+
+30
+00:02:46,000 --> 00:02:51,000
+allow me to execute as many lines of code as I want inside of that case label, but once I hit the break
+
+31
+00:02:51,000 --> 00:02:57,000
+statement, I'll be jumping out of the switch. And if we have a letter grade of B we can then break,
+
+32
+00:02:57,000 --> 00:03:04,000
+of course a C, the result for a C would be Average, and then we break.
+
+33
+00:03:04,000 --> 00:03:13,000
+We also need to handle the D case, and for the result there we could say Below average, and then break,
+
+34
+00:03:13,000 --> 00:03:21,000
+and now I have a choice, I could either write another case statement and say, case letter grade is an F,
+
+35
+00:03:21,000 --> 00:03:28,000
+or I could have a default label, in which case if the letter grade is anything but an A, B, C, or D,
+
+36
+00:03:28,000 --> 00:03:38,000
+we will end up inside of here, and I can say the result is Failing, and once again I will still need a break.
+
+37
+00:03:38,000 --> 00:03:46,000
+Let's try this out in the program. Instead of writing out the text Grade, let's write out stats.Description.
+
+38
+00:03:46,000 --> 00:03:53,000
+I will run this program, and I can see that a B is a Good grade, so my switch statement appears to be working.
+
+39
+00:03:53,000 --> 00:04:00,000
+So switch is the type of logic that you could also implement using if and else if statements,
+
+40
+00:04:00,000 --> 00:04:06,000
+but note that I would not be able to implement LetterGrade using a switch statement.
+
+41
+00:04:06,000 --> 00:04:11,000
+In a switch statement I cannot write an expression like AverageGrade greater than or equal to 90,
+
+42
+00:04:11,000 --> 00:04:16,000
+all I'd be able to do is switch on AverageGrade, and have a case when AverageGrade is 90 exactly.
+
+43
+00:04:16,000 --> 00:59:00,000
+So switch statements, not so useful for evaluating ranges, but sometimes useful for replacing if else if statements.
+

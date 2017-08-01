@@ -1,0 +1,20 @@
+1
+00:00:00,000 --> 00:00:07,000
+Hi, this is Scott Allen, and in this module we're going to look at Control Flow in a C# application.
+
+2
+00:00:07,000 --> 00:00:12,000
+Specifically we're going to look at the keywords and constructs available in the language to perform
+
+3
+00:00:12,000 --> 00:00:17,000
+branching, looping, and to jump to different points in an execution path.
+
+4
+00:00:17,000 --> 00:00:22,000
+And finally, we'll look at error handling, that is how to throw errors, and how to catch errors,
+
+5
+00:00:22,000 --> 00:59:00,000
+and potentially resolve those errors.
+

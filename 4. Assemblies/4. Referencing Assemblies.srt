@@ -1,0 +1,208 @@
+1
+00:00:00,000 --> 00:00:07,000
+When we are executing a program and we want to use a class or a type defined in another assembly,
+
+2
+00:00:07,000 --> 00:00:12,000
+we must have that assembly loaded into memory with our program, and this can happen automatically with
+
+3
+00:00:12,000 --> 00:00:18,000
+the .NET runtime. The easiest way for assembly loading to happen is to establish what we call an assembly reference.
+
+4
+00:00:18,000 --> 00:00:25,000
+We can do this inside of Visual Studio and have an assembly appear in that references node that we were just looking at.
+
+5
+00:00:25,000 --> 00:00:30,000
+When you right-click that node, you can select an option that says Add Reference, which will bring up a
+
+6
+00:00:30,000 --> 00:00:35,000
+dialog box, which will allow you to select assemblies from the .NET Framework, as well as assemblies defined
+
+7
+00:00:35,000 --> 00:00:40,000
+by other projects that you've created in solution or even just assemblies that are just lying around
+
+8
+00:00:40,000 --> 00:00:45,000
+somewhere on the disk. But the important part is once I've established a reference inside of a project with
+
+9
+00:00:45,000 --> 00:00:50,000
+Visual Studio, I can start using the types inside, and the .NET Framework will automatically load that
+
+10
+00:00:50,000 --> 00:00:57,000
+assembly when I start using pieces from it during runtime. Let's take a look and see how that works.
+
+11
+00:00:57,000 --> 00:01:02,000
+Inside of the GradeBook application, I want to try a little experiment with speech and see if I can get our
+
+12
+00:01:02,000 --> 00:01:08,000
+program to speak a greeting and perhaps even the grades that are inside of the GradeBook.
+
+13
+00:01:08,000 --> 00:01:15,000
+And to do this, I've read about a class on MSDN, the Microsoft Developer Network, that has a lot of the C# documentation.
+
+14
+00:01:15,000 --> 00:01:24,000
+The class is called SpeechSynthesizer. And the problem right now is that class lives in an assembly that I don't reference.
+
+15
+00:01:24,000 --> 00:01:28,000
+So not only would my program not run, it currently won't build because I have to have all of my assembly
+
+16
+00:01:28,000 --> 00:01:34,000
+references in place for the classes that I'm using before the C# compiler will even build my project.
+
+17
+00:01:34,000 --> 00:01:37,000
+And Visual Studio's trying to give me a clue about this. It tells me that the type or the namespace
+
+18
+00:01:37,000 --> 00:01:43,000
+SpeechSynthesizer could not be found. Are you missing a using directive or an assembly reference?
+
+19
+00:01:43,000 --> 00:01:49,000
+And in this case the problem is an assembly reference. So let me right-click on the References node and
+
+20
+00:01:49,000 --> 00:01:54,000
+say Add Reference. Inside of this dialog box under Assemblies I can see a list of all of the framework
+
+21
+00:01:54,000 --> 00:01:59,000
+assemblies that are installed on this machine, and there are a number of different ways to establish an
+
+22
+00:01:59,000 --> 00:02:04,000
+assembly reference including just browsing to an assembly that is living on my file system somewhere.
+
+23
+00:02:04,000 --> 00:02:10,000
+But the assembly I want for the SpeechSynthesizer, it is an assembly in the .NET Framework, so I'll come up
+
+24
+00:02:10,000 --> 00:02:15,000
+to the text box here in the upper right of the screen and just search for speech, and I can see there is a
+
+25
+00:02:15,000 --> 00:02:24,000
+System.Speech assembly. If I select that checkbox and say OK, I can now see that System.Speech is added to
+
+26
+00:02:24,000 --> 00:02:31,000
+my list of assembly references. I can even right-click this assembly, view it in the Object Browser,
+
+27
+00:02:31,000 --> 00:02:37,000
+and inside of the Object Browser I can see there's a System.Speech.Synthesis namespace, and it's actually
+
+28
+00:02:37,000 --> 00:02:42,000
+inside of here where I would find the SpeechSynthesizer class that I want.
+
+29
+00:02:42,000 --> 00:02:47,000
+And this class has a large number of methods that allow you to select different voices and do all sorts of
+
+30
+00:02:47,000 --> 00:02:53,000
+tweaks to the sound and the speech that it's going to produce, but one of the easiest methods to use is just
+
+31
+00:02:53,000 --> 00:03:00,000
+a method called Speak, which takes a string, and the synthesizer will speak the contents of that string.
+
+32
+00:03:00,000 --> 00:03:05,000
+This is not a static method, so I do need to instantiate the SpeechSynthesizer.
+
+33
+00:03:05,000 --> 00:03:10,000
+But now when I come back to my program, I still have an error that I might be missing a using directive or an
+
+34
+00:03:10,000 --> 00:03:13,000
+assembly reference, but this time I have the assembly reference.
+
+35
+00:03:13,000 --> 00:03:18,000
+I just need to add a using statement so that the compiler knows this is the
+
+36
+00:03:18,000 --> 00:03:25,000
+System.Speech.Synthesis.SpeechSynthesizer class. And now I can create a variable called synth.
+
+37
+00:03:25,000 --> 00:03:33,000
+Let's set that equal to a new instance of the SpeechSynthesizer class, and let's say synth.Speak
+
+38
+00:03:33,000 --> 00:03:42,000
+("Hello this is the grade book program.") And now when I run the application, that assembly will be loaded
+
+39
+00:03:42,000 --> 00:03:47,000
+into my program; I'll be able to instantiate that class. And if I run this without the debugger,
+
+40
+00:03:47,000 --> 00:03:54,000
+which is Ctrl+F5, that's the shortcut, hello this is the grade book program, then I have now successfully
+
+41
+00:03:54,000 --> 00:04:04,000
+used the speech synthesizer. If I were to come back into Visual Studio and remove this reference, now I will
+
+42
+00:04:04,000 --> 00:04:11,000
+start to have errors appear as the compiler, when I do a build, no longer knows where SpeechSynthesizer comes from.
+
+43
+00:04:11,000 --> 00:04:18,000
+I get an error not only trying to use SpeechSynthesizer, but also just trying to use System.Speech.Synthesis.
+
+44
+00:04:18,000 --> 00:04:23,000
+That's not a namespace that the compiler sees in any of the assemblies that I have referenced.
+
+45
+00:04:23,000 --> 00:04:29,000
+So for most projects that you work on, the default assembly references will not be enough to get the job done.
+
+46
+00:04:29,000 --> 00:04:35,000
+Quite often you're going to have some feature like talking to a database or executing business algorithms
+
+47
+00:04:35,000 --> 00:04:38,000
+that someone else in your company has written and produced into an assembly.
+
+48
+00:04:38,000 --> 00:04:43,000
+There are going to be some other features that you need to grab by referencing other assemblies.
+
+49
+00:04:43,000 --> 00:04:47,000
+Another place where you will have to learn to manage assembly references is when you have multiple projects
+
+50
+00:04:47,000 --> 00:04:51,000
+in the solution, and one project depends on another type of project.
+
+51
+00:04:51,000 --> 00:04:56,000
+Let me clean up this program by removing code that will produce an error, and then we'll take a look at that
+
+52
+00:04:56,000 --> 00:59:00,000
+topic as I introduce you to unit testing with C#.
+

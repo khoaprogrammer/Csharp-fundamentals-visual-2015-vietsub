@@ -1,0 +1,60 @@
+1
+00:00:00,000 --> 00:00:06,000
+In this module we looked at the different members that you can add to a class.
+
+2
+00:00:06,000 --> 00:00:09,000
+We looked at fields and properties, which can hold an exposed state.
+
+3
+00:00:09,000 --> 00:00:14,000
+We also looked at methods again, this time seeing how you can overload methods by writing multiple methods
+
+4
+00:00:14,000 --> 00:00:19,000
+with the same name, but different signatures. Remember the signature is defined not only by the name of the
+
+5
+00:00:19,000 --> 00:00:23,000
+method, but also the types and the number of parameters to that method.
+
+6
+00:00:23,000 --> 00:00:30,000
+And finally we looked at events, which allow subscribers to listen for interesting things that might happen in an object.
+
+7
+00:00:30,000 --> 00:00:35,000
+We saw how events are based on delegates, which are useful in other places in .NET programming too.
+
+8
+00:00:35,000 --> 00:00:40,000
+If you want more information on events and delegates I do spend some time on them in both my C# Generics
+
+9
+00:00:40,000 --> 00:00:46,000
+course and my Linq Fundamentals course. The whole goal of seeing fields, properties, methods, constructors,
+
+10
+00:00:46,000 --> 00:00:52,000
+and events all together is to know what tools are available when you want to build an abstraction in C#.
+
+11
+00:00:52,000 --> 00:00:56,000
+In this case we've built a GradeBook that encapsulates the behavior of the GradeBook.
+
+12
+00:00:56,000 --> 00:01:00,000
+It can computer statistics and raise events when important state changes happen.
+
+13
+00:01:00,000 --> 00:01:06,000
+We'll continue seeing how to build abstractions when we talk about object-oriented programming, but first we
+
+14
+00:01:06,000 --> 00:01:11,000
+will in the next module look at flow control in C#, which is how to branch, and loop, and both create,
+
+15
+00:01:11,000 --> 00:59:00,000
+and catch runtime errors.
+

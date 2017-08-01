@@ -1,0 +1,92 @@
+1
+00:00:00,000 --> 00:00:04,000
+In various parts of the course, I'll talk about the Common Language Runtime, the CLR, so it's important to
+
+2
+00:00:04,000 --> 00:00:11,000
+note that the CLR is an execution environment for .NET applications, and that includes applications written in C#.
+
+3
+00:00:11,000 --> 00:00:17,000
+It is the CLR that is responsible for bringing your application to life and managing it while it executes,
+
+4
+00:00:17,000 --> 00:00:24,000
+and it's also the CLR's job to tear down your application when it's finished executing or if it has an unrecoverable error.
+
+5
+00:00:24,000 --> 00:00:27,000
+And here some of the services that the CLR provides when it's managing your application.
+
+6
+00:00:27,000 --> 00:00:33,000
+One is memory management. The CLR is actively tracking all of the memory that your program uses to do work,
+
+7
+00:00:33,000 --> 00:00:38,000
+and it knows when your program is finished with memory, so it will clean things up and allow your program
+
+8
+00:00:38,000 --> 00:00:44,000
+to continue to have enough memory as it runs. The CLR also virtualizes your execution environment,
+
+9
+00:00:44,000 --> 00:00:48,000
+so for the most part you do not need to worry about what version of the operating system that your
+
+10
+00:00:48,000 --> 00:00:54,000
+application is executing on, you don't need to worry about the specific CPU that is installed on the machine,
+
+11
+00:00:54,000 --> 00:01:00,000
+whether that CPU is 32-bit or 64-bit, or how many cores are present, or what instruction set is available.
+
+12
+00:01:00,000 --> 00:01:04,000
+The CLR will take care of all those things and make sure that your application will execute correctly.
+
+13
+00:01:04,000 --> 00:01:10,000
+The CLR was also designed to support multiple languages. You can write programs in C#, but you can also write
+
+14
+00:01:10,000 --> 00:01:15,000
+.NET programs in Visual Basic or F#. In fact, there are many different languages you can use to write .NET
+
+15
+00:01:15,000 --> 00:01:20,000
+applications, and all those applications will be managed by the same CLR.
+
+16
+00:01:20,000 --> 00:01:24,000
+The CLR is available for every version of Windows since Windows XP.
+
+17
+00:01:24,000 --> 00:01:30,000
+There's also a CLR for mobile phones like Windows Phone 8 and a new version of the CLR, the CoreCLR,
+
+18
+00:01:30,000 --> 00:01:35,000
+will even run on non-Windows machines, like MacBook's running OS X and Linux machines.
+
+19
+00:01:35,000 --> 00:01:37,000
+For the most part, you don't care which operating system you are on.
+
+20
+00:01:37,000 --> 00:01:43,000
+Certainly what we will cover in this course will be code that can run anywhere; although, there's always an
+
+21
+00:01:43,000 --> 00:01:48,000
+option to use an operating-specific feature that would tie your code to a specific platform.
+
+22
+00:01:48,000 --> 00:01:54,000
+But, as I said, we'll focus on the features of C# and the .NET Framework Class Library that will work anywhere.
+
+23
+00:01:54,000 --> 00:59:00,000
+And speaking of the Framework Class Library, let me give you a quick overview of the FCL.
+

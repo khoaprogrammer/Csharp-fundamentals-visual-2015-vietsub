@@ -1,0 +1,312 @@
+1
+00:00:02,000 --> 00:00:06,000
+Now that we know a little bit more about Visual Studio, let's create a more interesting program.
+
+2
+00:00:06,000 --> 00:00:10,000
+What I want to happen is instead of forcing the user to pass in their name as a command line parameter,
+
+3
+00:00:10,000 --> 00:00:15,000
+I want the user to be able to start the program running without any command line parameters, and then the
+
+4
+00:00:15,000 --> 00:00:20,000
+program will prompt the user and ask them to enter the user name.
+
+5
+00:00:20,000 --> 00:00:24,000
+So I want to accept user input as the program is running, and this is something that I can do with another
+
+6
+00:00:24,000 --> 00:00:32,000
+method on the Console class. This method is Console.ReadLine. So WriteLine puts something onto the screen;
+
+7
+00:00:32,000 --> 00:00:37,000
+ReadLine will allow the user to type characters and then press the return key, and ReadLine will take those
+
+8
+00:00:37,000 --> 00:00:41,000
+characters, put them into a string, and return that string to me.
+
+9
+00:00:41,000 --> 00:00:45,000
+That's what his IntelliSense window is trying to tell me. The return value of calling this Console.ReadLine
+
+10
+00:00:45,000 --> 00:00:51,000
+method is a string, so I will need to take that string, and I will need to save it somewhere so that I have
+
+11
+00:00:51,000 --> 00:00:56,000
+access to the user's name later inside of this method. That's when I can declare a variable.
+
+12
+00:00:56,000 --> 00:01:01,000
+C# is a typed language, so I need to have type for every variable that I define.
+
+13
+00:01:01,000 --> 00:01:05,000
+In this case the type is string, and the variable is called name.
+
+14
+00:01:05,000 --> 00:01:10,000
+And we'll be talking in a lot more detail about the types of variables that you can have, but for now you can
+
+15
+00:01:10,000 --> 00:01:15,000
+effectively think of this name variable as holding on to that user input so that I can use it later.
+
+16
+00:01:15,000 --> 00:01:20,000
+Name will be available anywhere else throughout the rest of this method after it's been defined.
+
+17
+00:01:20,000 --> 00:01:27,000
+I want to say Console.WriteLine Hello and then plus the name. Now it would probably also be a good idea
+
+18
+00:01:27,000 --> 00:01:33,000
+before I accept that user input to write out something that tells the user they need to input their name.
+
+19
+00:01:33,000 --> 00:01:39,000
+So let's just WriteLine, Your name, and then read the result of that, and then echo it back out,
+
+20
+00:01:39,000 --> 00:01:45,000
+Hello plus name. Let's try this real quick. I'll do a build just by hitting the shortcut keys Shift+Ctrl+V.
+
+21
+00:01:45,000 --> 00:01:49,000
+Let's come out and run the program. I'm just going to type Hello this time.
+
+22
+00:01:49,000 --> 00:01:55,000
+It's going to prompt me for my name. I will type in Allen just to try something different, and we get Hello, Allen.
+
+23
+00:01:55,000 --> 00:02:01,000
+Very good. Let's take this one step further. Let's try to find out if the user had enough sleep last night.
+
+24
+00:02:01,000 --> 00:02:05,000
+We'll just basically ask how many hours of sleep did you get, and then use some logic to determine if the
+
+25
+00:02:05,000 --> 00:02:13,000
+user is well-rested or not. So first let's do the prompt. I want to WriteLine something and ask the user,
+
+26
+00:02:13,000 --> 00:02:20,000
+How many hours of sleep did you get last night? And now I expect the user to type in a number,
+
+27
+00:02:20,000 --> 00:02:27,000
+a number between let's say 0 and 24, and I want to store this value so I can inspect it later and figure out
+
+28
+00:02:27,000 --> 00:02:33,000
+if the user got enough sleep to be rested. So because I expect the user to type in a number, I'm going to
+
+29
+00:02:33,000 --> 00:02:37,000
+this time declare a variable as type int, which is short for integer.
+
+30
+00:02:37,000 --> 00:02:44,000
+This will be a variable that can store a number, hours of sleep, which would be a common naming convention
+
+31
+00:02:44,000 --> 00:02:49,000
+for a C# variable. Variables that you define inside of a method, they always start with a lower case letter.
+
+32
+00:02:49,000 --> 00:02:54,000
+If they contain multiple words in that name, then you upper case the letters of those words.
+
+33
+00:02:54,000 --> 00:02:57,000
+That's a little bit different from class names, which always start with an uppercase letter and method
+
+34
+00:02:57,000 --> 00:03:02,000
+names, which always start with an uppercase letter. So now I have this integer variable, HoursOfSleep,
+
+35
+00:03:02,000 --> 00:03:09,000
+that can store the amount of sleep that a user has. Let's try to do another Console.ReadLine to allow the
+
+36
+00:03:09,000 --> 00:03:14,000
+user to input this value, and you'll notice that I get a red squiggly inside of Visual Studio.
+
+37
+00:03:14,000 --> 00:03:18,000
+If I hover over that line, I will see the problem here, the error message.
+
+38
+00:03:18,000 --> 00:03:24,000
+It says it cannot implicitly convert type string to int. So C# is a typed language, and not all variables are compatible.
+
+39
+00:03:24,000 --> 00:03:31,000
+If you try to assign something like string to an integer, Console.ReadLine returns a string, a sequence of characters.
+
+40
+00:03:31,000 --> 00:03:36,000
+It could be anything like ABC. How can you possible take that value and put it into a variable that holds a number?
+
+41
+00:03:36,000 --> 00:03:40,000
+That's something that the C# compiler and the runtime just won't do for me automatically.
+
+42
+00:03:40,000 --> 00:03:46,000
+I have to do some explicit conversion. I need to take this string and turn it into an integer.
+
+43
+00:03:46,000 --> 00:03:52,000
+That's something that I can do by invoking a method on int. It's a method called Parse.
+
+44
+00:03:52,000 --> 00:03:58,000
+You pass in a string, and Parse will try to take that string and turn it into an integer value.
+
+45
+00:03:58,000 --> 00:04:03,000
+So the user types in the characters 1, 2, int.Parse will turn that into the number 12.
+
+46
+00:04:03,000 --> 00:04:09,000
+The user could also type in the characters A, B, C, and int.Parse is going to through an exception and crash
+
+47
+00:04:09,000 --> 00:04:14,000
+the program because it cannot convert A, B, C into a number. We'll talk about how to deal with that type of
+
+48
+00:04:14,000 --> 00:04:21,000
+scenario later in the course. For right now we'll assume that the user is a good user; they always type in numbers.
+
+49
+00:04:21,000 --> 00:04:24,000
+And now I can make a determination if the user has enough sleep or not.
+
+50
+00:04:24,000 --> 00:04:30,000
+Let's say that if the user has more than eight hours of sleep that they should be well-rested, so we want to
+
+51
+00:04:30,000 --> 00:04:36,000
+write a message that tells them they should be well-rested. Let's do this after we say their name.
+
+52
+00:04:36,000 --> 00:04:45,000
+I want to say Console.WriteLine, You are well rested, but remember I only want to do this if the user had
+
+53
+00:04:45,000 --> 00:04:50,000
+more than eight hours of sleep, and this is a place where I can use an if statement in C#.
+
+54
+00:04:50,000 --> 00:04:55,000
+If allows me to write an expression that will evaluate to true or false.
+
+55
+00:04:55,000 --> 00:05:03,000
+So if hoursOfSleep is greater than eight, then do what is inside of these curly braces, so I want to take
+
+56
+00:05:03,000 --> 00:05:09,000
+this Console.WriteLine method and cut it and move it inside of that if condition.
+
+57
+00:05:09,000 --> 00:05:12,000
+And now what if the user didn't have more than eight hours of sleep?
+
+58
+00:05:12,000 --> 00:05:17,000
+Well then I can use the else keyword. If else logic is very common logic in a C# application.
+
+59
+00:05:17,000 --> 00:05:22,000
+You can say if you meet some condition do this; otherwise, do this other thing.
+
+60
+00:05:22,000 --> 00:05:28,000
+The other thing could be that we could Console.WriteLine, You need more sleep.
+
+61
+00:05:28,000 --> 00:05:34,000
+And now we have an application that not only takes some user input, but also branches the execution of the
+
+62
+00:05:34,000 --> 00:05:39,000
+application in different directions depending on that input. And let's just run this with the debugger to
+
+63
+00:05:39,000 --> 00:05:45,000
+see how it works. I'll press F5. We will hit our opening breakpoint here at the beginning of the program.
+
+64
+00:05:45,000 --> 00:05:51,000
+Let me F10 over a couple of lines. We hit the ReadLine statement, and Visual Studio is smart enough to switch
+
+65
+00:05:51,000 --> 00:05:55,000
+over to the application and show it because it's expecting some input here.
+
+66
+00:05:55,000 --> 00:06:00,000
+I'll put in my name, which is Scott. I can use the mouse, hover over this, see that name does contain the
+
+67
+00:06:00,000 --> 00:06:04,000
+value Scott, that's good. Now let's get the number of hoursOfSleep.
+
+68
+00:06:04,000 --> 00:06:10,000
+Let me enter the value nine. Again I can hover over hoursOfSleep, see that there is a nine there.
+
+69
+00:06:10,000 --> 00:06:15,000
+We will WriteLine out the name, and now you can watch this: If hoursOfSleep is greater than eight,
+
+70
+00:06:15,000 --> 00:06:22,000
+I press F10. Yes, we're going to branch into that condition, and we will Write.Line You are well rested,
+
+71
+00:06:22,000 --> 00:06:26,000
+and we will skip the else part. So I only get to execute one of those two branches.
+
+72
+00:06:26,000 --> 00:06:32,000
+And let me just flip over to the program. I can see it produced the right output, Hello, Scott You are well rested.
+
+73
+00:06:32,000 --> 00:06:38,000
+So I will press F5 and allow the application to finish executing, and then the debugger exits, and I can go
+
+74
+00:06:38,000 --> 00:06:42,000
+back to editing some source code. And now I encourage you to try out this same program, and try it out with
+
+75
+00:06:42,000 --> 00:06:48,000
+different inputs, see what happens if hoursOfSleep is less than eight, see what happens when the user enters
+
+76
+00:06:48,000 --> 00:06:54,000
+characters for the hoursOfSleep, something like ABC, see how the program crashes and how it behaves.
+
+77
+00:06:54,000 --> 00:06:59,000
+Try some of these things until you are comfortable with Visual Studio and the debugger, and then you can
+
+78
+00:06:59,000 --> 00:59:00,000
+move on to the next module.
+

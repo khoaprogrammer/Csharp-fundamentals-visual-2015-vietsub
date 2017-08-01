@@ -1,0 +1,664 @@
+1
+00:00:01,000 --> 00:00:06,000
+Let's return to Program.cs and the main method which is the entry point
+
+2
+00:00:06,000 --> 00:00:07,000
+for the application.
+
+3
+00:00:07,000 --> 00:00:09,000
+And now that I have a class, GradeBook,
+
+4
+00:00:09,000 --> 00:00:12,000
+I can have define variables of type GradeBook.
+
+5
+00:00:12,000 --> 00:00:15,000
+And the name of this variable could be GradeBook or Grades.
+
+6
+00:00:15,000 --> 00:00:17,000
+Let's just call it book.
+
+7
+00:00:17,000 --> 00:00:19,000
+And through that variable,
+
+8
+00:00:19,000 --> 00:00:21,000
+I should be able to invoke methods
+
+9
+00:00:21,000 --> 00:00:23,000
+like the AddGrade method that we gave a GradeBook,
+
+10
+00:00:23,000 --> 00:00:26,000
+and I can pass in a parameter to that method.
+
+11
+00:00:26,000 --> 00:00:28,000
+Let's pass in a 91.
+
+12
+00:00:28,000 --> 00:00:30,000
+Now if I were to build the application at this point,
+
+13
+00:00:30,000 --> 00:00:31,000
+I would get a compiler error,
+
+14
+00:00:31,000 --> 00:00:33,000
+and Visual Studio is already indicating
+
+15
+00:00:33,000 --> 00:00:35,000
+that there's going to be an error
+
+16
+00:00:35,000 --> 00:00:36,000
+with the red squiggly line.
+
+17
+00:00:36,000 --> 00:00:38,000
+And the error is the use of an unassigned
+
+18
+00:00:38,000 --> 00:00:40,000
+local variable, book.
+
+19
+00:00:40,000 --> 00:00:42,000
+Once I have a class definition,
+
+20
+00:00:42,000 --> 00:00:44,000
+I can use that to create variables like book.
+
+21
+00:00:44,000 --> 00:00:46,000
+But just by adding a variable of type book to this method,
+
+22
+00:00:46,000 --> 00:00:49,000
+that doesn't give me an actual GradeBook.
+
+23
+00:00:49,000 --> 00:00:51,000
+All it does is give me a variable that I can use
+
+24
+00:00:51,000 --> 00:00:53,000
+to access a GradeBook.
+
+25
+00:00:53,000 --> 00:00:55,000
+And here's an important concept in C#
+
+26
+00:00:55,000 --> 00:00:57,000
+that we will talk about several times in this course.
+
+27
+00:00:57,000 --> 00:00:59,000
+When I create a class definition,
+
+28
+00:00:59,000 --> 00:01:02,000
+I can think of that class definition like a cookie-cutter.
+
+29
+00:01:02,000 --> 00:01:04,000
+A cookie-cutter allows me to create one or more cookies
+
+30
+00:01:04,000 --> 00:01:07,000
+with a specific shape just by applying the cutter
+
+31
+00:01:07,000 --> 00:01:08,000
+to some dough.
+
+32
+00:01:08,000 --> 00:01:10,000
+And its cookies that I really want to work with and eat,
+
+33
+00:01:10,000 --> 00:01:13,000
+but cookie-cutter only exists to create cookies
+
+34
+00:01:13,000 --> 00:01:15,000
+with a consistent and specific shape.
+
+35
+00:01:15,000 --> 00:01:17,000
+A class definition is similar to this
+
+36
+00:01:17,000 --> 00:01:19,000
+because I don't do any actual work
+
+37
+00:01:19,000 --> 00:01:21,000
+with the class definition, but I can use the class
+
+38
+00:01:21,000 --> 00:01:25,000
+to create objects with a specific and consistent shape
+
+39
+00:01:25,000 --> 00:01:26,000
+and then work with those objects.
+
+40
+00:01:26,000 --> 00:01:28,000
+The class is a cookie-cutter.
+
+41
+00:01:28,000 --> 00:01:30,000
+But instead of stamping out cookies from dough,
+
+42
+00:01:30,000 --> 00:01:32,000
+a class will stamp out objects
+
+43
+00:01:32,000 --> 00:01:34,000
+from the memory of the computer.
+
+44
+00:01:34,000 --> 00:01:36,000
+And it objects that I need to work with in my program.
+
+45
+00:01:36,000 --> 00:01:39,000
+It is objects that are allocated into the memory
+
+46
+00:01:39,000 --> 00:01:42,000
+of my computer and hold the data that I need.
+
+47
+00:01:42,000 --> 00:01:44,000
+The way I create a real GradeBook object
+
+48
+00:01:44,000 --> 00:01:47,000
+using that GradeBook class is to use another keyword in C#,
+
+49
+00:01:47,000 --> 00:01:49,000
+the new keyword.
+
+50
+00:01:49,000 --> 00:01:51,000
+And I'll say new GradeBook.
+
+51
+00:01:51,000 --> 00:01:53,000
+Literally, I am asking for a new instance
+
+52
+00:01:53,000 --> 00:01:57,000
+of this GradeBook class, and I'm going to store a reference
+
+53
+00:01:57,000 --> 00:01:59,000
+to that object, this new GradeBook object,
+
+54
+00:01:59,000 --> 00:02:00,000
+in the variable book.
+
+55
+00:02:00,000 --> 00:02:03,000
+I'm also going to apply a parenthesis here,
+
+56
+00:02:03,000 --> 00:02:05,000
+and it looks like I'm invoking a method.
+
+57
+00:02:05,000 --> 00:02:06,000
+That's because behind the scenes,
+
+58
+00:02:06,000 --> 00:02:08,000
+I actually am invoking a method.
+
+59
+00:02:08,000 --> 00:02:10,000
+I'm using the name of the class, GradeBook,
+
+60
+00:02:10,000 --> 00:02:12,000
+and then applying parentheses.
+
+61
+00:02:12,000 --> 00:02:14,000
+Behind the scenes, that will invoke what's known
+
+62
+00:02:14,000 --> 00:02:15,000
+as a constructor.
+
+63
+00:02:15,000 --> 00:02:18,000
+And a constructor is responsible for creating a new instance
+
+64
+00:02:18,000 --> 00:02:19,000
+of this GradeBook by allocating memory
+
+65
+00:02:19,000 --> 00:02:21,000
+and initializing the state inside.
+
+66
+00:02:21,000 --> 00:02:24,000
+We are going to talk more about instructors in just a bit.
+
+67
+00:02:24,000 --> 00:02:26,000
+But now that I've created a new GradeBook
+
+68
+00:02:26,000 --> 00:02:27,000
+and I've assigned that to book,
+
+69
+00:02:27,000 --> 00:02:29,000
+that takes care of the uninitialized variable,
+
+70
+00:02:29,000 --> 00:02:32,000
+that is, a variable that just wasn't assigned anything.
+
+71
+00:02:32,000 --> 00:02:34,000
+The C# compiler was smart enough to know
+
+72
+00:02:34,000 --> 00:02:36,000
+that, that variable was going to create a problem,
+
+73
+00:02:36,000 --> 00:02:38,000
+it didn't point to an actual GradeBook.
+
+74
+00:02:38,000 --> 00:02:42,000
+And now let me try to run this program with the debugger
+
+75
+00:02:42,000 --> 00:02:43,000
+to see if we can add a grade.
+
+76
+00:02:43,000 --> 00:02:47,000
+I'll do that just by pressing F5 to run with the debugger.
+
+77
+00:02:47,000 --> 00:02:50,000
+And after Visual Studio builds the project,
+
+78
+00:02:50,000 --> 00:02:54,000
+it will start the application running and
+
+79
+00:02:54,000 --> 00:02:58,000
+we will get an exception inside of our AddGrade method.
+
+80
+00:02:58,000 --> 00:03:01,000
+This exception is a NullReferenceException.
+
+81
+00:03:01,000 --> 00:03:04,000
+Is an exception that you are sure to see many times
+
+82
+00:03:04,000 --> 00:03:06,000
+over the course of a career in C# programming.
+
+83
+00:03:06,000 --> 00:03:08,000
+And in this case, it means I'm using
+
+84
+00:03:08,000 --> 00:03:11,000
+an uninitialized variable, and that uninitialized variable
+
+85
+00:03:11,000 --> 00:03:15,000
+is the field, grades, that I have inside of GradeBook.
+
+86
+00:03:15,000 --> 00:03:18,000
+Let me stop the debugger
+
+87
+00:03:18,000 --> 00:03:20,000
+and show you that Visual Studio tried to indicate
+
+88
+00:03:20,000 --> 00:03:22,000
+that this was going to be a problem.
+
+89
+00:03:22,000 --> 00:03:25,000
+It did that with a warning or a green squiggly line.
+
+90
+00:03:25,000 --> 00:03:27,000
+It's not an error because the C# compiler
+
+91
+00:03:27,000 --> 00:03:30,000
+cannot tell with 100% accuracy that this was going
+
+92
+00:03:30,000 --> 00:03:31,000
+to create a problem.
+
+93
+00:03:31,000 --> 00:03:33,000
+It was able to do that inside of Program.cs
+
+94
+00:03:33,000 --> 00:03:36,000
+with this very simple logic before I had new GradeBook.
+
+95
+00:03:36,000 --> 00:03:39,000
+The C# compiler knew that book was uninitialized
+
+96
+00:03:39,000 --> 00:03:41,000
+and I was certainly going to have a problem.
+
+97
+00:03:41,000 --> 00:03:43,000
+In the case of the class, it wasn't so clear.
+
+98
+00:03:43,000 --> 00:03:46,000
+But I did get a warning here that this grades field
+
+99
+00:03:46,000 --> 00:03:48,000
+was never assigned to and will always have
+
+100
+00:03:48,000 --> 00:03:50,000
+the default value, null, which means I will not have
+
+101
+00:03:50,000 --> 00:03:54,000
+an object that is a list of floating point numbers.
+
+102
+00:03:54,000 --> 00:03:56,000
+I will have a variable that points to nothing.
+
+103
+00:03:56,000 --> 00:03:57,000
+There's nothing I can do with it.
+
+104
+00:03:57,000 --> 00:03:59,000
+Just like with the GradeBook in Program.cs,
+
+105
+00:03:59,000 --> 00:04:01,000
+I have to make sure that this field is initialized
+
+106
+00:04:01,000 --> 00:04:03,000
+and actually points to an object,
+
+107
+00:04:03,000 --> 00:04:05,000
+a list of float that will do real work.
+
+108
+00:04:05,000 --> 00:04:08,000
+And once again, I can do that with a new keyword.
+
+109
+00:04:08,000 --> 00:04:10,000
+So I could say this list of floats
+
+110
+00:04:10,000 --> 00:04:13,000
+should be initialized and start off
+
+111
+00:04:13,000 --> 00:04:15,000
+with a new object that is constructed for me,
+
+112
+00:04:15,000 --> 00:04:17,000
+because now the C# compiler can see that this field
+
+113
+00:04:17,000 --> 00:04:19,000
+is assigned to.
+
+114
+00:04:19,000 --> 00:04:21,000
+And now I'm pretty sure that this program should work,
+
+115
+00:04:21,000 --> 00:04:23,000
+and I'm so sure that I want to come back to Program.cs
+
+116
+00:04:23,000 --> 00:04:25,000
+and actually add another grade here.
+
+117
+00:04:25,000 --> 00:04:27,000
+Let me add the grade,
+
+118
+00:04:27,000 --> 00:04:30,000
+89.5.
+
+119
+00:04:30,000 --> 00:04:32,000
+And I just want to show you another interesting
+
+120
+00:04:32,000 --> 00:04:33,000
+error message.
+
+121
+00:04:33,000 --> 00:04:36,000
+If I hover over this error, I can see that
+
+122
+00:04:36,000 --> 00:04:39,000
+the argument I'm passing to AddGrade is getting an error,
+
+123
+00:04:39,000 --> 00:04:41,000
+cannot convert from double to float.
+
+124
+00:04:41,000 --> 00:04:43,000
+So when we defined AddGrade,
+
+125
+00:04:43,000 --> 00:04:46,000
+we said that when someone invokes this method,
+
+126
+00:04:46,000 --> 00:04:50,000
+they need to pass us a number that is typed as float,
+
+127
+00:04:50,000 --> 00:04:52,000
+which is a single precision floating point number.
+
+128
+00:04:52,000 --> 00:04:55,000
+But when I use this literal value here, 89.5,
+
+129
+00:04:55,000 --> 00:04:58,000
+by default, that's going to be a double precision
+
+130
+00:04:58,000 --> 00:05:00,000
+floating point number, a double.
+
+131
+00:05:00,000 --> 00:05:02,000
+And the C# compiler, it's very picky about types.
+
+132
+00:05:02,000 --> 00:05:05,000
+Now 91, this integer value,
+
+133
+00:05:05,000 --> 00:05:08,000
+the C# compiler will allow me to pass that value
+
+134
+00:05:08,000 --> 00:05:12,000
+into AddGrade, because it will implicitly convert that value
+
+135
+00:05:12,000 --> 00:05:13,000
+into a float.
+
+136
+00:05:13,000 --> 00:05:15,000
+Any integer value will convert to a float,
+
+137
+00:05:15,000 --> 00:05:17,000
+but the C# compiler is not going to do that
+
+138
+00:05:17,000 --> 00:05:19,000
+with the double precision floating point number.
+
+139
+00:05:19,000 --> 00:05:21,000
+It's not going to try to place it or convert it
+
+140
+00:05:21,000 --> 00:05:23,000
+into a single precision floating point number
+
+141
+00:05:23,000 --> 00:05:25,000
+because you might lose some information.
+
+142
+00:05:25,000 --> 00:05:30,000
+This is just like if I declared a variable of type double
+
+143
+00:05:30,000 --> 00:05:33,000
+and I initialized it with a value 91.5,
+
+144
+00:05:33,000 --> 00:05:34,000
+that's going to work just fine.
+
+145
+00:05:34,000 --> 00:05:36,000
+But if I change this type to float,
+
+146
+00:05:36,000 --> 00:05:38,000
+that will be an error.
+
+147
+00:05:38,000 --> 00:05:40,000
+What I need to do is I need to tell the C# compiler
+
+148
+00:05:40,000 --> 00:05:43,000
+that this value should be treated
+
+149
+00:05:43,000 --> 00:05:44,000
+as a floating point number.
+
+150
+00:05:44,000 --> 00:05:47,000
+And the way I can do that is by appending an F
+
+151
+00:05:47,000 --> 00:05:49,000
+at the end of this number.
+
+152
+00:05:49,000 --> 00:05:51,000
+And now that line of code would work,
+
+153
+00:05:51,000 --> 00:05:54,000
+so let me also apply an F here to AddGrade.
+
+154
+00:05:54,000 --> 00:05:56,000
+And now let's set a breakpoint here
+
+155
+00:05:56,000 --> 00:05:57,000
+at the bottom of the program.
+
+156
+00:05:57,000 --> 00:05:59,000
+I'll press F5 to run with the debugger,
+
+157
+00:05:59,000 --> 00:06:02,000
+and I just want to inspect my variable book
+
+158
+00:06:02,000 --> 00:06:03,000
+to see what's inside.
+
+159
+00:06:03,000 --> 00:06:05,000
+I can see that, that grades field
+
+160
+00:06:05,000 --> 00:06:07,000
+has two items inside of it
+
+161
+00:06:07,000 --> 00:06:09,000
+and that the grades are 91 and 89.5.
+
+162
+00:06:09,000 --> 00:06:11,000
+So now I know that the GradeBook
+
+163
+00:06:11,000 --> 00:06:14,000
+is successfully storing my grades.
+
+164
+00:06:14,000 --> 00:06:16,000
+And that's good, we have a working GradeBook.
+
+165
+00:06:16,000 --> 00:06:18,000
+Now let's go back and talk about the construction
+
+166
+00:06:18,000 --> 00:59:00,000
+of this GradeBook just a bit.
+

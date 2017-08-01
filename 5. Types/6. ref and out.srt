@@ -1,0 +1,252 @@
+1
+00:00:00,000 --> 00:00:03,000
+In C# there are two keywords that can change this
+
+2
+00:00:03,000 --> 00:00:08,000
+default behavior of PassByValue, these two keywords are ref and out.
+
+3
+00:00:08,000 --> 00:00:15,000
+I'm going to show you how they work, but I will say that in 15 years of developing with C# I rarely if ever use these keywords.
+
+4
+00:00:15,000 --> 00:00:19,000
+There's a few special methods that Microsoft provides in the .NET Framework where I have to use these
+
+5
+00:00:19,000 --> 00:00:24,000
+keywords, but I rarely if ever use these keywords in methods and classes that I build.
+
+6
+00:00:24,000 --> 00:00:28,000
+I will cover these key words for those of you that want to get a complete picture of the C# language,
+
+7
+00:00:28,000 --> 00:00:33,000
+but feel free to skip this clip and move to the next one if this something that doesn't interest you.
+
+8
+00:00:33,000 --> 00:00:41,000
+So the two keywords are ref and out. Let's go back to the situation where I am saying book = new GradeBook
+
+9
+00:00:41,000 --> 00:00:47,000
+inside of GiveBookAName, and I've already demonstrated that this test will fail now because when I change the
+
+10
+00:00:47,000 --> 00:00:53,000
+value inside of book that does not change the value inside of book2, therefore book2 still pointing to the
+
+11
+00:00:53,000 --> 00:00:59,000
+original GradeBook, and I'm only changing the name on a new GradeBook that is created here inside of
+
+12
+00:00:59,000 --> 00:01:04,000
+GiveBookAName, but all that can change if I use on of these two keywords, ref or out.
+
+13
+00:01:04,000 --> 00:01:09,000
+These keywords go in front of the type for the parameter, and this is the ref keyword, and the way to think
+
+14
+00:01:09,000 --> 00:01:16,000
+about it now is what I'm receiving inside of the book parameter is a reference to the variable in the calling
+
+15
+00:01:16,000 --> 00:01:21,000
+code, and there's a couple observations to make. For those of you with a computer science background, yes,
+
+16
+00:01:21,000 --> 00:01:28,000
+you can think of book as a pointer to a pointer, but the syntax that I use inside of the method doesn't have to change.
+
+17
+00:01:28,000 --> 00:01:36,000
+If I assign a new value to this parameter you can think of that value being written into the book2 variable,
+
+18
+00:01:36,000 --> 00:01:41,000
+but the way I access the GradeBook doesn't change, I can still just say book., and I get to any instance
+
+19
+00:01:41,000 --> 00:01:46,000
+member of that object. The next observation to make is that I have a complier error.
+
+20
+00:01:46,000 --> 00:01:52,000
+When the C# complier see you're invoking a method that has a ref parameter, it also wants to see the ref
+
+21
+00:01:52,000 --> 00:01:57,000
+keyword in front of the parameter when you invoke the method. That just makes it very explicit when you're
+
+22
+00:01:57,000 --> 00:02:02,000
+calling another method, that you are passing this variable by reference, and it's quite possible that the
+
+23
+00:02:02,000 --> 00:02:07,000
+method you are calling can change the underlying value inside of book2.
+
+24
+00:02:07,000 --> 00:02:13,000
+So I'm about to run the tests, and I want you to take a guess whether the test will pass or fail.
+
+25
+00:02:13,000 --> 00:02:19,000
+Let me give you a little bit of a hint, the assertion right now is still looking at book1.Name, so if I run
+
+26
+00:02:19,000 --> 00:02:26,000
+the test, the test is still failing because when I say book = new GradeBook down here, yes, I'm writing a new
+
+27
+00:02:26,000 --> 00:02:31,000
+value into book2, but that doesn't influence book1, I don't have a reference into that variable, I have a
+
+28
+00:02:31,000 --> 00:02:38,000
+reference into book2, so book1 is still pointing to the original GradeBook, but book2 now, let's write an
+
+29
+00:02:38,000 --> 00:02:45,000
+assertion against that, and just to make this clearer perhaps, let's get rid of the ref keyword for just a second.
+
+30
+00:02:45,000 --> 00:02:51,000
+I'm going to run all the tests, that test should still fail because in this scenario when I say book = new
+
+31
+00:02:51,000 --> 00:02:57,000
+GradeBook, we're back into the scenario that we previously looked at where I am writing a new value into this
+
+32
+00:02:57,000 --> 00:03:01,000
+book parameter, but there's nothing I can do here that can change the value that is inside of book2,
+
+33
+00:03:01,000 --> 00:03:08,000
+so book2 is still pointing to the original GradeBook. Let's change this back to ref, and I'm writing the
+
+34
+00:03:08,000 --> 00:03:15,000
+assertion against book2.Name, let's run all the tests, and the tests now passes because when I say book = new
+
+35
+00:03:15,000 --> 00:03:20,000
+GradeBook inside of GiveBookAName, I can think of this book as pointing to the new GradeBook,
+
+36
+00:03:20,000 --> 00:03:28,000
+and because this is a by ref parameter I've also changed where book2 is pointing, so it's pointing to that new GradeBook also.
+
+37
+00:03:28,000 --> 00:03:34,000
+The ref keyword, I can also use this against value types, so we've already seen if I call IncrementNumber on
+
+38
+00:03:34,000 --> 00:03:40,000
+x, there's nothing I can do inside of IncrementNumber that will actually change the value that is inside of
+
+39
+00:03:40,000 --> 00:03:47,000
+x, but that's all different if I use the ref keyword. If I use the ref keyword, and I also use it here where
+
+40
+00:03:47,000 --> 00:03:52,000
+I am invoking the method, I can think of number as a reference to this variable location, the x,
+
+41
+00:03:52,000 --> 00:03:58,000
+so any changes that I make to that value like incrementing the number, that change will be reflected inside
+
+42
+00:03:58,000 --> 00:04:10,000
+of x, so Ctrl+ RA to run the tests, I expected a 46, but now the actual is 47, I did increment that number.
+
+43
+00:04:10,000 --> 00:04:15,000
+Let's change the assert, run all the tests, and now we have a passing test.
+
+44
+00:04:15,000 --> 00:04:22,000
+Let me show you the other keyword, the out keyword that also changes the behavior of PassByValue, and the out
+
+45
+00:04:22,000 --> 00:04:28,000
+keyword is pretty much identical to ref. Let me just change both the method and the calling of that method
+
+46
+00:04:28,000 --> 00:04:35,000
+to use the out keyword, and here we will see what the real difference is between ref and out, with out the C#
+
+47
+00:04:35,000 --> 00:04:41,000
+complier assumes that you are creating an output here. Most methods produce an output by returning a value,
+
+48
+00:04:41,000 --> 00:04:49,000
+but when you use the out keyword, the semantics are that you are producing an output through this parameter,
+
+49
+00:04:49,000 --> 00:04:53,000
+and one of the things the C# complier wants to see is a definite assignment to that parameter.
+
+50
+00:04:53,000 --> 00:04:58,000
+Right now the error is Use of unassigned out parameter number, that's because in order to add 1 to number,
+
+51
+00:04:58,000 --> 00:05:06,000
+and say number += 1, I first have to read the number, and then add 1 to it, but the C# complier is saying
+
+52
+00:05:06,000 --> 00:05:11,000
+since this is an output I cannot guarantee that the caller gave you an initialized value that you can use,
+
+53
+00:05:11,000 --> 00:05:18,000
+and so for this scenario I have to use the ref keyword if I want to increment an existing number,
+
+54
+00:05:18,000 --> 00:05:22,000
+and with ref the initialization rules are just on the other side of the fence.
+
+55
+00:05:22,000 --> 00:05:29,000
+So with the ref keyword if I did not have a definite assignment to the variable x, now I would get an error
+
+56
+00:05:29,000 --> 00:05:35,000
+in this method that I'm using an unassigned local variable. So with the ref keyword the C# complier will
+
+57
+00:05:35,000 --> 00:05:38,000
+make sure that you initialize a variable before you call a method.
+
+58
+00:05:38,000 --> 00:05:44,000
+If I have the out parameter here I wouldn't need this initialization statement, I could just say int x,
+
+59
+00:05:44,000 --> 00:05:50,000
+and invoke a method that passes x as an out parameter. And that's the story with the ref and out keywords.
+
+60
+00:05:50,000 --> 00:05:57,000
+Again these are keywords that I rarely use, there's usually a better way to design a method than by taking a
+
+61
+00:05:57,000 --> 00:06:00,000
+ref or an out parameter, but hopefully I've given you enough information if you do encounter one of those
+
+62
+00:06:00,000 --> 00:06:06,000
+keywords you'll know what to do, and you can always explore and experiment with unit tests like this to make
+
+63
+00:06:06,000 --> 00:59:00,000
+sure that you understand the behavior correctly.
+

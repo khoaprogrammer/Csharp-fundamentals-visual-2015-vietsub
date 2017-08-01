@@ -1,0 +1,28 @@
+1
+00:00:00,000 --> 00:00:07,000
+In this module we looked at object-oriented programming in C#, we talked about encapsulation, inheritance,
+
+2
+00:00:07,000 --> 00:00:12,000
+and polymorphism, and I showed you how to use abstract classes and interfaces.
+
+3
+00:00:12,000 --> 00:00:16,000
+If all this feels a bit overwhelming, and you're not sure when to use an interface and when to use an
+
+4
+00:00:16,000 --> 00:00:20,000
+abstract class, and when to use an inheritance, I'd say that's normal.
+
+5
+00:00:20,000 --> 00:00:24,000
+I believe object-oriented programming takes years to master. I started my first object-oriented language in
+
+6
+00:00:24,000 --> 00:00:31,000
+1992 with C++, and with every year that goes by I think I know object-oriented programming just a little bit better.
+
+7
+00:00:31,000 --> 00:59:00,000
+And that's it for C# Fundamentals Part 1. I hope you enjoyed the course, and continue on with the C# language.
+

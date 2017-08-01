@@ -1,0 +1,468 @@
+1
+00:00:00,000 --> 00:00:08,000
+Imagine that you want to declare a variable that references a method, so not a variable to hold an integer,
+
+2
+00:00:08,000 --> 00:00:14,000
+or point to a string, or point to any class object, you want to declare a variable, and point the variable to
+
+3
+00:00:14,000 --> 00:00:19,000
+a method, that means you'll have a variable that encapsulates executable code, and you can invoke the
+
+4
+00:00:19,000 --> 00:00:26,000
+variable just like you would invoke a method by using parentheses and optionally passing some arguments along.
+
+5
+00:00:26,000 --> 00:00:32,000
+In order for this to work you'll need to create a delegate type, so a delegate is a type just like we used
+
+6
+00:00:32,000 --> 00:00:37,000
+the class keyword to create a type, or the struct keyword to create a type, there is a delegate keyword in
+
+7
+00:00:37,000 --> 00:00:43,000
+the C# language, and that keyword will allow me to create a type that is dedicated to referencing methods,
+
+8
+00:00:43,000 --> 00:00:48,000
+and that means the type definition for a delegate looks much different than a class definition.
+
+9
+00:00:48,000 --> 00:00:56,000
+The type definition looks almost like a method definition, the type definition describes the methods that I want to call.
+
+10
+00:00:56,000 --> 00:01:01,000
+In this code snippet I'm creating a delegate called Writer. I know this is a delegate because I can see the
+
+11
+00:01:01,000 --> 00:01:08,000
+delegate keyword, and a variable of this type will point to a method that returns void and takes a string parameter.
+
+12
+00:01:08,000 --> 00:01:15,000
+There's no curly braces here, I'm not defining a method with executable code, I just end the statement with a semicolon.
+
+13
+00:01:15,000 --> 00:01:20,000
+I am defining a type that I can use to create variables, and point those variables to methods that have this
+
+14
+00:01:20,000 --> 00:01:26,000
+same signature and same return type. Again the name of this type is Writer.
+
+15
+00:01:26,000 --> 00:01:32,000
+Now imagine I have a class called Logger. I can instantiate a Logger, and once I have a Logger I can invoke
+
+16
+00:01:32,000 --> 00:01:38,000
+a WriteMessage method, and have the Logger do something interesting like print a message to the screen.
+
+17
+00:01:38,000 --> 00:01:45,000
+I can also write a bit of code that instantiates a Logger and then instantiates a delegate that references
+
+18
+00:01:45,000 --> 00:01:51,000
+the WriteMessage method itself of the Logger object. That's what this bit of code here is doing.
+
+19
+00:01:51,000 --> 00:01:57,000
+Notice I'm not invoking logger.WriteMessage, there are no parentheses after WriteMessage, this code is
+
+20
+00:01:57,000 --> 00:02:03,000
+literally creating a new instance of a delegate and passing the WriteMessage method to this writer delegate.
+
+21
+00:02:03,000 --> 00:02:10,000
+That delegate is saved into a variable named Writer, and I can now invoke logger.WriteMessage just by
+
+22
+00:02:10,000 --> 00:02:15,000
+invoking this variable, all I need to do is apply parentheses to the variable and pass the string parameter
+
+23
+00:02:15,000 --> 00:02:20,000
+that I want the Logger to use. Now depending on what programming background you have, this information might
+
+24
+00:02:20,000 --> 00:02:26,000
+be a bit foreign. If you come from a C or C++ background you can think of a delegate as a way of creating a
+
+25
+00:02:26,000 --> 00:02:32,000
+type save function pointer, and if you come from any functional language like JavaScript, the idea of
+
+26
+00:02:32,000 --> 00:02:37,000
+having a variable that points to a function, that's not new, it's just going to be the C# syntax and all the
+
+27
+00:02:37,000 --> 00:02:42,000
+type checking that you'll need to get used to because the C# complier is very picky about the methods that I
+
+28
+00:02:42,000 --> 00:02:47,000
+can point to with a delegate. Like in this example, a writer delegate will only work with methods that
+
+29
+00:02:47,000 --> 00:02:53,000
+return void and take a single string parameter. Notice the name of the method doesn't matter, I can have the
+
+30
+00:02:53,000 --> 00:02:59,000
+delegate called Writer, and reference a method called WriteMessage, or any other name as long as that method
+
+31
+00:02:59,000 --> 00:03:04,000
+returns void and takes a string. Let's take a look at this in Visual Studio.
+
+32
+00:03:04,000 --> 00:03:10,000
+Back inside of the GradeBook let's look at a scenario where something else in the application needs to know
+
+33
+00:03:10,000 --> 00:03:15,000
+when the name of the GradeBook is changing. Maybe that something else is a data-binding framework that needs
+
+34
+00:03:15,000 --> 00:03:19,000
+to update the screen with the new GradeBook name whenever the name changes.
+
+35
+00:03:19,000 --> 00:03:26,000
+We don't know, we just know that the only place in the entire application that knows exactly when the
+
+36
+00:03:26,000 --> 00:03:32,000
+GradeBook name is changing is the code that is inside of the setter for the name property itself.
+
+37
+00:03:32,000 --> 00:03:38,000
+If from inside of here I could announce somehow that the name is changing and invoke some other code,
+
+38
+00:03:38,000 --> 00:03:42,000
+that would satisfy my requirements that I need to call something else in the application when the name
+
+39
+00:03:42,000 --> 00:03:47,000
+changes, but I don't know what. That's the perfect scenario for delegates because delegates essentially
+
+40
+00:03:47,000 --> 00:03:52,000
+allow you to have a variable that points to a method, and because it's a variable it can point to different
+
+41
+00:03:52,000 --> 00:03:57,000
+methods it can be assigned to, and that's what I need inside of my setter, I need to know when the name is
+
+42
+00:03:57,000 --> 00:04:05,000
+changing, perhaps I could have an additional if check here to say if _name is not equal to the incoming
+
+43
+00:04:05,000 --> 00:04:11,000
+value, so I know for a fact that the name is changing, that I want to be able to invoke some arbitrary code.
+
+44
+00:04:11,000 --> 00:04:18,000
+Let's say I have a delegate called NameChanged. I want to be able to invoke that, perhaps I pass in the
+
+45
+00:04:18,000 --> 00:04:26,000
+existing name, and the new value that will be assigned to the name, and that will fulfill my responsibility
+
+46
+00:04:26,000 --> 00:04:28,000
+to the outside world that I've made this announcement, my name is changing.
+
+47
+00:04:28,000 --> 00:04:35,000
+In order to pull this off I'm going to need a delegate, so let me right-click on the GradeBook project,
+
+48
+00:04:35,000 --> 00:04:40,000
+and I'm going to say Add, Class even though what I really want is a delegate, this is the easiest way to get
+
+49
+00:04:40,000 --> 00:04:47,000
+a .cs file into the project. I will call this NameChangedDelegate, and press Add.
+
+50
+00:04:47,000 --> 00:04:54,000
+Visual Studio will assume I want something with a .cs extension, and no, I don't want a class, and I don't
+
+51
+00:04:54,000 --> 00:05:02,000
+want the curly braces. What I do want is a new type, a public type that I'll create with delegate, and now I
+
+52
+00:05:02,000 --> 00:05:08,000
+need to describe the types of methods that this can invoke. I don't care about the return value from this
+
+53
+00:05:08,000 --> 00:05:14,000
+method, all I know is it's going to need to take two string values, so let me create this delegate by saying
+
+54
+00:05:14,000 --> 00:05:25,000
+the method will return void, and the method will take two string parameters, let's call them existingName and newName.
+
+55
+00:05:25,000 --> 00:05:29,000
+Just remember that the names of these parameters are arbitrary.
+
+56
+00:05:29,000 --> 00:05:33,000
+When the C# complier is checking to make sure this delegate points to the proper method it doesn't check the
+
+57
+00:05:33,000 --> 00:05:39,000
+parameter names to make sure they match, it's only going to check the type, so a method that returns void and
+
+58
+00:05:39,000 --> 00:05:43,000
+takes two strings, that's the type of method that I can point this delegate to.
+
+59
+00:05:43,000 --> 00:05:51,000
+And so with this delegate back in the GradeBook I can now create a public field using that delegate type,
+
+60
+00:05:51,000 --> 00:05:58,000
+so public NameChangedDelegate, let's call it NameChanged, and I now have a public member that other areas of
+
+61
+00:05:58,000 --> 00:06:04,000
+the application can walk up, and assign to this delegate, and give it the code that needs to be invoked out
+
+62
+00:06:04,000 --> 00:06:11,000
+there somewhere in the outside world. All I need to do in my GradeBook is just invoke that delegate at the
+
+63
+00:06:11,000 --> 00:06:17,000
+appropriate time when the name has changed. Now just so we get some interesting output let's initialize
+
+64
+00:06:17,000 --> 00:06:25,000
+_name to something inside of the constructor for the GradeBook just so there is always some value there.
+
+65
+00:06:25,000 --> 00:06:31,000
+Let's just use the text Empty, and now what I want to do back in my program is take advantage of this new
+
+66
+00:06:31,000 --> 00:06:36,000
+feature to execute arbitrary code when the name of the GradeBook changes.
+
+67
+00:06:36,000 --> 00:06:47,000
+So back in Program.cs at some point after I create the book I want to be able to say book.NameChanged = a new
+
+68
+00:06:47,000 --> 00:06:52,000
+instance of the NameChangedDelegate, and then pass in a method that can be invoked.
+
+69
+00:06:52,000 --> 00:06:57,000
+I currently don't have a method that returns void and takes two strings, so before we finish that line of
+
+70
+00:06:57,000 --> 00:07:03,000
+code, let's write something. This will have to be a static method so that I can reach it from the main method.
+
+71
+00:07:03,000 --> 00:07:09,000
+It has to be a method that returns void. I can call it anything I want, let's call it OnNameChanged,
+
+72
+00:07:09,000 --> 00:07:17,000
+and I just have to take two string parameters, the names don't matter, but I think existingName and newName,
+
+73
+00:07:17,000 --> 00:07:23,000
+those are pretty good parameter names, so we will stick with those, and when this method is invoked I want to
+
+74
+00:07:23,000 --> 00:07:31,000
+write out some information. Let's use some string interpolation, and say Grade book changing name from
+
+75
+00:07:31,000 --> 00:07:39,000
+existingName to newName, and that should be everything that I need, so let me take this method name,
+
+76
+00:07:39,000 --> 00:07:46,000
+and copy it, and I should be able to paste it here, and the delegate will be happy and say ah, you want me to
+
+77
+00:07:46,000 --> 00:07:53,000
+call OnNameChanged whenever someone invokes this delegate. Let's try it, Ctrl+F5 to run, and I can see
+
+78
+00:07:53,000 --> 00:07:58,000
+Grade book changing name from Empty to Scott's Grade Book, and this should happen anytime the name changes,
+
+79
+00:07:58,000 --> 00:08:06,000
+so I should be able to say book.Name = Scott's Grade Book, and let's say book.Name = just Grade Book.
+
+80
+00:08:06,000 --> 00:08:12,000
+We should see that method fire twice, and it does. It goes from Empty to Scott's Grade Book and then Scott's
+
+81
+00:08:12,000 --> 00:08:17,000
+to just Grade Book, and this is the type of situation where you want to use a delegate, so going back to the
+
+82
+00:08:17,000 --> 00:08:23,000
+UI example that we talked about earlier, let's say you're writing your class that's going to have a button
+
+83
+00:08:23,000 --> 00:08:28,000
+associated with it because it's a part of a user interface, and your class, the code inside of it will know
+
+84
+00:08:28,000 --> 00:08:34,000
+when the button is clicked, but how can your class announce to the rest of the world when that button is
+
+85
+00:08:34,000 --> 00:08:38,000
+clicked because chances are it might not be just you that is interested in that button click, you might need
+
+86
+00:08:38,000 --> 00:08:41,000
+to tell other pieces of the application when the button is clicked.
+
+87
+00:08:41,000 --> 00:08:47,000
+How can you do that? Ultimately it's done with events that build on top of delegates, and right now we're
+
+88
+00:08:47,000 --> 00:08:53,000
+just focusing on the delegate part. So let me show you a few other things that are interesting about delegates.
+
+89
+00:08:53,000 --> 00:09:02,000
+Let's come back to Program.cs, and let me create a copy of OnNameChanged, and I'm going to paste it,
+
+90
+00:09:02,000 --> 00:09:07,000
+and we know now that will create a complier error because we have two methods with the exact same signature,
+
+91
+00:09:07,000 --> 00:09:15,000
+but I will change the second one to be OnNameChanged2, and let's do something simple inside of here like
+
+92
+00:09:15,000 --> 00:09:23,000
+write out three asterix, and now back up at the top, what happens when if I say book.NameChanged = this new
+
+93
+00:09:23,000 --> 00:09:31,000
+NameChangedDelegate OnNameChanged, and then right after that line of code I assign again with OnNameChanged2.
+
+94
+00:09:31,000 --> 00:09:38,000
+Well if I run the program what we'll see is that we're only outputting asterixs now, and that's because I've
+
+95
+00:09:38,000 --> 00:09:43,000
+effectively overwritten the information inside of that delegate that would allow me to call OnNameChanged,
+
+96
+00:09:43,000 --> 00:09:48,000
+I've overwritten that delegate, I'm now calling OnNameChanged2 only.
+
+97
+00:09:48,000 --> 00:09:54,000
+However the interesting thing about delegates in C# is they can reference multiple methods, we call them
+
+98
+00:09:54,000 --> 00:10:01,000
+MutlicastDelegates because when I invoke a delegate that might call one method, but a delegate can also hold
+
+99
+00:10:01,000 --> 00:10:08,000
+references to multiple methods, so invoking NameChanged might actually call 10 different methods because
+
+100
+00:10:08,000 --> 00:10:13,000
+there might be 10 different pieces of the application that are interested in knowing when the name of a
+
+101
+00:10:13,000 --> 00:10:22,000
+GradeBook has changed, and the way I can get that to work is instead of doing an assignment I can use the += operation.
+
+102
+00:10:22,000 --> 00:10:26,000
+You might remember += from some of the mathematical operations we did with integers.
+
+103
+00:10:26,000 --> 00:10:33,000
+I can say some variable += 3, an integer variable, and that will take whatever is in that integer variable,
+
+104
+00:10:33,000 --> 00:10:40,000
+and add 3 to it, it's like saying x = x+3. This is the same concept, I'm saying take whatever is in
+
+105
+00:10:40,000 --> 00:10:47,000
+NameChanged, and add this additional delegate, and then add this additional delegate, so that now when I run
+
+106
+00:10:47,000 --> 00:10:56,000
+the program each time the name changes, not only do I invoke OnNameChanged, but I also invoke OnNameChanged2,
+
+107
+00:10:56,000 --> 00:11:04,000
+and just so you know there's also a -= operation to remove a reference to a method, that would effectively be
+
+108
+00:11:04,000 --> 00:11:09,000
+a way of saying I don't care about the NameChanged operation anymore, please remove me from your list of
+
+109
+00:11:09,000 --> 00:11:16,000
+methods that you call, but this capability of being able to invoke multiple methods, this is ideal again for
+
+110
+00:11:16,000 --> 00:11:21,000
+situations like building a UI component, or there might be multiple people, or multiple components that are
+
+111
+00:11:21,000 --> 00:11:27,000
+interested in that button click event, and although I could do that with delegates, delegates don't quite
+
+112
+00:11:27,000 --> 00:11:33,000
+offer enough encapsulation because someone can always walk up to book.NameChanged, and say I'm going to set
+
+113
+00:11:33,000 --> 00:11:39,000
+this to null, which is empty it out, and that effectively overwrites all the previous delegates that were in
+
+114
+00:11:39,000 --> 00:11:44,000
+there, and that's not something that I want to happen if I want different areas of the application to be able
+
+115
+00:11:44,000 --> 00:11:49,000
+to independently subscribe to this event that the GradeBook name is changing.
+
+116
+00:11:49,000 --> 00:11:55,000
+I want to prevent lines of code like this somehow, and that's exactly what I can do by using events instead
+
+117
+00:11:55,000 --> 00:59:00,000
+of delegates, let's look at that next.
+

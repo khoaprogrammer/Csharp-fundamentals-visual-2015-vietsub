@@ -1,0 +1,868 @@
+1
+00:00:01,000 --> 00:00:03,000
+When you sit down to write a class in C#,
+
+2
+00:00:03,000 --> 00:00:05,000
+it's usually because you need to write some code
+
+3
+00:00:05,000 --> 00:00:07,000
+to create a program for something that you need
+
+4
+00:00:07,000 --> 00:00:09,000
+or something your business needs.
+
+5
+00:00:09,000 --> 00:00:10,000
+So pretend someone comes to you
+
+6
+00:00:10,000 --> 00:00:12,000
+with the following requirements:
+
+7
+00:00:12,000 --> 00:00:14,000
+We need an electronic grade book to read the scores
+
+8
+00:00:14,000 --> 00:00:16,000
+of an individual student and then compute
+
+9
+00:00:16,000 --> 00:00:18,000
+some simple statistics from the scores.
+
+10
+00:00:18,000 --> 00:00:20,000
+The grades are entered as floating point numbers
+
+11
+00:00:20,000 --> 00:00:23,000
+from zero to 100, and the statistics should show us
+
+12
+00:00:23,000 --> 00:00:25,000
+the highest grade, the lowest grade and the average grade.
+
+13
+00:00:25,000 --> 00:00:28,000
+These requirements describe the program we need to write,
+
+14
+00:00:28,000 --> 00:00:29,000
+but where do we get started?
+
+15
+00:00:29,000 --> 00:00:31,000
+Well, fundamentally, C# is a language
+
+16
+00:00:31,000 --> 00:00:33,000
+where you write classes to implement features
+
+17
+00:00:33,000 --> 00:00:35,000
+in your software, so these requirements will force us
+
+18
+00:00:35,000 --> 00:00:38,000
+to write at least one class and to use other classes
+
+19
+00:00:38,000 --> 00:00:39,000
+that have already been written for us
+
+20
+00:00:39,000 --> 00:00:41,000
+by the framework class library.
+
+21
+00:00:41,000 --> 00:00:43,000
+But what class should we write?
+
+22
+00:00:43,000 --> 00:00:45,000
+This is one of the toughest questions to answer
+
+23
+00:00:45,000 --> 00:00:46,000
+if you are new to programming.
+
+24
+00:00:46,000 --> 00:00:49,000
+But generally, we use classes to create abstractions
+
+25
+00:00:49,000 --> 00:00:52,000
+for the different nouns that we need to work with,
+
+26
+00:00:52,000 --> 00:00:55,000
+or a noun is a person, a place, a thing, an idea.
+
+27
+00:00:55,000 --> 00:00:57,000
+So when I scan through the requirements,
+
+28
+00:00:57,000 --> 00:01:00,000
+a noun like grade book will instantly jump out at me
+
+29
+00:01:00,000 --> 00:01:02,000
+because it is a noun that the business is using.
+
+30
+00:01:02,000 --> 00:01:04,000
+It's in the requirements, and it would seem like
+
+31
+00:01:04,000 --> 00:01:06,000
+a good place to get started is to create a class
+
+32
+00:01:06,000 --> 00:01:09,000
+named grade book that will implement the functionality
+
+33
+00:01:09,000 --> 00:01:11,000
+to store grades and compute statistics.
+
+34
+00:01:11,000 --> 00:01:13,000
+Let's get started on these requirements
+
+35
+00:01:13,000 --> 00:01:15,000
+by creating a new project.
+
+36
+00:01:15,000 --> 00:01:18,000
+So once again, I'll go to the File, New Project menu.
+
+37
+00:01:18,000 --> 00:01:20,000
+Once again, I want a console application,
+
+38
+00:01:20,000 --> 00:01:22,000
+and I'm going to give the project the name Grade,
+
+39
+00:01:22,000 --> 00:01:24,000
+with the capital G.
+
+40
+00:01:24,000 --> 00:01:27,000
+I'll let Visual Studio create this project for me and
+
+41
+00:01:27,000 --> 00:01:29,000
+Visual Studio will give me my first class.
+
+42
+00:01:29,000 --> 00:01:32,000
+The program class, just like we saw in the last module,
+
+43
+00:01:32,000 --> 00:01:35,000
+here's the mean method on that program class.
+
+44
+00:01:35,000 --> 00:01:37,000
+That's the entry point for the application,
+
+45
+00:01:37,000 --> 00:01:39,000
+and that's where I want to use a grade book class
+
+46
+00:01:39,000 --> 00:01:40,000
+that I'm going to create.
+
+47
+00:01:40,000 --> 00:01:42,000
+So where do I put the GradeBook class?
+
+48
+00:01:42,000 --> 00:01:45,000
+Well, it's perfectly legal to define multiple classes
+
+49
+00:01:45,000 --> 00:01:48,000
+inside of the same file, but most C# developers
+
+50
+00:01:48,000 --> 00:01:50,000
+will follow a convention where each class
+
+51
+00:01:50,000 --> 00:01:51,000
+gets its own individual file.
+
+52
+00:01:51,000 --> 00:01:54,000
+So I'm going to right-click the project that opens up
+
+53
+00:01:54,000 --> 00:01:56,000
+this context menu, and then I can say
+
+54
+00:01:56,000 --> 00:01:59,000
+let's add a class to this project.
+
+55
+00:01:59,000 --> 00:02:01,000
+The dialog that opened contains a number of templates
+
+56
+00:02:01,000 --> 00:02:03,000
+for all sorts of different things that you can add
+
+57
+00:02:03,000 --> 00:02:06,000
+to a project, but I just want to add a class.
+
+58
+00:02:06,000 --> 00:02:08,000
+And down here, I can give that class a name,
+
+59
+00:02:08,000 --> 00:02:09,000
+give this file a name.
+
+60
+00:02:09,000 --> 00:02:11,000
+It's going to be GradeBook.cs.
+
+61
+00:02:11,000 --> 00:02:14,000
+And by convention, the file will have the same name
+
+62
+00:02:14,000 --> 00:02:15,000
+as the class.
+
+63
+00:02:15,000 --> 00:02:17,000
+So Visual Studio has already given me
+
+64
+00:02:17,000 --> 00:02:18,000
+a class definition here.
+
+65
+00:02:18,000 --> 00:02:19,000
+The class is GradeBook.
+
+66
+00:02:19,000 --> 00:02:22,000
+A class definition always starts with the class keyword
+
+67
+00:02:22,000 --> 00:02:24,000
+and then the name of the class.
+
+68
+00:02:24,000 --> 00:02:26,000
+Everything between these curly braces then will be
+
+69
+00:02:26,000 --> 00:02:28,000
+what we call members of this class,
+
+70
+00:02:28,000 --> 00:02:31,000
+just like this class is nested inside of a namespace
+
+71
+00:02:31,000 --> 00:02:35,000
+called Grades, so GradeBook is a member of grades.
+
+72
+00:02:35,000 --> 00:02:37,000
+And here at the top, we have a number of using statements.
+
+73
+00:02:37,000 --> 00:02:40,000
+We won't use classes from all of those namespaces,
+
+74
+00:02:40,000 --> 00:02:42,000
+but I'll leave them there because they don't hurt anything.
+
+75
+00:02:42,000 --> 00:02:44,000
+And now inside of GradeBook, anything that I add here
+
+76
+00:02:44,000 --> 00:02:46,000
+will be a member of the class.
+
+77
+00:02:46,000 --> 00:02:49,000
+And class members broadly fall into one of two categories.
+
+78
+00:02:49,000 --> 00:02:52,000
+One category would be members of this class
+
+79
+00:02:52,000 --> 00:02:55,000
+that hold state or data, because state is the data
+
+80
+00:02:55,000 --> 00:02:57,000
+that you need to work with inside of the class.
+
+81
+00:02:57,000 --> 00:02:59,000
+The state for GradeBook would be the grades
+
+82
+00:02:59,000 --> 00:03:01,000
+that a user is entering for a student.
+
+83
+00:03:01,000 --> 00:03:03,000
+So somewhere inside of this GradeBook,
+
+84
+00:03:03,000 --> 00:03:05,000
+I'm going to need to store each grade as it is entered,
+
+85
+00:03:05,000 --> 00:03:07,000
+and then the other category of class members
+
+86
+00:03:07,000 --> 00:03:09,000
+would be behavior-related members,
+
+87
+00:03:09,000 --> 00:03:11,000
+that is members that do work.
+
+88
+00:03:11,000 --> 00:03:13,000
+These members are typically methods,
+
+89
+00:03:13,000 --> 00:03:15,000
+methods that I want to write to allow someone
+
+90
+00:03:15,000 --> 00:03:17,000
+to interact with a GradeBook and ask it to do something
+
+91
+00:03:17,000 --> 00:03:20,000
+like add a grade or compute statistics.
+
+92
+00:03:20,000 --> 00:03:23,000
+The class is a noun, and methods that do work on that class
+
+93
+00:03:23,000 --> 00:03:28,000
+are typically verbs, like AddGrade, ComputeStatistics.
+
+94
+00:03:28,000 --> 00:03:30,000
+So they are members that start with a verb.
+
+95
+00:03:30,000 --> 00:03:32,000
+And let's start by adding a member that will allow me
+
+96
+00:03:32,000 --> 00:03:33,000
+to add a grade into the GradeBook.
+
+97
+00:03:33,000 --> 00:03:36,000
+I'll do that first by using two C# keywords,
+
+98
+00:03:36,000 --> 00:03:38,000
+public and void.
+
+99
+00:03:38,000 --> 00:03:40,000
+We will circle back later and talk about
+
+100
+00:03:40,000 --> 00:03:41,000
+what those two keywords mean,
+
+101
+00:03:41,000 --> 00:03:43,000
+and I'm going to create a method called AddGrade.
+
+102
+00:03:43,000 --> 00:03:45,000
+It's a method because it's going to have
+
+103
+00:03:45,000 --> 00:03:47,000
+parentheses at the end.
+
+104
+00:03:47,000 --> 00:03:48,000
+And then there's an opening curly brace
+
+105
+00:03:48,000 --> 00:03:49,000
+and a closing curly brace.
+
+106
+00:03:49,000 --> 00:03:51,000
+Everything that goes between those curly braces
+
+107
+00:03:51,000 --> 00:03:53,000
+will be the code that executes when someone
+
+108
+00:03:53,000 --> 00:03:56,000
+invokes this method and executes this method.
+
+109
+00:03:56,000 --> 00:03:59,000
+The parentheses here contain the parameter list
+
+110
+00:03:59,000 --> 00:04:01,000
+for this method, that is, what is the data
+
+111
+00:04:01,000 --> 00:04:03,000
+that someone wants to pass into this method?
+
+112
+00:04:03,000 --> 00:04:06,000
+Right now, this method doesn't take any parameters,
+
+113
+00:04:06,000 --> 00:04:08,000
+but obviously when I want to add a grade to the GradeBook,
+
+114
+00:04:08,000 --> 00:04:10,000
+I will need to take some data, which is the grade,
+
+115
+00:04:10,000 --> 00:04:13,000
+and I could do that by asking someone to pass in
+
+116
+00:04:13,000 --> 00:04:15,000
+an integer value.
+
+117
+00:04:15,000 --> 00:04:16,000
+Let's call it grade.
+
+118
+00:04:16,000 --> 00:04:19,000
+And you can see that defining this parameter
+
+119
+00:04:19,000 --> 00:04:21,000
+is very much like how we defined a variable
+
+120
+00:04:21,000 --> 00:04:22,000
+in the last module.
+
+121
+00:04:22,000 --> 00:04:25,000
+I have to give that parameter a type, which is integer,
+
+122
+00:04:25,000 --> 00:04:28,000
+and I have to give that parameter a name, which is grade.
+
+123
+00:04:28,000 --> 00:04:30,000
+But in this case, the requirements did say
+
+124
+00:04:30,000 --> 00:04:32,000
+that these grades would be floating point numbers,
+
+125
+00:04:32,000 --> 00:04:34,000
+and integer is not a good way to hold
+
+126
+00:04:34,000 --> 00:04:35,000
+a floating point number.
+
+127
+00:04:35,000 --> 00:04:37,000
+There's a couple other classes that .NET provides
+
+128
+00:04:37,000 --> 00:04:40,000
+that I should use for floating point numbers.
+
+129
+00:04:40,000 --> 00:04:43,000
+There is double, which is a double precision
+
+130
+00:04:43,000 --> 00:04:46,000
+floating point number; and there's float,
+
+131
+00:04:46,000 --> 00:04:48,000
+which takes up less space, it's a single precision
+
+132
+00:04:48,000 --> 00:04:49,000
+floating point number.
+
+133
+00:04:49,000 --> 00:04:51,000
+And for this application, float should be good enough.
+
+134
+00:04:51,000 --> 00:04:53,000
+We'll have a high enough precision.
+
+135
+00:04:53,000 --> 00:04:56,000
+And at this point, this grade variable will be available
+
+136
+00:04:56,000 --> 00:04:58,000
+throughout the rest of the method.
+
+137
+00:04:58,000 --> 00:05:00,000
+We say that it is scoped to this method
+
+138
+00:05:00,000 --> 00:05:01,000
+between these two curly braces.
+
+139
+00:05:01,000 --> 00:05:04,000
+I cannot use it anywhere outside of those curly braces,
+
+140
+00:05:04,000 --> 00:05:06,000
+but I can use this parameter, grade,
+
+141
+00:05:06,000 --> 00:05:08,000
+which I can just think of now as a variable
+
+142
+00:05:08,000 --> 00:05:10,000
+anywhere inside the curly braces.
+
+143
+00:05:10,000 --> 00:05:12,000
+I could, for instance, say
+
+144
+00:05:12,000 --> 00:05:15,000
+grade = grade + 5.
+
+145
+00:05:15,000 --> 00:05:17,000
+That would add five points to every grade
+
+146
+00:05:17,000 --> 00:05:19,000
+before we store it, but I don't need to do that.
+
+147
+00:05:19,000 --> 00:05:22,000
+What I really need to do is store this grade,
+
+148
+00:05:22,000 --> 00:05:24,000
+make it part of the state of this class.
+
+149
+00:05:24,000 --> 00:05:25,000
+I don't know how many grades
+
+150
+00:05:25,000 --> 00:05:27,000
+someone will pass to me ultimately.
+
+151
+00:05:27,000 --> 00:05:29,000
+They can invoke AddGrade 10 times.
+
+152
+00:05:29,000 --> 00:05:31,000
+I would need to store all 10 grades.
+
+153
+00:05:31,000 --> 00:05:34,000
+And I'll need access to those grades outside of this method,
+
+154
+00:05:34,000 --> 00:05:36,000
+outside of AddGrade, because when someone calls
+
+155
+00:05:36,000 --> 00:05:38,000
+a different method, ComputeStatistics,
+
+156
+00:05:38,000 --> 00:05:40,000
+the parameter grade won't be available.
+
+157
+00:05:40,000 --> 00:05:42,000
+So I need to store that somewhere.
+
+158
+00:05:42,000 --> 00:05:44,000
+And to do that, I'll use another class
+
+159
+00:05:44,000 --> 00:05:45,000
+from the framework class library,
+
+160
+00:05:45,000 --> 00:05:48,000
+one that is in the namespace System.Collections.Generic.
+
+161
+00:05:48,000 --> 00:05:50,000
+As the name of that namespace implies,
+
+162
+00:05:50,000 --> 00:05:52,000
+this namespace is full of collection classes,
+
+163
+00:05:52,000 --> 00:05:56,000
+that is, classes that allow you to store multiple things.
+
+164
+00:05:56,000 --> 00:05:59,000
+One such collection is the list collection.
+
+165
+00:05:59,000 --> 00:06:03,000
+A list can store zero items or 10 items or 1000 items.
+
+166
+00:06:03,000 --> 00:06:06,000
+But before I can use a list, I have to tell the list
+
+167
+00:06:06,000 --> 00:06:08,000
+what type of items it's going to be storing.
+
+168
+00:06:08,000 --> 00:06:11,000
+Is it going to be storing a list of strings
+
+169
+00:06:11,000 --> 00:06:12,000
+or a list of integers?
+
+170
+00:06:12,000 --> 00:06:15,000
+Or a list of floating point numbers?
+
+171
+00:06:15,000 --> 00:06:17,000
+That's what I want because the grades are being
+
+172
+00:06:17,000 --> 00:06:19,000
+passed to me as floating point numbers.
+
+173
+00:06:19,000 --> 00:06:21,000
+Later in this course, I'll describe exactly
+
+174
+00:06:21,000 --> 00:06:25,000
+what this syntax means, this syntax with the angle brackets.
+
+175
+00:06:25,000 --> 00:06:27,000
+It's part of what we call the generic type syntax in C#,
+
+176
+00:06:27,000 --> 00:06:29,000
+but that's a preview for a later module
+
+177
+00:06:29,000 --> 00:06:31,000
+when I talk about generics.
+
+178
+00:06:31,000 --> 00:06:33,000
+For right now, you can think about this as a list
+
+179
+00:06:33,000 --> 00:06:36,000
+that can hold zero or more floating point numbers.
+
+180
+00:06:36,000 --> 00:06:38,000
+And this is going to be one of the members of the class
+
+181
+00:06:38,000 --> 00:06:40,000
+that holds the state for the class.
+
+182
+00:06:40,000 --> 00:06:42,000
+It's what we would call a field.
+
+183
+00:06:42,000 --> 00:06:44,000
+So right now, we have a method called AddGrade,
+
+184
+00:06:44,000 --> 00:06:46,000
+and this is going to be a field.
+
+185
+00:06:46,000 --> 00:06:48,000
+And just like a method, this field has to have a name.
+
+186
+00:06:48,000 --> 00:06:51,000
+I'm going to call it grades for now.
+
+187
+00:06:51,000 --> 00:06:54,000
+For fields, the naming convention is to use lowercase names.
+
+188
+00:06:54,000 --> 00:06:57,000
+And to place a grade into this collection of grades,
+
+189
+00:06:57,000 --> 00:07:00,000
+I just need to come into my method and say grades,
+
+190
+00:07:00,000 --> 00:07:02,000
+and that will be available to me inside of this method
+
+191
+00:07:02,000 --> 00:07:04,000
+because grades is a member of the class.
+
+192
+00:07:04,000 --> 00:07:06,000
+And once I hit the period character,
+
+193
+00:07:06,000 --> 00:07:08,000
+the IntelliSense window pops up to show me
+
+194
+00:07:08,000 --> 00:07:10,000
+all of the different things that I can do with a list.
+
+195
+00:07:10,000 --> 00:07:14,000
+That includes things like clear the list, to empty it out,
+
+196
+00:07:14,000 --> 00:07:15,000
+flush all the grades out.
+
+197
+00:07:15,000 --> 00:07:19,000
+I could also sort the list in some specific order.
+
+198
+00:07:19,000 --> 00:07:22,000
+But what I want to do is just to add something to the list.
+
+199
+00:07:22,000 --> 00:07:26,000
+I want to add the grade that is being passed in
+
+200
+00:07:26,000 --> 00:07:27,000
+to the AddGrade method.
+
+201
+00:07:27,000 --> 00:07:29,000
+Now there's at least one more thing that we have to do
+
+202
+00:07:29,000 --> 00:07:32,000
+to make this class usable, but we'll see that next.
+
+203
+00:07:32,000 --> 00:07:34,000
+For right now, I just want you to know that this is how
+
+204
+00:07:34,000 --> 00:07:35,000
+you create classes.
+
+205
+00:07:35,000 --> 00:07:37,000
+I now have two classes in this project,
+
+206
+00:07:37,000 --> 00:07:39,000
+Program and GradeBook.
+
+207
+00:07:39,000 --> 00:07:41,000
+The project system in Visual Studio will make sure
+
+208
+00:07:41,000 --> 00:07:43,000
+both of these files go to the C# compiler,
+
+209
+00:07:43,000 --> 00:07:45,000
+which will compile them both into my application.
+
+210
+00:07:45,000 --> 00:07:48,000
+And each of these classes, GradeBook and Program,
+
+211
+00:07:48,000 --> 00:07:50,000
+they both have their own file to live in
+
+212
+00:07:50,000 --> 00:07:52,000
+with a .cs extension.
+
+213
+00:07:52,000 --> 00:07:54,000
+And in this GradeBook class, we have one method
+
+214
+00:07:54,000 --> 00:07:55,000
+and we have one field.
+
+215
+00:07:55,000 --> 00:07:57,000
+Throughout this course, we'll discover other types
+
+216
+00:07:57,000 --> 00:07:59,000
+of members that we can add to a class.
+
+217
+00:07:59,000 --> 00:59:00,000
+But for right now, let's work with this method in this field.
+

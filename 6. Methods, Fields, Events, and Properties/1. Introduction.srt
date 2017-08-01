@@ -1,0 +1,16 @@
+1
+00:00:00,000 --> 00:00:08,000
+Hi, this is Scott, and in this module we're going to look at the members that you can attach to a type in the C# programming language.
+
+2
+00:00:08,000 --> 00:00:13,000
+This includes some familiar members we've already used, members like methods and fields, we've attached these
+
+3
+00:00:13,000 --> 00:00:18,000
+to classes and structs. We're going to go into more detail on those members, but also
+
+4
+00:00:18,000 --> 00:59:00,000
+introduce new members that you can use, the new members being properties and events.
+

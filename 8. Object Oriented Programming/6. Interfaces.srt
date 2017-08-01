@@ -1,0 +1,264 @@
+1
+00:00:00,000 --> 00:00:08,000
+Building an abstract class is one way to define a type to achieve polymorphism, but another approach is to
+
+2
+00:00:08,000 --> 00:00:15,000
+define an interface. An interface definition uses the interface keyword, and an interface is a type in the .NET Framework.
+
+3
+00:00:15,000 --> 00:00:20,000
+Just like the class, struct, and delegate keywords define types, so does interface.
+
+4
+00:00:20,000 --> 00:00:24,000
+An interface is special because it can never contain any implementation details.
+
+5
+00:00:24,000 --> 00:00:30,000
+When you define an interface you're defining an API for an object, that is any object that implements an
+
+6
+00:00:30,000 --> 00:00:34,000
+interface is guaranteed to have the members an interface describes.
+
+7
+00:00:34,000 --> 00:00:40,000
+The code snippet on the screen if for IWindow, and it's a common naming convention to define interface types
+
+8
+00:00:40,000 --> 00:00:44,000
+with a leading capital I. That's how all the interfaces and the .NET Framework are defined.
+
+9
+00:00:44,000 --> 00:00:50,000
+So any object that implements IWindow must have a title property that is both readable and writeable,
+
+10
+00:00:50,000 --> 00:00:55,000
+it also must have a draw method that takes no parameters and returns void, and it must have an Open method,
+
+11
+00:00:55,000 --> 00:01:00,000
+also a no parameters and returns void. In some ways an interface is like an abstract type,
+
+12
+00:01:00,000 --> 00:01:06,000
+because in order to create a concrete class that implements this interface, I must implement those three members.
+
+13
+00:01:06,000 --> 00:01:10,000
+But there is one huge difference between an abstract class and interface.
+
+14
+00:01:10,000 --> 00:01:17,000
+When I define a class, I can only inherit from a single base class, but I can implement as many interfaces as I like.
+
+15
+00:01:17,000 --> 00:01:24,000
+I can inherit 1 interface, or 10. I can also inherit from a base class N, implement 10 interfaces, as long as
+
+16
+00:01:24,000 --> 00:01:29,000
+I have all the interface members defined. So the interface is the ultimate abstraction,
+
+17
+00:01:29,000 --> 00:01:34,000
+because an interface allows you to define the API your software needs without defining any of the
+
+18
+00:01:34,000 --> 00:01:42,000
+implementation details, and because any class or struct inherit from any interface, interfaces are extremely flexible.
+
+19
+00:01:42,000 --> 00:01:47,000
+People will occasionally ask me if they should be using abstract base classes or interfaces,
+
+20
+00:01:47,000 --> 00:01:52,000
+and I generally favor interfaces. That's just because over the years I've never looked at an interface and
+
+21
+00:01:52,000 --> 00:01:57,000
+said oh, I wish that was an abstract class. But I have looked at an abstract class and said,
+
+22
+00:01:57,000 --> 00:02:02,000
+oh, I wish that was an interface, because abstract classes can be a bit rigid, and make for a complicated
+
+23
+00:02:02,000 --> 00:02:07,000
+inheritance tree. So I prefer interfaces, but we can always debate this.
+
+24
+00:02:07,000 --> 00:02:10,000
+Let me show you some interfaces in code.
+
+25
+00:02:10,000 --> 00:02:15,000
+In the Grades project if I really do have to work with a wide variety of different types of GradeBooks
+
+26
+00:02:15,000 --> 00:02:22,000
+and GradeTrackers, I might decide that I want to work with an interface definition instead of an abstract base class.
+
+27
+00:02:22,000 --> 00:02:29,000
+So instead of a GradeTracker type, I would like an IGradeTracker, where IGradeTracker is an interface that
+
+28
+00:02:29,000 --> 00:02:33,000
+defines a programming API so I can add grades and ComputeStatistics.
+
+29
+00:02:33,000 --> 00:02:40,000
+In Visual Studio if I put the cursor on IGradeTracker and press Ctrl+., Visual Studio will give me an option to
+
+30
+00:02:40,000 --> 00:02:47,000
+generate an interface IGradeTracker in a new file, that's the option I'm going to select, so I press Enter.
+
+31
+00:02:47,000 --> 00:02:53,000
+And now in the project I have an IGradeTracker.cs, it's an interface that currently doesn't define any
+
+32
+00:02:53,000 --> 00:02:59,000
+members, so you'll notice inside of Program.cs, I'm going to have a number of compiler errors, let me go
+
+33
+00:02:59,000 --> 00:03:06,000
+ahead and make some changes so that CreateGradeBook returns something that implements IGradeTracker,
+
+34
+00:03:06,000 --> 00:03:16,000
+and WriteResults takes an IGradeTracker, so does SaveGrades, so does AddGrades, also GetBookName,
+
+35
+00:03:16,000 --> 00:03:21,000
+and that should be all of the changes that I need. Of course currently since this interface does not define
+
+36
+00:03:21,000 --> 00:03:30,000
+any members, I have no ability to WriteGrades, or AddGrades, or do anything useful with an IGradeTracker,
+
+37
+00:03:30,000 --> 00:03:37,000
+so let me borrow some of the code from GradeTracker. I'm going to take these first three lines and paste
+
+38
+00:03:37,000 --> 00:03:43,000
+them into my interface definition. Now inside of an interface, I cannot use an access modifier, so I cannot
+
+39
+00:03:43,000 --> 00:03:49,000
+say that a particular method like AddGrade is public, or protected, or private, and that's because when
+
+40
+00:03:49,000 --> 00:03:55,000
+someone has an object that is an instance of IGradeTracker, AddGrade has to be available, and there's no
+
+41
+00:03:55,000 --> 00:03:59,000
+sense in hiding AddGrade or explicitly saying in the interface definition that it has to be public.
+
+42
+00:03:59,000 --> 00:04:04,000
+Also these methods are implicitly virtual because they're part of an interface, so I do not need to the
+
+43
+00:04:04,000 --> 00:04:09,000
+abstract keyword. And all I'm left with now are these three members, AddGrade, ComputeStatistics,
+
+44
+00:04:09,000 --> 00:04:15,000
+and WriteGrades, and once again I do need to bring in the System.IO namespace for TextWriter.
+
+45
+00:04:15,000 --> 00:04:21,000
+And now I have a choice, I can have GradeTracker implement IGradeTracker, I can have GradeBook implement
+
+46
+00:04:21,000 --> 00:04:27,000
+IGradeTracker, the way you implement an interface is to use a colon, and list the interface name that you
+
+47
+00:04:27,000 --> 00:04:34,000
+want here, so this GradeTracker is now an IGradeTracker, and it's providing those members that IGradeTracker
+
+48
+00:04:34,000 --> 00:04:40,000
+demands, even if they are abstract members, so I'm satisfying the constraint to this interface.
+
+49
+00:04:40,000 --> 00:04:45,000
+But of course what's great about implementing an interface, or inheriting from an interface,
+
+50
+00:04:45,000 --> 00:04:52,000
+is I can also choose a base class that I want to inherit from. And if you do want to derive from a specific
+
+51
+00:04:52,000 --> 00:04:59,000
+class in addition to implementing an interface, the class that you're inheriting from, that has to come first
+
+52
+00:04:59,000 --> 00:05:06,000
+in this list, so I can say object, IGradeTracker, but really no one ever clutters up their code by
+
+53
+00:05:06,000 --> 00:05:12,000
+explicitly saying they inherit from System.Object, that's always implicit, so I'm going to leave that piece off.
+
+54
+00:05:12,000 --> 00:05:20,000
+Now back in Program.cs, I'm still going to have at least one error, because my interface doesn't say anything
+
+55
+00:05:20,000 --> 00:05:26,000
+about this object having a property name. And the C# compiler says, you're passing me an IGradeTracker,
+
+56
+00:05:26,000 --> 00:05:33,000
+but an object that implements this interface isn't guaranteed to have a name property, so it's giving me an error message.
+
+57
+00:05:33,000 --> 00:05:39,000
+I will also need to go my IGradeTracker, and say that anything that implements this interface needs to have a
+
+58
+00:05:39,000 --> 00:05:47,000
+Name property that you can read and write. And now I have an inheritance hierarchy where even my
+
+59
+00:05:47,000 --> 00:05:54,000
+ThrowAwayGradeBook is an IGradeTracker, because ThrowAwayGradeBook inherits from a class, which inherits from
+
+60
+00:05:54,000 --> 00:05:59,000
+a class, which implements this interface IGradeTracker. And now I should be able to build and run the
+
+61
+00:05:59,000 --> 00:06:06,000
+program, and it's still behaving the same, but my program is working through an interface, and that again
+
+62
+00:06:06,000 --> 00:06:11,000
+increases the flexibility of the software. Previously when I was working with the GradeTracker, I could get
+
+63
+00:06:11,000 --> 00:06:18,000
+back any type of object, but it ultimately had to be something that derived from this abstract class GradeTracker.
+
+64
+00:06:18,000 --> 00:06:24,000
+By working with an interface I can work with an even wider variety of objects, objects whose class definition
+
+65
+00:06:24,000 --> 00:06:30,000
+doesn't even inherit from a GradeTracker or a GradeBook. The only guarantee that I need is that the object
+
+66
+00:06:30,000 --> 00:59:00,000
+that's being created and worked with here implements this interface IGradeTracker.
+

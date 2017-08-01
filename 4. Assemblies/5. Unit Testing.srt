@@ -1,0 +1,308 @@
+1
+00:00:00,000 --> 00:00:06,000
+In software development, we often need to run our program to see if it is working correctly, but why run and
+
+2
+00:00:06,000 --> 00:00:12,000
+inspect the results yourself when you can automate a test and have the computer verify the results?
+
+3
+00:00:12,000 --> 00:00:18,000
+This is one advantage to writing unit tests. A unit test is where I write some C# code to test my other C#
+
+4
+00:00:18,000 --> 00:00:23,000
+code in an automatic manner. Pluralsight has several courses that cover unit testing in more detail,
+
+5
+00:00:23,000 --> 00:00:28,000
+so in this course I'm going to stick to some brute force information to get you started.
+
+6
+00:00:28,000 --> 00:00:32,000
+Visual Studio provides a special project type dedicated to unit test code.
+
+7
+00:00:32,000 --> 00:00:39,000
+As a software developer, I can use this project to write tests for my classes and verify that they're behaving correctly.
+
+8
+00:00:39,000 --> 00:00:45,000
+The unit test project produces an assembly with my test code, and my test assembly typically has to reference
+
+9
+00:00:45,000 --> 00:00:50,000
+another assembly with the code that is being tested. For example, if I want to make sure that the GradeBook
+
+10
+00:00:50,000 --> 00:00:55,000
+computes the proper statistics, I'd create a new test project and write some test code where that test
+
+11
+00:00:55,000 --> 00:01:00,000
+project will reference the assembly with the GradeBook. That way inside of a unit test I can use the
+
+12
+00:01:00,000 --> 00:01:05,000
+GradeBook, I can instantiate that class, I can give it different grades and look at the output.
+
+13
+00:01:05,000 --> 00:01:09,000
+Let's take a look and see how this works and start writing some tests, which throughout the rest of this
+
+14
+00:01:09,000 --> 00:01:15,000
+course you'll learn not only how to verify the behavior of your code, but I'll show you how you can use unit
+
+15
+00:01:15,000 --> 00:01:19,000
+tests to experiment and learn about the C# language.
+
+16
+00:01:19,000 --> 00:01:26,000
+Inside of Visual Studio, before I can begin testing my GradeBook, I have to be set up with a unit testing project.
+
+17
+00:01:26,000 --> 00:01:32,000
+There are many ways to run unit tests on the .NET Framework. I'm going to show you one way to do this with Visual Studio.
+
+18
+00:01:32,000 --> 00:01:37,000
+I'm going to go to the Solution Explorer window and right-click on the Solution, the Grades Solution,
+
+19
+00:01:37,000 --> 00:01:40,000
+because what I want to do is add another project to the Solution.
+
+20
+00:01:40,000 --> 00:01:45,000
+One of the nice things about solutions in Visual Studio is they can contain multiple projects.
+
+21
+00:01:45,000 --> 00:01:50,000
+Each project has its own set of source code for a particular piece of the application.
+
+22
+00:01:50,000 --> 00:01:54,000
+I'm going to Add a New Project that will be a unit testing project.
+
+23
+00:01:54,000 --> 00:01:59,000
+So instead of selecting Console Application, which we did for the GradeBook, I'm going to go to this Test
+
+24
+00:01:59,000 --> 00:02:09,000
+node and select Unit Test Project, and let's call this project Grades.UnitTests, or perhaps let's just call
+
+25
+00:02:09,000 --> 00:02:14,000
+it Grades.Test. So that will be the name of my project and also the name of the assembly that this project
+
+26
+00:02:14,000 --> 00:02:20,000
+produces, Grades.Tests.dll. This assembly will just contain the compiled test code.
+
+27
+00:02:20,000 --> 00:02:26,000
+There will be a different tool, a different program that will load this library and execute the tests inside
+
+28
+00:02:26,000 --> 00:02:33,000
+and show me the results. And once I select OK, Visual Studio will create this project, add it to my
+
+29
+00:02:33,000 --> 00:02:41,000
+solution, and any time I do a build I'll be building both the Grades assembly and the Grades.Tests assembly.
+
+30
+00:02:41,000 --> 00:02:48,000
+Now before we even write any code, let me go to the Test menu in Visual Studio, and I'm going to say Run All the Tests.
+
+31
+00:02:48,000 --> 00:02:54,000
+This will launch a test runner that is included in Visual Studio, and after building both of my projects,
+
+32
+00:02:54,000 --> 00:02:58,000
+this test runner will go looking for tests that are in Grades.Tests.
+
+33
+00:02:58,000 --> 00:03:03,000
+And I can see in this Test Explorer window that popped up on the left hand side there's a single method,
+
+34
+00:03:03,000 --> 00:03:07,000
+TestMethod1, and the green checkmark tells me that test passed.
+
+35
+00:03:07,000 --> 00:03:12,000
+Of course we're not really testing any functionality yet, and before we do I just want to run through some of
+
+36
+00:03:12,000 --> 00:03:17,000
+the basics of a unit test. And one of the first things I'm going to do is actually drab this Test Explorer
+
+37
+00:03:17,000 --> 00:03:23,000
+window and dock it down here beneath my Solution Explorer just because I always prefer my code to be on the
+
+38
+00:03:23,000 --> 00:03:29,000
+left hand side of the screen. And now let me introduce you to some of the code that is inside of a file here.
+
+39
+00:03:29,000 --> 00:03:37,000
+This file is called UnitTest1.cs, and inside of here is a class, UnitTest1, and a method, TestMethod1.
+
+40
+00:03:37,000 --> 00:03:44,000
+We also have a new syntax feature of C#, a syntax feature that allows us to tell a test runner what methods
+
+41
+00:03:44,000 --> 00:03:49,000
+are tests methods, that is methods that should be executed and checked to see if they passed or failed,
+
+42
+00:03:49,000 --> 00:03:54,000
+and also a piece of information to identify a class that has test methods.
+
+43
+00:03:54,000 --> 00:03:58,000
+So this syntax with the square brackets, these are known as attributes in C#.
+
+44
+00:03:58,000 --> 00:04:02,000
+We're going to talk about attributes in more detail later in the course, but for now you can think of an
+
+45
+00:04:02,000 --> 00:04:07,000
+attribute as a piece of data that is associated with a class or a method.
+
+46
+00:04:07,000 --> 00:04:12,000
+You can actually associate an attribute with all sorts of different types and members in a C# application,
+
+47
+00:04:12,000 --> 00:04:17,000
+but again that's later in the course. For right now, just know that if you're going to write a test that the
+
+48
+00:04:17,000 --> 00:04:23,000
+test runner will run for you, you want to put that code inside of a method that has a TestMethod attribute
+
+49
+00:04:23,000 --> 00:04:29,000
+with the square brackets around it, and that method goes into a class, a public class that has this TestClass
+
+50
+00:04:29,000 --> 00:04:35,000
+attribute, and these attributes just sit directly on top of the language element that they are associated with.
+
+51
+00:04:35,000 --> 00:04:40,000
+So TestClass is associated with a class; TestMethod is associated with a method.
+
+52
+00:04:40,000 --> 00:04:44,000
+And what the test runner will do is just find all of your test classes, instantiate each one,
+
+53
+00:04:44,000 --> 00:04:50,000
+execute the methods that are inside of each one, and then determine if a method passes or fails.
+
+54
+00:04:50,000 --> 00:04:55,000
+How does the test runner know if a method passed or failed? Well, if there was no error that occurs inside
+
+55
+00:04:55,000 --> 00:04:59,000
+of test method, the test runner will assume that the test has passed.
+
+56
+00:04:59,000 --> 00:05:06,000
+But I can use a class that is in this namespace, Microsoft.VisualStudio.TestTools.UnitTesting.
+
+57
+00:05:06,000 --> 00:05:12,000
+This class is called a Assert, and I can use this Assert class to make assertions about a particular piece of
+
+58
+00:05:12,000 --> 00:05:18,000
+data or a particular facet of my program. And if those assertions don't hold true, they will raise an error
+
+59
+00:05:18,000 --> 00:05:24,000
+and fail my test. In other words, once I dot into this Assert class, I can see all sorts of methods that are
+
+60
+00:05:24,000 --> 00:05:33,000
+available like AreEqual, AreNotSame, AreSame, Fail, IsFalse, IsTrue, so I can try to make an assertion like
+
+61
+00:05:33,000 --> 00:05:42,000
+are 3 and 4 equal? And if I run all of my tests again, the Test Explorer will tell me that no I have a failing test.
+
+62
+00:05:42,000 --> 00:05:48,000
+I know that now because of all the red that shows up. And I can actually click on TestMethod1, and I can see
+
+63
+00:05:48,000 --> 00:05:53,000
+some more detail here on the right side, AreEqual failed. Expected 3, Actual 4.
+
+64
+00:05:53,000 --> 00:06:00,000
+That means I expected a value 3, I expected that to match the value 4, but we all know that 3 is not equal
+
+65
+00:06:00,000 --> 00:06:06,000
+to 4, so this test failed. And if I double-click on this method, Visual Studio will actually place the cursor
+
+66
+00:06:06,000 --> 00:06:11,000
+inside of that method. That way if a test fails and I don't have the file open, it's very easy to double-click
+
+67
+00:06:11,000 --> 00:06:18,000
+a test and go directly to the source code. If I change Assert.AreEqual where I expect a 3 and the result to
+
+68
+00:06:18,000 --> 00:06:25,000
+compare it to is a 3, now if I run all the tests, I am back to having a passing test.
+
+69
+00:06:25,000 --> 00:06:29,000
+And so the ultimate goal with my unit test will be this: I want to make sure that the GradeBook is behaving
+
+70
+00:06:29,000 --> 00:06:35,000
+correctly, so I want to write one or more test methods that will feed some data into the GradeBook and then
+
+71
+00:06:35,000 --> 00:06:39,000
+make assertions about the GradeStatistics that the GradeBook returns.
+
+72
+00:06:39,000 --> 00:06:43,000
+Did it find the correct high grade, the correct low grade? Did it compute the correct average?
+
+73
+00:06:43,000 --> 00:06:49,000
+In order to do that, I'm going to create a new test class with new test methods, and for now I'm going to get
+
+74
+00:06:49,000 --> 00:06:54,000
+rid of UnitTest1. This is really just sort of a sample file that Visual Studio gives you so that you can see
+
+75
+00:06:54,000 --> 00:07:00,000
+the proper syntax for writing a unit test. But now that we know that syntax, we can create a source code
+
+76
+00:07:00,000 --> 00:07:05,000
+file with a better name and better tests name inside, test names that are related to the GradeBook.
+
+77
+00:07:05,000 --> 00:59:00,000
+Let's do that next.
+

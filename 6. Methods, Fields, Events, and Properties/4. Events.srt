@@ -1,0 +1,88 @@
+1
+00:00:00,000 --> 00:00:04,000
+Another type of member that you can have in a class is an event.
+
+2
+00:00:04,000 --> 00:00:10,000
+To understand events we need to delve into some new concepts in C# and .NET, but before we do let me give you
+
+3
+00:00:10,000 --> 00:00:17,000
+a high-level overview of why events are useful. Many times in software development we need to interact with
+
+4
+00:00:17,000 --> 00:00:21,000
+or keep track of components that do interesting things at unpredictable times.
+
+5
+00:00:21,000 --> 00:00:26,000
+For example, a button on a screen is a component that we want to keep track of, and we want to know when a
+
+6
+00:00:26,000 --> 00:00:32,000
+user clicks on this button. We don't know exactly when the user will click on the button, but we do need to
+
+7
+00:00:32,000 --> 00:00:37,000
+be notified because when the user does click we typically need to then execute some code.
+
+8
+00:00:37,000 --> 00:00:43,000
+Sometimes we need to save data to a file or read data from a database, and this isn't just about components
+
+9
+00:00:43,000 --> 00:00:47,000
+on the screen like a button. We might need to also keep track of a directory on the hard drive and be
+
+10
+00:00:47,000 --> 00:00:54,000
+notified when a user places a new file on that directory, or when a timer expires because I want to execute
+
+11
+00:00:54,000 --> 00:00:59,000
+some code every 60 seconds, and refresh some data, like refreshing stock quotes.
+
+12
+00:00:59,000 --> 00:01:05,000
+All these are examples of when events are useful. Events allow an object, like an object that represents a
+
+13
+00:01:05,000 --> 00:01:10,000
+button, events allow that object to announce to anyone who is listening that something interesting happened,
+
+14
+00:01:10,000 --> 00:01:17,000
+like when the user clicks on that button. We call the announcement an event, and we say that the button publishes this event.
+
+15
+00:01:17,000 --> 00:01:22,000
+The code that is interested in the click event is code that subscribes to the event.
+
+16
+00:01:22,000 --> 00:01:30,000
+You can have multiple subscribers listening to a single click event, so that when the user clicks a button 0
+
+17
+00:01:30,000 --> 00:01:35,000
+or more independent pieces of code will execute. One piece of code might save data to a file,
+
+18
+00:01:35,000 --> 00:01:40,000
+another piece might change the color of the screen, another piece might log information to a database,
+
+19
+00:01:40,000 --> 00:01:48,000
+those are three independent pieces of code all executing off of the same event, and the beauty of events is
+
+20
+00:01:48,000 --> 00:01:53,000
+that the button object itself, it doesn't need to keep track of who is subscribing, and the subscribers don't
+
+21
+00:01:53,000 --> 00:01:59,000
+need to know about each other. This is all done through the magic of delegates in C#, so in order to
+
+22
+00:01:59,000 --> 00:59:00,000
+understand events we really need to understand delegates first.
+

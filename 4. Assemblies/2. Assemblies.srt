@@ -1,0 +1,104 @@
+1
+00:00:00,000 --> 00:00:04,000
+Earlier in this course I showed you how to use the C# compiler from the command line.
+
+2
+00:00:04,000 --> 00:00:11,000
+Remember, the compiler's name is csc.exe, and I can pass one or more C# source code files to csc,
+
+3
+00:00:11,000 --> 00:00:15,000
+and the compiler will produce an executable that I can run in a command window.
+
+4
+00:00:15,000 --> 00:00:21,000
+That's how we wrote a hello world program in the first module. Now technically what the C# compiler produces
+
+5
+00:00:21,000 --> 00:00:27,000
+is called an assembly. A .NET assembly is a file that contains our compiled code, code that can execute
+
+6
+00:00:27,000 --> 00:00:32,000
+under the supervision of the Common Language Runtime. When we are writing a simple program like the Grade
+
+7
+00:00:32,000 --> 00:00:35,000
+Book program that we've been working on, we don't need to think about assemblies.
+
+8
+00:00:35,000 --> 00:00:41,000
+We can just compile and run our program. But on more sophisticated projects, we do need to learn a bit more
+
+9
+00:00:41,000 --> 00:00:48,000
+about how to make and also use other assemblies. .NET assemblies are just files that you will store on disk with a
+
+10
+00:00:48,000 --> 00:00:56,000
+.exe or .dll extension. Exe is short of executable. An exe file is a file that you can execute directly
+
+11
+00:00:56,000 --> 00:01:01,000
+by double-clicking on the file in Windows or using the name of the program from the command line.
+
+12
+00:01:01,000 --> 00:01:08,000
+The .dll extension is short for dynamic-link library. A dll is a file that you cannot execute directly,
+
+13
+00:01:08,000 --> 00:01:14,000
+but another program can load a dll and use the code inside, which means one reason to put code inside of a
+
+14
+00:01:14,000 --> 00:01:19,000
+dll is when you are writing code that you want to reuse in multiple applications.
+
+15
+00:01:19,000 --> 00:01:24,000
+A good example of a reuse is the .NET Framework itself. Some of the classes we've been using,
+
+16
+00:01:24,000 --> 00:01:29,000
+classes like Console and DateTime, they live inside an assembly that .NET provides.
+
+17
+00:01:29,000 --> 00:01:36,000
+The assembly's name is MSCorLib.dll. It is a core library that contains core types.
+
+18
+00:01:36,000 --> 00:01:42,000
+And many of this cor .NET assemblies like MSCorLib, they live inside a place known as the Global Assembly
+
+19
+00:01:42,000 --> 00:01:48,000
+Cache on a Windows machine. You will find the Global Assembly Cache underneath your Windows folder where
+
+20
+00:01:48,000 --> 00:01:54,000
+Windows installs inside a folder named Assembly. Inside of there you'll see additional folders beginning
+
+21
+00:01:54,000 --> 00:02:00,000
+with the letters G-A-C, GAC for short. That's what we call the Global Assembly Cache, the GAC.
+
+22
+00:02:00,000 --> 00:02:05,000
+The assemblies stored in the GAC are available to use from any .NET program that runs on a machine.
+
+23
+00:02:05,000 --> 00:02:11,000
+That's why popular assemblies like MSCorLib, which has the Console and DateTime classes, as well as classes
+
+24
+00:02:11,000 --> 00:02:16,000
+like String, these assemblies live in the GAC, so there's only one copy for the entire machine.
+
+25
+00:02:16,000 --> 00:02:22,000
+And now that we know that our GradeBook program is a .NET assembly and that we use classes from other
+
+26
+00:02:22,000 --> 00:59:00,000
+assemblies like MSCorLib, let's take a look in Visual Studio to explore this in more detail.
+

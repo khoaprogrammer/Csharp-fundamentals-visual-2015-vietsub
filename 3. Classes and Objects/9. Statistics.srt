@@ -1,0 +1,488 @@
+1
+00:00:02,000 --> 00:00:03,000
+What I'd like to do next is figure out how to get
+
+2
+00:00:03,000 --> 00:00:05,000
+statistics out of the GradeBook.
+
+3
+00:00:05,000 --> 00:00:07,000
+Remember the requirements wanting to know
+
+4
+00:00:07,000 --> 00:00:09,000
+for a given set of grades,
+
+5
+00:00:09,000 --> 00:00:11,000
+what's the highest score, the lowest score
+
+6
+00:00:11,000 --> 00:00:12,000
+and the average score?
+
+7
+00:00:12,000 --> 00:00:13,000
+Sometimes, when I'm not sure what to do,
+
+8
+00:00:13,000 --> 00:00:16,000
+I make stuff up and then I see if I can get it to work.
+
+9
+00:00:16,000 --> 00:00:18,000
+For example, I'm thinking if I want a GradeBook
+
+10
+00:00:18,000 --> 00:00:21,000
+to compute statistics, then that phrase,
+
+11
+00:00:21,000 --> 00:00:23,000
+ComputeStatistics, it's a pretty good
+
+12
+00:00:23,000 --> 00:00:26,000
+verb-oriented behavior that I can add to a GradeBook
+
+13
+00:00:26,000 --> 00:00:27,000
+as a method.
+
+14
+00:00:27,000 --> 00:00:31,000
+It's very clear when I look at a piece of code like this
+
+15
+00:00:31,000 --> 00:00:33,000
+what the GradeBook will be doing.
+
+16
+00:00:33,000 --> 00:00:36,000
+But what will the GradeBook do with those statistics?
+
+17
+00:00:36,000 --> 00:00:38,000
+Will it store those statistics internally?
+
+18
+00:00:38,000 --> 00:00:41,000
+Will it expose them somehow so I could see something
+
+19
+00:00:41,000 --> 00:00:45,000
+like the lowest grade that is associated with the GradeBook?
+
+20
+00:00:45,000 --> 00:00:47,000
+But if I can walk up to a GradeBook at any time
+
+21
+00:00:47,000 --> 00:00:49,000
+and look at the lowest grade, then why doesn't the GradeBook
+
+22
+00:00:49,000 --> 00:00:51,000
+just compute statistics for me all of the time
+
+23
+00:00:51,000 --> 00:00:53,000
+after each grade is added?
+
+24
+00:00:53,000 --> 00:00:55,000
+This is where you just have to think about
+
+25
+00:00:55,000 --> 00:00:57,000
+how are people going to use your objects?
+
+26
+00:00:57,000 --> 00:00:59,000
+How do people want to use your classes?
+
+27
+00:00:59,000 --> 00:01:02,000
+And here's how I think I would want to solve this problem.
+
+28
+00:01:02,000 --> 00:01:05,000
+I do want to call a method called ComputeStatistics.
+
+29
+00:01:05,000 --> 00:01:07,000
+I do want that word to be explicit
+
+30
+00:01:07,000 --> 00:01:09,000
+because the program has reached a point where
+
+31
+00:01:09,000 --> 00:01:11,000
+all of the grades are entered and now,
+
+32
+00:01:11,000 --> 00:01:13,000
+I want to generate those statistics so I can display them
+
+33
+00:01:13,000 --> 00:01:14,000
+to the user.
+
+34
+00:01:14,000 --> 00:01:16,000
+But I don't want those statistics to be part
+
+35
+00:01:16,000 --> 00:01:18,000
+of the GradeBook, and I don't want something called
+
+36
+00:01:18,000 --> 00:01:20,000
+lowest score to be part of the GradeBook.
+
+37
+00:01:20,000 --> 00:01:25,000
+I'd rather have ComputeStatistics return statistics to me
+
+38
+00:01:25,000 --> 00:01:27,000
+or have that method return some object to me
+
+39
+00:01:27,000 --> 00:01:29,000
+that will hold the statistics that I need.
+
+40
+00:01:29,000 --> 00:01:31,000
+That way, the GradeBook is just responsible
+
+41
+00:01:31,000 --> 00:01:34,000
+for storing the grades and computing the statistics.
+
+42
+00:01:34,000 --> 00:01:36,000
+And I have another object that is responsible for
+
+43
+00:01:36,000 --> 00:01:39,000
+and encapsulates the statistical results themselves.
+
+44
+00:01:39,000 --> 00:01:42,000
+Sometimes, we talk about encapsulation as hiding things
+
+45
+00:01:42,000 --> 00:01:44,000
+and certainly, this method, ComputeStatistics
+
+46
+00:01:44,000 --> 00:01:46,000
+will hide the algorithms that I need to compute
+
+47
+00:01:46,000 --> 00:01:49,000
+the statistics, and that's nice.
+
+48
+00:01:49,000 --> 00:01:51,000
+But encapsulation can also be the concept of
+
+49
+00:01:51,000 --> 00:01:53,000
+surrounding something, putting information together
+
+50
+00:01:53,000 --> 00:01:55,000
+into a single context and into one place,
+
+51
+00:01:55,000 --> 00:01:58,000
+and that's what I want the statistics to be.
+
+52
+00:01:58,000 --> 00:02:00,000
+In other words, perhaps what I really want here
+
+53
+00:02:00,000 --> 00:02:04,000
+is to write a new class, GradeStatistics
+
+54
+00:02:04,000 --> 00:02:06,000
+so that I can define a variable.
+
+55
+00:02:06,000 --> 00:02:07,000
+Let's call it stats.
+
+56
+00:02:07,000 --> 00:02:10,000
+And when I call ComputeStatistics, I can store a reference
+
+57
+00:02:10,000 --> 00:02:13,000
+to the computed results inside of the stats variable.
+
+58
+00:02:13,000 --> 00:02:15,000
+This gives me a separation between the active
+
+59
+00:02:15,000 --> 00:02:19,000
+computing statistics and the result of those calculations.
+
+60
+00:02:19,000 --> 00:02:21,000
+It does mean I'm going to have to create another class,
+
+61
+00:02:21,000 --> 00:02:23,000
+GradeStatistics, but many times you can reduce
+
+62
+00:02:23,000 --> 00:02:26,000
+the complexity of an application by adding more classes.
+
+63
+00:02:26,000 --> 00:02:28,000
+The GradeBook will now hold the grades.
+
+64
+00:02:28,000 --> 00:02:30,000
+This GradeStatistics class will hold
+
+65
+00:02:30,000 --> 00:02:32,000
+statistical information.
+
+66
+00:02:32,000 --> 00:02:37,000
+So Let's see if we can get this to run or at least compile.
+
+67
+00:02:37,000 --> 00:02:41,000
+So I'll come into the grades project and add another class.
+
+68
+00:02:41,000 --> 00:02:44,000
+So select class and this add new item dialog.
+
+69
+00:02:44,000 --> 00:02:47,000
+This will be called GradeStatistics.CS.
+
+70
+00:02:47,000 --> 00:02:50,000
+I don't actually have to put the .cs into this dialog box.
+
+71
+00:02:50,000 --> 00:02:52,000
+Visual Studio will do that for me.
+
+72
+00:02:52,000 --> 00:02:53,000
+Now I have this class.
+
+73
+00:02:53,000 --> 00:02:55,000
+If I come back to Program.cs,
+
+74
+00:02:55,000 --> 00:02:57,000
+you can see I don't have an error anymore.
+
+75
+00:02:57,000 --> 00:03:00,000
+Visual Studio now knows what GradeStatistics is,
+
+76
+00:03:00,000 --> 00:03:02,000
+but we still don't have a ComputeStatistics
+
+77
+00:03:02,000 --> 00:03:04,000
+on our GradeBook.
+
+78
+00:03:04,000 --> 00:03:05,000
+So let's add that.
+
+79
+00:03:05,000 --> 00:03:07,000
+I will expect this to be a public method
+
+80
+00:03:07,000 --> 00:03:10,000
+so I can invoke it from outside of GradeBook.
+
+81
+00:03:10,000 --> 00:03:13,000
+And I expect this method to return an object
+
+82
+00:03:13,000 --> 00:03:15,000
+of type GradeStatistics.
+
+83
+00:03:15,000 --> 00:03:17,000
+That's another key that we haven't talked about yet,
+
+84
+00:03:17,000 --> 00:03:19,000
+but public is an access modifier and then
+
+85
+00:03:19,000 --> 00:03:22,000
+just before the method name, you always have to describe
+
+86
+00:03:22,000 --> 00:03:24,000
+what a method returns.
+
+87
+00:03:24,000 --> 00:03:26,000
+In this case, I'm going to have a method
+
+88
+00:03:26,000 --> 00:03:29,000
+named ComputeStatistics,
+
+89
+00:03:29,000 --> 00:03:32,000
+and this method will return an object
+
+90
+00:03:32,000 --> 00:03:34,000
+of type GradeStatistics.
+
+91
+00:03:34,000 --> 00:03:36,000
+If a method doesn't need to return anything,
+
+92
+00:03:36,000 --> 00:03:39,000
+you can use the void keyword to say that this method
+
+93
+00:03:39,000 --> 00:03:40,000
+doesn't return a value.
+
+94
+00:03:40,000 --> 00:03:43,000
+So now we've learned another keyword in the C# language.
+
+95
+00:03:43,000 --> 00:03:45,000
+And when you write a constructor,
+
+96
+00:03:45,000 --> 00:03:47,000
+that's the only method that you ever write
+
+97
+00:03:47,000 --> 00:03:49,000
+where you do not specify a return type.
+
+98
+00:03:49,000 --> 00:03:50,000
+It's just an access modifier
+
+99
+00:03:50,000 --> 00:03:52,000
+and then the name of the constructor,
+
+100
+00:03:52,000 --> 00:03:54,000
+which is always the same as the name of the class.
+
+101
+00:03:54,000 --> 00:03:56,000
+That makes constructors look a little bit different.
+
+102
+00:03:56,000 --> 00:03:59,000
+So AddGrade doesn't return anything.
+
+103
+00:03:59,000 --> 00:04:03,000
+Compute statistics will return a GradeStatistics object.
+
+104
+00:04:03,000 --> 00:04:05,000
+And right now, Visual Studio will give me an error
+
+105
+00:04:05,000 --> 00:04:08,000
+because ComputeStatistics does not return a value.
+
+106
+00:04:08,000 --> 00:04:10,000
+It's an error to say you'll return GradeStatistics
+
+107
+00:04:10,000 --> 00:04:14,000
+but then not have a return statement inside of the method.
+
+108
+00:04:14,000 --> 00:04:16,000
+For right now, let's just return
+
+109
+00:04:16,000 --> 00:04:19,000
+a new instance of GradeStatistics.
+
+110
+00:04:19,000 --> 00:04:22,000
+We'll need to populate this and do some computations.
+
+111
+00:04:22,000 --> 00:04:24,000
+But for right now, I'm just trying to get the program
+
+112
+00:04:24,000 --> 00:04:27,000
+to build, and I should be able to, at this point,
+
+113
+00:04:27,000 --> 00:04:28,000
+build the solution.
+
+114
+00:04:28,000 --> 00:04:31,000
+We are not actually computing any statistics,
+
+115
+00:04:31,000 --> 00:04:32,000
+but that's okay.
+
+116
+00:04:32,000 --> 00:04:34,000
+Sometimes in software, you just have to feel your way
+
+117
+00:04:34,000 --> 00:04:36,000
+through to the final solution,
+
+118
+00:04:36,000 --> 00:04:38,000
+and I think, looking at this code,
+
+119
+00:04:38,000 --> 00:04:41,000
+that we're on the right track to computing some statistics.
+
+120
+00:04:41,000 --> 00:04:43,000
+In the next clip, we can take a closer look at this method
+
+121
+00:04:43,000 --> 00:04:45,000
+and figure out how we actually are
+
+122
+00:04:45,000 --> 00:59:00,000
+going to do these computations.
+

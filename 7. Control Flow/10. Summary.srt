@@ -1,0 +1,32 @@
+1
+00:00:00,000 --> 00:00:06,000
+In this module we looked at flow control statements in C#. These statements included the conditional
+
+2
+00:00:06,000 --> 00:00:10,000
+branching statements like the if statement. We also looked at looping statements like the for loop and the
+
+3
+00:00:10,000 --> 00:00:16,000
+jumping statements like break and continue. Finally we took a close look at exceptions because exceptions
+
+4
+00:00:16,000 --> 00:00:21,000
+are the error handling mechanism that is built into .NET, and sooner or later you will either need to throw
+
+5
+00:00:21,000 --> 00:00:26,000
+an exception because your program has detected a critical error, or you will need to handle an exception and
+
+6
+00:00:26,000 --> 00:00:31,000
+try to either recover from the error or log the error and prevent the program from terminating.
+
+7
+00:00:31,000 --> 00:00:37,000
+We also saw the importance of cleaning up unmanaged resources like open files and how we can let the C# using
+
+8
+00:00:37,000 --> 00:59:00,000
+keyword help us clean up and free these unmanaged resources.
+

@@ -1,0 +1,384 @@
+1
+00:00:02,000 --> 00:00:08,000
+Inheritance is a technique where I can define a relationship between two classes such that one class takes on
+
+2
+00:00:08,000 --> 00:00:15,000
+or inherits the members of another class. So if class A has one method, DoWork, then class B can also have
+
+3
+00:00:15,000 --> 00:00:20,000
+that same method, just by inheriting from class A and not writing any additional code, but reusing the code
+
+4
+00:00:20,000 --> 00:00:26,000
+already in the first class. If class B wanted to have an additional method, it can.
+
+5
+00:00:26,000 --> 00:00:31,000
+The syntax for inheritance is to use a colon after the name of your class, and then you specify the base
+
+6
+00:00:31,000 --> 00:00:35,000
+class, that is the class whose members you are going to inherit.
+
+7
+00:00:35,000 --> 00:00:40,000
+We've already seen some inheritance in this course when we defined a custom event arguments class for the
+
+8
+00:00:40,000 --> 00:00:46,000
+GradeBook's NameChanged event. All events in .NET should be pass an arguments parameter that inherits from
+
+9
+00:00:46,000 --> 00:00:52,000
+EventArgs in the framework class library. You can only inherit from a single class in C#, that is you can
+
+10
+00:00:52,000 --> 00:00:58,000
+only specify a single base class after the colon, but the inheritance chain is unlimited.
+
+11
+00:00:58,000 --> 00:01:05,000
+You can have class C inherit from class B, which inherits from class A, and in that case class C is inheriting
+
+12
+00:01:05,000 --> 00:01:09,000
+all the members from B and A. So class C would also have a DoWork method.
+
+13
+00:01:09,000 --> 00:01:17,000
+You do have to be cautious with inheritance because it does tie up your classes and your code into a tightly bound relationship.
+
+14
+00:01:17,000 --> 00:01:23,000
+I talk about that more in the Programming Paradigms course, for now let's take a look at inheritance in code.
+
+15
+00:01:23,000 --> 00:01:28,000
+Inside the Grades project that we've been working on throughout this course, let's imagine that our users
+
+16
+00:01:28,000 --> 00:01:34,000
+came to us and they've told us that occasionally they want a grade book that will through away the lowest grade
+
+17
+00:01:34,000 --> 00:01:39,000
+before computing statistics. That will allow a student who has a bad day or one bad assignment to not be
+
+18
+00:01:39,000 --> 00:01:45,000
+penalized as much for that one bad grade, and this is something that the users occasionally want to do,
+
+19
+00:01:45,000 --> 00:01:49,000
+they don't want to get rid of the original algorithm for the grade book, they just occasionally want to
+
+20
+00:01:49,000 --> 00:01:54,000
+compute statistics and throw away the lowest grade. Now what are some different approaches to implementing this?
+
+21
+00:01:54,000 --> 00:02:00,000
+Well I could take all of the code in the GradeBook and press Ctrl+A and copy this code and paste it into a
+
+22
+00:02:00,000 --> 00:02:06,000
+new class, perhaps we can call it the ThrowAwayGradeBook, and then I can go in and tweak the code,
+
+23
+00:02:06,000 --> 00:02:11,000
+and tweak ComputeStatistics to throw away the lowest grade before doing the rest of the computations.
+
+24
+00:02:11,000 --> 00:02:16,000
+But this copy and paste approach can lead to a lot of duplicated code inside of an application if that
+
+25
+00:02:16,000 --> 00:02:23,000
+happens too often. So another approach might be to modify the existing GradeBook, perhaps add a public
+
+26
+00:02:23,000 --> 00:02:29,000
+property, ThrowAwayLowest, and if I'm in a situation where the lowest grade needs to be thrown away,
+
+27
+00:02:29,000 --> 00:02:35,000
+I could always instantiate the GradeBook and then set this property to true, and inside of ComputeStatistics
+
+28
+00:02:35,000 --> 00:02:41,000
+check this property, and if it's true run a little bit of code to remove the lowest grade and then continue
+
+29
+00:02:41,000 --> 00:02:45,000
+with the execution that's computing the statistics. That's another approach.
+
+30
+00:02:45,000 --> 00:02:50,000
+And the approach that ultimately I would take really depends on the team that I'm working with and the type
+
+31
+00:02:50,000 --> 00:02:54,000
+of application I'm building, and most importantly the business, where else do I anticipate that the business
+
+32
+00:02:54,000 --> 00:02:59,000
+might want to make changes to the GradeBook or the algorithms that are involved?
+
+33
+00:02:59,000 --> 00:03:03,000
+And in some of those scenarios I would use inheritance to solve this problem, and that's the approach that
+
+34
+00:03:03,000 --> 00:03:09,000
+I'll show you today. Let's go into the Grades project and add a new class.
+
+35
+00:03:09,000 --> 00:03:17,000
+I will call this the ThrowAwayGradeBook, because it will throw away the lowest grade.
+
+36
+00:03:17,000 --> 00:03:26,000
+And I want this to also be a public class, and this is a class that I want to inherit from GradeBook.
+
+37
+00:03:26,000 --> 00:03:30,000
+So at this point, ThrowAwayGradeBook has all of the same capabilities as our regular GradeBook.
+
+38
+00:03:30,000 --> 00:03:38,000
+In fact I can come into Program.cs, and instead of instantiating a GradeBook, I can instantiate a
+
+39
+00:03:38,000 --> 00:03:43,000
+ThrowAwayGradeBook, and I can take that object and assign it to a variable of type GradeBook.
+
+40
+00:03:43,000 --> 00:03:49,000
+We would say that the ThrowAwayGradeBook is a GradeBook, because ThrowAwayGradeBook inherits from GradeBook,
+
+41
+00:03:49,000 --> 00:03:55,000
+it's a specific type of GradeBook. And in C# you can always take a derived type and assign it to a variable
+
+42
+00:03:55,000 --> 00:04:01,000
+of a base type and that's completely legal. At this point I could even run the program, first let me comment
+
+43
+00:04:01,000 --> 00:04:08,000
+out this line of code that would force me to input a GradeBook name, I can run this program with Ctrl+F5,
+
+44
+00:04:08,000 --> 00:04:13,000
+and I can see that we're still outputting the same numbers that we had before, the average is 85.17,
+
+45
+00:04:13,000 --> 00:04:21,000
+and the lowest grade is a 75. So currently, this new ThrowAwayGradeBook object behaves just like a regular GradeBook.
+
+46
+00:04:21,000 --> 00:04:28,000
+Now what I want to do is have ComputeStatistics behave a little bit differently, I want it to throw away the lowest grade.
+
+47
+00:04:28,000 --> 00:04:34,000
+So on the ThrowAwayGradeBook let me create a public method that will return an object of type
+
+48
+00:04:34,000 --> 00:04:42,000
+GradeStatistics, this is also called ComputeStatistics, and inside of here I want to reuse the existing
+
+49
+00:04:42,000 --> 00:04:47,000
+algorithm that is inside of the GradeBook as much as possible, because it's already doing the hard work of
+
+50
+00:04:47,000 --> 00:04:52,000
+the calculations, and I can do this. You might remember earlier in the course we talked about a special
+
+51
+00:04:52,000 --> 00:04:57,000
+implicit variable that's available inside of every instance method, that is a non-static method,
+
+52
+00:04:57,000 --> 00:05:03,000
+and that's the this variable. This is a keyword in C#, and this allows me to reference the object that I'm
+
+53
+00:05:03,000 --> 00:05:09,000
+currently inside of, and I can see in the IntelliSense window I can reach methods that are on my object instance,
+
+54
+00:05:09,000 --> 00:05:13,000
+methods that I've inherited, methods like AddGrade and ComputeStatistics.
+
+55
+00:05:13,000 --> 00:05:19,000
+There's another keyword in C#, a special implicit variable, it's called base, and what base will allow me to
+
+56
+00:05:19,000 --> 00:05:24,000
+do is reach specific methods in a class that I've inherited from.
+
+57
+00:05:24,000 --> 00:05:30,000
+So in this case when I say base.ComputeStatistics, I'm really referring to that ComputeStatistics method that
+
+58
+00:05:30,000 --> 00:05:36,000
+is available from the GradeBook. And ultimately what I could do is just say return whatever that
+
+59
+00:05:36,000 --> 00:05:41,000
+ComputeStatistics method comes up with that will use the existing code inside of the GradeBook.
+
+60
+00:05:41,000 --> 00:05:47,000
+But before I invoke that ComputeStatistics method in my base class, I need to remove the lowest grade.
+
+61
+00:05:47,000 --> 00:05:54,000
+So let's declare a variable of type float, I will call it lowest, and initialize it to float.MaxValue,
+
+62
+00:05:54,000 --> 00:06:05,000
+and what I need to do is loop through each grade that is in my grades collection, except I cannot reach the list
+
+63
+00:06:05,000 --> 00:06:11,000
+of grades from the ThrowAwayGradeBook. Notice the errors that grades is inaccessible due to its protection level.
+
+64
+00:06:11,000 --> 00:06:18,000
+Over in the GradeBook, you might remember that when we created this grades field, this list of grades,
+
+65
+00:06:18,000 --> 00:06:24,000
+we marked this field as private, and the only code that is allowed to access this field is code that inside
+
+66
+00:06:24,000 --> 00:06:30,000
+of the same class, inside of GradeBook.cs. But I do want to give the ThrowAwayGradeBook access to these grades.
+
+67
+00:06:30,000 --> 00:06:36,000
+Now I don't want to make grades public, that would give everyone access to this field, I need something in
+
+68
+00:06:36,000 --> 00:06:46,000
+between, and that in between level of access is protected. So a public member, anyone can access.
+
+69
+00:06:46,000 --> 00:06:50,000
+A private member, only code inside of the same class can access.
+
+70
+00:06:50,000 --> 00:06:56,000
+A protected member, whether it's a field, or an event, or a method, a protected member you can access from
+
+71
+00:06:56,000 --> 00:07:03,000
+code that is in this class, or code that is in a derived class. And by marking grades as protected,
+
+72
+00:07:03,000 --> 00:07:09,000
+I should now have access to that field from any class that ultimately inherits from GradeBook.
+
+73
+00:07:09,000 --> 00:07:19,000
+And I could now say lowest = Math.Min, between the grade that I'm looking at and my existing lowest score,
+
+74
+00:07:19,000 --> 00:07:23,000
+and when that loop is finished I should have the lowest grade in that variable, and now there's a very
+
+75
+00:07:23,000 --> 00:07:32,000
+convenient Remove method that I can use on a list, and I could say grades.Remove this lowest item.
+
+76
+00:07:32,000 --> 00:07:36,000
+Now there's a couple situations I should be careful with in this code, I should be careful if there's only
+
+77
+00:07:36,000 --> 00:07:42,000
+one grade in the grades collection, or if there's no grades in the grades collection, or if someone's going
+
+78
+00:07:42,000 --> 00:07:48,000
+to call ComputeStatistics multiple times and keep removing grades, those are all situations I need to worry
+
+79
+00:07:48,000 --> 00:07:53,000
+about, but I'm just making you aware of those, we want to focus on inheritance and this is about the simplest
+
+80
+00:07:53,000 --> 00:07:59,000
+possible thing I could do to remove the lowest grade. So let's run the application again, and you'll notice
+
+81
+00:07:59,000 --> 00:08:05,000
+I'm getting the same results as I did before, the average is still an 85.17, and the lowest grade is still a 75.
+
+82
+00:08:05,000 --> 00:08:10,000
+What's going wrong? Let's debug this a little bit using Console.WriteLine.
+
+83
+00:08:10,000 --> 00:08:14,000
+Sometimes Console.WriteLine is easier than using the debugger itself.
+
+84
+00:08:14,000 --> 00:08:21,000
+Here I'm going to say that we are inside of ThrowAwayGradeBook: :ComputeStatistics.
+
+85
+00:08:21,000 --> 00:08:26,000
+And I'm going to take this line of code and go to the GradeBook and paste that line of code into
+
+86
+00:08:26,000 --> 00:08:34,000
+ComputeStatistics, just so I know when we are inside of the GradeBook: :ComputeStatistics method.
+
+87
+00:08:34,000 --> 00:08:41,000
+Let me run this program again, and I can see that clearly I'm invoking ComputeStatistics on the GradeBook,
+
+88
+00:08:41,000 --> 00:08:47,000
+even though inside of my program I've instantiated a new ThrowAwayGradeBook.
+
+89
+00:08:47,000 --> 00:08:52,000
+So this isn't quite the behavior that I want, I want to be able to instantiate the ThrowAwayGradeBook,
+
+90
+00:08:52,000 --> 00:08:56,000
+and I want that new version of ComputeStatistics to work when I instantiate that GradeBook.
+
+91
+00:08:56,000 --> 00:09:01,000
+So let's take a look at solving that problem in the next clip, but right now I just want you to know that we have
+
+92
+00:09:01,000 --> 00:09:06,000
+an inheritance relationship now between ThrowAwayGradeBook and GradeBook.
+
+93
+00:09:06,000 --> 00:09:12,000
+Anything that I can do with a GradeBook I can also do with a ThrowAwayGradeBook, and when this program
+
+94
+00:09:12,000 --> 00:09:19,000
+executes I really am executing against a ThrowAwayGradeBook. That's the type of object that I pass to
+
+95
+00:09:19,000 --> 00:09:25,000
+WriteResults, and SaveGrades, and AddGrades, it's just that we need it to work a little bit differently.
+
+96
+00:09:25,000 --> 00:59:00,000
+So let's talk about that next.
+

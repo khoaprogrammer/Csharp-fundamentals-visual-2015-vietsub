@@ -1,0 +1,116 @@
+1
+00:00:02,000 --> 00:00:05,000
+In this module, we looked at quite a few features of the C# language.
+
+2
+00:00:05,000 --> 00:00:07,000
+We learned how to create a class definition
+
+3
+00:00:07,000 --> 00:00:09,000
+and give a class a constructor.
+
+4
+00:00:09,000 --> 00:00:11,000
+A constructor is a special method used when we create
+
+5
+00:00:11,000 --> 00:00:13,000
+an instance of the class using the new keyword.
+
+6
+00:00:13,000 --> 00:00:16,000
+We also learned how we can construct multiple instances
+
+7
+00:00:16,000 --> 00:00:18,000
+of the class, and we can have variables that point
+
+8
+00:00:18,000 --> 00:00:20,000
+to these instances, these objects.
+
+9
+00:00:20,000 --> 00:00:23,000
+Two variables can point to the same object,
+
+10
+00:00:23,000 --> 00:00:25,000
+but also point to two different objects.
+
+11
+00:00:25,000 --> 00:00:27,000
+We also learned about the public and private
+
+12
+00:00:27,000 --> 00:00:28,000
+access modifiers.
+
+13
+00:00:28,000 --> 00:00:31,000
+Those play an important role in encapsulation.
+
+14
+00:00:31,000 --> 00:00:33,000
+And most importantly, we talked about taking
+
+15
+00:00:33,000 --> 00:00:35,000
+some requirements for a GradeBook
+
+16
+00:00:35,000 --> 00:00:37,000
+and using those requirements to create classes
+
+17
+00:00:37,000 --> 00:00:39,000
+like GradeBook and GradeBook statistics.
+
+18
+00:00:39,000 --> 00:00:41,000
+Over time, you'll figure out that these syntax
+
+19
+00:00:41,000 --> 00:00:42,000
+of a programming language,
+
+20
+00:00:42,000 --> 00:00:44,000
+while it can be challenging to learn,
+
+21
+00:00:44,000 --> 00:00:46,000
+can always be mastered over time.
+
+22
+00:00:46,000 --> 00:00:48,000
+What's a little more difficult is learning
+
+23
+00:00:48,000 --> 00:00:49,000
+good programming practices.
+
+24
+00:00:49,000 --> 00:00:51,000
+That requires you to always think about
+
+25
+00:00:51,000 --> 00:00:54,000
+the responsibilities of each class and method
+
+26
+00:00:54,000 --> 00:00:57,000
+and which class is going to encapsulate and be responsible
+
+27
+00:00:57,000 --> 00:00:58,000
+for which feature.
+
+28
+00:00:58,000 --> 00:01:00,000
+We're going to continue to build on our GradeBook
+
+29
+00:01:00,000 --> 00:59:00,000
+and touch on those topics throughout the rest of the course.
+

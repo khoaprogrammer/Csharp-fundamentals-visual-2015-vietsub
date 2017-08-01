@@ -1,0 +1,400 @@
+1
+00:00:00,000 --> 00:00:03,000
+One topic I want to make clear before removal
+
+2
+00:00:03,000 --> 00:00:06,000
+is the distinction between a class and a variable.
+
+3
+00:00:06,000 --> 00:00:09,000
+A class is a blueprint for creating objects.
+
+4
+00:00:09,000 --> 00:00:12,000
+I can use the new keyword with the GradeBook class,
+
+5
+00:00:12,000 --> 00:00:15,000
+and that creates a GradeBook object for me in memory.
+
+6
+00:00:15,000 --> 00:00:17,000
+And that GradeBook and hold a list of grades.
+
+7
+00:00:17,000 --> 00:00:21,000
+I can also use a class to define the type of a variable,
+
+8
+00:00:21,000 --> 00:00:23,000
+because in C#, every variable needs a type,
+
+9
+00:00:23,000 --> 00:00:25,000
+and a class defines a particular type.
+
+10
+00:00:25,000 --> 00:00:28,000
+We'll see other categories of types in this course.
+
+11
+00:00:28,000 --> 00:00:30,000
+A class is just one way to create a type.
+
+12
+00:00:30,000 --> 00:00:32,000
+But when I use a class to type a variable,
+
+13
+00:00:32,000 --> 00:00:35,000
+it's because I want to remember some specific object
+
+14
+00:00:35,000 --> 00:00:37,000
+when I'm inside of a method.
+
+15
+00:00:37,000 --> 00:00:40,000
+I want to remember the GradeBook so that I can add grades
+
+16
+00:00:40,000 --> 00:00:42,000
+to that specific object and eventually ask it
+
+17
+00:00:42,000 --> 00:00:44,000
+to compute some statistical results.
+
+18
+00:00:44,000 --> 00:00:47,000
+You can think of the variable as a storage location
+
+19
+00:00:47,000 --> 00:00:49,000
+that points to a specific object.
+
+20
+00:00:49,000 --> 00:00:52,000
+Let's make that concept a little more concrete
+
+21
+00:00:52,000 --> 00:00:54,000
+using the debugger.
+
+22
+00:00:54,000 --> 00:00:58,000
+Inside the application, I've created a new GradeBook
+
+23
+00:00:58,000 --> 00:00:59,000
+and I'm holding on to that book
+
+24
+00:00:59,000 --> 00:01:01,000
+through a variable named book.
+
+25
+00:01:01,000 --> 00:01:03,000
+But what would happen after I add these two grades
+
+26
+00:01:03,000 --> 00:01:06,000
+to that GradeBook if I reassign that variable
+
+27
+00:01:06,000 --> 00:01:09,000
+and said book is now equal to new GradeBook?
+
+28
+00:01:09,000 --> 00:01:12,000
+And to make things interesting, let's add a grade
+
+29
+00:01:12,000 --> 00:01:15,000
+to that GradeBook, something different than we have.
+
+30
+00:01:15,000 --> 00:01:16,000
+So just a 75.
+
+31
+00:01:16,000 --> 00:01:19,000
+And now I'll press F10 to start the debugger.
+
+32
+00:01:19,000 --> 00:01:22,000
+F10 will step through each line of code.
+
+33
+00:01:22,000 --> 00:01:25,000
+I want to step until I get to the bottom of the program,
+
+34
+00:01:25,000 --> 00:01:27,000
+and I want to investigate this book variable.
+
+35
+00:01:27,000 --> 00:01:29,000
+Now the question is, does this book variable
+
+36
+00:01:29,000 --> 00:01:31,000
+point to a GradeBook that holds two grades,
+
+37
+00:01:31,000 --> 00:01:34,000
+the 91 and the 89.5?
+
+38
+00:01:34,000 --> 00:01:36,000
+Or does it hold one grade, the 75?
+
+39
+00:01:36,000 --> 00:01:38,000
+Or does it hold three grades?
+
+40
+00:01:38,000 --> 00:01:40,000
+And the answer is, if I hover over book,
+
+41
+00:01:40,000 --> 00:01:44,000
+I can see there's one grade inside, it is the 75.
+
+42
+00:01:44,000 --> 00:01:46,000
+And that's because this line of code I added,
+
+43
+00:01:46,000 --> 00:01:48,000
+book = new GradeBook,
+
+44
+00:01:48,000 --> 00:01:50,000
+that's creating a brand-new instance of a GradeBook,
+
+45
+00:01:50,000 --> 00:01:52,000
+a second instance.
+
+46
+00:01:52,000 --> 00:01:54,000
+And this new GradeBook will start with an empty
+
+47
+00:01:54,000 --> 00:01:57,000
+list of grades until I add that first grade, the 75.
+
+48
+00:01:57,000 --> 00:02:00,000
+And that is now the object that this book variable refers to
+
+49
+00:02:00,000 --> 00:02:02,000
+throughout the rest of the method.
+
+50
+00:02:02,000 --> 00:02:04,000
+And the lesson is that when I declare a variable
+
+51
+00:02:04,000 --> 00:02:07,000
+of type GradeBook, that variable isn't stuck
+
+52
+00:02:07,000 --> 00:02:09,000
+referring to a single object throughout its lifetime.
+
+53
+00:02:09,000 --> 00:02:11,000
+That's why it is a variable.
+
+54
+00:02:11,000 --> 00:02:13,000
+I can take the variable and point it
+
+55
+00:02:13,000 --> 00:02:15,000
+to any GradeBook object that I have available,
+
+56
+00:02:15,000 --> 00:02:17,000
+and then I can invoke methods and do other
+
+57
+00:02:17,000 --> 00:02:18,000
+interesting things with that variable.
+
+58
+00:02:18,000 --> 00:02:21,000
+And in this program now, I've created two
+
+59
+00:02:21,000 --> 00:02:23,000
+separate GradeBook instances.
+
+60
+00:02:23,000 --> 00:02:25,000
+But by the time I reach this line of code,
+
+61
+00:02:25,000 --> 00:02:28,000
+I only have access to the second instance.
+
+62
+00:02:28,000 --> 00:02:30,000
+I don't have any variables that refer to that first
+
+63
+00:02:30,000 --> 00:02:31,000
+GradeBook that I created.
+
+64
+00:02:31,000 --> 00:02:35,000
+There's no way to get back to that, and it's become garbage.
+
+65
+00:02:35,000 --> 00:02:37,000
+That's what we call objects that are no longer being used
+
+66
+00:02:37,000 --> 00:02:40,000
+by the program, and the Common Language Runtime
+
+67
+00:02:40,000 --> 00:02:42,000
+is smart enough to periodically scan through memory
+
+68
+00:02:42,000 --> 00:02:44,000
+and figure out which objects are garbage.
+
+69
+00:02:44,000 --> 00:02:47,000
+The CLR can then clean those objects up and free up memory
+
+70
+00:02:47,000 --> 00:02:50,000
+so that we have more space for other objects.
+
+71
+00:02:50,000 --> 00:02:52,000
+This is just like cleaning up a hard drive
+
+72
+00:02:52,000 --> 00:02:54,000
+by removing files that you no longer need.
+
+73
+00:02:54,000 --> 00:02:56,000
+You remove files and make space for new files
+
+74
+00:02:56,000 --> 00:02:57,000
+that you're going to use.
+
+75
+00:02:57,000 --> 00:02:59,000
+But what happens if I want access
+
+76
+00:02:59,000 --> 00:03:01,000
+to two different GradeBooks?
+
+77
+00:03:01,000 --> 00:03:04,000
+Well, that's when I would need two different variables.
+
+78
+00:03:04,000 --> 00:03:07,000
+So let's call this variable book2.
+
+79
+00:03:07,000 --> 00:03:10,000
+And since this is a new variable, I'm going to need
+
+80
+00:03:10,000 --> 00:03:13,000
+to properly declare that variable and provide a type.
+
+81
+00:03:13,000 --> 00:03:16,000
+So book2 is a variable of type GradeBook.
+
+82
+00:03:16,000 --> 00:03:19,000
+And now let me right click on the bottom of this program
+
+83
+00:03:19,000 --> 00:03:20,000
+and say run to cursor.
+
+84
+00:03:20,000 --> 00:03:22,000
+That's another easy way to get the debugger
+
+85
+00:03:22,000 --> 00:03:25,000
+just to run to a specific point in your code.
+
+86
+00:03:25,000 --> 00:03:27,000
+And now I can investigate book2
+
+87
+00:03:27,000 --> 00:03:30,000
+and see that it has my one grade, the 75.
+
+88
+00:03:30,000 --> 00:03:32,000
+But I still have access to the first GradeBook
+
+89
+00:03:32,000 --> 00:03:34,000
+through the book variable, and that's still holding on
+
+90
+00:03:34,000 --> 00:03:36,000
+to the two grades that I put inside of there.
+
+91
+00:03:36,000 --> 00:03:39,000
+And now let's try one more experiment.
+
+92
+00:03:39,000 --> 00:03:42,000
+Instead of staying book2 equals a new GradeBook,
+
+93
+00:03:42,000 --> 00:03:46,000
+let's say book2 = book.
+
+94
+00:03:46,000 --> 00:03:48,000
+And the right question to ask would be to figure out
+
+95
+00:03:48,000 --> 00:03:51,000
+if this is making a copy of the original GradeBook.
+
+96
+00:03:51,000 --> 00:03:54,000
+In other words, will I now have two objects
+
+97
+00:03:54,000 --> 00:03:56,000
+of type GradeBook, one with two grades in it?
+
+98
+00:03:56,000 --> 00:03:59,000
+And will book2, will that GradeBook have three grades in it
+
+99
+00:03:59,000 --> 00:04:00,000
+or one grade in it?
+
+100
+00:04:00,000 --> 00:59:00,000
+I'll show you the answer in the next clip.
+

@@ -1,0 +1,328 @@
+1
+00:00:00,000 --> 00:00:05,000
+Once you have a handle on how delegates work, it's very easy to
+
+2
+00:00:05,000 --> 00:00:10,000
+understand events because events are based on and use delegates.
+
+3
+00:00:10,000 --> 00:00:17,000
+The only thing I need to do to make NameChanged a proper event is to add the C# keyword here event,
+
+4
+00:00:17,000 --> 00:00:23,000
+and now there is no code that I need to change inside of the GradeBook because events are based on delegates,
+
+5
+00:00:23,000 --> 00:00:29,000
+and I can still invoke NameChanged. The C# complier will still check to make sure that I pass along two
+
+6
+00:00:29,000 --> 00:00:34,000
+parameters, both of type string, and there's nothing that has to change inside of the GradeBook.
+
+7
+00:00:34,000 --> 00:00:41,000
+The reason that events are preferred to just exposing delegates is because of the error that we see inside of Program.cs.
+
+8
+00:00:41,000 --> 00:00:48,000
+The error is that NameChanged can only appear on the left-hand side of += or -=.
+
+9
+00:00:48,000 --> 00:00:54,000
+That means from outside of the GradeBook the only thing that other pieces of code can do is add a subscriber
+
+10
+00:00:54,000 --> 00:01:01,000
+to event, or remove a subscriber to this event, and it's no longer possible to do an assignment, and wipe out
+
+11
+00:01:01,000 --> 00:01:04,000
+everything that was inside, wipe out all the other subscriptions.
+
+12
+00:01:04,000 --> 00:01:10,000
+This is what we want for events because we want independent pieces of code being able to subscribe and
+
+13
+00:01:10,000 --> 00:01:16,000
+unsubscribe, and not interfere with others, so this line of code is now an error, I will remove that line of
+
+14
+00:01:16,000 --> 00:01:24,000
+code, and just show you that I can use += as many times as I want, I can even wire up the same method twice.
+
+15
+00:01:24,000 --> 00:01:29,000
+Now you can see every time the name changes I get two sets of asterix, and I will also point out now that the
+
+16
+00:01:29,000 --> 00:01:35,000
+C# complier is pretty intelligent when it comes to using Events and delegates, and the syntax that I'm
+
+17
+00:01:35,000 --> 00:01:41,000
+currently using to wire up a subscriber for that event is a little bit verbose.
+
+18
+00:01:41,000 --> 00:01:47,000
+I can actually remove new NameChangedDelegate, I can remove that from all three lines of code, and then once
+
+19
+00:01:47,000 --> 00:01:54,000
+I get rid of the parentheses at the end I will still have legal C# code, because the C# complier is smart
+
+20
+00:01:54,000 --> 00:01:59,000
+enough to look at NameChanged, and the method that I'm trying to add as a subscriber, and it can figure out
+
+21
+00:01:59,000 --> 00:02:04,000
+that those two things are compatible, and it will just automatically create that delegate instance for me
+
+22
+00:02:04,000 --> 00:02:09,000
+behind the scenes, I don't have to explicitly say new and then the name of some delegate.
+
+23
+00:02:09,000 --> 00:02:15,000
+So this code is a little bit easier on the eyes, and just as a quick quiz, what happens if I add another line
+
+24
+00:02:15,000 --> 00:02:26,000
+of code here with a -= operation, so now I'm subscribing OnNameChanged2 twice, and then unsubscribing once.
+
+25
+00:02:26,000 --> 00:02:32,000
+The question is will -= wipe out all of the subscriptions for OnNameChanged2 or just one of them, and if I
+
+26
+00:02:32,000 --> 00:02:41,000
+run the program we'll see I now have just one set of asterix, so OnNameChanged2 was subscribed twice,
+
+27
+00:02:41,000 --> 00:02:48,000
+removed once, and then that result was one subscription, therefore that method fires once every time the name changes.
+
+28
+00:02:48,000 --> 00:02:54,000
+Now I also want to point out that we're doing something unconventional with our event, and that is that we're
+
+29
+00:02:54,000 --> 00:03:01,000
+passing two string parameters along with this event. There is a convention in .NET, it's not a convention
+
+30
+00:03:01,000 --> 00:03:06,000
+that you have to follow, but it's a convention that 99.9% of all events in the .NET Framework follow.
+
+31
+00:03:06,000 --> 00:03:13,000
+It's a convention where an event always passes along two parameters, the first parameter is going to be the
+
+32
+00:03:13,000 --> 00:03:19,000
+sender of the event, in other words if the GradeBook is announcing that the name has changed, it's going to
+
+33
+00:03:19,000 --> 00:03:25,000
+send itself as the first parameter, and then the second parameter always contains all of the arguments or all
+
+34
+00:03:25,000 --> 00:03:30,000
+of the needed information about that event, which means I'm going to need to build a custom class to put
+
+35
+00:03:30,000 --> 00:03:37,000
+together the existing name and the new name into a single object so I can pass that object along as the arguments.
+
+36
+00:03:37,000 --> 00:03:46,000
+Let's make this change. I'm going to go to the GradeBook project, and add another class, I'll call this
+
+37
+00:03:46,000 --> 00:03:52,000
+class NameChangedEventArgs, which is another convention when you are working with events.
+
+38
+00:03:52,000 --> 00:04:00,000
+The parameter that passes along the argument for the event, the name of its type will always end with the words EventArgs.
+
+39
+00:04:00,000 --> 00:04:06,000
+So now I have my class, let me add the public keyword here to make this a public class, and now I need
+
+40
+00:04:06,000 --> 00:04:12,000
+properties for the existing name and the new name. The easiest way to add a property when you're using
+
+41
+00:04:12,000 --> 00:04:18,000
+Visual Studio is to use a code snippet p, r, o, p, I'll just type that and press Tab twice, now I can fill in
+
+42
+00:04:18,000 --> 00:04:26,000
+the type for my property, and then Tab twice over to the name, and fill out the name of my property,
+
+43
+00:04:26,000 --> 00:04:31,000
+and Visual Studio will give me an auto-implemented property. Let me go to the next line of code and p, r, o,
+
+44
+00:04:31,000 --> 00:04:39,000
+p again, this time I want the NewName property to be here. So this will give me my EventArgs class,
+
+45
+00:04:39,000 --> 00:04:45,000
+and something that we'll talk about in the Object Oriented Programming module of this course is how a class
+
+46
+00:04:45,000 --> 00:04:52,000
+can inherent from another class. If you haven't worked with inheritance before then you can just wait till
+
+47
+00:04:52,000 --> 00:04:58,000
+we get to that module for me to explain this in more detail, but in .NET anything that's going to pass along
+
+48
+00:04:58,000 --> 00:05:05,000
+arguments inside of an event, it should derive or inherent from an EventArgs base class that the .NET Framework provides.
+
+49
+00:05:05,000 --> 00:05:14,000
+That's what this syntax is doing, it's specifying an inheritance relationship where NameChangedEventArgs derives from EventArgs.
+
+50
+00:05:14,000 --> 00:05:22,000
+Again, more on inheritance later. Now I want to change over my delegate so it's not taking two string parameters any longer.
+
+51
+00:05:22,000 --> 00:05:31,000
+Instead, it needs to take the sender of this event, and then the NameChangedEventArgs, an object of that type.
+
+52
+00:05:31,000 --> 00:05:36,000
+Why am I specifying sender as an object? Object is another one of those topics that we'll talk a little more
+
+53
+00:05:36,000 --> 00:05:41,000
+about when we talk about object-oriented programming, but this is another convention in .NET around events,
+
+54
+00:05:41,000 --> 00:05:48,000
+and when I have a parameter typed in as an object, that means I can pass anything as a parameter here.
+
+55
+00:05:48,000 --> 00:05:56,000
+I can pass an integer value, or a string, or a GradeBook instance, and if the GradeBook is the sender of this
+
+56
+00:05:56,000 --> 00:06:02,000
+event, GradeBook is what I want to pass here, but I will type it as object because that's a common convention.
+
+57
+00:06:02,000 --> 00:06:09,000
+Now that I've changed the delegate around I will have some complier errors both in Program.cs and in GradeBook.cs.
+
+58
+00:06:09,000 --> 00:06:15,000
+In GradeBook.cs I need to pass EventArgs and the sender here instead of two strings.
+
+59
+00:06:15,000 --> 00:06:22,000
+So first let's create an instance of NameChangedEventArgs, I will just call it args, and initialize a new
+
+60
+00:06:22,000 --> 00:06:32,000
+instance, and say that the ExistingName equals the value that I currently have in _name, and the NewName that
+
+61
+00:06:32,000 --> 00:06:41,000
+will equal the incoming value, and now when I invoke NameChanged, I should really pass along myself and then these arguments.
+
+62
+00:06:41,000 --> 00:06:47,000
+How do I pass along myself? Well inside of every non-static method in a C# class or struct, there is an
+
+63
+00:06:47,000 --> 00:06:54,000
+implicit variable called this, and this will reference the object that I'm inside of, so this will reference
+
+64
+00:06:54,000 --> 00:07:01,000
+the GradeBook object that we're currently operating on. I just need to pass along this and args, and just to
+
+65
+00:07:01,000 --> 00:07:06,000
+show you if I type this., here you can see all of the members of the GradeBook, so there's _Name,
+
+66
+00:07:06,000 --> 00:07:12,000
+there's the property name, there's the private field grades, I can see private fields through this because
+
+67
+00:07:12,000 --> 00:07:18,000
+I'm using code that is inside of the same class, so this is a variable that you can use anywhere in your C#
+
+68
+00:07:18,000 --> 00:07:24,000
+code inside of an instance member if you need to refer to yourself, or pass yourself along as another
+
+69
+00:07:24,000 --> 00:07:31,000
+parameter, and now I will need to change Program.cs because delegates are very type safe, and now the C#
+
+70
+00:07:31,000 --> 00:07:36,000
+complier sees that I'm using these methods that no longer take the parameters that the delegate is
+
+71
+00:07:36,000 --> 00:07:42,000
+describing, so I wrote these methods as taking two strings, and now this delegate is trying to pass an object
+
+72
+00:07:42,000 --> 00:07:47,000
+and a NameChangedEventArgs, so I'm going to need to change these around.
+
+73
+00:07:47,000 --> 00:07:53,000
+Let's actually get rid of OnNameChanged2 all together, that makes this a little less work, and up here
+
+74
+00:07:53,000 --> 00:08:01,000
+OnNameChanged, I will change this around so that it can take a sender parameter, and then an instance of
+
+75
+00:08:01,000 --> 00:08:11,000
+NameChangedEventArgs, and down here I will just need to change these to use args.ExistingName,
+
+76
+00:08:11,000 --> 00:08:18,000
+and args.NewName, then let's remove the subscription to OnNameChanged2, that method no longer exists,
+
+77
+00:08:18,000 --> 00:08:25,000
+run the GradeBook, I can still see it's behaving correctly, and this is the magic of events in .NET.
+
+78
+00:08:25,000 --> 00:08:29,000
+Not all programming environments use events, but they are quite common if you're doing some sort of desktop
+
+79
+00:08:29,000 --> 00:08:34,000
+program, that is a C# application that runs under Windows or runs on a mobile phone.
+
+80
+00:08:34,000 --> 00:08:39,000
+It's quite common that your user interface elements will have events to let your code know when something
+
+81
+00:08:39,000 --> 00:08:45,000
+was clicked on or if something was hovered over, and now you'll know that you can subscribe to those events
+
+82
+00:08:45,000 --> 00:59:00,000
+using += and a method that accepts the parameters that event will raise.
+

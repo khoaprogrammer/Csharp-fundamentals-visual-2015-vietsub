@@ -1,0 +1,248 @@
+1
+00:00:00,000 --> 00:00:03,000
+One more reference type that I want to cover in more depth is the array.
+
+2
+00:00:03,000 --> 00:00:08,000
+The array is a simple data structure to manage a collection of multiple objects or multiple values,
+
+3
+00:00:08,000 --> 00:00:14,000
+and the array itself is always a reference type. Now you might remember that in our GradeBook we are
+
+4
+00:00:14,000 --> 00:00:19,000
+managing a collection of multiple floating point values, those values represent the grades in the GradeBook,
+
+5
+00:00:19,000 --> 00:00:25,000
+but we are using a list to store those grades in the GradeBook, not an array, primarily because arrays have
+
+6
+00:00:25,000 --> 00:00:31,000
+a fixed size, that means when I create an array I have to specify the size of the array, which is how many
+
+7
+00:00:31,000 --> 00:00:40,000
+items the array can hold, and that size, although you can change it, changing the size of an array can be a relatively expensive operation.
+
+8
+00:00:40,000 --> 00:00:45,000
+In our program if we new exactly how many grades we might need to store, or at least the maximum number of
+
+9
+00:00:45,000 --> 00:00:51,000
+grades, then it might make sense to use an array instead of a list, but since we don't know how many grades
+
+10
+00:00:51,000 --> 00:00:56,000
+someone might want to store we use a list because a list will just grow automatically, and grab the space
+
+11
+00:00:56,000 --> 00:01:02,000
+needed to keep storing new items every time we call Add on that list, but one thing both the list and the
+
+12
+00:01:02,000 --> 00:01:09,000
+array have in common is that they are both 0 indexed, meaning the first item in a list or an array is at
+
+13
+00:01:09,000 --> 00:01:14,000
+index 0, which is sometimes confusing because we tend to think of the first item being in position 1,
+
+14
+00:01:14,000 --> 00:01:19,000
+but in C# and many other languages actually, the first item is position 0.
+
+15
+00:01:19,000 --> 00:01:26,000
+You might remember we encountered this indexing already when we worked with the args array passed to our
+
+16
+00:01:26,000 --> 00:01:31,000
+program in the first module, the args array contained the command line parameters, and the first parameter
+
+17
+00:01:31,000 --> 00:01:37,000
+to the program was in position 0. Here in this code snippet we see the syntax for declaring an array.
+
+18
+00:01:37,000 --> 00:01:43,000
+First is a const int variable. The const keyword is something that you can add to a variable if that
+
+19
+00:01:43,000 --> 00:01:48,000
+variable if that variable is going to hold a constant value. Once I've declared and initialized the
+
+20
+00:01:48,000 --> 00:01:54,000
+variable, the value of that variable cannot be changed. And in this code we will store the final score for
+
+21
+00:01:54,000 --> 00:01:59,000
+four students, so students so the syntax for declaring an array is to use the type that the array is going to
+
+22
+00:01:59,000 --> 00:02:06,000
+hold, followed by square brackets. What we're declaring here is an array called scores, it's going to hold integers.
+
+23
+00:02:06,000 --> 00:02:12,000
+We will construct a new array that can hold exactly four integers, and this is all strongly typed, so if I
+
+24
+00:02:12,000 --> 00:02:20,000
+try to assign a string or a floating point number into one of the positions of the aray, I would get a complier error.
+
+25
+00:02:20,000 --> 00:02:25,000
+The array can only store integer values. And then we have a foreach loop very similar to the foreach loop
+
+26
+00:02:25,000 --> 00:02:28,000
+that we have inside of the GradeBook when we're computing statistics.
+
+27
+00:02:28,000 --> 00:02:34,000
+It's going to look at each integer value in that array of scores, and add that score to another variable
+
+28
+00:02:34,000 --> 00:02:42,000
+where we're keeping track of the total score. Let's work with arrays a bit inside of our unit tests.
+
+29
+00:02:42,000 --> 00:02:49,000
+Inside of our test project let me set you up with a test method that you can use to start experimenting with arrays.
+
+30
+00:02:49,000 --> 00:02:55,000
+So let's just call this test UsingArrays, and I'll need to declare an array, so let's create an array of
+
+31
+00:02:55,000 --> 00:02:59,000
+floating point numbers, that means I need to use the float keyword, and then I need to use the square
+
+32
+00:02:59,000 --> 00:03:06,000
+brackets, that tells the C# complier this is an array. Let's just call the array grades, and now instead of
+
+33
+00:03:06,000 --> 00:03:12,000
+initializing that variable immediately, let me just declare the variable because right now I have a variable
+
+34
+00:03:12,000 --> 00:03:18,000
+that can point to any array of floating point numbers, it doesn't matter what the size is.
+
+35
+00:03:18,000 --> 00:03:25,000
+In order to effectively use that variable, however, I will need to point it to a specific array,
+
+36
+00:03:25,000 --> 00:03:31,000
+so let's assign a reference to a new floating point array. This time when I use the square brackets I need
+
+37
+00:03:31,000 --> 00:03:38,000
+to specify the size of that array. Let's give the array the ability to store three numbers, then let's call
+
+38
+00:03:38,000 --> 00:03:44,000
+a method that will add grades into that array, so a method that doesn't exist yet, it will be called
+
+39
+00:03:44,000 --> 00:03:50,000
+AddGrades, and I'll pass in the grades, and then I'll want to write an assertion, I want to Assert,
+
+40
+00:03:50,000 --> 00:04:00,000
+let's say, that the value 89.1 is in array index sub1. So we need to create this method AddGrades,
+
+41
+00:04:00,000 --> 00:04:06,000
+and let me show you a trick. Visual Studio is smart enough that if you've written a method that doesn't
+
+42
+00:04:06,000 --> 00:04:11,000
+exist yet, Visual Studio has the ability to create that method for you, it doesn't know how you want to
+
+43
+00:04:11,000 --> 00:04:17,000
+implement that method, but if I go to the light bulb, and select generate the method, I now have a private
+
+44
+00:04:17,000 --> 00:04:23,000
+void method called AddGrades that takes as a parameter a reference to an array of floating point numbers.
+
+45
+00:04:23,000 --> 00:04:28,000
+The code that is inside this method right now, I want to remove that, and I want to be able to say that
+
+46
+00:04:28,000 --> 00:04:36,000
+grades sub 1 = 89.1 , the floating point number. Again you do have to be very careful when comparing numbers
+
+47
+00:04:36,000 --> 00:04:41,000
+for strict equality, that will always work for integers, but for floating point numbers you can sometimes
+
+48
+00:04:41,000 --> 00:04:47,000
+run into trouble as we saw earlier, but you might be wondering since float is a value type, will the calling
+
+49
+00:04:47,000 --> 00:04:54,000
+method using arrays actually see this value placed into the array, and the answer is yes because an array is
+
+50
+00:04:54,000 --> 00:05:00,000
+a reference type, and even though I'm dealing with a value type, which is a floating point number,
+
+51
+00:05:00,000 --> 00:05:05,000
+that number is stored inside the array, and both the grades variable inside of using arrays and the grades
+
+52
+00:05:05,000 --> 00:05:11,000
+variable that is the parameter to add grades, those are both references to the exact same array.
+
+53
+00:05:11,000 --> 00:05:19,000
+If I run the test with Ctrl+ RA I will see that is a passing test, and let's recreate a scenario that we were looking at earlier.
+
+54
+00:05:19,000 --> 00:05:26,000
+What happens here on the first line of code, if I say grades = a new array of floating point number,
+
+55
+00:05:26,000 --> 00:05:34,000
+let's say of size 5, what happens when I run the test now? Well the test will fail because now I've created
+
+56
+00:05:34,000 --> 00:05:40,000
+a new array, I've placed this value inside of that new array, the grades variable that is inside of using
+
+57
+00:05:40,000 --> 00:05:45,000
+arrays, that's still pointing to the original array of floating point number that we had, and this method
+
+58
+00:05:45,000 --> 00:05:50,000
+AddGrades no longer uses that. This is not placing the value into the array that we need, so let me remove
+
+59
+00:05:50,000 --> 00:05:57,000
+that line of code, rerun the test, leave you with all passing tests, and now I encourage you to experiment
+
+60
+00:05:57,000 --> 00:06:02,000
+with the code that is inside of this unit test project, try some different scenarios passing around value
+
+61
+00:06:02,000 --> 00:06:08,000
+types and reference types, and using arrays, and using strings, and with every little bit of code that you
+
+62
+00:06:08,000 --> 00:59:00,000
+write you'll become more comfortable with the C# language.
+

@@ -1,0 +1,384 @@
+1
+00:00:02,000 --> 00:00:08,000
+There are four different statements for iterating in the C# language, iterating being a fancy term for
+
+2
+00:00:08,000 --> 00:00:13,000
+looping over code and executing a block of code repeatedly. Typically you want to loop because you want to
+
+3
+00:00:13,000 --> 00:00:19,000
+execute some code for each item in a collection, like printing out each number in an array of integers,
+
+4
+00:00:19,000 --> 00:00:24,000
+and one statement we've already used is the foreach statement. This is where you use the foreach keyword,
+
+5
+00:00:24,000 --> 00:00:30,000
+and declare a variable before the keyword in. The code on the screen has a variable named value,
+
+6
+00:00:30,000 --> 00:00:35,000
+and I want to point out that this value variable, it's only available inside the block of code for the
+
+7
+00:00:35,000 --> 00:00:40,000
+foreach loop, so once you exit the foreach loop and you've moved beyond that closing curly brace you can no
+
+8
+00:00:40,000 --> 00:00:46,000
+longer access the variable named value. The code inside this loop, it will see each number in the array,
+
+9
+00:00:46,000 --> 00:00:51,000
+and the variable value will hold each item once. So the first time through the loop we'll see the value 2,
+
+10
+00:00:51,000 --> 00:00:57,000
+and the last time through the loop we see the value 100. This ages variable, by the way, it is an array of
+
+11
+00:00:57,000 --> 00:01:03,000
+integers and we are initializing that variable using a collection initializer syntax in C#.
+
+12
+00:01:03,000 --> 00:01:08,000
+This is where we just place objects or values between curly braces on the right-hand side of an assignment,
+
+13
+00:01:08,000 --> 00:01:14,000
+and the C# compiler is smart enough to say yes, I can create an array from those values.
+
+14
+00:01:14,000 --> 00:01:19,000
+Another looping construct in C# is the for statement. You can think of the for statement as being more
+
+15
+00:01:19,000 --> 00:01:24,000
+explicit about the starting and ending conditions for looping, because with foreach you basically say,
+
+16
+00:01:24,000 --> 00:01:29,000
+loop once for each item, but with a for loop, you have to say I'm going to start at 0 and I'm going to go to
+
+17
+00:01:29,000 --> 00:01:34,000
+the number 4, because I know I have an array that has 5 items inside.
+
+18
+00:01:34,000 --> 00:01:38,000
+To operate at this lower level, the for statement includes three pieces of information,
+
+19
+00:01:38,000 --> 00:01:44,000
+there's the initializer, the condition, and the iterator. This is the same as the for loop in C, C++,
+
+20
+00:01:44,000 --> 00:01:49,000
+Java, JavaScript, and many other languages. The for statement begins execution by executing any statements
+
+21
+00:01:49,000 --> 00:01:54,000
+that are specified in the initializer, and these statements are only executed once, no matter how many times
+
+22
+00:01:54,000 --> 00:02:02,000
+you're looping, that only executes once, then before any statements are executed inside of this for loop,
+
+23
+00:02:02,000 --> 00:02:06,000
+the condition is evaluated, the condition appears after the first semicolon.
+
+24
+00:02:06,000 --> 00:02:10,000
+The condition is always a Boolean expression that has to return true of false.
+
+25
+00:02:10,000 --> 00:02:16,000
+If the expression returns false, then we do not execute anything inside of the for loop, and we stop looping
+
+26
+00:02:16,000 --> 00:02:20,000
+and continue with the next statement after the for statement.
+
+27
+00:02:20,000 --> 00:02:25,000
+But if the condition evaluates to true, we'll execute the statements that are inside of the for statement,
+
+28
+00:02:25,000 --> 00:02:30,000
+that is everything inside the curly braces, and for that reason you could say that a for loop will execute
+
+29
+00:02:30,000 --> 00:02:36,000
+0 or more times because the program does test this condition before the first pass through the loop,
+
+30
+00:02:36,000 --> 00:02:41,000
+and if it returns false on the first test, we don't execute any code inside, but then after each execution of
+
+31
+00:02:41,000 --> 00:02:48,000
+the code inside, the iterator executes. In this case the iterator is incrementing the variable i,
+
+32
+00:02:48,000 --> 00:02:53,000
+and then we come back and check the condition, if it returns true, we execute again.
+
+33
+00:02:53,000 --> 00:02:58,000
+So the iterator is typically used to increment or decrement some sort of index variable, and I'm using a
+
+34
+00:02:58,000 --> 00:03:04,000
+variable named i, i is short for index, that's a fairly common convention in C# programming.
+
+35
+00:03:04,000 --> 00:03:09,000
+The while statement, this is another way to loop 0 or more times in a C# application.
+
+36
+00:03:09,000 --> 00:03:14,000
+In this case the while statement evaluates an expression, and if that expression returns true,
+
+37
+00:03:14,000 --> 00:03:19,000
+the statements inside the while loop will execute. Once the while loop is finished executing,
+
+38
+00:03:19,000 --> 00:03:25,000
+the condition is evaluated again, and at some point, that condition should return false, unless you're trying
+
+39
+00:03:25,000 --> 00:03:30,000
+to write an infinite loop, and infinite loops can be useful in some situations, but when that expression
+
+40
+00:03:30,000 --> 00:03:37,000
+returns false, that's when we finish executing the while loop. And closely related to the while loop is the do while loop.
+
+41
+00:03:37,000 --> 00:03:43,000
+The do while loop always executes one or more times, you're guaranteed to execute the code inside of here at
+
+42
+00:03:43,000 --> 00:03:49,000
+least once, because the primary difference between a while and a do while is that in a do while the condition
+
+43
+00:03:49,000 --> 00:03:55,000
+is checked after the code inside of the statement executes, so you're guaranteed to have control pass through
+
+44
+00:03:55,000 --> 00:04:01,000
+a do while loop at least once. Let's see an example in the Grade project.
+
+45
+00:04:01,000 --> 00:04:06,000
+Inside of the Grades project I'd like to give the GradeBook a new feature, I'd like to be able to walk up to
+
+46
+00:04:06,000 --> 00:04:11,000
+any GradeBook object, and tell it to loop through the available grades that is has and write them to the
+
+47
+00:04:11,000 --> 00:04:15,000
+screen, or write them to some destination. I'd like there to be a little bit of flexibility.
+
+48
+00:04:15,000 --> 00:04:21,000
+For example, I'd like to be able to say something like, GradeBook, please write out the grades,
+
+49
+00:04:21,000 --> 00:04:25,000
+and then pass in a parameter that will allow me to change destinations.
+
+50
+00:04:25,000 --> 00:04:31,000
+Maybe I want it to be on the screen, maybe I want it to be in a file, and fortunately, the .NET Framework
+
+51
+00:04:31,000 --> 00:04:35,000
+contains some abstractions that will allow me to do that. For example if I call WriteGrades,
+
+52
+00:04:35,000 --> 00:04:42,000
+which is a method we still have to implement, but I pass in a static member of the Console class,
+
+53
+00:04:42,000 --> 00:04:47,000
+which is the Out property, what that will do is send an object into that WriteGrades method that the
+
+54
+00:04:47,000 --> 00:04:52,000
+GradeBook can use to write out to the screen. The GradeBook doesn't know it's the screen,
+
+55
+00:04:52,000 --> 00:04:58,000
+but Console.Out, it represents the output stream that goes to this console window, to the screen.
+
+56
+00:04:58,000 --> 00:05:03,000
+We'll see the type of that parameter in just a second. Let me use Visual Studio to generate this method on
+
+57
+00:05:03,000 --> 00:05:10,000
+the GradeBook, I can do that by placing the cursor on WriteGrades and pressing Ctrl., you can see the
+
+58
+00:05:10,000 --> 00:05:16,000
+drop-down option here is to generate a method, GradeBook.WriteGrades, that's exactly what I wanted to do,
+
+59
+00:05:16,000 --> 00:05:21,000
+so I'll press Enter to take that selection, and now if I come over into the GradeBook I should be able to
+
+60
+00:05:21,000 --> 00:05:28,000
+find that method in this class, it is right here. Let's make it a public method, let's get rid of this line
+
+61
+00:05:28,000 --> 00:05:32,000
+of code that is inside the method, we'll replace it with something more useful, and let me change the name of
+
+62
+00:05:32,000 --> 00:05:36,000
+this parameter to destination. But before I do, why is there an @ sign here?
+
+63
+00:05:36,000 --> 00:05:43,000
+The @ sign is here because out is reserved keyword in C#, it's not legal to have a parameter named out,
+
+64
+00:05:43,000 --> 00:05:50,000
+but anytime you want to have a parameter or variable name that has the same name as a C# keyword,
+
+65
+00:05:50,000 --> 00:05:58,000
+you can escape that name using the @ sign. For example, I could also say @class if I wanted this parameter to be called class.
+
+66
+00:05:58,000 --> 00:06:04,000
+But I generally avoid names that require an @ sign, let's call this destination.
+
+67
+00:06:04,000 --> 00:06:10,000
+You'll see this destination is of type TextWriter, and this is a useful abstraction in the .NET Framework
+
+68
+00:06:10,000 --> 00:06:15,000
+because I can write information into a TextWriter, and ultimately I don't know if that's going to a file,
+
+69
+00:06:15,000 --> 00:06:21,000
+or to the console, or over the network, it just so happens that this particular TextWriter is going to be
+
+70
+00:06:21,000 --> 00:06:27,000
+Console.Out so it will send output to the screen, but we'll see later some of the flexibility that this
+
+71
+00:06:27,000 --> 00:06:33,000
+abstraction gives me. Now we've already seen how to use a foreach loop, so let's try using a for loop.
+
+72
+00:06:33,000 --> 00:06:38,000
+There's a code snippet where if I just type for and press Tab, Tab, Visual Studio will generate the
+
+73
+00:06:38,000 --> 00:06:44,000
+skeleton of for loop, it's going to do that by having an initializer i that starts at 0.
+
+74
+00:06:44,000 --> 00:06:49,000
+Before we enter the loop each time we'll check to make sure that i less than some value,
+
+75
+00:06:49,000 --> 00:06:56,000
+that's something we're going to have to change, and each time after the loop executes, we will add 1 to i using i++.
+
+76
+00:06:56,000 --> 00:07:02,000
+So I want to loop from i = 0 to i is less than the number of grades in my list.
+
+77
+00:07:02,000 --> 00:07:09,000
+Fortunately this private variable, grades, it has a Count property, and quite often if you're going to write
+
+78
+00:07:09,000 --> 00:07:14,000
+a for loop against a collection, that collection will be a list which has a Count property,
+
+79
+00:07:14,000 --> 00:07:20,000
+or an array which has a Length property, and you can use those properties in the conditions for your for loop.
+
+80
+00:07:20,000 --> 00:07:27,000
+And now what I can do, is use my destination to write a line, which is grades, and I'm going to index into
+
+81
+00:07:27,000 --> 00:07:33,000
+grades using that i variable to pull out a specific grade, the first grade will be index 0,
+
+82
+00:07:33,000 --> 00:07:41,000
+the last item will essentially be index grades.Count -1. If I run the program, then we're printing out the
+
+83
+00:07:41,000 --> 00:07:47,000
+3 grades that we entered into the GradeBook, 91, 89.5, 75. Very good.
+
+84
+00:07:47,000 --> 00:07:55,000
+What if we wanted to do them in reverse order? Well then I could start at grades.Count, and I could go and
+
+85
+00:07:55,000 --> 00:08:04,000
+loop while i is greater than 0, and each time through the loop I would decrement i, or subtract one from i.
+
+86
+00:08:04,000 --> 00:08:10,000
+And now because I'm starting this index at grades.Count, I just have to make sure that I subtract 1 from i
+
+87
+00:08:10,000 --> 00:08:16,000
+when I index in to the Grades list. That way I don't try to index in to the Grades list with a value of
+
+88
+00:08:16,000 --> 00:08:24,000
+3 when Grades only contains 3 items, so now we get the grades in reverse order, 75, 89.5, 91.
+
+89
+00:08:24,000 --> 00:08:29,000
+So the for loop is quite flexible, I prefer to use foreach when I can, and I would certainly use a foreach in this
+
+90
+00:08:29,000 --> 00:08:34,000
+scenario, and I could even use a while loop, like the while loop that we saw on the slide.
+
+91
+00:08:34,000 --> 00:08:39,000
+What I certainly wouldn't want to do is use a do while loop, at least not without writing some additional
+
+92
+00:08:39,000 --> 00:08:44,000
+code, because a do while loop always executes once, and there's a possibility someone might invoke
+
+93
+00:08:44,000 --> 00:08:49,000
+WriteGrades when there are no grades in the GradeBook, in which case we would never want to enter into a
+
+94
+00:08:49,000 --> 00:08:53,000
+loop that tried to index into the grades, that would create a runtime error.
+
+95
+00:08:53,000 --> 00:08:58,000
+We'll be talking more about runtime errors in this module, but next, let's talk about some statements that
+
+96
+00:08:58,000 --> 00:59:00,000
+allow us to jump around in code.
+

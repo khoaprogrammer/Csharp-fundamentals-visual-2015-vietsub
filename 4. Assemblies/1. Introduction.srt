@@ -1,0 +1,32 @@
+1
+00:00:00,000 --> 00:00:07,000
+Hi this is Scott, and in this module we are going to focus on an important topic in C# development.
+
+2
+00:00:07,000 --> 00:00:13,000
+The topic is Assemblies. Assemblies are the files the C# compiler creates for us, and inside of an assembly
+
+3
+00:00:13,000 --> 00:00:18,000
+is the code we've written for our application. It is nearly impossible to write a C# programming using
+
+4
+00:00:18,000 --> 00:00:23,000
+only a single assembly, so in this module we will learn how to build assemblies and reference other
+
+5
+00:00:23,000 --> 00:00:27,000
+assemblies provided by the .NET Framework, as well as third-party assemblies in general.
+
+6
+00:00:27,000 --> 00:00:31,000
+Along the way, we'll learn about another vital topic in software development.
+
+7
+00:00:31,000 --> 00:00:36,000
+The topic is unit testing, and we will learn to write some tests to verify the behavior and functionality of
+
+8
+00:00:36,000 --> 00:59:00,000
+our GradeBook class.
+

@@ -1,0 +1,368 @@
+1
+00:00:00,000 --> 00:00:04,000
+Let's talk about the types of things that could go wrong when
+
+2
+00:00:04,000 --> 00:00:09,000
+you're writing a C# application. There are two general categories of errors.
+
+3
+00:00:09,000 --> 00:00:14,000
+The first type of error, sometimes the easiest type of error to fix, is when you have an error that will not
+
+4
+00:00:14,000 --> 00:00:20,000
+allow the C# compiler to compile your code. And these can be easy problems to fix because Visual Studio can
+
+5
+00:00:20,000 --> 00:00:25,000
+show you little red squigglies when you're missing something like a semicolon or if you're missing something
+
+6
+00:00:25,000 --> 00:00:31,000
+like a curly brace. And perhaps I have an error like this where I'm missing a curly brace inside of a source
+
+7
+00:00:31,000 --> 00:00:34,000
+code file that I don't even have open and I cannot see the red squigglies.
+
+8
+00:00:34,000 --> 00:00:40,000
+In that case I might think I'm okay and try to build the solution, but I will get an error list that shows
+
+9
+00:00:40,000 --> 00:00:45,000
+me output from the C# compiler. And this output is saying that there is a curly brace expected,
+
+10
+00:00:45,000 --> 00:00:51,000
+a closing curly brace somewhere. Any time this error list window is open I can double-click on a line inside
+
+11
+00:00:51,000 --> 00:00:56,000
+of the error list, and Visual Studio will open the file that has the error and put the cursor on the position
+
+12
+00:00:56,000 --> 00:01:02,000
+where the C# compiler thinks the error is. And we looked at this scenario earlier in the module.
+
+13
+00:01:02,000 --> 00:01:07,000
+Some errors the C# compiler can be very specific and say you are missing a semicolon at this exact location.
+
+14
+00:01:07,000 --> 00:01:12,000
+In this case, it's just telling me I'm missing a curly brace. It's not really sure where that curly brace
+
+15
+00:01:12,000 --> 00:01:16,000
+should be, but it does know that the count of curly braces doesn't add up.
+
+16
+00:01:16,000 --> 00:01:19,000
+There are three opening curly braces, but only two closing curly braces.
+
+17
+00:01:19,000 --> 00:01:24,000
+If I just type a curly brace down here at the bottom of the file, you'll see that Visual Studio is smart
+
+18
+00:01:24,000 --> 00:01:29,000
+enough to say, oh this is working now. It reformates my code, puts all the curly braces in the right
+
+19
+00:01:29,000 --> 00:01:32,000
+position, and I should now be back to having a working application.
+
+20
+00:01:32,000 --> 00:01:37,000
+So any time the Error List window opens up, just double-click on an error in this table of errors,
+
+21
+00:01:37,000 --> 00:01:42,000
+and Visual Studio will take you to the location where you can start to look around and see what needs to be fixed up.
+
+22
+00:01:42,000 --> 00:01:47,000
+The other type of error that you can commonly encounter when writing a C# application is a runtime error.
+
+23
+00:01:47,000 --> 00:01:51,000
+Let me show you an example of what one would like. Let me build this solution again just to make sure we
+
+24
+00:01:51,000 --> 00:01:57,000
+are up-to-date, and I'm going to come out and run this solution Hello without passing any parameters.
+
+25
+00:01:57,000 --> 00:02:02,000
+That means the argument's parameter, the string array that is passed into Main, will be empty.
+
+26
+00:02:02,000 --> 00:02:09,000
+There are no arguments available. So when I run the program, all sorts of catastrophic error messages pop up.
+
+27
+00:02:09,000 --> 00:02:12,000
+I can see in the command line window that there was an Unhandled Exception.
+
+28
+00:02:12,000 --> 00:02:17,000
+We'll be talking more about exceptions in this course, how to both generate exceptions when your application
+
+29
+00:02:17,000 --> 00:02:25,000
+logic detects something has gone wrong, as well as handling exceptions at runtime so that they don't crash your program.
+
+30
+00:02:25,000 --> 00:02:29,000
+But here we have a program that doesn't handle any exceptions. That means an error occurred inside the
+
+31
+00:02:29,000 --> 00:02:36,000
+application, and the runtime, the CLR, is going to shut down the application so that it cannot continue.
+
+32
+00:02:36,000 --> 00:02:41,000
+It's usually not a good idea to allow a program to continue executing when it has some sort of fatal exception.
+
+33
+00:02:41,000 --> 00:02:47,000
+Windows has detected that something has gone wrong also, so it pops up this message box, but let me dismiss
+
+34
+00:02:47,000 --> 00:02:52,000
+this and talk to you a little bit about the debugger. So when you have runtime errors inside of your
+
+35
+00:02:52,000 --> 00:02:56,000
+application, sometimes you need to do a deep investigation of what is actually happening inside of your
+
+36
+00:02:56,000 --> 00:03:01,000
+application, and that's when the debugger is useful. The debugger allows me to step through line-by-line
+
+37
+00:03:01,000 --> 00:03:06,000
+all of the code inside of my application, and inspect variables, and inspect the environment, and try to
+
+38
+00:03:06,000 --> 00:03:11,000
+figure out where the logic has gone wrong. When you use the debugger, it's very useful to set breakpoints
+
+39
+00:03:11,000 --> 00:03:16,000
+inside of your application. Breakpoints allow you to stop the application right on a specific line of code,
+
+40
+00:03:16,000 --> 00:03:21,000
+and then you can start inspecting the environment. To set a breakpoint, just come over out here on the left
+
+41
+00:03:21,000 --> 00:03:27,000
+hand side of the editor window, this grey strip that I have here, and I can click here, and now I have a red dot.
+
+42
+00:03:27,000 --> 00:03:31,000
+That is how Visual Studio tells me that I have set a breakpoint on this line.
+
+43
+00:03:31,000 --> 00:03:36,000
+And now I can come into the Debug menu, and this time instead of Starting Without Debugging I'm going to
+
+44
+00:03:36,000 --> 00:03:43,000
+Start With Debugging. I could also just press F5. And Visual Studio is going to launch the application,
+
+45
+00:03:43,000 --> 00:03:50,000
+and it's going to stop execution right on this line of code. Down here in the Windows menu, I can see the application running.
+
+46
+00:03:50,000 --> 00:03:55,000
+It hasn't produced any output as of yet because we've stopped the program before it got to the WriteLine statement.
+
+47
+00:03:55,000 --> 00:03:58,000
+And inside of Visual Studio I've had all sort of windows open up.
+
+48
+00:03:58,000 --> 00:04:02,000
+I'm just going to shut down a few that I don't really need, and I'll show you just a couple of things.
+
+49
+00:04:02,000 --> 00:04:06,000
+First of all, by default, you should have an Autos window that pops up.
+
+50
+00:04:06,000 --> 00:04:12,000
+This Autos window will show you some of the variables that are available in the current context where you're debugging.
+
+51
+00:04:12,000 --> 00:04:20,000
+Right now the only real variable I have is the parameter args, and I can see the value for this is string with
+
+52
+00:04:20,000 --> 00:04:25,000
+a 0 inside of the square brackets. That's the debuggers way of telling me that args is a string array,
+
+53
+00:04:25,000 --> 00:04:30,000
+and it's a string array of length 0. That means there are no arguments inside.
+
+54
+00:04:30,000 --> 00:04:36,000
+I could also do that by hovering the mouse over args. So anything in a C# application that is holding data,
+
+55
+00:04:36,000 --> 00:04:40,000
+you could put your mouse over this symbol and get this little popup window that shows you what's inside of a
+
+56
+00:04:40,000 --> 00:04:46,000
+particular variable or data structure. And once you have stopped execution at a breakpoint and you've
+
+57
+00:04:46,000 --> 00:04:49,000
+inspected some things, you might want to resume the application running.
+
+58
+00:04:49,000 --> 00:04:56,000
+There are a couple of ways to do that. I can us the F10 and F11 keys to step through my program,
+
+59
+00:04:56,000 --> 00:05:03,000
+that is step line-by-line. If I'm inside of a method that's calling into another method, F11 will Step Into
+
+60
+00:05:03,000 --> 00:05:09,000
+the lines of code inside that other method. If I just want the debugger to execute that method and then give
+
+61
+00:05:09,000 --> 00:05:14,000
+me back control when that method has finished executing, I can use this Step Over command.
+
+62
+00:05:14,000 --> 00:05:18,000
+And if I think everything is going to work and I just want to continue with the application running,
+
+63
+00:05:18,000 --> 00:05:23,000
+I can just press F5, and the application will execute until it hits another breakpoint.
+
+64
+00:05:23,000 --> 00:05:29,000
+Let's try the Step Over command, which is F10, and I can see that this little yellow arrow has advanced one line.
+
+65
+00:05:29,000 --> 00:05:34,000
+You can think of that yellow arrow as an instruction pointer. It's showing you the current instruction or
+
+66
+00:05:34,000 --> 00:05:40,000
+the current line of code that's going to be executed. And now I'll just use the shortcut key, F10, to try to
+
+67
+00:05:40,000 --> 00:05:44,000
+step over this line of code, and this is the line of code that's generating the exception.
+
+68
+00:05:44,000 --> 00:05:50,000
+And now since I'm in the debugger, Visual Studio is going to halt execution there and pop up a dialogue that
+
+69
+00:05:50,000 --> 00:05:54,000
+will tell me I'm getting an IndexOutofRangeException. So that is something that you get when you try to
+
+70
+00:05:54,000 --> 00:05:59,000
+index into an array and you try to grab an element that doesn't exist.
+
+71
+00:05:59,000 --> 00:06:03,000
+So this code is using args sub 0, it's trying to get to the first element of the array,
+
+72
+00:06:03,000 --> 00:06:08,000
+but unfortunately args, as we saw before, is a completely empty array so there is no first element,
+
+73
+00:06:08,000 --> 00:06:12,000
+and that's an error condition that in this scenario is going to force my program to crash.
+
+74
+00:06:12,000 --> 00:06:16,000
+Something has gone wrong, and the CLR won't allow my program to continue executing.
+
+75
+00:06:16,000 --> 00:06:23,000
+So let's go into the Debug menu and Stop Debugging. Now one question you may have is how can I pass in some
+
+76
+00:06:23,000 --> 00:06:29,000
+arguments when I'm running from this Debug menu? It's very easy to do when I'm running from the command line.
+
+77
+00:06:29,000 --> 00:06:33,000
+I can just type Hello Scott or Hello Joy, but what about when I'm running with the debugger?
+
+78
+00:06:33,000 --> 00:06:39,000
+To do that, I'm going to go and click on the project Hello. In fact, I'm going to right-click on that project.
+
+79
+00:06:39,000 --> 00:06:44,000
+Pretty much everything in Visual Studio you can right-click on to get a context menu, and in this case what
+
+80
+00:06:44,000 --> 00:06:51,000
+I want to do is open up the Properties for this project. This is going to open up a window that shows me all
+
+81
+00:06:51,000 --> 00:06:56,000
+sorts of configuration and build-related settings for my application, what's the target framework,
+
+82
+00:06:56,000 --> 00:07:00,000
+what's the name of the executable it's going to produce. There are lots and lots of settings inside of here,
+
+83
+00:07:00,000 --> 00:07:06,000
+but I just want to, for now, focus on the Debug settings. And in the Debug settings you can see that there
+
+84
+00:07:06,000 --> 00:07:11,000
+are Start Options where I can specify command line arguments that I want past to this program when I'm
+
+85
+00:07:11,000 --> 00:07:18,000
+running with the debugger. So let's pass in Scott, and I'll close this window, and now let me press F5 to
+
+86
+00:07:18,000 --> 00:07:22,000
+run with the debugger. We're going to stop on our breakpoint again.
+
+87
+00:07:22,000 --> 00:07:28,000
+This time I can see that args is a string array with a length of one, so there's something inside of args.
+
+88
+00:07:28,000 --> 00:07:32,000
+I can expand this and see that the first element inside of args is Scott.
+
+89
+00:07:32,000 --> 00:07:39,000
+I can also mouse over args and do the same thing here. And if I press F10 a couple times, I can see that I
+
+90
+00:07:39,000 --> 00:07:43,000
+stepped over two lines of code, and I should be able to see Hello Scott.
+
+91
+00:07:43,000 --> 00:07:47,000
+If I come out here to the running program, I can see that it produced the right output.
+
+92
+00:07:47,000 --> 00:59:00,000
+So let me just press F5 to continue running, and the program will exit.
+

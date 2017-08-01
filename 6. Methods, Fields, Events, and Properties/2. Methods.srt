@@ -1,0 +1,508 @@
+1
+00:00:01,000 --> 00:00:05,000
+Let's start this module by reviewing a few things that we know about methods.
+
+2
+00:00:05,000 --> 00:00:12,000
+Methods define behavior, they are our place where we can write code, and we can invoke a method to execute that code inside.
+
+3
+00:00:12,000 --> 00:00:17,000
+Every method has an access modifier, the default is private where the method is only available to other code
+
+4
+00:00:17,000 --> 00:00:23,000
+inside of the same class, but we can mark a method as internal to make it available to all the code inside of
+
+5
+00:00:23,000 --> 00:00:27,000
+the same project, or use the public keyword to make the method available everywhere.
+
+6
+00:00:27,000 --> 00:00:32,000
+Every method also has a return type, the method that we are looking at on the screen has a return type of
+
+7
+00:00:32,000 --> 00:00:37,000
+void, meaning the method doesn't return a value to the caller, it executes the code inside, but it doesn't
+
+8
+00:00:37,000 --> 00:00:43,000
+need a return statement to give anything back. Then we have the method name, and then 0 or more parameters,
+
+9
+00:00:43,000 --> 00:00:50,000
+which are listed in the parentheses after the name. This method takes one parameter, a numerical value of
+
+10
+00:00:50,000 --> 00:00:54,000
+type int, and the parameter is then a variable that is available throughout the rest of the method.
+
+11
+00:00:54,000 --> 00:01:00,000
+The method we are looking at takes this integer and passes it through to another method, the static GetBytes
+
+12
+00:01:00,000 --> 00:01:05,000
+method of the BitCoverter class. This BitConverter has a number of methods available to turn values into
+
+13
+00:01:05,000 --> 00:01:11,000
+bytes, and once we have the byte for our integer we will write out each byte to the console using some
+
+14
+00:01:11,000 --> 00:01:16,000
+special formatting symbols that know how to write out those values as hexadecimal numbers.
+
+15
+00:01:16,000 --> 00:01:21,000
+More on the formatting symbols in just a bit. Now here's a couple of new concepts about methods,
+
+16
+00:01:21,000 --> 00:01:25,000
+first there is a params keyword I want to show you in the demo.
+
+17
+00:01:25,000 --> 00:01:29,000
+The params keyword allows you to take a variable number of arguments because sometimes you might not know how
+
+18
+00:01:29,000 --> 00:01:35,000
+many parameters a method will need. Params is not typically something that you use on a regular basis,
+
+19
+00:01:35,000 --> 00:01:41,000
+but it's extremely useful in some scenarios. Another concept I want to introduce you to in the demo is the
+
+20
+00:01:41,000 --> 00:01:48,000
+concept of a method signature. You can think of a method signature as the unique identifier for a method.
+
+21
+00:01:48,000 --> 00:01:54,000
+The signature consists of the name of the method, as well as the number and the types of the parameters that the method takes.
+
+22
+00:01:54,000 --> 00:01:59,000
+The method signature allows the C# complier to distinguish between a method named WriteAsBytes that takes a
+
+23
+00:01:59,000 --> 00:02:06,000
+single int and another method with the same name, WriteAsBytes, but it takes a parameter of type string.
+
+24
+00:02:06,000 --> 00:02:11,000
+Those are two different methods, and I can have both methods in my class, and really I could have as many
+
+25
+00:02:11,000 --> 00:02:18,000
+methods named WriteAsBytes as I need, as long as the parameter lists are unique because parameter lists are
+
+26
+00:02:18,000 --> 00:02:23,000
+part of the signature. This is a feature in C# known as method overloading, and I do want to point out that
+
+27
+00:02:23,000 --> 00:02:30,000
+the return type of a method is not part of the method signature, let's take a closer look.
+
+28
+00:02:30,000 --> 00:02:33,000
+In this module we're going to continue to work with the GradeBook project that we created earlier in the
+
+29
+00:02:33,000 --> 00:02:39,000
+course, and if I run this project with Ctrl+F5 you can see we are outputting statistics, but without any
+
+30
+00:02:39,000 --> 00:02:45,000
+descriptive text for these numbers. So while you might be able to infer what is the average, the highest,
+
+31
+00:02:45,000 --> 00:02:49,000
+and the lowest grades, it would be nice if we added some text to make that more descriptive.
+
+32
+00:02:49,000 --> 00:02:55,000
+So each time I write out a result, I also want to write out a description of what that result is, and to do
+
+33
+00:02:55,000 --> 00:03:00,000
+that I'm going to create a helper method, a method that I can invoke from the main method of the program class.
+
+34
+00:03:00,000 --> 00:03:06,000
+Let's call this method WriteResult, I'll use the void keyword because this method doesn't need to return a
+
+35
+00:03:06,000 --> 00:03:13,000
+value, and this has to be a static method because I want to invoke this method from another static method,
+
+36
+00:03:13,000 --> 00:03:18,000
+and when you are inside a static member of a type you can only reach other static members of that same type,
+
+37
+00:03:18,000 --> 00:03:24,000
+so this has to be a static method that's called WriteResult. Every time I invoke this method I want to pass
+
+38
+00:03:24,000 --> 00:03:30,000
+in a description of the result that I'm going to write, and then the value of the result itself.
+
+39
+00:03:30,000 --> 00:03:35,000
+And inside of here let's just do a Console.WriteLine, I'll do that with the code snippet in Visual Studio CW,
+
+40
+00:03:35,000 --> 00:03:41,000
+press Tab and Tab, I want to write out the description, and let's just do some string concatenation to format
+
+41
+00:03:41,000 --> 00:03:47,000
+the output, so description plus a colon and a space, and then the result.
+
+42
+00:03:47,000 --> 00:03:54,000
+Let's try this out just with the average grade for right now, so I want to WriteResult, pass in the text
+
+43
+00:03:54,000 --> 00:04:02,000
+Average, and then the AverageGrade itself. Let's give that a quick run with Ctrl+F5, and that looks like the
+
+44
+00:04:02,000 --> 00:04:04,000
+type of output that I want, so I can change over some of the other values.
+
+45
+00:04:04,000 --> 00:04:11,000
+Before I do, let me take this WriteResult method, and make a copy of that with Ctrl+C, and then paste it with
+
+46
+00:04:11,000 --> 00:04:17,000
+Ctrl+V, and as soon as I do that Visual Studio will tell me that the C# complier sees an error, and the error
+
+47
+00:04:17,000 --> 00:04:22,000
+is that I cannot have two methods on a type with the same signature, so now I have two methods,
+
+48
+00:04:22,000 --> 00:04:28,000
+they're both called WriteResult, they both take two parameters of type string and float, so this is illegal,
+
+49
+00:04:28,000 --> 00:04:35,000
+but what happens if I change this version of WriteResult to take an integer value instead.
+
+50
+00:04:35,000 --> 00:04:39,000
+Now the C# complier sees two different methods, one that takes a string and an int, one that takes a string and a float.
+
+51
+00:04:39,000 --> 00:04:45,000
+So when I call write result here, which method will the C# complier choose, well generally speaking the C#
+
+52
+00:04:45,000 --> 00:04:50,000
+complier will choose the method that makes the most sense. So if I am invoking WriteResult, and I'm passing
+
+53
+00:04:50,000 --> 00:04:56,000
+a string and a floating point number, if the C# complier sees a method signature that matches those parameter
+
+54
+00:04:56,000 --> 00:05:01,000
+types exactly, that's the version of the overloaded method that it's going to invoke.
+
+55
+00:05:01,000 --> 00:05:06,000
+Now there are some subtleties and some crazy edge cases where sometimes the C# complier can choose a method
+
+56
+00:05:06,000 --> 00:05:11,000
+that you didn't expect, but for the most part the C# complier is going to do something sensible, so you can
+
+57
+00:05:11,000 --> 00:05:16,000
+see just based on the highlighting in Visual Studio that the version of WriteResult I'll be invoking is the
+
+58
+00:05:16,000 --> 00:05:21,000
+one that takes a string and a float. Now let's change over highest grade, and what I want to do is a
+
+59
+00:05:21,000 --> 00:05:29,000
+WriteResult, and I'll pass in the text Highest, and this time I want to take this highest grade and do an
+
+60
+00:05:29,000 --> 00:05:35,000
+explicit conversion to an integer, so this syntax in C# where you have a type name, or in this case the
+
+61
+00:05:35,000 --> 00:05:41,000
+keyword int, which maps to a type, the int 32 type, this is a type corrosion, some people would call this a
+
+62
+00:05:41,000 --> 00:05:47,000
+type cast, this is explicitly telling the C# complier I want to take this floating point number and convert
+
+63
+00:05:47,000 --> 00:05:53,000
+that value into an integer, and when you do this at runtime the floating point number will just be truncated.
+
+64
+00:05:53,000 --> 00:05:58,000
+If you actually wanted to do some rounding when you do the conversion there are some methods on the math
+
+65
+00:05:58,000 --> 00:06:03,000
+class that will allow you to round a number, but this time when I call WriteResult you can see based on the
+
+66
+00:06:03,000 --> 00:06:07,000
+highlighting the C# complier will choose the method that takes a string and an int.
+
+67
+00:06:07,000 --> 00:06:13,000
+So for the most part, the C# complier is just going to match up the parameters and their types so that everything works together.
+
+68
+00:06:13,000 --> 00:06:21,000
+And let's do this one more time, I want to WriteResult on the LowestGrade by passing in lowest, and now if I
+
+69
+00:06:21,000 --> 00:06:28,000
+run the program I have some nice output. And this is the essence of method overloading in C#.
+
+70
+00:06:28,000 --> 00:06:31,000
+Typically when you overload methods to take these different parameter types it's because you want to do
+
+71
+00:06:31,000 --> 00:06:36,000
+something different with those parameter types, in this case all we're really doing is just doing a
+
+72
+00:06:36,000 --> 00:06:42,000
+Console.WriteLine, but I want to show you the Console.WriteLine itself, it is an overloaded method.
+
+73
+00:06:42,000 --> 00:06:47,000
+So if I remove and retype the opening parenthesis that will bring up the IntellSense window that shows me all
+
+74
+00:06:47,000 --> 00:06:52,000
+of the different overloads of Console.WriteLine. Here's one that takes a bool, one that takes a character,
+
+75
+00:06:52,000 --> 00:07:00,000
+I can navigate through this using the arrow keys, here's a character array, a decimal value, a double value.
+
+76
+00:07:00,000 --> 00:07:05,000
+I want to show you a special version of WriteLine that is in here, the fifteenth overload of WriteLine,
+
+77
+00:07:05,000 --> 00:07:11,000
+this one takes a string and then an object array. Notice that object array has the params keywords in front.
+
+78
+00:07:11,000 --> 00:07:17,000
+That params keyword means that you can pass a variable number of arguments to this method, and a parameter to
+
+79
+00:07:17,000 --> 00:07:23,000
+a method that is marked with this params keyword, it's always the last parameter to a method because what the
+
+80
+00:07:23,000 --> 00:07:29,000
+C# complier will do as you start to pass parameters to this method, everything after the initial string,
+
+81
+00:07:29,000 --> 00:07:33,000
+the C# complier is just going to take all those parameters, package them up into an array, and pass them to
+
+82
+00:07:33,000 --> 00:07:39,000
+the method that you are invoking. So in other words, just as an experiment, if I used the params keyword
+
+83
+00:07:39,000 --> 00:07:45,000
+here, then my result would not be a single floating point number, instead it would be an array of floating
+
+84
+00:07:45,000 --> 00:07:52,000
+point number, and now what I can do is I can pass just a single value, but I could also continue to pass
+
+85
+00:07:52,000 --> 00:07:57,000
+values in here, so I could pass the lowest grade, and then a 2, and a 3, and a 4, and of course inside of
+
+86
+00:07:57,000 --> 00:08:02,000
+WriteResult what we'd have to do then is loop through this array, and display each result, this isn't really
+
+87
+00:08:02,000 --> 00:08:07,000
+what we want to do, I just want to demonstrate how you would use the params keyword, we just want a single
+
+88
+00:08:07,000 --> 00:08:13,000
+floating point result, so let me change this back, but what I do want to do is use this version of WriteLine
+
+89
+00:08:13,000 --> 00:08:18,000
+that takes what's known as a formatting string, and then a variable number of parameters because you'll see
+
+90
+00:08:18,000 --> 00:08:24,000
+this quite commonly in C# code. A formatting string looks like this, let's say I want to display the
+
+91
+00:08:24,000 --> 00:08:27,000
+description, and then a colon, and a space, and then the result.
+
+92
+00:08:27,000 --> 00:08:33,000
+One way to do that is with string concatenation, another way to do that is to use a formatting string like
+
+93
+00:08:33,000 --> 00:08:39,000
+so, and you can think of the pieces inside of the curly braces as placeholders, so I have placeholders 0 and
+
+94
+00:08:39,000 --> 00:08:45,000
+placeholder 1, and then the values that I pass here, that runtime will be placed into those placeholders.
+
+95
+00:08:45,000 --> 00:08:53,000
+In other words if I pass description and result, then at runtime instead of displaying curly brace 0 curly
+
+96
+00:08:53,000 --> 00:09:00,000
+brace, the runtime is going to go off looking for the first element in the array of parameters that I have
+
+97
+00:09:00,000 --> 00:09:05,000
+passed, so these two parameters, they are packaged up into an array, the first element would be description,
+
+98
+00:09:05,000 --> 00:09:10,000
+so description goes here. Now we have some literal text, which is the colon and the space, and then here's
+
+99
+00:09:10,000 --> 00:09:16,000
+another placeholder where I want array index 1 placed into here, so this will take the result and place it here.
+
+100
+00:09:16,000 --> 00:09:22,000
+If I run this program again, you'll see I still get the same output, which is quite often it's sometimes
+
+101
+00:09:22,000 --> 00:09:27,000
+easier to work with a formatting string than it is string concatenation because you can think of that
+
+102
+00:09:27,000 --> 00:09:33,000
+formatting string as a template, and it's sometimes a little bit easier to see the resulting string that
+
+103
+00:09:33,000 --> 00:09:36,000
+you're hoping to build. Now as the slide eluded to, there's also some special formatting characters that you
+
+104
+00:09:36,000 --> 00:09:43,000
+can add to these placeholders. I am not going to go into detail on all of the formatting options that are
+
+105
+00:09:43,000 --> 00:09:47,000
+available, you can go to your favorite search engine, and search for C# string formatting, and you'll find
+
+106
+00:09:47,000 --> 00:09:51,000
+lots of documentation because there are many formatting options.
+
+107
+00:09:51,000 --> 00:09:56,000
+There are all sorts of pneumonics to format DateTime values in a specific way, or to take this floating point
+
+108
+00:09:56,000 --> 00:10:04,000
+number and format it as a currency or in scientific notation. Here's an example, if I place a colon and a
+
+109
+00:10:04,000 --> 00:10:10,000
+F2, what I'm asking the runtime to do is to take my number, the result, and format it as a floating point
+
+110
+00:10:10,000 --> 00:10:19,000
+number with two digits after the decimal place, so you can see now instead of getting 85.166666, I get 85.17.
+
+111
+00:10:19,000 --> 00:10:27,000
+So this has even rounded the number for me. I can also place a C in here to format that value as a currency.
+
+112
+00:10:27,000 --> 00:10:33,000
+Notice that highest isn't formatted that way because when we displayed the highest grade we were displaying
+
+113
+00:10:33,000 --> 00:10:39,000
+it using this version of WriteResult that takes an integer. And now one more quick tip, if you're using
+
+114
+00:10:39,000 --> 00:10:46,000
+Visual Studio 2015 and the C# 6 complier, there's a new feature in C# version 6 called string interpolation,
+
+115
+00:10:46,000 --> 00:10:51,000
+it works like this. Instead of using these formatting strings, which can sometimes create trouble because
+
+116
+00:10:51,000 --> 00:10:57,000
+you forget that you really need two parameters in here, and you only pass one, a new feature of C# 6 string
+
+117
+00:10:57,000 --> 00:11:05,000
+interpolation allows you to place a dollar sign in front of the opening quote for this formatting string,
+
+118
+00:11:05,000 --> 00:11:10,000
+and instead of using numbers to index into an array, I can use the variable name directly, so this is a way
+
+119
+00:11:10,000 --> 00:11:15,000
+of saying please write out the description, whatever that string value is, and then the literal text colon
+
+120
+00:11:15,000 --> 00:11:21,000
+space, and now I want to write out the result, and I can still use a formatting string, so I want it to write
+
+121
+00:11:21,000 --> 00:11:27,000
+out as a floating point number with two digits after the decimal, and if we run this we're still getting the
+
+122
+00:11:27,000 --> 00:11:33,000
+output that we desire. So the key take-aways are that you can have overloaded methods in C#, that is methods
+
+123
+00:11:33,000 --> 00:11:39,000
+that have the same name, but different signatures, or the signature consists not only of the method name,
+
+124
+00:11:39,000 --> 00:11:44,000
+but also the number and the types of parameters, and the easy way to think about it is when you write code to
+
+125
+00:11:44,000 --> 00:11:50,000
+invoke WriteResult, will there be a way to distinguish between these two different methods, and in this case
+
+126
+00:11:50,000 --> 00:11:55,000
+since they both take two parameters, fortunately the last parameter has different types, so the C# complier
+
+127
+00:11:55,000 --> 00:59:00,000
+will choose the int method or the float method depending on the type of the value that you have to pass in.
+

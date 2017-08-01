@@ -1,0 +1,448 @@
+1
+00:00:00,000 --> 00:00:07,000
+Now let's go into Windows and open up the Start menu and search for Visual because I want to launch
+
+2
+00:00:07,000 --> 00:00:14,000
+Visual Studio 2015 and create this hello world program in the Visual Studio environment.
+
+3
+00:00:14,000 --> 00:00:20,000
+And pretty much every application that you ever build with Visual Studio will start by saying File, New,
+
+4
+00:00:20,000 --> 00:00:26,000
+and then selecting this Project menu item. This will launch a dialogue that presents me with many different
+
+5
+00:00:26,000 --> 00:00:30,000
+project types that I can build across various languages that are supported by Visual Studio.
+
+6
+00:00:30,000 --> 00:00:37,000
+But I want to build a Visual C# application, specifically a Windows application, and even more specifically
+
+7
+00:00:37,000 --> 00:00:41,000
+a Console Application, so an application that runs form the command line.
+
+8
+00:00:41,000 --> 00:00:47,000
+Down here at the bottom of the dialogue I can select a Name for my project, I'm going to call it Hello,
+
+9
+00:00:47,000 --> 00:00:52,000
+and I will leave it inside of this default location, which is a project subfolder underneath of
+
+10
+00:00:52,000 --> 00:00:57,000
+documents/visual studio 2015, but you can place this anywhere on the hard drive that you like.
+
+11
+00:00:57,000 --> 00:01:02,000
+I will just select OK, and Visual Studio will go out and create this project for me.
+
+12
+00:01:02,000 --> 00:01:07,000
+Now depending on your configuration, you might have different windows that open up inside of Visual Studio.
+
+13
+00:01:07,000 --> 00:01:12,000
+I just really want to focus on one for right now, which is the Solution Explorer window.
+
+14
+00:01:12,000 --> 00:01:18,000
+I'm going to close everything else. And if for some reason you don't have the Solution Explorer window or
+
+15
+00:01:18,000 --> 00:01:23,000
+you accidently close the Solution Explorer window, you can always reopen this by going to the View menu.
+
+16
+00:01:23,000 --> 00:01:27,000
+Selecting this item will open that Solution Explorer window if it's not already open.
+
+17
+00:01:27,000 --> 00:01:32,000
+The Solution Explorer window is a window that organizes all of my code and all of my projects.
+
+18
+00:01:32,000 --> 00:01:38,000
+So the currently highlighted node in this tree in the Solution Explorer, this is my project.
+
+19
+00:01:38,000 --> 00:01:44,000
+It's called Hello. Inside of that project I have one source code file, one C# source code file called Program.cs.
+
+20
+00:01:44,000 --> 00:01:51,000
+I can click on any .cs file inside of Solution Explorer, double-click on it, and it will open over here in a
+
+21
+00:01:51,000 --> 00:01:56,000
+text editor window. And in bigger applications you'll have multiple .cs files inside of a project.
+
+22
+00:01:56,000 --> 00:02:03,000
+In fact, you'll probably have folders inside of your project and organize your source code files into folders.
+
+23
+00:02:03,000 --> 00:02:10,000
+And then project goes into a Solution, also named Hello, and in a larger application you can have multiple
+
+24
+00:02:10,000 --> 00:02:15,000
+projects inside of a Solution. We'll see both of those scenarios as the course progresses.
+
+25
+00:02:15,000 --> 00:02:19,000
+We'll work with multiple source code files; we will work with multiple projects inside of a Solution.
+
+26
+00:02:19,000 --> 00:02:25,000
+For right now, I just want to focus on Program.cs and recreating our Hello World application.
+
+27
+00:02:25,000 --> 00:02:31,000
+So the code that is inside of Program.cs looks a little bit different then what we wrote inside of Hello.cs.
+
+28
+00:02:31,000 --> 00:02:34,000
+For starters, there are quite a few namespaces that are listed here.
+
+29
+00:02:34,000 --> 00:02:39,000
+These are just namespaces that Visual Studio included by default because these are common namespaces that you
+
+30
+00:02:39,000 --> 00:02:46,000
+typically use on a day-to-day basis. There is no harm in leaving these namespaces here, but for right now
+
+31
+00:02:46,000 --> 00:02:52,000
+I'm just going to delete all of those namespaces. And then I'll point out that I also have a custom namespace here.
+
+32
+00:02:52,000 --> 00:02:58,000
+The namespace is Hello. Everything inside of the curly braces that delimit this namespace will be a part of
+
+33
+00:02:58,000 --> 00:03:06,000
+that namespace, so my class Program, it's full name now is not just Program, it's really Hello.Program.
+
+34
+00:03:06,000 --> 00:03:10,000
+And this program still has a method named Main, just like we had in Hello.cs.
+
+35
+00:03:10,000 --> 00:03:13,000
+We'll talk about this additional args thing here in just a minute.
+
+36
+00:03:13,000 --> 00:03:20,000
+For right now, I just want to use Console to do a WriteLine. And now we'll start to see one advantage of
+
+37
+00:03:20,000 --> 00:03:25,000
+using Visual Studio over Notepad. Visual Studio is constantly evaluating the code that you're writing with
+
+38
+00:03:25,000 --> 00:03:30,000
+every keystroke, and it's trying to detect anyway that it can help you write that code or if there's any
+
+39
+00:03:30,000 --> 00:03:36,000
+problems with that code. Right now it has detected a problem. It'll express that with a red squiggly line
+
+40
+00:03:36,000 --> 00:03:41,000
+that appears underneath of Console. And the problem here is that Visual Studio knows if you try to compile
+
+41
+00:03:41,000 --> 00:03:47,000
+this file that the compiler will not know what this Console thing is, and that's because, as we discussed
+
+42
+00:03:47,000 --> 00:03:52,000
+earlier, this Console class that we want to use, it's really system.console.
+
+43
+00:03:52,000 --> 00:03:57,000
+And if I come over here and click on this lightbulb, then whenever you see that lightbulb appear you can
+
+44
+00:03:57,000 --> 00:04:02,000
+click on it. That's Visual Studio's way of saying I might be able to help you with this problem, and it will
+
+45
+00:04:02,000 --> 00:04:07,000
+give you a big list of suggestions on how to fix this problem that Console does not exist.
+
+46
+00:04:07,000 --> 00:04:11,000
+The first suggestion is to add a using System to the top of the file.
+
+47
+00:04:11,000 --> 00:04:17,000
+That's the suggestion that I want to take because once I choose that the red squiggly goes away, at least the
+
+48
+00:04:17,000 --> 00:04:22,000
+red squiggly that's under Console, and now Visual Studio's just telling me that I need to do something with Console.
+
+49
+00:04:22,000 --> 00:04:27,000
+So let me backspace a bit and then hit period, and here's another way that Visual Studio tries to help you.
+
+50
+00:04:27,000 --> 00:04:33,000
+This is the IntelliSense window. Visual Studio knows about everything that you can do with a Console.
+
+51
+00:04:33,000 --> 00:04:38,000
+It knows that you can do things like set the cursor position, and it knows that I can do things like
+
+52
+00:04:38,000 --> 00:04:47,000
+WriteLine, so I'm going to select this method just by pressing enter because I want to write the string Hello, World.
+
+53
+00:04:47,000 --> 00:04:52,000
+So a string in C# is just a sequence of characters that appear between double quotes.
+
+54
+00:04:52,000 --> 00:04:58,000
+Almost every programming language has the concept of strings. Some languages use single quotes,
+
+55
+00:04:58,000 --> 00:05:04,000
+some languages use double quotes, C# is one of those languages where a string has to be inside of double quotes.
+
+56
+00:05:04,000 --> 00:05:11,000
+C# is also a case sensitive language, so Console, the C has to be uppercase; otherwise, you can see I get the red squiggly.
+
+57
+00:05:11,000 --> 00:05:16,000
+And the method call WriteLine, that has be an upper case W and an uppercase L.
+
+58
+00:05:16,000 --> 00:05:21,000
+But since I don't currently have any red squigglies on the screen, I should be able to run this program.
+
+59
+00:05:21,000 --> 00:05:27,000
+The easiest way to run a console application is to go to the Debug menu and say Start Without Debugging.
+
+60
+00:05:27,000 --> 00:05:33,000
+Visual Studio will automatically compile all of my source code, it will produce an executable, and then it
+
+61
+00:05:33,000 --> 00:05:38,000
+will launch that executable inside of a new console window. Visual Studio is also smart enough to add a
+
+62
+00:05:38,000 --> 00:05:43,000
+feature where you have to press a key for this console window to go away.
+
+63
+00:05:43,000 --> 00:05:48,000
+If that feature wasn't there, the console would just flash on the screen and go away immediately because my
+
+64
+00:05:48,000 --> 00:05:53,000
+program exits immediately after displaying Hello, World. But now that I can see this running, I will press
+
+65
+00:05:53,000 --> 00:05:57,000
+any key, and now I can come back and edit some more source code.
+
+66
+00:05:57,000 --> 00:06:01,000
+I also want to run this directly from the command line myself, and I can do that.
+
+67
+00:06:01,000 --> 00:06:07,000
+I can see down here in the Output window, which will appear anytime you build or run an application,
+
+68
+00:06:07,000 --> 00:06:14,000
+I can see in this window exactly where Hello.exe lives. It's underneath of the location that I specified in
+
+69
+00:06:14,000 --> 00:06:20,000
+the File, New, Project dialogue, and then it falls under a folder called Bin, which is short for binaries,
+
+70
+00:06:20,000 --> 00:06:25,000
+which are executable files that are on file system, bin\Debug\Hello.exe.
+
+71
+00:06:25,000 --> 00:06:29,000
+The Debug is here because by default Visual Studio will build your application in a way that makes it easy
+
+72
+00:06:29,000 --> 00:06:35,000
+to debug, that is easy to find problems and errors that occur during runtime.
+
+73
+00:06:35,000 --> 00:06:39,000
+We'll look at debugging in just a bit. For right now, I actually want to go to a console window and find
+
+74
+00:06:39,000 --> 00:06:47,000
+this directory, which is Visual Studio 2015\Projects\Hello\Hello\bin\Debug.
+
+75
+00:06:47,000 --> 00:06:51,000
+And if I do a directory of this folder, I can see inside of here, Hello.exe.
+
+76
+00:06:51,000 --> 00:06:55,000
+There are some additional files here, but again most of those are related to debugging.
+
+77
+00:06:55,000 --> 00:07:00,000
+I just want to be able to run Hello.exe from this folder and see that still works.
+
+78
+00:07:00,000 --> 00:07:07,000
+And I'm thinking it would be nice to be able to type Hello and run this program and also pass this program a
+
+79
+00:07:07,000 --> 00:07:13,000
+parameter like the name of a person so the program will say Hello Scott or Hello Alex.
+
+80
+00:07:13,000 --> 00:07:19,000
+Currently I don't have that ability. Every time I run the program it will just say Hello, World, but this is
+
+81
+00:07:19,000 --> 00:07:25,000
+easy enough to change. Whenever I type additional arguments to my program, those arguments will be passed
+
+82
+00:07:25,000 --> 00:07:32,000
+into my Main method in this method parameter names args. So just like WriteLine takes a parameter and I can
+
+83
+00:07:32,000 --> 00:07:37,000
+pass it something like Hello, World, this Main method can take a parameter.
+
+84
+00:07:37,000 --> 00:07:42,000
+In this case it is an array of strings, and the name of this parameter is args.
+
+85
+00:07:42,000 --> 00:07:46,000
+We will be talking in more detail about arrays later in this course, but for now just know that inside of a
+
+86
+00:07:46,000 --> 00:07:54,000
+console window I could do something like Hello Scott, Joy, Chris, Sarah, and I could keep typing words out
+
+87
+00:07:54,000 --> 00:08:01,000
+here, and when my program runs each of these will be an individual string inside of a collection of strings.
+
+88
+00:08:01,000 --> 00:08:07,000
+And this is the syntax in C# to say I don't have just one string, I can take 0 or more strings.
+
+89
+00:08:07,000 --> 00:08:13,000
+So if someone wants to pass me three names, those three names will be packaged up into this parameter called args.
+
+90
+00:08:13,000 --> 00:08:19,000
+Again, more on arrays later in this course, but these two square brackets indicate that I have an array of strings.
+
+91
+00:08:19,000 --> 00:08:26,000
+My ultimate goal is to pull out just the first string in that parameter and use that to write out a greeting here.
+
+92
+00:08:26,000 --> 00:08:30,000
+So let me show you something else I can do. Just before we do that, I'm going to add a double quote here
+
+93
+00:08:30,000 --> 00:08:37,000
+after Hello comma and a space, and then use the plus sign or an addition symbol to say Hello plus World.
+
+94
+00:08:37,000 --> 00:08:41,000
+The addition symbol does what you might think it would do. It's going to concatenate those two strings
+
+95
+00:08:41,000 --> 00:08:48,000
+together so that I get one string, Hello comma space World. And if I were to run this program Without
+
+96
+00:08:48,000 --> 00:08:52,000
+Debugging, I get the same output that I had before, Hello, World.
+
+97
+00:08:52,000 --> 00:08:59,000
+But now let's get this working with a name. So instead of concatenating this hard-coded string World,
+
+98
+00:08:59,000 --> 00:09:06,000
+I want to take the first argument out of this argument array and concatenate that after the string Hello comma.
+
+99
+00:09:06,000 --> 00:09:12,000
+Arrays in C# start with a base index of 0. That means to get the first element in an array you use the
+
+100
+00:09:12,000 --> 00:09:18,000
+square brackets, and you place a 0 inside. It's a common beginner mistake to ask for the first element of an
+
+101
+00:09:18,000 --> 00:09:24,000
+array by using args sub 1, but sub 1 would actually give you the second element in an array.
+
+102
+00:09:24,000 --> 00:09:29,000
+I want args sub 0. And after I do that I'm going to save the file, come back to the command line,
+
+103
+00:09:29,000 --> 00:09:33,000
+and type Hello Scott, and you'll notice I still get the text Hello, World.
+
+104
+00:09:33,000 --> 00:09:40,000
+That's because I was very careful to just save this program and not recompile the program, which means my
+
+105
+00:09:40,000 --> 00:09:45,000
+source code is different. But I never had Visual Studio build that source code into a new version of
+
+106
+00:09:45,000 --> 00:09:51,000
+Hello.exe, so I'm still running an older version of Hello.exe, I don't have a new one yet.
+
+107
+00:09:51,000 --> 00:09:56,000
+If I want to make sure that Visual Studio builds this, I can go to the Build menu and say Build Solution.
+
+108
+00:09:56,000 --> 00:10:01,000
+When you run the program from the Debug menu, Visual Studio automatically does the build, but if I'm going to
+
+109
+00:10:01,000 --> 00:10:06,000
+run from the command line like this, I have to explicitly ask Visual Studio to build, and now I should be
+
+110
+00:10:06,000 --> 00:10:13,000
+able to come out and say Hello Scott, and I can see Hello Scott, or Hello Joy, and I see Hello Joy.
+
+111
+00:10:13,000 --> 00:10:18,000
+And I now have a program that accepts some command line parameters from the user and uses those parameters to
+
+112
+00:10:18,000 --> 00:59:00,000
+change the display, to change its output.
+

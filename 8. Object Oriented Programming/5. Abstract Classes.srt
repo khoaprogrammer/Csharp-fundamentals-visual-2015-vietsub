@@ -1,0 +1,384 @@
+1
+00:00:01,000 --> 00:00:07,000
+Earlier I said that inheritance and polymorphism are overrated, and I can qualify that now by saying,
+
+2
+00:00:07,000 --> 00:00:11,000
+inheritance and polymorphism are overrated techniques for code reuse.
+
+3
+00:00:11,000 --> 00:00:16,000
+You can achieve some fantastic designs with polymorphism, which requires some inheritance, you just need to be
+
+4
+00:00:16,000 --> 00:00:22,000
+very careful of the inheritance part. Inheritance binds two classes together into a relationship that
+
+5
+00:00:22,000 --> 00:00:28,000
+cannot be broken, and over the years I've found that inheritance can make software harder to change and
+
+6
+00:00:28,000 --> 00:00:34,000
+harder to understand. Fortunately, there are a couple ways to reduce the amount of rigidity in inheritance,
+
+7
+00:00:34,000 --> 00:00:38,000
+one way is to use abstract classes, and the other way is to use interfaces.
+
+8
+00:00:38,000 --> 00:00:43,000
+Let's talk about abstract classes first. An abstract class is a class that you cannot instantiate
+
+9
+00:00:43,000 --> 00:00:49,000
+because it is not fully implemented. The code on the screen is showing an abstract class to represent a window.
+
+10
+00:00:49,000 --> 00:00:54,000
+So the scenario might be that we're building a UI toolkit, and we need some base type to represent all types
+
+11
+00:00:54,000 --> 00:01:00,000
+of windows on the screen, dialog windows, transparent windows, modal windows, this type is abstract,
+
+12
+00:01:00,000 --> 00:01:07,000
+I know, because it uses the abstract keyword in the type definition, and then the class goes on to define some members.
+
+13
+00:01:07,000 --> 00:01:12,000
+Every window will have a title, every window will have a draw method, and both title and draw have an
+
+14
+00:01:12,000 --> 00:01:19,000
+implementation, they are real working members. If you inherit from window, you don't need to do anything to
+
+15
+00:01:19,000 --> 00:01:25,000
+those members, they are all ready to go, although you can override either the property or the method because they're both virtual.
+
+16
+00:01:25,000 --> 00:01:29,000
+And you could, for example, make the window draw itself using a different piece of code.
+
+17
+00:01:29,000 --> 00:01:35,000
+But then there is the Open method, which is marked abstract, meaning this method has no implementation,
+
+18
+00:01:35,000 --> 00:01:42,000
+it ends with a semicolon, and there is no body defined. To instantiate any kind of window, you will need to
+
+19
+00:01:42,000 --> 00:01:46,000
+derive from this window class and provide an implementation for the Open method.
+
+20
+00:01:46,000 --> 00:01:51,000
+If you don't provide an implementation, you'll be building another abstract class that you cannot instantiate.
+
+21
+00:01:51,000 --> 00:01:56,000
+But a class that derives from window, and provides a definition for Open, that will be what we call a
+
+22
+00:01:56,000 --> 00:02:02,000
+concrete type, it's something that I can instantiate. So there's concrete types and abstract types.
+
+23
+00:02:02,000 --> 00:02:08,000
+You can only instantiate concrete types. If you cannot instantiate an abstract type, why is it useful?
+
+24
+00:02:08,000 --> 00:02:15,000
+It's useful because of polymorphism, because I can declare a variable of type window and use that variable to
+
+25
+00:02:15,000 --> 00:02:19,000
+point to any kind of concrete window that derives from this abstract type.
+
+26
+00:02:19,000 --> 00:02:25,000
+I can interact with any of those windows. I can set the title, I can tell them to draw, I can call open.
+
+27
+00:02:25,000 --> 00:02:29,000
+Those three members are guaranteed to be there if I have a real window object, it must have been created
+
+28
+00:02:29,000 --> 00:02:34,000
+from a concrete derive type. But when I wrote this window class I didn't know how Open needs to behave,
+
+29
+00:02:34,000 --> 00:02:40,000
+that's why it's left as abstract method, I just know there are other pieces of code in the application that
+
+30
+00:02:40,000 --> 00:02:46,000
+need to work with these windows, and they must be able to invoke an Open method to get those windows on the screen.
+
+31
+00:02:46,000 --> 00:02:51,000
+And again this goes back to topic of complexity, somewhere in the code I could be working with window
+
+32
+00:02:51,000 --> 00:02:57,000
+variables, and those window variables are useful because this window type will define everything I need,
+
+33
+00:02:57,000 --> 00:03:02,000
+I don't need to know the specific derived type of window that I'm working with, I don't need to know how it
+
+34
+00:03:02,000 --> 00:03:07,000
+was implemented, of if there are 2 types of windows, or 20 types of windows, I just have code that works with
+
+35
+00:03:07,000 --> 00:03:15,000
+windows, and that's simpler and reduces complexity. Now let's use an example with our GradeBook.
+
+36
+00:03:15,000 --> 00:03:20,000
+Imagine now that the change requests for GradeBook functionality are coming fast and furious.
+
+37
+00:03:20,000 --> 00:03:25,000
+The business is discovering all sorts of different uses for our GradeBook, different ways to compute
+
+38
+00:03:25,000 --> 00:03:30,000
+statistics, different ways to store the grades, people want grades in a database, or in an XML file,
+
+39
+00:03:30,000 --> 00:03:36,000
+they want report cards, they want dashboards, and the implementation of GradeBook.cs is starting to feel a
+
+40
+00:03:36,000 --> 00:03:41,000
+little bit strained, it's not fulfilling all the needs of these different types of GradeBooks.
+
+41
+00:03:41,000 --> 00:03:47,000
+In fact, I might even take a step back and say there's a more general case of we need to track some grades,
+
+42
+00:03:47,000 --> 00:03:52,000
+which is something a GradeBook does, but we're going to add all these other classes that also track grades.
+
+43
+00:03:52,000 --> 00:03:59,000
+And if that's the case I might come in to the project and create a more pure type, a type that defines the
+
+44
+00:03:59,000 --> 00:04:09,000
+things that I need to do without defining the implementation details, so an abstract class, let's call it GradeTracker.
+
+45
+00:04:09,000 --> 00:04:16,000
+In this GradeTracker, I want it to be a public class, but I also want it to be and abstract class,
+
+46
+00:04:16,000 --> 00:04:22,000
+because ultimately I want GradeBooks and ThrowAwayGradeBooks, I want them all to ultimately inherit from GradeTracker.
+
+47
+00:04:22,000 --> 00:04:26,000
+But when I'm building the GradeTracker, I only want to focus on the general capabilities of what these
+
+48
+00:04:26,000 --> 00:04:31,000
+different types of trackers can do, and I have a pretty good idea of what they need to do just based on the
+
+49
+00:04:31,000 --> 00:04:39,000
+program that I've written so far. I know, for instance, that I will need the ability to add a new grade to a
+
+50
+00:04:39,000 --> 00:04:45,000
+GradeTracker, but what I don't know is exactly how that grade is going to be stored, is it going to be in a
+
+51
+00:04:45,000 --> 00:04:49,000
+list, is going to go into a file, is it going to go into a database?
+
+52
+00:04:49,000 --> 00:04:55,000
+I'm going to leave those implementation details to a derive class, so I will mark this method as abstract also.
+
+53
+00:04:55,000 --> 00:05:01,000
+It has no implementation details. And I want to look at the public implementation details for GradeBook,
+
+54
+00:05:01,000 --> 00:05:04,000
+and give a GradeTracker all these capabilities, but without the details.
+
+55
+00:05:04,000 --> 00:05:11,000
+So for example, let's give all GradeTrackers the ability to ComputeStatistics, we're just not going to
+
+56
+00:05:11,000 --> 00:05:16,000
+provide implementation details there. Now this method will no longer be virtual, virtual methods need an
+
+57
+00:05:16,000 --> 00:05:22,000
+implementation, but this method can be abstract and implemented in a derive class.
+
+58
+00:05:22,000 --> 00:05:29,000
+Back in the GradeBook I will also need to do this with WriteGrades, so let me copy that method, the start of
+
+59
+00:05:29,000 --> 00:05:38,000
+that method, paste it here, and this method will also be abstract, and I do need to bring in the System.IO
+
+60
+00:05:38,000 --> 00:05:46,000
+namespace for TextWriter, so Ctrl+., and select System.IO, and then back in the GradeBook, I already have
+
+61
+00:05:46,000 --> 00:05:52,000
+AddGrade as an abstract member, and now this Name property and the NameChanged event, and the logic to track
+
+62
+00:05:52,000 --> 00:05:58,000
+changes, and detect changes, and manage this field, let's say that this is something that will not change
+
+63
+00:05:58,000 --> 00:06:02,000
+throughout all the different GradeTrackers. So what I'm going to do is actually cut this code out of the
+
+64
+00:06:02,000 --> 00:06:12,000
+GradeBook, and add it to the GradeTracker, because as an abstract class, this class is allowed to have some implementation details.
+
+65
+00:06:12,000 --> 00:06:20,000
+So here is a real property that can be used, a Name property, and a NameChanged event, and a private string,
+
+66
+00:06:20,000 --> 00:06:29,000
+_name, I might want to change this to protected, only if I wanted derive classes to directly access _name,
+
+67
+00:06:29,000 --> 00:06:31,000
+that's a decision I have to make, but in this case I'll make it protected.
+
+68
+00:06:31,000 --> 00:06:37,000
+And ultimately the entire purpose of GradeTracker is so that I can work with variables of type GradeTracker
+
+69
+00:06:37,000 --> 00:06:43,000
+in a place like my program, and not worry about the specific type of GradeTracker that I'm actually operating
+
+70
+00:06:43,000 --> 00:06:48,000
+against, just like we did with GradeBook and ThrowAwayGradeBook, but now we're introducing a new type,
+
+71
+00:06:48,000 --> 00:06:53,000
+a type that it even has fewer implementation details in it, and ultimately what I would like to do is work
+
+72
+00:06:53,000 --> 00:07:01,000
+with a GradeTracker here. Now currently CreateGradeBook returns a type that does not derive from GradeTracker.
+
+73
+00:07:01,000 --> 00:07:06,000
+I will need to set up GradeBook so that it inherits from GradeTracker.
+
+74
+00:07:06,000 --> 00:07:12,000
+But before I go over there, let me take this type Name, and I want all these methods, like WriteResults,
+
+75
+00:07:12,000 --> 00:07:19,000
+and CreateGradeBook, I want them to take parameters of type GradeTracker, in the case of Create return
+
+76
+00:07:19,000 --> 00:07:26,000
+something that is a GradeTracker, so that I'm working with this low-level type throughout my program.
+
+77
+00:07:26,000 --> 00:07:34,000
+And I think I've made all the changes there, so let's come back to GradeBook.cs, and now instead of
+
+78
+00:07:34,000 --> 00:07:40,000
+implicitly, or in this case explicitly inheriting from object, let's have this inherit from GradeTracker.
+
+79
+00:07:40,000 --> 00:07:44,000
+And there's just a couple other things that I need to change. You can see I currently have an error,
+
+80
+00:07:44,000 --> 00:07:49,000
+and if I hover over the red squiggly, Visual Studio tells me that GradeBook does not implement the abstract
+
+81
+00:07:49,000 --> 00:07:55,000
+member WriteGrades, or ComputeStatistics, or AddGrade. And the reason is this, when I implement
+
+82
+00:07:55,000 --> 00:08:02,000
+ComputeStatistics and GradeBook, if I want this method to provide an implementation for an abstract method
+
+83
+00:08:02,000 --> 00:08:11,000
+that is in my base class, then I can no longer use the virtual keyword, instead I have to use the override keyword.
+
+84
+00:08:11,000 --> 00:08:17,000
+So an abstract method is implicitly a virtual method, therefore ComputeStatistics is a virtual method in my
+
+85
+00:08:17,000 --> 00:08:23,000
+base class, and I'm not trying to define a new virtual method, I'm trying to override that existing method,
+
+86
+00:08:23,000 --> 00:08:30,000
+I'm also going to have to come to WriteGrades, and use the override keyword here, and with AddGrade,
+
+87
+00:08:30,000 --> 00:08:36,000
+all of these were abstract methods in my base class, therefore they're virtual and I need to override them.
+
+88
+00:08:36,000 --> 00:08:41,000
+And now I should be able to press Shift+Ctrl+B to do a build, and my build is successful, let me press
+
+89
+00:08:41,000 --> 00:08:47,000
+Ctrl+F5 to run the program, and I can still see that the results are the same, and the results are correct,
+
+90
+00:08:47,000 --> 00:08:53,000
+and the lowest grade is an 89.5, this is all good. But now inside of my application, I'm working with this
+
+91
+00:08:53,000 --> 00:09:01,000
+abstract type GradeTracker, and I no longer care when I call ComputeStatistics, or even AddGrade,
+
+92
+00:09:01,000 --> 00:09:05,000
+or WriteGrades what the implementation details are inside of here.
+
+93
+00:09:05,000 --> 00:09:11,000
+And just so you can see the error, if I try to instantiate a new instance of GradeTracker, that will give me
+
+94
+00:09:11,000 --> 00:09:17,000
+an error, I cannot create an instance of an abstract class. So although I can work with GradeTracker
+
+95
+00:09:17,000 --> 00:09:23,000
+throughout this program, when I actually instantiate an object, it needs to be a concrete type, so it needs
+
+96
+00:09:23,000 --> 00:59:00,000
+to be a GradeBook or a ThrowAwayGradeBook.
+

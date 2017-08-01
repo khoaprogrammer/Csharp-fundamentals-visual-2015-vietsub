@@ -1,0 +1,292 @@
+1
+00:00:00,000 --> 00:00:06,000
+Reference types in C# are types created from class definitions, like the GradeBook that we created in the
+
+2
+00:00:06,000 --> 00:00:11,000
+second module of this course. Any time I write a class I'm creating a new reference type, and we talked a
+
+3
+00:00:11,000 --> 00:00:15,000
+little bit about the behavior of reference types in the second video module.
+
+4
+00:00:15,000 --> 00:00:20,000
+I told you that when I have a variable typed as GradeBook, which is a reference type, the variable holds a
+
+5
+00:00:20,000 --> 00:00:26,000
+reference or a pointer to an object. What's inside the variable is literally an address that tells the
+
+6
+00:00:26,000 --> 00:00:32,000
+runtime where to find the object in memory, and I can have multiple variables all pointing to the exact same
+
+7
+00:00:32,000 --> 00:00:37,000
+object instance, and I can have multiple objects, and I can have multiple variables pointing to all different objects.
+
+8
+00:00:37,000 --> 00:00:44,000
+I can even take a variable and reassign the object that it's referencing, so it points to a new object,
+
+9
+00:00:44,000 --> 00:00:51,000
+a different object then what it started with. Let's do some more experiments in Visual Studio to see how this works.
+
+10
+00:00:51,000 --> 00:00:56,000
+Let's pick up in the grade solution that we were working on in the last two modules, and I want to do a few
+
+11
+00:00:56,000 --> 00:01:01,000
+different experiments with the GradeBook, and before I start what I want to do is temporarily comment out
+
+12
+00:01:01,000 --> 00:01:07,000
+this code so that this code doesn't execute, and there's a couple different ways to comment out these multiple lines.
+
+13
+00:01:07,000 --> 00:01:14,000
+One is I could go to the Edit menu, I can select this command Comment Selection, that will comment out each
+
+14
+00:01:14,000 --> 00:01:18,000
+line of code that I have selected with the curser, and there's a hot key combination that you can use to do
+
+15
+00:01:18,000 --> 00:01:25,000
+that, Ctrl+K, Ctrl+C, I'll select this option, and now if I run the program nothing will happen because I
+
+16
+00:01:25,000 --> 00:01:29,000
+don't really have any substantial code inside of my main method, it's just going to start, and exit,
+
+17
+00:01:29,000 --> 00:01:35,000
+and the program's done, and that's thanks to this single line comment, which is a //.
+
+18
+00:01:35,000 --> 00:01:43,000
+Any where you put a // you can add text, or you can comment out code, or you can have a note about something
+
+19
+00:01:43,000 --> 00:01:49,000
+that is in your code. Another way to do this would be to make it a multiline comment, so first I'm going to
+
+20
+00:01:49,000 --> 00:01:57,000
+uncomment the selection, which is Ctrl+ KU, you can also get to that command from the Edit Advanced menu.
+
+21
+00:01:57,000 --> 00:02:04,000
+And now I'm going to use a /*, this is a multiline comment in C#, everything after /* is going to be
+
+22
+00:02:04,000 --> 00:02:10,000
+commented out and not execute until I put in a */ to end that comment.
+
+23
+00:02:10,000 --> 00:02:16,000
+So now that we have that code marked to not execute, let me go into the GradeBook itself, and I want to give
+
+24
+00:02:16,000 --> 00:02:22,000
+the GradeBook the ability to have a name so I can identify the GradeBooks with some friendly identifier,
+
+25
+00:02:22,000 --> 00:02:32,000
+and one easy way to do that is just to give this class a public field of type string, and let's call it Name.
+
+26
+00:02:32,000 --> 00:02:37,000
+I'll use an uppercase N just because public class members typically start with an uppercase letter,
+
+27
+00:02:37,000 --> 00:02:44,000
+whereas private class members like this grades field, it's going to start with a lowercase G.
+
+28
+00:02:44,000 --> 00:02:50,000
+And now that I have a name let me go into Program.cs, and what I want to do is to create two GradeBooks.
+
+29
+00:02:50,000 --> 00:02:55,000
+We'll call the first GradeBook g1, that's a not a great variable name, but this is just for experimental
+
+30
+00:02:55,000 --> 00:03:02,000
+purposes, I typically want to have a more descriptive name. And then let's create a second variable g2,
+
+31
+00:03:02,000 --> 00:03:08,000
+and give it a copy of what is in g1 because GradeBook is a class, and it's a reference type.
+
+32
+00:03:08,000 --> 00:03:14,000
+The value that is inside of that g1 variable is going to be a pointer, so I'm copying that pointer from g1
+
+33
+00:03:14,000 --> 00:03:23,000
+into g2, and that means if I set the name of the GradeBook through the g1 variable, and let's call it Scott's
+
+34
+00:03:23,000 --> 00:03:34,000
+grade book, and then I Console.write g2.Name. What I should see when I run this program by hitting Ctrl+F5 is Scott's GradeBook.
+
+35
+00:03:34,000 --> 00:03:39,000
+That's because I have two variables that are pointing to the exact same GradeBook object.
+
+36
+00:03:39,000 --> 00:03:45,000
+Now if I exit this command prompt, and I come into the program, and just before assigning name I say g1
+
+37
+00:03:45,000 --> 00:03:54,000
+equals another new grade book, now if I run the program when I write out g2.Name I don't have any output,
+
+38
+00:03:54,000 --> 00:03:59,000
+that's because there are two GradeBook objects floating around in memory, and by the time we reach this
+
+39
+00:03:59,000 --> 00:04:05,000
+g1.Name line of code, g1 is pointing to a different GradeBook than g2, g2 is still pointing to this original
+
+40
+00:04:05,000 --> 00:04:10,000
+GradeBook, which we haven't given a name. Now one way to do these types of experiments is just to write some
+
+41
+00:04:10,000 --> 00:04:14,000
+code inside of a console application, and run the program, and look at the output.
+
+42
+00:04:14,000 --> 00:04:18,000
+That can be useful, and it's a good way to learn C#, and some of the topics like we're talking about now,
+
+43
+00:04:18,000 --> 00:04:25,000
+reference types, how do they behave, but an even better way to do this I think is to use unit tests.
+
+44
+00:04:25,000 --> 00:04:29,000
+Generally you're going to write unit tests to prove the correctness of your program, and make sure it's
+
+45
+00:04:29,000 --> 00:04:36,000
+behaving correctly, but when I'm learning a topic like a new library, or a new API, or a new language,
+
+46
+00:04:36,000 --> 00:04:43,000
+I find unit tests to be an invaluable way to create some experiments, and test some hypotheses, and see if my
+
+47
+00:04:43,000 --> 00:04:47,000
+understanding of a particular behavior is correct. Since we already have a unit testing project that we
+
+48
+00:04:47,000 --> 00:04:53,000
+created in the last module, Grades.Test, let's take advantage of that, and put some code inside of here that
+
+49
+00:04:53,000 --> 00:04:57,000
+is really code that you can use to test yourself and experiment with the language.
+
+50
+00:04:57,000 --> 00:05:06,000
+I'm going to Add a New Folder to this test project, and I will give it the name Types, and I can place all of
+
+51
+00:05:06,000 --> 00:05:11,000
+the C# code related to my experiments with reference types inside of this folder, as well as other types that
+
+52
+00:05:11,000 --> 00:05:20,000
+we're going to be creating, so inside of here let me add a Class, and let's just call this ReferenceTypeTests.
+
+53
+00:05:20,000 --> 00:05:27,000
+I'll click Add, Visual Studio will add a class for me. Remember I want to make this a public class,
+
+54
+00:05:27,000 --> 00:05:34,000
+and I want to give this class the attribute TestClass, which means I need to bring in the namespace,
+
+55
+00:05:34,000 --> 00:05:42,000
+which is Microsoft.VisualStudio.TestTools.UnitTesting. Any this light bulb appears you can open up that
+
+56
+00:05:42,000 --> 00:05:47,000
+light bulb by pressing Ctrl and period. That's really handy if you want to keep your hands-on the keyboard
+
+57
+00:05:47,000 --> 00:05:52,000
+and not use the mouse to select the light bulb. I'm going to press Ctrl+ period, I'm going to select the
+
+58
+00:05:52,000 --> 00:05:58,000
+first option here by just pressing Enter, which is to add that namespace to the top of the file for me,
+
+59
+00:05:58,000 --> 00:06:06,000
+and now I can write a TestMethod, so first the attribute TestMethod, and this will be a public void returning
+
+60
+00:06:06,000 --> 00:06:16,000
+method, let's call it VariablesHoldAReference, and now let me go back to Program.cs, select this code that I
+
+61
+00:06:16,000 --> 00:06:24,000
+have here, and cut it out, come back into my Test, and paste it in, and really what I want to do in this Test
+
+62
+00:06:24,000 --> 00:06:29,000
+is just some experiments, so my first experiment will be I want to instantiate a new GradeBook, I want to
+
+63
+00:06:29,000 --> 00:06:35,000
+have two variables that I think are pointing to the same GradeBook, so I'll set the name through one
+
+64
+00:06:35,000 --> 00:06:42,000
+variable, g1, and then I want to make an assertion, I want to Assert that the following two things are equal,
+
+65
+00:06:42,000 --> 00:06:50,000
+I want to assert that g1's name, which I just set, is the same as g2's name because g2 is pointing to the
+
+66
+00:06:50,000 --> 00:06:56,000
+same object, and when I look at g2.Name I will see that the name has been set by that previous line of code,
+
+67
+00:06:56,000 --> 00:07:01,000
+and now back in the program I just want to clean things up a little bit, so let's get rid of our
+
+68
+00:07:01,000 --> 00:07:07,000
+console.write line here, and let me get rid of the comment so that we put our program back in a correct state.
+
+69
+00:07:07,000 --> 00:07:13,000
+I'm not interested in running the program right now, I'm more interested in running this test, so let me hit
+
+70
+00:07:13,000 --> 00:07:21,000
+Ctrl+R and then A, and our Test Explorer pops up, and I can see that test passed, so my understanding of
+
+71
+00:07:21,000 --> 00:07:26,000
+reference types seems to be working. Now what you can do inside of this Test Project is do different
+
+72
+00:07:26,000 --> 00:07:32,000
+experiments with different variables, and write some assertions based on what you believe should happen,
+
+73
+00:07:32,000 --> 00:59:00,000
+and then run the test to see if your beliefs are true. We'll continue writing some tests throughout the rest module also.
+

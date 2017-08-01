@@ -1,0 +1,36 @@
+1
+00:00:00,000 --> 00:00:06,000
+What we've seen in this module is that every type falls into one of two categories, every type is a value
+
+2
+00:00:06,000 --> 00:00:12,000
+type or a reference type. You can use the struct keyword to create a new value type, but the majority of
+
+3
+00:00:12,000 --> 00:00:17,000
+what you'll be creating in day-to-day software is reference types, and you'll do that using a class keyword.
+
+4
+00:00:17,000 --> 00:00:23,000
+We also looked a little bit at strings and arrays, these are both reference types, but remember the string
+
+5
+00:00:23,000 --> 00:00:28,000
+behaves like a value type because strings are immutable, and you cannot change a string value that already
+
+6
+00:00:28,000 --> 00:00:33,000
+exists, you can only build new strings. In the next module we're going to build on this knowledge,
+
+7
+00:00:33,000 --> 00:00:36,000
+and we're going to start adding some additional features to our GradeBook.
+
+8
+00:00:36,000 --> 00:00:42,000
+We'll add those features by adding new members to our GradeBook, class members like methods, but we're also
+
+9
+00:00:42,000 --> 00:59:00,000
+going to look at some different types of members, members like properties and events.
+

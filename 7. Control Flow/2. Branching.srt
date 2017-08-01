@@ -1,0 +1,380 @@
+1
+00:00:01,000 --> 00:00:05,000
+Conditional branching is something that we're already using in this course, but we really haven't stopped to
+
+2
+00:00:05,000 --> 00:00:10,000
+dig into the details of the if statement, which is one way to branch execution.
+
+3
+00:00:10,000 --> 00:00:15,000
+And by branching, I mean we have some code where we want to go in one of two directions, it's like getting
+
+4
+00:00:15,000 --> 00:00:20,000
+into the branches of a tree where one branch sprouts out to the left, and one branch to the right,
+
+5
+00:00:20,000 --> 00:00:25,000
+which direction do we go? That's what an if statement can do. The if statement selects a statement for
+
+6
+00:00:25,000 --> 00:00:31,000
+execution based on the value of some Boolean expression. So, in the first if statement on the screen,
+
+7
+00:00:31,000 --> 00:00:36,000
+if age is less than or equal to a 2, that's a Boolean expression that we'll return true or false.
+
+8
+00:00:36,000 --> 00:00:42,000
+If the expression returns true, the if statement will execute the statement that immediately follows the if.
+
+9
+00:00:42,000 --> 00:00:47,000
+If the expression is false, we'll skip that statement. Notice that I don't need to use curly braces to
+
+10
+00:00:47,000 --> 00:00:53,000
+surround the call to ServeMilk, but it is a considered a good coding style to use curly braces,
+
+11
+00:00:53,000 --> 00:00:57,000
+because curly braces make the code easier to maintain and a little more readable.
+
+12
+00:00:57,000 --> 00:01:03,000
+The curly braces are required if I want to execute multiple statements when the expression returns true.
+
+13
+00:01:03,000 --> 00:01:09,000
+I need to use the curly braces to create a block of code, and that block can enclose multiple method
+
+14
+00:01:09,000 --> 00:01:14,000
+invocations, multiple statements, inside of the if. Without the curly braces, I will only execute the
+
+15
+00:01:14,000 --> 00:01:20,000
+statement that immediately follows the if. Now if the first expression inside of an if statement returns
+
+16
+00:01:20,000 --> 00:01:27,000
+false, let's say that age is a 10, we will not invoke ServeMilk, and instead we'll jump to the next if
+
+17
+00:01:27,000 --> 00:01:33,000
+statement, because this code snippet includes else statements. It's like saying I need to check to see if
+
+18
+00:01:33,000 --> 00:01:39,000
+the age is less than or equal to 2, if it's not, then I need to go and check to see if the age is less than 21.
+
+19
+00:01:39,000 --> 00:01:46,000
+And if both of the tasks were to return false, we will fall into the final else statement and invoke a method ServeDrink.
+
+20
+00:01:46,000 --> 00:01:52,000
+You don't need to include an else statement after every if that you write, but you can have as many else ifs
+
+21
+00:01:52,000 --> 00:01:58,000
+as you want after an if test. Notice that the curly braces are not required around ServeDrink either because
+
+22
+00:01:58,000 --> 00:02:02,000
+it's just a single statement, but again I believe it makes the code a little more readable.
+
+23
+00:02:02,000 --> 00:02:06,000
+And speaking of readability, it's also possible to nest if statements.
+
+24
+00:02:06,000 --> 00:02:11,000
+So any code that I would place where the comment is in the middle of the second code snippet,
+
+25
+00:02:11,000 --> 00:02:17,000
+that code will only execute if the age variable is less than or equal to 2 and the name variable is equal to Scott.
+
+26
+00:02:17,000 --> 00:02:22,000
+You have to be careful nesting too many statements together like this, because the code can become hard to
+
+27
+00:02:22,000 --> 00:02:26,000
+read when you have if statements inside of if statements inside of if statements.
+
+28
+00:02:26,000 --> 00:02:30,000
+Closely related to the if statement is the conditional operator.
+
+29
+00:02:30,000 --> 00:02:35,000
+It's also sometimes referred to as the ternary operator because it comes in three pieces.
+
+30
+00:02:35,000 --> 00:02:40,000
+The first piece is an expression that needs to return true or false, so age greater than 20.
+
+31
+00:02:40,000 --> 00:02:47,000
+And then the conditional operator will return one of two values based on the evaluation of that expression.
+
+32
+00:02:47,000 --> 00:02:52,000
+If the expression returns true, we'll return the value that is on the left-hand side of the colon.
+
+33
+00:02:52,000 --> 00:02:57,000
+And if the expression returns false, we'll return the value on the right-hand side of the colon.
+
+34
+00:02:57,000 --> 00:03:03,000
+So, for example, if the age variable contained the value 19, the expression will return false,
+
+35
+00:03:03,000 --> 00:03:09,000
+and the string pass would be assigned the value, nopass. This conditional operator is sometimes useful when
+
+36
+00:03:09,000 --> 00:03:14,000
+you just need a really quick conditional check to assign one of two different values.
+
+37
+00:03:14,000 --> 00:03:18,000
+You can write the exact same logic with an if statement, but with a conditional statement there's fewer
+
+38
+00:03:18,000 --> 00:03:23,000
+characters to type. You do have to be careful with the conditional operator because again,
+
+39
+00:03:23,000 --> 00:03:29,000
+sometimes it can make the code difficult to read. Let's take a look at branching in our Grade Book.
+
+40
+00:03:29,000 --> 00:03:34,000
+Let's take a look at branching using the Grades project that we've been working on throughout the course.
+
+41
+00:03:34,000 --> 00:03:40,000
+The first thing I'm going to do, just to simplify some of the output is remove some of the code that we used
+
+42
+00:03:40,000 --> 00:03:45,000
+to experiment with events. So I'm going to remove everything related to the Grade Book name,
+
+43
+00:03:45,000 --> 00:03:53,000
+and changing the name, and that includes writing out the name, and also this event handler that we had to
+
+44
+00:03:53,000 --> 00:03:57,000
+print out some output when the Grade Book name changed. Again just trying to simplify the program and I'm
+
+45
+00:03:57,000 --> 00:04:02,000
+trying to make all the changes to the code here in the video so you can follow along.
+
+46
+00:04:02,000 --> 00:04:09,000
+I can also get rid of one of these WriteResults if I remove that cast to an int that we placed here in the
+
+47
+00:04:09,000 --> 00:04:14,000
+previous module, and we did that just see an example of method overloading, but I'll give you another example
+
+48
+00:04:14,000 --> 00:04:19,000
+of method overloading here in just a bit. Here's what I'm thinking we could do, I want the GradeStatistics
+
+49
+00:04:19,000 --> 00:04:25,000
+class to compute a letter grade. What is a letter grade? Well here in the States when I was growing up,
+
+50
+00:04:25,000 --> 00:04:31,000
+my school teachers would grade all of my assignments, quizzes, and tests on a scale of 0 to 100,
+
+51
+00:04:31,000 --> 00:04:36,000
+where 100 was a perfect score, and then periodically they would take all my scores and compute an average,
+
+52
+00:04:36,000 --> 00:04:41,000
+and from that average, compute a letter grade. It was the letter grade that was sent home to my parents to
+
+53
+00:04:41,000 --> 00:04:47,000
+tell them how I was doing in school. And when I was growing up the letter grades were A, B, C, D, and F.
+
+54
+00:04:47,000 --> 00:04:51,000
+An A meant that you were doing wonderfully in a class, it was the best letter grade you could get.
+
+55
+00:04:51,000 --> 00:04:56,000
+And then there was a B, and then there was a C, a C was considered average, then there was a D,
+
+56
+00:04:56,000 --> 00:05:00,000
+and then there was an F. An F meant that you were failing a class.
+
+57
+00:05:00,000 --> 00:05:07,000
+And I think I can get the Grade Book statistics to compute this logic just using some simple if else statements.
+
+58
+00:05:07,000 --> 00:05:13,000
+So let's add another property to GradeStatistics, this is something the statistics can do all on their own,
+
+59
+00:05:13,000 --> 00:05:20,000
+given an average grade. So let's create a property called LetterGrade.
+
+60
+00:05:20,000 --> 00:05:26,000
+For this property, I'm only going to use a get accessor, that effectively makes this a read-only property,
+
+61
+00:05:26,000 --> 00:05:31,000
+no one will be able to assign to it, which is just what I want, I want the letter grade to be computed from
+
+62
+00:05:31,000 --> 00:05:36,000
+the average grade, there's reason to set the letter grade. And the letter grades work like this,
+
+63
+00:05:36,000 --> 00:05:45,000
+if your average grade was greater than or equal to a 90, then that was a letter grade of A.
+
+64
+00:05:45,000 --> 00:05:51,000
+And you might want to use something like math.round, so that a student with a score of 89.9 would also have
+
+65
+00:05:51,000 --> 00:05:57,000
+an A, but I'll leave that as an exercise for you to try out. But now if the average grade is less than 90,
+
+66
+00:05:57,000 --> 00:06:01,000
+I need to handle that situation too, so let me write an else if.
+
+67
+00:06:01,000 --> 00:06:09,000
+Else if the AverageGrade is greater than or equal to 80, that would be a letter grade of a B.
+
+68
+00:06:09,000 --> 00:06:15,000
+Now, generally speaking, I try to maintain a coding style where I only have a single return statement inside
+
+69
+00:06:15,000 --> 00:06:21,000
+of a method or a property. That's not always possible, but it does make the code sometimes easier to read.
+
+70
+00:06:21,000 --> 00:06:26,000
+I'm going to reach that goal, I'm going to try to do that by declaring a local variable result,
+
+71
+00:06:26,000 --> 00:06:32,000
+and in this case not even initialize that because I expect to initialize it in the logic that is inside of
+
+72
+00:06:32,000 --> 00:06:39,000
+this property, and instead of immediately returning, let me just say result = A, and result = B,
+
+73
+00:06:39,000 --> 00:06:44,000
+and at the bottom whatever we have computed for result, that is what we will return.
+
+74
+00:06:44,000 --> 00:06:49,000
+Currently we have an error because the C# compiler is smart enough to realize that you might be returning an
+
+75
+00:06:49,000 --> 00:06:55,000
+unassigned local variable. If the average grade right now is lower than an 80, then we never make an
+
+76
+00:06:55,000 --> 00:06:59,000
+assignment to result, and the C# compiler won't let us get away with that.
+
+77
+00:06:59,000 --> 00:07:04,000
+So let's continue writing out some of our logic. If the letter grade is less than an 80, we won't branch in
+
+78
+00:07:04,000 --> 00:07:11,000
+to assign a result of A, and we won't branch in to assign a result of B, so now we will have to check if the
+
+79
+00:07:11,000 --> 00:07:17,000
+average grade is greater than a 70, and if so the result is a C.
+
+80
+00:07:17,000 --> 00:07:20,000
+And notice one thing that I don't have to do here is I don't have to check that the average grade is greater
+
+81
+00:07:20,000 --> 00:07:27,000
+than 70 and the average grade is less than 80. Technically that is the rule to get a letter grade of C,
+
+82
+00:07:27,000 --> 00:07:32,000
+your average grade has to be greater than or equal to 70, or less than 80, but the way the if else statements
+
+83
+00:07:32,000 --> 00:07:39,000
+work, I know that this test I don't really need this, because if the average grade was greater than 80 we
+
+84
+00:07:39,000 --> 00:07:46,000
+already would have assigned a result here and skipped over this else if statement, we would never evaluate this.
+
+85
+00:07:46,000 --> 00:07:53,000
+We'll need one more else if to check for a letter grade of D, which would be an average grade greater than or
+
+86
+00:07:53,000 --> 00:08:01,000
+equal to 60, in that case, the letter grade is a D, and then finally, if I haven't branched into any of
+
+87
+00:08:01,000 --> 00:08:08,000
+those if statements, then I know that the average grade is less than a 60, and the result should be a failing
+
+88
+00:08:08,000 --> 00:08:13,000
+letter grade, a letter grade of F. And if I come back into the program, let's write out the letter grade,
+
+89
+00:08:13,000 --> 00:08:21,000
+let's try to do a WriteResult of Grade, with stats.LetterGrade, and this is one of those situations where the
+
+90
+00:08:21,000 --> 00:08:28,000
+C# compiler says, oh you're passing a string here, I don't see a version of WriteResult that takes a string,
+
+91
+00:08:28,000 --> 00:08:35,000
+so let me copy this method and paste it in here, and create a version a WriteResult that takes two strings,
+
+92
+00:08:35,000 --> 00:08:41,000
+one is the description, one is the result. I do not need to format result a floating point number,
+
+93
+00:08:41,000 --> 00:08:49,000
+so let me take off the :F2 here, and run the program, and I can see that the average grade is an 85 and the
+
+94
+00:08:49,000 --> 00:08:55,000
+letter grade is a B, so I think my logic is working correctly. Of course I should write a unit test to make
+
+95
+00:08:55,000 --> 00:59:00,000
+sure, but again I'll leave that as an exercise for you to try.
+

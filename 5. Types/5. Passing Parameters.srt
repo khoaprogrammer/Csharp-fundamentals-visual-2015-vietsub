@@ -1,0 +1,280 @@
+1
+00:00:00,000 --> 00:00:07,000
+Understanding the difference between how reference types and value types behave becomes extremely important
+
+2
+00:00:07,000 --> 00:00:13,000
+when you write methods and pass parameters to a method. In C# the default is to pass parameters by value.
+
+3
+00:00:13,000 --> 00:00:18,000
+This means when you call a method that takes a parameter, by default the value in the variable you pass will
+
+4
+00:00:18,000 --> 00:00:25,000
+be copied into the variable that is a parameter to the method, and what you pass is always a copy unless you
+
+5
+00:00:25,000 --> 00:00:30,000
+add some additional keywords, which we will talk about, but you hardly ever want to use these keywords,
+
+6
+00:00:30,000 --> 00:00:36,000
+you want to use the default of pass by value, and that means for reference types you are passing a copy of a
+
+7
+00:00:36,000 --> 00:00:42,000
+reference, a copy of the pointer that is inside the variable, and when I pass a value type to a method,
+
+8
+00:00:42,000 --> 00:00:48,000
+a value type like an int, or a double float, or DateTime, I am passing a copy of the value, a copy of the
+
+9
+00:00:48,000 --> 00:00:55,000
+value that is inside the variable. So if I have a method that takes a GradeBook parameter, and I pass the
+
+10
+00:00:55,000 --> 00:01:01,000
+method of variable from my code, the method gets a copy of the pointer to a GradeBook, so both the calling
+
+11
+00:01:01,000 --> 00:01:06,000
+code and the method that is being called, they will both have pointers to the exact same object, and this has
+
+12
+00:01:06,000 --> 00:01:13,000
+profound implications for what happens inside the method, and what changes I can see when a method exits and
+
+13
+00:01:13,000 --> 00:01:17,000
+returns control to the caller. Let's take a look in Visual Studio.
+
+14
+00:01:17,000 --> 00:01:23,000
+Inside of our testing project we're really branching out beyond just reference type tests, so let's rename
+
+15
+00:01:23,000 --> 00:01:29,000
+our test class to just TypeTests. The name of a test class really doesn't matter except in the output of the
+
+16
+00:01:29,000 --> 00:01:34,000
+test explorer, and what I want to do now is write a couple test methods that I can use to explore the
+
+17
+00:01:34,000 --> 00:01:39,000
+difference between value types and reference types when it comes to calling methods.
+
+18
+00:01:39,000 --> 00:01:43,000
+The truth is there really is no difference, we're always passing something by value, but behavior may appear
+
+19
+00:01:43,000 --> 00:01:48,000
+differently, let's just take a look. Let me create another test method with a code snippet, and let's name
+
+20
+00:01:48,000 --> 00:01:55,000
+this method ReferenceTypesPassByValue, and what I want inside of here is code that is similar to some of the
+
+21
+00:01:55,000 --> 00:02:02,000
+other code that we've written. I want to create a new GradeBook, and I want to have two variables that point
+
+22
+00:02:02,000 --> 00:02:08,000
+to that GradeBook, so book2 will equal book1, what is this line of code doing, it's copying the reference
+
+23
+00:02:08,000 --> 00:02:13,000
+that is inside of book1 into book2, so now I have two variables both pointing to the same object,
+
+24
+00:02:13,000 --> 00:02:19,000
+and now let's call a method. I'm going to write a private method, GiveBookAName.
+
+25
+00:02:19,000 --> 00:02:25,000
+Since this method is private and doesn't have a test method attribute, it's not going to be a method that the
+
+26
+00:02:25,000 --> 00:02:30,000
+test runner tries to invoke to see if something is going to pass or fail, and simply a method that I can use
+
+27
+00:02:30,000 --> 00:02:36,000
+inside of my tests, and this method I want it to take a GradeBook parameter, and I want it to set the name of
+
+28
+00:02:36,000 --> 00:02:46,000
+the GradeBook, so book.Name = A GradeBook, and so back in my test method I want to invoke this method,
+
+29
+00:02:46,000 --> 00:02:54,000
+GiveBookAName, I want to pass in book2, and then I want to write an assertion that will pass that will look
+
+30
+00:02:54,000 --> 00:03:02,000
+at book1's name, and I'm going to paste in that string A GradeBook. We're going to see if book1.Name is
+
+31
+00:03:02,000 --> 00:03:11,000
+equal to a GradeBook, Ctrl+ RA to run all the tests, and I now have seven passing tests, so I can see that
+
+32
+00:03:11,000 --> 00:03:20,000
+test worked because when I invoke GiveBookAName, the value inside of book2 is copied into the parameter book,
+
+33
+00:03:20,000 --> 00:03:27,000
+and that value is a pointer, so there is a period of time during the execution of these tests where I have
+
+34
+00:03:27,000 --> 00:03:33,000
+three variables that are pointing to the same GradeBook object, book1, book2, and this parameter book,
+
+35
+00:03:33,000 --> 00:03:39,000
+and any changes that I make to the GradeBook through any of those variables, they will be visible if I look
+
+36
+00:03:39,000 --> 00:03:46,000
+at that object through any of the other variables. Now let's try a similar experiment, but with value types.
+
+37
+00:03:46,000 --> 00:03:53,000
+So let me create a test method, we'll call it ValueTypesPassedByValue, and in this method I want to just try
+
+38
+00:03:53,000 --> 00:04:01,000
+some things with a simple integer value, so let's say that x = 46, and again let me create a private method,
+
+39
+00:04:01,000 --> 00:04:07,000
+let's say that we'll increment a number that is passed in, so this method expects an integer parameter,
+
+40
+00:04:07,000 --> 00:04:15,000
+we can call it the number, and all I will do inside of here is say number = number + 1.
+
+41
+00:04:15,000 --> 00:04:22,000
+Another way to write that in C# is to say number += 1, so that's a way of saying take this value, add 1 to
+
+42
+00:04:22,000 --> 00:04:28,000
+it, and assign it back to the variable. And now the question is inside of this test method is I invoke
+
+43
+00:04:28,000 --> 00:04:41,000
+IncrementNumber, and I pass in x, should I assert that x is a 46 or a 47, let's say that we expect a 46 to be
+
+44
+00:04:41,000 --> 00:04:49,000
+the value inside of x, I will run all the tests, and that is also one of my passing tests.
+
+45
+00:04:49,000 --> 00:04:56,000
+So what is happening here is that I take this 46 that is inside of x, it's being copied into number when I
+
+46
+00:04:56,000 --> 00:05:03,000
+invoke method, but since this is a copy of that value I can make any changes that I want with this number variable.
+
+47
+00:05:03,000 --> 00:05:11,000
+I can add 1, subtract 1, divide by 3, multiple by 6, it really doesn't matter what I do to this number inside of here.
+
+48
+00:05:11,000 --> 00:05:17,000
+The changes I make are only visible inside of the code that is inside of IncrementNumber, it just has a copy
+
+49
+00:05:17,000 --> 00:05:22,000
+of that integer value, there's nothing I can do with number that could make a change that would be visible
+
+50
+00:05:22,000 --> 00:05:27,000
+from the code inside of ValueTypesPassByValue, and if that's a little bit confusing that's okay,
+
+51
+00:05:27,000 --> 00:05:33,000
+it takes some time for this to sink in, and that's one of the reasons that I wanted you to set up a unit test
+
+52
+00:05:33,000 --> 00:05:38,000
+project so you could explore some different scenarios with PassByValue, and write some tests, and see what
+
+53
+00:05:38,000 --> 00:05:43,000
+tests pass, and what tests fail, and become more comfortable with this behavior, but one thing that might
+
+54
+00:05:43,000 --> 00:05:49,000
+make this a little bit more clear is this, the only reason that I can call GiveBookAName, and see changes to
+
+55
+00:05:49,000 --> 00:05:55,000
+A GradeBook object from outside of this method is because I am working with a reference type, and I have a
+
+56
+00:05:55,000 --> 00:06:02,000
+reference to an object, and I'm making to the estate of some object, and that change is visible because
+
+57
+00:06:02,000 --> 00:06:06,000
+there's three different variables that can all hold a pointer to that same object, but just like with the
+
+58
+00:06:06,000 --> 00:06:12,000
+integer experiment above, there's no change that I can make to this book variable itself that would change
+
+59
+00:06:12,000 --> 00:06:22,000
+the value that is inside of book1 or book2. So for example, down here if I said book = new GradeBook,
+
+60
+00:06:22,000 --> 00:06:29,000
+this is not going to change the pointer or the reference inside of book2, it's only going to change the value
+
+61
+00:06:29,000 --> 00:06:35,000
+that is stored inside of this book variable inside of GiveBookAName, so that particular variable will be
+
+62
+00:06:35,000 --> 00:06:41,000
+pointing to a new GradeBook, but the variables that are back in the calling method, book1 and book2,
+
+63
+00:06:41,000 --> 00:06:47,000
+they won't be changed at all, and if I run this test I will find I have a failing test because we will no
+
+64
+00:06:47,000 --> 00:06:54,000
+longer be setting the name of this GradeBook that we created, we're creating a second GradeBook and setting its name.
+
+65
+00:06:54,000 --> 00:07:00,000
+So the way to think about this really is that both tests demonstrate that C# uses PassByValue, and in both
+
+66
+00:07:00,000 --> 00:07:07,000
+cases when I pass a parameter to a method, there's no way that the method that I call can make a change to
+
+67
+00:07:07,000 --> 00:07:13,000
+the value that I hold inside of my variable, but if what I'm holding is a pointer to an object,
+
+68
+00:07:13,000 --> 00:07:17,000
+that method can always make changes to an object that are visible to me as a caller.
+
+69
+00:07:17,000 --> 00:07:25,000
+Now there is a way in C# to make changes to the variable, the value of that variable when I invoke a method,
+
+70
+00:07:25,000 --> 00:59:00,000
+it's a rare scenario, but let's talk about that next.
+

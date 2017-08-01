@@ -1,0 +1,44 @@
+1
+00:00:00,000 --> 00:00:06,000
+Now that I've Visual Studio on my machine, I've also installed the .NET Framework because the .NET Framework
+
+2
+00:00:06,000 --> 00:00:12,000
+is part of the Visual Studio installation. When we write our applications in C# with Visual Studio,
+
+3
+00:00:12,000 --> 00:00:18,000
+our applications run on top of the .NET Framework, and then our applications can take advantage of services
+
+4
+00:00:18,000 --> 00:00:23,000
+and programming interfaces that the framework provides. These programming interfaces include the ability
+
+5
+00:00:23,000 --> 00:00:29,000
+to save information into a database, the ability to read information from an XML file, as well as
+
+6
+00:00:29,000 --> 00:00:34,000
+cryptography, configuration, network communications, and all the basic core features that nearly every
+
+7
+00:00:34,000 --> 00:00:40,000
+application needs, and that means you can use C# to build business applications, to build games,
+
+8
+00:00:40,000 --> 00:00:44,000
+web applications, and apps that run on different types of phones and mobile devices.
+
+9
+00:00:44,000 --> 00:00:49,000
+We commonly think of the .NET Framework as consisting of two distinct pieces.
+
+10
+00:00:49,000 --> 00:00:56,000
+First there is the Common Language Runtime, or the CLR, and there's also the Framework Class Library, or the FCL.
+
+11
+00:00:56,000 --> 00:59:00,000
+Let's talk about these two pieces in more detail.
+

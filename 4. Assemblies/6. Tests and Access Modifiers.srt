@@ -1,0 +1,320 @@
+1
+00:00:00,000 --> 00:00:06,000
+I want to be able to write some tests that will test the functionality of my GradeBook, so I'm going to
+
+2
+00:00:06,000 --> 00:00:14,000
+right-click on Grades.Tests on that project, and let's Add a Class because tests are nothing more than code
+
+3
+00:00:14,000 --> 00:00:18,000
+that exists inside of test methods that are inside of a test class.
+
+4
+00:00:18,000 --> 00:00:27,000
+So I will call this class GradeBookTests and press Enter. Visual Studio will add that class to the project.
+
+5
+00:00:27,000 --> 00:00:34,000
+I want this to be a test class, and in order to use that attribute I'm going to need the namespace that we
+
+6
+00:00:34,000 --> 00:00:38,000
+talked about earlier, Microsoft.VisualStudio.TestTools.UnitTesting.
+
+7
+00:00:38,000 --> 00:00:42,000
+And the easiest way to add that is to click on the lightbulb and then select that option.
+
+8
+00:00:42,000 --> 00:00:48,000
+I now have that using statement in place, and I can write a TestMethod, my first TestMethod.
+
+9
+00:00:48,000 --> 00:00:53,000
+So there are various philosophies about how to name your test classes, how to name your test methods,
+
+10
+00:00:53,000 --> 00:00:58,000
+how much code to put inside of a method and a class. I'm going to leave it up to all the other Pluralsight
+
+11
+00:00:58,000 --> 00:01:04,000
+video's about unit testing to talk about the different perspectives and subtleties of how to organize test codes.
+
+12
+00:01:04,000 --> 00:01:07,000
+For right now, I'm just going to brute force my way, and here's what I want to do.
+
+13
+00:01:07,000 --> 00:01:11,000
+I want to be able to instantiate a GradeBook, I want to be able to give it some data, and I want to write
+
+14
+00:01:11,000 --> 00:01:16,000
+assertions to make sure that the GradeBook computes the correct highest grade.
+
+15
+00:01:16,000 --> 00:01:21,000
+And to do that I'm going to write a public method that does not return anything, so I'll use the void keyword.
+
+16
+00:01:21,000 --> 00:01:30,000
+This method I'll just name it ComputesHighestGrade, and inside of the method I want to use the GradeBook.
+
+17
+00:01:30,000 --> 00:01:35,000
+Right now there are a couple of obstacles that will prevent me from using the GradeBook.
+
+18
+00:01:35,000 --> 00:01:41,000
+One obstacle is that Grades.Test, this assembly doesn't know about the other project, the Grades project.
+
+19
+00:01:41,000 --> 00:01:47,000
+Even though they're in the same solution, I'm not going to be able to use GradeBook until I establish a
+
+20
+00:01:47,000 --> 00:01:53,000
+reference from Grades.Test to the Grades. So just like I did with the speech synthesizer, let me right-click
+
+21
+00:01:53,000 --> 00:02:00,000
+References and select Add Reference, but this time instead of selecting a framework assembly I'm going to go
+
+22
+00:02:00,000 --> 00:02:05,000
+to this Projects node. The Projects node will list all of the other projects that are available in a
+
+23
+00:02:05,000 --> 00:02:11,000
+solution, which makes it very easy to just come in and select a checkbox and say yes, I want to reference the
+
+24
+00:02:11,000 --> 00:02:16,000
+assembly that is produced by this other project, the Grades assembly.
+
+25
+00:02:16,000 --> 00:02:20,000
+That will give me a reference to that other project, but I still have another obstacle.
+
+26
+00:02:20,000 --> 00:02:25,000
+If I look at the error that Visual Studio is giving me, it's telling me that GradeBook is inaccessible due to
+
+27
+00:02:25,000 --> 00:02:30,000
+its protection level. So when you start working with multiple assemblies, you need to know a little bit more
+
+28
+00:02:30,000 --> 00:02:34,000
+about protection levels than I've described so far. Let's look at the GradeBook.
+
+29
+00:02:34,000 --> 00:02:40,000
+Protection levels are established by those access modifiers that we talked about in the last module,
+
+30
+00:02:40,000 --> 00:02:48,000
+access modifiers like public and private. We know that if I mark a field or any class member as private that
+
+31
+00:02:48,000 --> 00:02:52,000
+that field is not available to the code that is outside of this class.
+
+32
+00:02:52,000 --> 00:02:57,000
+That's one way to achieve encapsulation in C#. And anything I make public will be available to anyone who
+
+33
+00:02:57,000 --> 00:03:03,000
+writes code who has an instance of GradeBook around. So we've seen these keywords on class members,
+
+34
+00:03:03,000 --> 00:03:09,000
+but what I didn't tell you is that there are also access modifiers available at the class level.
+
+35
+00:03:09,000 --> 00:03:15,000
+And by default if you don't specify the access level for a class, by default it will be internal,
+
+36
+00:03:15,000 --> 00:03:19,000
+and there's actually a C# keyword that I could place here to make that very explicit.
+
+37
+00:03:19,000 --> 00:03:26,000
+This is an internal class, and internal class can only be used by code that is inside of the same project.
+
+38
+00:03:26,000 --> 00:03:32,000
+So when a grade book is internal, I can use this in other places inside of the same project, so I can use the
+
+39
+00:03:32,000 --> 00:03:40,000
+GradeBook from Program.cs, it's part of the same assembly, but I will not be able to use GradeBook from GradeBookTests.
+
+40
+00:03:40,000 --> 00:03:45,000
+It's essentially hidden from this project. If I want to make GradeBook available, I need to explicitly mark
+
+41
+00:03:45,000 --> 00:03:52,000
+this class as public. That means I can use this GradeBook inside of this assembly, the Grades assembly,
+
+42
+00:03:52,000 --> 00:03:58,000
+as well from any assembly that references the Grades assembly. And yes, Grades is an .exe file,
+
+43
+00:03:58,000 --> 00:04:03,000
+which we don't typically think of as a library that someone else would consume, but in .NET it's perfectly
+
+44
+00:04:03,000 --> 00:04:10,000
+legal to reference a dll or an exe file. So the Test project is referencing the Grades project.
+
+45
+00:04:10,000 --> 00:04:16,000
+It will now have access to this GradeBook class. It will be able to instantiate it except the C# compiler is
+
+46
+00:04:16,000 --> 00:04:21,000
+going to check the access levels of all the classes that are involved with the GradeBook, and you can see
+
+47
+00:04:21,000 --> 00:04:25,000
+right now I have an error. This error is an inconsistent accessibility error.
+
+48
+00:04:25,000 --> 00:04:31,000
+It's telling me that GradeStatistics is less accessible then the method ComputeStatistics.
+
+49
+00:04:31,000 --> 00:04:35,000
+It's a complicated error message, but it's actually easy to reason through this one.
+
+50
+00:04:35,000 --> 00:04:41,000
+ComputeStatistics is available to anyone who has access to a GradeBook, but ComputeStatistics returns an
+
+51
+00:04:41,000 --> 00:04:48,000
+object that is of type GradeStatistics. And if we look at GradeStatistics, the problem is that this class,
+
+52
+00:04:48,000 --> 00:04:54,000
+by default, is an internal class, it's not visible outside of the project, so it doesn't make sense to give
+
+53
+00:04:54,000 --> 00:05:01,000
+access to a method that anyone can use if it returns a type that no one outside can see.
+
+54
+00:05:01,000 --> 00:05:02,000
+And there are a couple of different ways to solve this problem.
+
+55
+00:05:02,000 --> 00:05:09,000
+One way to solve this problem is that I can use that internal keyword to mark just this method as internal,
+
+56
+00:05:09,000 --> 00:05:15,000
+and that means anyone will be able to see this class even outside assemblies, but only code inside of the
+
+57
+00:05:15,000 --> 00:05:21,000
+same assembly will be able to see and invoke this method. But I consider this part of the public API for our
+
+58
+00:05:21,000 --> 00:05:26,000
+GradeBook, and certainly for my unit testing project I want to be able to instantiate a GradeBook and give it
+
+59
+00:05:26,000 --> 00:05:32,000
+some data and then ask it to compute statistics, so I want this to be a public method.
+
+60
+00:05:32,000 --> 00:05:38,000
+And because I'm returning something that is of GradeStatistics, the other way to solve this problem is to
+
+61
+00:05:38,000 --> 00:05:45,000
+make this class public also. Now anyone who references the assembly can reach the GradeBook, they can reach
+
+62
+00:05:45,000 --> 00:05:49,000
+GradeStatistics, they can invoke ComputeStatistics, everything should work for me.
+
+63
+00:05:49,000 --> 00:05:57,000
+So inside of GradeBooksTests all I need now is my namespace, Grades, and I should be able to declare a
+
+64
+00:05:57,000 --> 00:06:07,000
+variable of type GradeBook and instantiate a GradeBook, tell the book to add a grade, let's choose a grade of 10,
+
+65
+00:06:07,000 --> 00:06:16,000
+and let's choose a grade of 90. And now let's get some statistics, so GradeStatistics the result.
+
+66
+00:06:16,000 --> 00:06:21,000
+That is what happens when I call book.ComputeStatistics. And now I want to write an assertion.
+
+67
+00:06:21,000 --> 00:06:33,000
+I want to assert that the following two things are equal: I expect a value of 90 when I ask for result.HighestGrade.
+
+68
+00:06:33,000 --> 00:06:39,000
+And with that assert in place, let me go to Test and say run all the tests, Visual Studio will build the
+
+69
+00:06:39,000 --> 00:06:45,000
+project, and then you'll notice a funny thing here. It doesn't seem to execute the test; it doesn't seem to
+
+70
+00:06:45,000 --> 00:06:51,000
+find that test. Over here it says one test passed, but that was the last test run, and I don't see a test
+
+71
+00:06:51,000 --> 00:06:57,000
+listing in this window. That's because the test runner, it's only going to execute the test code that is
+
+72
+00:06:57,000 --> 00:07:04,000
+inside of a class marked with TestClass, that attribute, and it also has to be a public class.
+
+73
+00:07:04,000 --> 00:07:09,000
+By default this class was internal. It was only visible to code that was inside of the same project.
+
+74
+00:07:09,000 --> 00:07:16,000
+Now I've made it public. Let me try to run the test one more time, and I can see that that test is passing,
+
+75
+00:07:16,000 --> 00:07:22,000
+and my GradeBook is producing the right result. What happens if someone comes into the GradeBook and they
+
+76
+00:07:22,000 --> 00:07:25,000
+manipulate code to the point where the GradeBook no longer works properly?
+
+77
+00:07:25,000 --> 00:07:31,000
+That's when my tests should fail. Slash, Slash, by the way, is a way to comment out a single line of code in
+
+78
+00:07:31,000 --> 00:07:39,000
+C# so it doesn't execute. And now anytime I make changes to ComputeStatistics, I at least of have one test
+
+79
+00:07:39,000 --> 00:07:44,000
+in place that will make sure the GradeBook is doing part of its job correctly.
+
+80
+00:07:44,000 --> 00:59:00,000
+Let's write just a few more tests and see if we can make this a little more robust.
+

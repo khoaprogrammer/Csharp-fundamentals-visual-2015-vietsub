@@ -1,0 +1,44 @@
+1
+00:00:00,000 --> 00:00:07,000
+In this module we learned that Visual Studio and the C# compiler will compile our code into an assembly.
+
+2
+00:00:07,000 --> 00:00:12,000
+By default the assembly name will have the same name as the project, and then we'll have a dll or exe
+
+3
+00:00:12,000 --> 00:00:17,000
+extension depending on if you were building a class library or a program to execute directly.
+
+4
+00:00:17,000 --> 00:00:22,000
+We also learned that we need more than one assembly for most applications, and we now know how to add
+
+5
+00:00:22,000 --> 00:00:28,000
+references to other assemblies, both .NET assemblies, as well as other assemblies in our solution.
+
+6
+00:00:28,000 --> 00:00:32,000
+In our solution we had to add a reference from the testing project to the grades project so that the test
+
+7
+00:00:32,000 --> 00:00:38,000
+could see the GradeBook. Remember we also had to mark our Grade and our GradeStatistics classes as public so
+
+8
+00:00:38,000 --> 00:00:43,000
+that the test project could use the GradeBook and the statistics that it computes.
+
+9
+00:00:43,000 --> 00:00:49,000
+So in .NET all the types we create will live in an assembly, and the classes that we've built they are one
+
+10
+00:00:49,000 --> 00:00:55,000
+specific type that we can create in .NET. In the next module we'll see additional types that we create and
+
+11
+00:00:55,000 --> 00:59:00,000
+understand two fundamental categories of types in .NET.
+

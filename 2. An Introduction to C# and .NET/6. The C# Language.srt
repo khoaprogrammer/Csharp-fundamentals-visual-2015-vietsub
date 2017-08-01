@@ -1,0 +1,76 @@
+1
+00:00:00,000 --> 00:00:07,000
+C# is one of the languages that you can use to write applications with .NET, and the syntax of C# was
+
+2
+00:00:07,000 --> 00:00:14,000
+inspired by C++, so C#, Java, and JavaScript, all three of these languages look somewhat similar.
+
+3
+00:00:14,000 --> 00:00:19,000
+Here is a snippet of C# code. This snippet contains many different concepts that we will investigate further
+
+4
+00:00:19,000 --> 00:00:26,000
+throughout this course, but let me give you a quick preview. This snippet of code is defining a method named Main.
+
+5
+00:00:26,000 --> 00:00:31,000
+A method is a place where you can organize your code so that you can call this method from other places and
+
+6
+00:00:31,000 --> 00:00:37,000
+force the code inside to execute and run. The code inside of this method is using the DateTime class,
+
+7
+00:00:37,000 --> 00:00:44,000
+which is part of the .NET Framework Class Library. I can use DateTime.Now to find out the current time,
+
+8
+00:00:44,000 --> 00:00:48,000
+and I can use .DayOFWeek after that to find out the current day of the week.
+
+9
+00:00:48,000 --> 00:00:53,000
+And if the current day of the week is equal to Monday, and we'll check that by using a double equal sign,
+
+10
+00:00:53,000 --> 00:00:58,000
+that checks to see if two values are equal, if the current day of the week is Monday, then we will branch
+
+11
+00:00:58,000 --> 00:01:03,000
+inside of this if statement and execute the code inside of the curly braces.
+
+12
+00:01:03,000 --> 00:01:09,000
+Inside of here we're calling another method, WriteLine. This method is attached to a console class,
+
+13
+00:01:09,000 --> 00:01:16,000
+also part of the FCL, so we're forcing WriteLine to execute, and we're passing it some data, a parameter.
+
+14
+00:01:16,000 --> 00:01:18,000
+We're passing it information that is going to write onto the screen.
+
+15
+00:01:18,000 --> 00:01:22,000
+In this case, it's going to write out the text, Another case of the Mondays!
+
+16
+00:01:22,000 --> 00:01:27,000
+But again, that only happens if the current day is a Monday. If the current day is not a Monday,
+
+17
+00:01:27,000 --> 00:01:33,000
+we don't execute the code inside of here. We come straight down to the bottom where the method will exit and
+
+18
+00:01:33,000 --> 00:01:38,000
+return without writing any information to the screen. Let's take code very similar to this code and place it
+
+19
+00:01:38,000 --> 00:59:00,000
+into a program that we can execute from the command line.
+

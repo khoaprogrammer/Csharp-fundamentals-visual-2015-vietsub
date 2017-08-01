@@ -1,0 +1,76 @@
+1
+00:00:00,000 --> 00:00:07,000
+We've just used the command line C# compiler, csc.exe, and we gave the compiler one job that was to compile a
+
+2
+00:00:07,000 --> 00:00:13,000
+single file, hello.cs, but you can tell the compiler about multiple files to compile all at once.
+
+3
+00:00:13,000 --> 00:00:18,000
+And certainly when you start building real applications you don't want all of your code inside of a single file.
+
+4
+00:00:18,000 --> 00:00:22,000
+You'll take all of your code and spread it across multiple files, even across multiple directories,
+
+5
+00:00:22,000 --> 00:00:28,000
+and pass everything to csc.exe, which will produce a single executable or library.
+
+6
+00:00:28,000 --> 00:00:33,000
+When it comes to using multiple files, this is where Visual Studio is useful because Visual Studio can
+
+7
+00:00:33,000 --> 00:00:37,000
+manage all of those files and call the compiler for us, and we never have to worry about the details,
+
+8
+00:00:37,000 --> 00:00:43,000
+but it is good to know what happens behind the scenes. And it's also good to know with the C# Compiler is actually doing.
+
+9
+00:00:43,000 --> 00:00:49,000
+It's taking your C# code, and its transforming it into something called Microsoft Intermediate Language.
+
+10
+00:00:49,000 --> 00:00:56,000
+Some people will refer to this as M-S-I-L, or MSIL for short. MSIL defines instructions for the CLR.
+
+11
+00:00:56,000 --> 00:01:02,000
+It's the CLR's job then to read those instructions and transform those instructions into instructions that
+
+12
+00:01:02,000 --> 00:01:08,000
+the CPU on your machine will understand. So the processor that is inside your computer by itself, it cannot
+
+13
+00:01:08,000 --> 00:01:14,000
+execute the code that you write with .NET even after the compiler has transformed that code into an executable.
+
+14
+00:01:14,000 --> 00:01:20,000
+You need to have the CLR, the Common Language Runtime, to take those intermediate instructions inside an
+
+15
+00:01:20,000 --> 00:01:24,000
+executable and transform them into native instructions, native meaning the instructions work on the real
+
+16
+00:01:24,000 --> 00:01:30,000
+hardware where the program is running. All of that happens without us needing to do anything special,
+
+17
+00:01:30,000 --> 00:01:36,000
+and it's somewhat similar to what happens in the Java space, with Java compilers producing bytecode as an intermediate language.
+
+18
+00:01:36,000 --> 00:01:41,000
+But now that we know some of these low level details that are good to know, let's jump up into the space
+
+19
+00:01:41,000 --> 00:59:00,000
+we'll be working in for the rest of the course, which is inside of Visual Studio.
+

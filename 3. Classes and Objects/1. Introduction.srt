@@ -1,0 +1,48 @@
+1
+00:00:01,000 --> 00:00:03,000
+Hi this is Scott, and this module
+
+2
+00:00:03,000 --> 00:00:05,000
+is about classes in C#.
+
+3
+00:00:05,000 --> 00:00:08,000
+Classes allow us to module the world around us in software.
+
+4
+00:00:08,000 --> 00:00:11,000
+We create custom classes to represent purchase orders,
+
+5
+00:00:11,000 --> 00:00:13,000
+automobile parts, employees, accounts
+
+6
+00:00:13,000 --> 00:00:15,000
+or spaceships in a game.
+
+7
+00:00:15,000 --> 00:00:17,000
+Anything you need to write software about,
+
+8
+00:00:17,000 --> 00:00:19,000
+you can create a set of C# classes to help.
+
+9
+00:00:19,000 --> 00:00:21,000
+In this module, we'll talk about the relationship
+
+10
+00:00:21,000 --> 00:00:24,000
+between classes and objects and start to learn
+
+11
+00:00:24,000 --> 00:00:26,000
+how you can use C# as an object-oriented
+
+12
+00:00:26,000 --> 00:59:00,000
+programming language.
+

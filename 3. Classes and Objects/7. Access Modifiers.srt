@@ -1,0 +1,452 @@
+1
+00:00:01,000 --> 00:00:04,000
+I'd like you to be familiar with all of the keywords
+
+2
+00:00:04,000 --> 00:00:06,000
+in the program that we've been writing
+
+3
+00:00:06,000 --> 00:00:08,000
+before we leave this module, and we've already talked about
+
+4
+00:00:08,000 --> 00:00:10,000
+keywords like namespace and class.
+
+5
+00:00:10,000 --> 00:00:12,000
+But one keyword we haven't talked about
+
+6
+00:00:12,000 --> 00:00:15,000
+is the public keyword that appears in a few places.
+
+7
+00:00:15,000 --> 00:00:18,000
+C# was designed as an object-oriented language,
+
+8
+00:00:18,000 --> 00:00:21,000
+meaning it has a built-in syntax to make it easy to define
+
+9
+00:00:21,000 --> 00:00:24,000
+and work with objects, like this GradeBook.
+
+10
+00:00:24,000 --> 00:00:27,000
+The class we wrote defines a blueprint for creating objects
+
+11
+00:00:27,000 --> 00:00:28,000
+of type GradeBook.
+
+12
+00:00:28,000 --> 00:00:31,000
+And one fundamental pillar of object-oriented programming
+
+13
+00:00:31,000 --> 00:00:33,000
+is encapsulation.
+
+14
+00:00:33,000 --> 00:00:35,000
+We use objects that encapsulate the behavior
+
+15
+00:00:35,000 --> 00:00:37,000
+in the data that we need the software to perform.
+
+16
+00:00:37,000 --> 00:00:40,000
+Encapsulation means we are enclosing or hiding
+
+17
+00:00:40,000 --> 00:00:43,000
+certain details of how the software works.
+
+18
+00:00:43,000 --> 00:00:45,000
+Since some details will be hidden from me
+
+19
+00:00:45,000 --> 00:00:47,000
+when I use an object, I don't need to worry about
+
+20
+00:00:47,000 --> 00:00:49,000
+those details, and I can be a little more productive.
+
+21
+00:00:49,000 --> 00:00:52,000
+Software has a tendency to become very complex,
+
+22
+00:00:52,000 --> 00:00:54,000
+and some applications are so complex,
+
+23
+00:00:54,000 --> 00:00:57,000
+it's impossible for one person to know all of the details
+
+24
+00:00:57,000 --> 00:00:59,000
+inside of every class.
+
+25
+00:00:59,000 --> 00:01:01,000
+So encapsulation plays an extremely important role
+
+26
+00:01:01,000 --> 00:01:03,000
+in software because I can work with objects
+
+27
+00:01:03,000 --> 00:01:06,000
+that other people have written without knowing the details
+
+28
+00:01:06,000 --> 00:01:08,000
+of how those objects are implemented.
+
+29
+00:01:08,000 --> 00:01:10,000
+Even a simple class like GradeBook,
+
+30
+00:01:10,000 --> 00:01:12,000
+which has an AddGrade method,
+
+31
+00:01:12,000 --> 00:01:14,000
+that encapsulates how the GradeBook is actually
+
+32
+00:01:14,000 --> 00:01:15,000
+storing a grade.
+
+33
+00:01:15,000 --> 00:01:17,000
+When I use a GradeBook object, I don't care if the grade
+
+34
+00:01:17,000 --> 00:01:20,000
+is stored in memory or on disk or in a database
+
+35
+00:01:20,000 --> 00:01:22,000
+in the cloud, the GradeBook actually stores
+
+36
+00:01:22,000 --> 00:01:23,000
+the grades in a list.
+
+37
+00:01:23,000 --> 00:01:25,000
+And as I pointed out in the last clip,
+
+38
+00:01:25,000 --> 00:01:28,000
+I can access this AddGrade method from code
+
+39
+00:01:28,000 --> 00:01:31,000
+inside of my program, but I cannot access the list of grades
+
+40
+00:01:31,000 --> 00:01:34,000
+in code that is outside of this GradeBook class.
+
+41
+00:01:34,000 --> 00:01:37,000
+That's because of the keyword public that appears in front
+
+42
+00:01:37,000 --> 00:01:38,000
+of the AddGrade method.
+
+43
+00:01:38,000 --> 00:01:41,000
+Public is what we call an access modifier.
+
+44
+00:01:41,000 --> 00:01:43,000
+Access modifiers are keywords in C#,
+
+45
+00:01:43,000 --> 00:01:45,000
+and public is one modifier.
+
+46
+00:01:45,000 --> 00:01:48,000
+Another access modifier is private.
+
+47
+00:01:48,000 --> 00:01:52,000
+As the names imply, public makes a class member
+
+48
+00:01:52,000 --> 00:01:55,000
+publicly available so that someone can reach and invoke
+
+49
+00:01:55,000 --> 00:01:58,000
+a public member like AddGrade from outside of this class.
+
+50
+00:01:58,000 --> 00:02:01,000
+But if I don't explicitly specify the access modifier
+
+51
+00:02:01,000 --> 00:02:04,000
+for a member of the class, the default is to make
+
+52
+00:02:04,000 --> 00:02:05,000
+the member private.
+
+53
+00:02:05,000 --> 00:02:08,000
+And that means the member is only usable from code
+
+54
+00:02:08,000 --> 00:02:09,000
+inside of the same class.
+
+55
+00:02:09,000 --> 00:02:13,000
+This is why inside of AddGrade, I can use the grades list,
+
+56
+00:02:13,000 --> 00:02:16,000
+but no one outside of GradeBook can see this field.
+
+57
+00:02:16,000 --> 00:02:19,000
+We can say that the storage for grades is encapsulated
+
+58
+00:02:19,000 --> 00:02:20,000
+inside of the GradeBook.
+
+59
+00:02:20,000 --> 00:02:22,000
+We'll see how this works in code in just a bit.
+
+60
+00:02:22,000 --> 00:02:24,000
+And I want you to know that public and private
+
+61
+00:02:24,000 --> 00:02:27,000
+are just two of the available access modifiers.
+
+62
+00:02:27,000 --> 00:02:29,000
+We'll cover more modifiers later in the course.
+
+63
+00:02:29,000 --> 00:02:33,000
+For now, let's take a closer look at public and private.
+
+64
+00:02:33,000 --> 00:02:38,000
+These are arguably the two most important access modifiers.
+
+65
+00:02:38,000 --> 00:02:40,000
+Inside of our application, let's see what would happen
+
+66
+00:02:40,000 --> 00:02:45,000
+if I were to add the public keyword to my grades field.
+
+67
+00:02:45,000 --> 00:02:47,000
+Now I will tell you, if you make a member public,
+
+68
+00:02:47,000 --> 00:02:49,000
+you typically want to expose that member
+
+69
+00:02:49,000 --> 00:02:50,000
+with an uppercase letter.
+
+70
+00:02:50,000 --> 00:02:52,000
+I'm not going to do that for now because we're not
+
+71
+00:02:52,000 --> 00:02:54,000
+going to leave the public modifier here,
+
+72
+00:02:54,000 --> 00:02:57,000
+but an uppercase letter would be the convention.
+
+73
+00:02:57,000 --> 00:03:00,000
+Now back in Program.cs, I would have the ability
+
+74
+00:03:00,000 --> 00:03:03,000
+to look at the grades through either the book variable
+
+75
+00:03:03,000 --> 00:03:05,000
+or the book2 variable.
+
+76
+00:03:05,000 --> 00:03:07,000
+And this is usually not what you want to do.
+
+77
+00:03:07,000 --> 00:03:09,000
+You typically want to encapsulate your field
+
+78
+00:03:09,000 --> 00:03:11,000
+and encapsulate your data inside of an object.
+
+79
+00:03:11,000 --> 00:03:14,000
+So I'm going to come back to the GradeBook and remove
+
+80
+00:03:14,000 --> 00:03:17,000
+that public access modifier.
+
+81
+00:03:17,000 --> 00:03:19,000
+And now if we take a look at Program.cs,
+
+82
+00:03:19,000 --> 00:03:21,000
+I can see the red squiggly line because
+
+83
+00:03:21,000 --> 00:03:24,000
+GradeBook.grades is inaccessible
+
+84
+00:03:24,000 --> 00:03:25,000
+due to its protection level.
+
+85
+00:03:25,000 --> 00:03:28,000
+These access modifiers you can think about using them
+
+86
+00:03:28,000 --> 00:03:31,000
+to apply protection and encapsulate certain aspects
+
+87
+00:03:31,000 --> 00:03:33,000
+of your objects.
+
+88
+00:03:33,000 --> 00:03:36,000
+If you're defining a member of a class, like AddGrade,
+
+89
+00:03:36,000 --> 00:03:38,000
+and you do not provide an access modifier,
+
+90
+00:03:38,000 --> 00:03:41,000
+that class member will be a private member.
+
+91
+00:03:41,000 --> 00:03:43,000
+So now, I cannot even access AddGrade
+
+92
+00:03:43,000 --> 00:03:45,000
+outside of the GradeBook.
+
+93
+00:03:45,000 --> 00:03:49,000
+So AddGrade is certainly something that I want to be public.
+
+94
+00:03:49,000 --> 00:03:51,000
+I also want the constructor to be public.
+
+95
+00:03:51,000 --> 00:03:54,000
+Otherwise, the code inside of Program.cs
+
+96
+00:03:54,000 --> 00:03:56,000
+wouldn't be able to instantiate a GradeBook.
+
+97
+00:03:56,000 --> 00:03:58,000
+The constructor would be hidden,
+
+98
+00:03:58,000 --> 00:04:00,000
+and many people like to be very explicit
+
+99
+00:04:00,000 --> 00:04:04,000
+when they define a field and use the private keyword
+
+100
+00:04:04,000 --> 00:04:05,000
+so that when you're looking through the code,
+
+101
+00:04:05,000 --> 00:04:06,000
+it's very obvious that grades is going to be
+
+102
+00:04:06,000 --> 00:04:09,000
+a private member of this class.
+
+103
+00:04:09,000 --> 00:04:11,000
+If I did want to hide AddGrade, I could use
+
+104
+00:04:11,000 --> 00:04:13,000
+the private keyword here also.
+
+105
+00:04:13,000 --> 00:04:15,000
+But this is how I want to design the class.
+
+106
+00:04:15,000 --> 00:04:17,000
+I want the constructor and the AddGrade method
+
+107
+00:04:17,000 --> 00:04:18,000
+to be public numbers.
+
+108
+00:04:18,000 --> 00:04:21,000
+I want the grades, the list of float that stores my data,
+
+109
+00:04:21,000 --> 00:04:23,000
+I want that to be private;
+
+110
+00:04:23,000 --> 00:04:25,000
+and that gives me some encapsulation.
+
+111
+00:04:25,000 --> 00:04:27,000
+So we're just about ready to add some more features
+
+112
+00:04:27,000 --> 00:04:29,000
+to our GradeBook, but before we do let's take a look
+
+113
+00:04:29,000 --> 00:59:00,000
+at one more keyword.
+

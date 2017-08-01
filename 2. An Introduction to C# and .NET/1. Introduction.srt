@@ -1,0 +1,32 @@
+1
+00:00:00,000 --> 00:00:05,000
+Hi, this is Scott Allen, and this module is the first module of the course designed to give you everything you
+
+2
+00:00:05,000 --> 00:00:10,000
+should know about the C# programming language. In this first module, I want to spend some time showing you
+
+3
+00:00:10,000 --> 00:00:15,000
+the environment and tools you'll be working with and allow you to get everything set up and installed to
+
+4
+00:00:15,000 --> 00:00:20,000
+write your first simple program. C# is a wonderful and popular programming language that you can use to
+
+5
+00:00:20,000 --> 00:00:24,000
+write programs that run tablets, phones, webservers, and desktops.
+
+6
+00:00:24,000 --> 00:00:28,000
+In this module, we'll start to talk about the syntax of the C# language and the different types of programs
+
+7
+00:00:28,000 --> 00:00:34,000
+that you can write. But before all the fun can begin, we do need to install some software to help us create
+
+8
+00:00:34,000 --> 00:59:00,000
+our C# programs, and we'll get started with that in the next video clip.
+

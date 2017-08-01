@@ -1,0 +1,404 @@
+1
+00:00:00,000 --> 00:00:07,000
+Another type of member we've already been using is the field. Fields define the variables inside of a class,
+
+2
+00:00:07,000 --> 00:00:11,000
+so they define the state or the data that you want to hold as part of an object.
+
+3
+00:00:11,000 --> 00:00:16,000
+Previously we added a name field to our GradeBook class, and we made that field public, so anyone could go to
+
+4
+00:00:16,000 --> 00:00:22,000
+the GradeBook and change the name at anytime, but it is more common to make fields private and hide them,
+
+5
+00:00:22,000 --> 00:00:27,000
+so that no code outside of the class has access to the field. Data is something you typically want to
+
+6
+00:00:27,000 --> 00:00:32,000
+protect and validate, you don't want just anyone to be able to change the data inside of an object,
+
+7
+00:00:32,000 --> 00:00:38,000
+so the code on the screen is using a private field of type string, the name of the field is _name,
+
+8
+00:00:38,000 --> 00:00:43,000
+the underscore isn't required for private fields, that's just a naming convention that some developers use
+
+9
+00:00:43,000 --> 00:00:48,000
+for private fields, you don't have to use that convention, but this field is inside of a class named Animal,
+
+10
+00:00:48,000 --> 00:00:54,000
+and in the constructor for Animal we force someone to construct an animal by passing a name,
+
+11
+00:00:54,000 --> 00:00:59,000
+and the constructor saves the name in the private field, so it's available for the rest of the object to use.
+
+12
+00:00:59,000 --> 00:01:04,000
+Notice this field has a readonly keyword attached, that means the code inside of this class can only assign a
+
+13
+00:01:04,000 --> 00:01:10,000
+name in the constructor, or when the field is defined with a field initializer, so I could say private
+
+14
+00:01:10,000 --> 00:01:17,000
+readonly string _name = and some string value. If I try to set name to a new value in any other method other
+
+15
+00:01:17,000 --> 00:01:21,000
+than the constructor, the C# complier will give me an error for this class.
+
+16
+00:01:21,000 --> 00:01:26,000
+Now you might wonder how could I let code outside of my class get to the value of this field like the name,
+
+17
+00:01:26,000 --> 00:01:32,000
+do I have to write a method to return that value for other people to be able to read the name, and the answer
+
+18
+00:01:32,000 --> 00:01:35,000
+is no, that's where properties come in.
+
+19
+00:01:35,000 --> 00:01:41,000
+A property is similar to a field because it controls state and data associated with an object, but unlike a
+
+20
+00:01:41,000 --> 00:01:48,000
+field a property has a special syntax we can use to control what happens when someone reads the data or writes the data.
+
+21
+00:01:48,000 --> 00:01:53,000
+These are known as the get and set accessors, and these accessors can contain code, you can almost think of
+
+22
+00:01:53,000 --> 00:01:57,000
+them as methods, and we can do things like computations or validation.
+
+23
+00:01:57,000 --> 00:02:01,000
+In this code snippet we have a field called _name again, it is private, so I can only access the field
+
+24
+00:02:01,000 --> 00:02:07,000
+directly from code inside of the same class, but I also have a property called Name, and that's capitalized
+
+25
+00:02:07,000 --> 00:02:12,000
+because the naming guidelines for C# tell us to capitalize property names, as well as method names,
+
+26
+00:02:12,000 --> 00:02:16,000
+and I know this is a property because it has get and set accessors.
+
+27
+00:02:16,000 --> 00:02:23,000
+Inside of a get accessor I have some code, it's inside of curly braces just like the code inside of a method.
+
+28
+00:02:23,000 --> 00:02:27,000
+I can write as much code as I want inside of the get accessor, but ultimately I have to return a value,
+
+29
+00:02:27,000 --> 00:02:33,000
+and that value has to be of type string because that's the type of property that I'm inside, and this code is
+
+30
+00:02:33,000 --> 00:02:39,000
+just returning the same string that I already have in _name, but I could also return the name as uppercased,
+
+31
+00:02:39,000 --> 00:02:43,000
+or lowercased, or just the first three letters, whatever I want as long as I return a string.
+
+32
+00:02:43,000 --> 00:02:50,000
+Even more important here is the set accessor, inside of set, this is the code that will be invoked any time
+
+33
+00:02:50,000 --> 00:02:54,000
+someone tries to write a value into this name property, and whatever value someone is trying to write,
+
+34
+00:02:54,000 --> 00:03:00,000
+that will be passed to me implicitly through a variable called value.
+
+35
+00:03:00,000 --> 00:03:04,000
+You can think of this almost as a parameter to this set accessor if you're thinking of it as a method.
+
+36
+00:03:04,000 --> 00:03:11,000
+So I can take that value and store it directly under _name, but first do some validation to make sure that
+
+37
+00:03:11,000 --> 00:03:15,000
+someone's not trying to set name to null or to an empty string.
+
+38
+00:03:15,000 --> 00:03:20,000
+I want to make sure that the name actually has some characters, and that's a common use of set logic,
+
+39
+00:03:20,000 --> 00:03:26,000
+to validate an incoming value to make sure it meets some standards before you accept that value into your object.
+
+40
+00:03:26,000 --> 00:03:32,000
+There's another type of property in C# known as the auto-implemented property, this is a property that just
+
+41
+00:03:32,000 --> 00:03:39,000
+has the keywords get and set inside, there's semicolons after get and set, there's no curly braces or code,
+
+42
+00:03:39,000 --> 00:03:43,000
+and it's known as an auto-implemented property because behind the scenes the C# complier will automatically
+
+43
+00:03:43,000 --> 00:03:49,000
+create a field to store the value for this property, and it will automatically read that field during a get
+
+44
+00:03:49,000 --> 00:03:54,000
+operation, and write to that field during a set operation, but I never have to write that field or the code
+
+45
+00:03:54,000 --> 00:03:57,000
+explicitly, the C# complier will do that for me behind the scenes.
+
+46
+00:03:57,000 --> 00:04:07,000
+Let's take a closer look at this in code. Inside of our program let's open up the GradeBook, so I can remind
+
+47
+00:04:07,000 --> 00:04:11,000
+you about the public field that we added to this class earlier in the course, it's a field called Name,
+
+48
+00:04:11,000 --> 00:04:18,000
+and I have capitalized this member because it is a public member, and that's the typical convention in the C# program.
+
+49
+00:04:18,000 --> 00:04:26,000
+Inside of Program.cs I can make an assignment to that Name field just by saying book.Name = Scott's
+
+50
+00:04:26,000 --> 00:04:32,000
+GradeBook, so you can think of that as writing a reference into that field, a reference to a string that says
+
+51
+00:04:32,000 --> 00:04:40,000
+Scott's GradeBook, and I can read that value just by using the .operator and saying book.Name.
+
+52
+00:04:40,000 --> 00:04:48,000
+That will write out the name of the GradeBook when I run the program, and now I can see Scott's GradeBook.
+
+53
+00:04:48,000 --> 00:04:54,000
+Now let's change this over to being a property, and I'll start by implementing an auto-implemented property,
+
+54
+00:04:54,000 --> 00:04:59,000
+that's where I just have get and set with semicolons immediately after the keywords, there's no code
+
+55
+00:04:59,000 --> 00:05:04,000
+involved, but I have now changed this member of the GradeBook class from being a field to a property,
+
+56
+00:05:04,000 --> 00:05:09,000
+and you might be wondering what is the difference, well from a client's perspective, that is someone who's
+
+57
+00:05:09,000 --> 00:05:15,000
+using the Gradebook, there is no difference, I still say book.Name = to assign to that property,
+
+58
+00:05:15,000 --> 00:05:20,000
+that will call the setter, and I still use book.Name to retrieve the value of that property, and read the
+
+59
+00:05:20,000 --> 00:05:26,000
+property, that will call the getter, and behind the scenes the C# complier has automatically created a
+
+60
+00:05:26,000 --> 00:05:33,000
+backing field for this property, that's what we would call the field behind a property that actually stores the value.
+
+61
+00:05:33,000 --> 00:05:38,000
+So this change hasn't made a huge difference in my code, but I will tell you there are some parts to the .NET
+
+62
+00:05:38,000 --> 00:05:43,000
+Framework and other frameworks that treat properties and fields differently, specifically if you're doing
+
+63
+00:05:43,000 --> 00:05:49,000
+serialization, that is if you're taking an object, and you're serializing it into XML, or JSON, or saving it
+
+64
+00:05:49,000 --> 00:05:55,000
+to a database, there are some frameworks that only look at properties when they do the serialization,
+
+65
+00:05:55,000 --> 00:06:00,000
+they do not look at fields by default. There are also data-binding features in the .NET Framework,
+
+66
+00:06:00,000 --> 00:06:06,000
+these are features where you assign an object to some part of your user interface, and the data-binding
+
+67
+00:06:06,000 --> 00:06:11,000
+features will automatically move data from an object onto the screen, and some of these data-binding features
+
+68
+00:06:11,000 --> 00:06:16,000
+will only move properties, they won't look at fields, so again there can be a very subtle difference between
+
+69
+00:06:16,000 --> 00:06:22,000
+fields and properties, and I would say in general in you're going to make the member publically available,
+
+70
+00:06:22,000 --> 00:06:30,000
+we typically do that through a property instead of a field. In other words I will keep the grades field as a
+
+71
+00:06:30,000 --> 00:06:35,000
+field and keep that private, I only want to be able to change grades inside of this class, but names,
+
+72
+00:06:35,000 --> 00:06:40,000
+since I'm making that publically available, I will make that a property, and I will make it a capitalized
+
+73
+00:06:40,000 --> 00:06:47,000
+member of the type, although it is perfectly legal to have private properties or internal properties,
+
+74
+00:06:47,000 --> 00:06:52,000
+but I would say you just don't see them that often. But what if we wanted to protect against this situation,
+
+75
+00:06:52,000 --> 00:07:01,000
+what if we wanted to protect against someone saying book.Name = an empty string, or book.Name = null,
+
+76
+00:07:01,000 --> 00:07:09,000
+so null is a keyword in C#, and as we talked about before a field or a variable that holds a null value,
+
+77
+00:07:09,000 --> 00:07:13,000
+it doesn't point to anything, it doesn't reference anything, there's no object, or there's no string there
+
+78
+00:07:13,000 --> 00:07:19,000
+now to interact with, and currently if I run the program, if I try to Console.WriteLine that null value it
+
+79
+00:07:19,000 --> 00:07:25,000
+just comes out as blank. I want to prevent that, and that means I won't be able to use an auto-implemented
+
+80
+00:07:25,000 --> 00:07:33,000
+property, I'm going to need to add some logic to my setter to perform some validation, and as soon as I start
+
+81
+00:07:33,000 --> 00:07:38,000
+to add code to the setter then I either need to get rid of my getter or also add code to the getter,
+
+82
+00:07:38,000 --> 00:07:45,000
+and because I'm not using an auto-implemented property anymore I'm going to need to create a field explicitly
+
+83
+00:07:45,000 --> 00:07:52,000
+that will be able to hold that string value, so I will create a private field called _name, and when someone
+
+84
+00:07:52,000 --> 00:07:59,000
+wants to read the name property I'll just return name, but again I could do anything that I wanted to in here.
+
+85
+00:07:59,000 --> 00:08:07,000
+I could return a new string that was uppercased, or lowercased, or a sub string, I'll just return _name,
+
+86
+00:08:07,000 --> 00:08:11,000
+and when someone's trying to write to this property I want to check to see if the string is null or empty,
+
+87
+00:08:11,000 --> 00:08:18,000
+so I can write String.IsNullOrEmpty, that is a static method on the string class.
+
+88
+00:08:18,000 --> 00:08:23,000
+I will pass in value, which is the implicit variable that I have inside of a setter that will contain the
+
+89
+00:08:23,000 --> 00:08:31,000
+value that someone is trying to write into my property, and then IsNullOrEmpty will return true is value IsNullOrEmpty.
+
+90
+00:08:31,000 --> 00:08:38,000
+If I put an exclamation point here, that is a logical not operation that would turn that true into a false,
+
+91
+00:08:38,000 --> 00:08:46,000
+so I'm saying if the string is not null or empty only then will I assign that value into the name,
+
+92
+00:08:46,000 --> 00:08:54,000
+otherwise I will ignore this value. What I'd really like to do is create an error condition if someone gives
+
+93
+00:08:54,000 --> 00:08:58,000
+me an empty name, that way I can let the caller know that they did something wrong, but we'll talk about
+
+94
+00:08:58,000 --> 00:09:02,000
+error conditions like that more in the next module when we talk about exceptions.
+
+95
+00:09:02,000 --> 00:09:08,000
+For right now I just want to show you when I run the program, this assignment Book.Name = null, we should be
+
+96
+00:09:08,000 --> 00:09:13,000
+ignoring that value, we'll stick with Scott's GradeBook, and that's the real power of properties.
+
+97
+00:09:13,000 --> 00:09:17,000
+You can write logic inside of a get accessor and a set accessor.
+
+98
+00:09:17,000 --> 00:09:23,000
+The get accessor can perform computations, or just retrieve some field value, and return it, the set accessor
+
+99
+00:09:23,000 --> 00:09:28,000
+can perform validations, and it can protect the internal state of your object, and make sure that someone
+
+100
+00:09:28,000 --> 00:09:34,000
+isn't giving you a value that you don't want. So properties are really all about state, methods are still
+
+101
+00:09:34,000 --> 00:59:00,000
+all about behavior, and next let's turn our attention to one more type of member that we can add to a type.
+

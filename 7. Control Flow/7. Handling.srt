@@ -1,0 +1,164 @@
+1
+00:00:01,000 --> 00:00:07,000
+In a C# application you have the option of trying to handle an exception using a try catch statement.
+
+2
+00:00:07,000 --> 00:00:13,000
+A try block is the try keyword followed by some curly braces, and inside the curly braces are the statements
+
+3
+00:00:13,000 --> 00:00:19,000
+that you want to execute that might throw an exception. The try block can be followed up by one or more catch statements.
+
+4
+00:00:19,000 --> 00:00:25,000
+In this case we have one catch statement. If ComputeStatistics were to throw an exception, the runtime will
+
+5
+00:00:25,000 --> 00:00:30,000
+go looking for the closest matching catch statement, and by matching I mean that if ComputeStatistics were to
+
+6
+00:00:30,000 --> 00:00:35,000
+throw a FailNotFoundException, the catch statement that I have here will not catch that exception,
+
+7
+00:00:35,000 --> 00:00:41,000
+because that's a different exception type. This catch statement is looking for a DivideByZeroException.
+
+8
+00:00:41,000 --> 00:00:46,000
+And when I say that the runtime looks for the closest matching type, I mean that the runtime is going to look
+
+9
+00:00:46,000 --> 00:00:51,000
+for the handler with the right type of exception that is nearest to the point where the exception occurred.
+
+10
+00:00:51,000 --> 00:00:57,000
+That doesn't mean closest in the source code, that means closest in the execution of the program.
+
+11
+00:00:57,000 --> 00:01:02,000
+So if ComputeStatistics were to throw an exception, but it already has an exception handler for a
+
+12
+00:01:02,000 --> 00:01:07,000
+DivideByZeroException inside of that method, then this catch statement would not get the opportunity to
+
+13
+00:01:07,000 --> 00:01:13,000
+catch the error, the exception would already be handled. Let's take a look in the program.
+
+14
+00:01:13,000 --> 00:01:19,000
+Inside of my program I know that if I set book.Name equal to null, that will cause the program to crash,
+
+15
+00:01:19,000 --> 00:01:25,000
+and it would be easy enough for me to fix this problem just by giving the GradeBook some name with characters inside.
+
+16
+00:01:25,000 --> 00:01:30,000
+But what if I didn't want to hard code a string, what if I needed to prompt the user for a GradeBook
+
+17
+00:01:30,000 --> 00:01:40,000
+name, and I'll ask them please Enter a name, and then instead of a hardcoded string I use Console.ReadLine.
+
+18
+00:01:40,000 --> 00:01:46,000
+Now I'm in a situation where I don't know when the program runs what value we'll try to write into book.Name,
+
+19
+00:01:46,000 --> 00:01:51,000
+but I do know if the user gives me an invalid value, that will cause the program to crash.
+
+20
+00:01:51,000 --> 00:01:55,000
+Now, ideally what would happen is, I would not assign Console.ReadLine directly into book.Name,
+
+21
+00:01:55,000 --> 00:02:02,000
+instead, I'd save the value into a variable, perform some validation, and only set book.Name if have a valid
+
+22
+00:02:02,000 --> 00:02:08,000
+value, and I might try to do that inside of a loop and continue to prompt the user to enter a name,
+
+23
+00:02:08,000 --> 00:02:13,000
+as long as they're giving me an invalid value. But I'll leave that as an exercise for you to try,
+
+24
+00:02:13,000 --> 00:02:18,000
+and instead what I want to do is just use some exception handling to prevent an application crash.
+
+25
+00:02:18,000 --> 00:02:26,000
+So if I know book.Name will throw an exception that could crash the program, I might use a try catch statement.
+
+26
+00:02:26,000 --> 00:02:31,000
+Inside of the try I can have as many lines of code inside of here as I want, so I could even include the
+
+27
+00:02:31,000 --> 00:02:37,000
+Console.WriteLine, and if any exceptions emerge from any of the statements that are inside of the try,
+
+28
+00:02:37,000 --> 00:02:42,000
+I will have the opportunity to catch those exceptions using a catch statement.
+
+29
+00:02:42,000 --> 00:02:46,000
+With a catch statement I first have to describe the type of exception that I want to catch,
+
+30
+00:02:46,000 --> 00:02:53,000
+in this case it would be an ArgumentException, and then I can optionally provide a variable where the runtime
+
+31
+00:02:53,000 --> 00:02:58,000
+will store the exception object that was thrown. So when book.Name does throw an ArgumentException,
+
+32
+00:02:58,000 --> 00:03:03,000
+I will capture a reference to that object inside of this variable ex.
+
+33
+00:03:03,000 --> 00:03:07,000
+And now I could Console.WriteLine and tell the user that they entered an invalid value,
+
+34
+00:03:07,000 --> 00:03:12,000
+I could also look inside of that exception object, and I can see there are properties like Message,
+
+35
+00:03:12,000 --> 00:03:19,000
+what is the message associated with the exception, even a StackTrace, so I could print out a stack trace if I
+
+36
+00:03:19,000 --> 00:03:24,000
+wanted the user to see things about method names and line numbers and .cs files.
+
+37
+00:03:24,000 --> 00:03:30,000
+But let's just print out a Message, and now run the program with Ctrl+F5, when prompted to enter a name,
+
+38
+00:03:30,000 --> 00:03:36,000
+I can just press the Enter key that will enter in an empty value, but now I'm catching the exception,
+
+39
+00:03:36,000 --> 00:03:41,000
+I'm displaying the text Name cannot be null or empty, that's the exception object's Message property,
+
+40
+00:03:41,000 --> 00:03:47,000
+and now the program can continue to run, there are no unhandled exceptions, and I print out the grades and the statistics.
+
+41
+00:03:47,000 --> 00:59:00,000
+When we get to our next demo, we'll see what dangerous things can happen when I actually enter a valid name.
+

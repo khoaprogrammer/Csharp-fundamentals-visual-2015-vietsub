@@ -1,0 +1,288 @@
+1
+00:00:00,000 --> 00:00:09,000
+Inside of Windows I'm going to go to the Start menu, and I'm going to do a search just by typing for command
+
+2
+00:00:09,000 --> 00:00:13,000
+because what I want to open up is the command prompt. We're going to write our first program using some
+
+3
+00:00:13,000 --> 00:00:19,000
+low-level tools and without Visual Studio just so you can see a little bit about what is happening behind the scenes.
+
+4
+00:00:19,000 --> 00:00:26,000
+When you install Visual Studio, Visual Studio will install some command line tools that you can use to create applications.
+
+5
+00:00:26,000 --> 00:00:31,000
+Not many people will use the command line tools on a day-to-day basis, they'll use Visual Studio instead,
+
+6
+00:00:31,000 --> 00:00:33,000
+but what I'm just trying to do right now is simplify some things.
+
+7
+00:00:33,000 --> 00:00:40,000
+So I'm going to go into my Documents folder, and I'm just going to use notepad to create a file called hello.cs.
+
+8
+00:00:40,000 --> 00:00:46,000
+The goal is to create the canonical hello world example, something I can run and just print the string hello
+
+9
+00:00:46,000 --> 00:00:50,000
+world to the screen, and I'll do that by placing my code inside a file called hello.cs.
+
+10
+00:00:50,000 --> 00:00:57,000
+Dot cs is the common extension for C# source code. All of the .NET tools and every .NET developer will know
+
+11
+00:00:57,000 --> 00:01:05,000
+that a .cs file will contain C# source code. And inside of here I'm going to create a class.
+
+12
+00:01:05,000 --> 00:01:09,000
+So there are many concepts that we're going to have to come to grips with in this very simple demo,
+
+13
+00:01:09,000 --> 00:01:15,000
+things like classes and strange keywords, and we will cover all of these things in detail throughout this course.
+
+14
+00:01:15,000 --> 00:01:20,000
+For right now, just know that most of the code that you write for .NET will live inside of a class.
+
+15
+00:01:20,000 --> 00:01:28,000
+And inside of a class I can create methods. I'm going to create a method called Main.
+
+16
+00:01:28,000 --> 00:01:33,000
+The start of this method begins with this opening curly brace and ends with this closing curly brace.
+
+17
+00:01:33,000 --> 00:01:39,000
+Just like with the class, anything I put between those outer curly braces will be part of this class or
+
+18
+00:01:39,000 --> 00:01:45,000
+inside of this class, and now anything I put inside of this Main method will be code that executes when I
+
+19
+00:01:45,000 --> 00:01:48,000
+run this program. And that's because there's a little bit of magic happening here.
+
+20
+00:01:48,000 --> 00:01:54,000
+When the CLR starts a command line application, what we call a console application, something that I would
+
+21
+00:01:54,000 --> 00:02:00,000
+run from the command prompt, it will automatically look for a program class with a Main method and just start
+
+22
+00:02:00,000 --> 00:02:06,000
+executing the code inside of there for me. So if I were to place inside of here something like
+
+23
+00:02:06,000 --> 00:02:14,000
+System.Console.WriteLine, Hello World, then this is something very similar to the code that we had on the slide.
+
+24
+00:02:14,000 --> 00:02:20,000
+We had Console.WriteLine. What's new here is this System word, and this System word exists because inside
+
+25
+00:02:20,000 --> 00:02:26,000
+of .NET there are thousands and thousands of classes that I can use, classes like Console.
+
+26
+00:02:26,000 --> 00:02:31,000
+And we don't want all 10,000 or more classes available at one time, so what .NET does is it partitions
+
+27
+00:02:31,000 --> 00:02:38,000
+classes into various namespaces. And to use a class, you have to be very explicit and let .NET know from
+
+28
+00:02:38,000 --> 00:02:44,000
+what namespace that class lives in. So to use the Console class, it lives in the namespace called System,
+
+29
+00:02:44,000 --> 00:02:51,000
+so I either have to use the word System here or there's another way to tell .NET about the namespaces that I
+
+30
+00:02:51,000 --> 00:02:57,000
+need, and that is with the using keyword. So if I say using System and a semicolon, and yes there are
+
+31
+00:02:57,000 --> 00:03:01,000
+certain pieces of code that have to end with a semicolon and certain pieces of code that don't need a
+
+32
+00:03:01,000 --> 00:03:07,000
+semicolon, we'll talk about that more throughout the course, when I say using System, I'm telling .NET and
+
+33
+00:03:07,000 --> 00:03:13,000
+this tool we're about to see, known as the C# compiler, that when it encounters classes inside of this
+
+34
+00:03:13,000 --> 00:03:18,000
+program, classes like Console, it should look for them inside of the System namespace.
+
+35
+00:03:18,000 --> 00:03:21,000
+And this is about the simplest possible C# program that I could write.
+
+36
+00:03:21,000 --> 00:03:28,000
+I'm going to save this file and come out to the command line and run a tool called csc.exe.
+
+37
+00:03:28,000 --> 00:03:34,000
+This tool exists, by default, in my Windows directory under a folder called Microsoft.NET.
+
+38
+00:03:34,000 --> 00:03:40,000
+Inside of there, there will be a Framework folder, and then inside of a Framework folder you can have various
+
+39
+00:03:40,000 --> 00:03:46,000
+installations of the .NET Framework, multiple versions. And if I tab through here, you can see I have
+
+40
+00:03:46,000 --> 00:03:51,000
+various versions installed, version 1, version 1.1, version 2. I want to go to the latest version,
+
+41
+00:03:51,000 --> 00:03:58,000
+which is the version 4 directory because inside of there, there will be a little program that I can run called csc.
+
+42
+00:03:58,000 --> 00:04:06,000
+Csc, as you can see, is the Visual C# Compiler, so C# code is code that needs to be compiled before it can execute.
+
+43
+00:04:06,000 --> 00:04:11,000
+This is unlike some other languages, languages like Perl, and Ruby, and Python.
+
+44
+00:04:11,000 --> 00:04:17,000
+What I need to do with the C# code is pass it through the C# compiler, and what the C# compiler will do is
+
+45
+00:04:17,000 --> 00:04:24,000
+produce an executable that I can run. So if I say csc, and then follow that with the parameter hello.cs,
+
+46
+00:04:24,000 --> 00:04:32,000
+I'm asking the C# compiler to compile hello.cs. And if the compiler encounters any problems, it will complain,
+
+47
+00:04:32,000 --> 00:04:37,000
+but it looks like it finished successfully. And inside of this folder now I can see hello.exe, so the act of
+
+48
+00:04:37,000 --> 00:04:45,000
+compiling hello.cs produced hello.exe, and the exe extension means this is a executable file,
+
+49
+00:04:45,000 --> 00:04:52,000
+something that I can run from the command line. And if I run it just by typing in hello.exe, I get Hello, World!
+
+50
+00:04:52,000 --> 00:04:57,000
+Now as I said before, typically you don't use csc directly. Instead, you use Visual Studio, and Visual Studio
+
+51
+00:04:57,000 --> 00:05:04,000
+will figure out the way to call csc correctly. But I do just want to point out that csc might give you some error messages.
+
+52
+00:05:04,000 --> 00:05:11,000
+So, for example, let's say that I forget the semicolon after using system, and I recompile the application.
+
+53
+00:05:11,000 --> 00:05:20,000
+The C# compiler here is very explicit, and it says semicolon was expected on line 1, column 13.
+
+54
+00:05:20,000 --> 00:05:27,000
+Unfortunately, not all error messages are so explicit. Let's come down and leave off an opening curly brace
+
+55
+00:05:27,000 --> 00:05:31,000
+here on my method because now the C# compiler won't know where this method starts.
+
+56
+00:05:31,000 --> 00:05:36,000
+And if I save that file and try to compile it again, this one missing character actually generated three
+
+57
+00:05:36,000 --> 00:05:42,000
+different error messages, is telling me a semicolon was expected, and there's an invalid token.
+
+58
+00:05:42,000 --> 00:05:46,000
+And over time you'll become accustomed to these error messages and become accustomed to looking at your C#
+
+59
+00:05:46,000 --> 00:05:51,000
+code and figuring out things like, oh I just had a missing curly brace here.
+
+60
+00:05:51,000 --> 00:05:56,000
+And if I save this file again, we should be back in working order, but let's make one more change.
+
+61
+00:05:56,000 --> 00:06:02,000
+Instead of displaying the text Hello, World, let's use some more code from that previous slide, and I want
+
+62
+00:06:02,000 --> 00:06:06,000
+to print out the current day of the week. And I can do that by using the DateTime class.
+
+63
+00:06:06,000 --> 00:06:11,000
+That DateTime class is also in the system namespace, so it is available to me.
+
+64
+00:06:11,000 --> 00:06:16,000
+I can have multiple using statements here, but the only classes I'm using for this simple example are classes
+
+65
+00:06:16,000 --> 00:06:25,000
+that are in the System namespace. I'm going to say please print out DataTime.Now.DayOfWeek.
+
+66
+00:06:25,000 --> 00:06:32,000
+And I'll save hello.cs again. I need to recompile it for csc to pick up those changes and produce a new
+
+67
+00:06:32,000 --> 00:06:38,000
+executable, but now I should be able to run hello.exe. And you can see that this example is being recorded
+
+68
+00:06:38,000 --> 00:06:44,000
+on a Wednesday. So this simple example has a lot of very deep concepts, concepts like classes and strange
+
+69
+00:06:44,000 --> 00:06:50,000
+keywords like static and void. I want you to ignore some of those specific syntax details for right now.
+
+70
+00:06:50,000 --> 00:06:54,000
+We'll get to the point where you can understand all of those. For right now, I just want to take a step back
+
+71
+00:06:54,000 --> 00:06:59,000
+and talk about this compiler that we're using, and after that we can jump into Visual Studio
+
+72
+00:06:59,000 --> 00:59:00,000
+and get the same code running from Visual Studio.
+

@@ -1,0 +1,336 @@
+1
+00:00:01,000 --> 00:00:06,000
+In this module we're going to continue to work with the GradeBook that we created in the last video module,
+
+2
+00:00:06,000 --> 00:00:12,000
+and here inside of Visual Studio I want to point out some features that relate to creating and using other assemblies.
+
+3
+00:00:12,000 --> 00:00:18,000
+First of all, we know now that when I do a build in Visual Studio all of my source code files, all of the .cs
+
+4
+00:00:18,000 --> 00:00:24,000
+files will be collected together and built into an assembly, and we can find that assembly if we go to the
+
+5
+00:00:24,000 --> 00:00:29,000
+location where we stored this project on disk and open up a command prompt.
+
+6
+00:00:29,000 --> 00:00:35,000
+The compiler by default will build an assembly into the bin, for binaries, Debug directory.
+
+7
+00:00:35,000 --> 00:00:40,000
+And inside of here if I list the files, I told you before there's a number of files in here that are related
+
+8
+00:00:40,000 --> 00:00:46,000
+to just debugging information, but Grades.exe that is the assembly that the C# compiler produced, and that is
+
+9
+00:00:46,000 --> 00:00:51,000
+an assembly that I can run because it's an executable, and it prints out statistical information about the
+
+10
+00:00:51,000 --> 00:00:57,000
+grades that I've entered into the GradeBook. Now what rules does the C# compiler use to produce Grades.exe?
+
+11
+00:00:57,000 --> 00:01:02,000
+Why does it pick that name? Why does it pick that extension, .exe?
+
+12
+00:01:02,000 --> 00:01:09,000
+I'm going to right-click on the project node Grades and go to Properties, and under Properties I want to go
+
+13
+00:01:09,000 --> 00:01:15,000
+to the Application tab. Now back in the last module when we created this project with File, New, Project,
+
+14
+00:01:15,000 --> 00:01:21,000
+I told Visual Studio that I wanted to create a console application name Grades, so by default Visual Studio
+
+15
+00:01:21,000 --> 00:01:26,000
+just configured a number of settings for me. For example, it configured the assembly name to have the same
+
+16
+00:01:26,000 --> 00:01:30,000
+name as my project, so the assembly name is going to be Grades.
+
+17
+00:01:30,000 --> 00:01:37,000
+But how does Visual Studio and the C# compiler then know whether to put on an .exe or a .dll extension?
+
+18
+00:01:37,000 --> 00:01:42,000
+The extension is controlled by this Output type setting. It's in here where I can select if I want this to
+
+19
+00:01:42,000 --> 00:01:47,000
+be an application, Console Application or Windows Application. A Windows Application would be an application
+
+20
+00:01:47,000 --> 00:01:53,000
+that puts up windows on the screen. Since we're running this from the command line, we have Console Application selected.
+
+21
+00:01:53,000 --> 00:01:59,000
+But I just want to show you what would happen if I selected Class Library instead.
+
+22
+00:01:59,000 --> 00:02:07,000
+A Class Library produces a dll, and if I build this project and I come back out to the console window,
+
+23
+00:02:07,000 --> 00:02:11,000
+let's do a directory again, and now I can see I have Grades.dll.
+
+24
+00:02:11,000 --> 00:02:16,000
+Unfortunately, Grades.dll is not something that I can execute.
+
+25
+00:02:16,000 --> 00:02:20,000
+Windows will give me an error and says it doesn't know what to do with this .dll file.
+
+26
+00:02:20,000 --> 00:02:25,000
+I would get the same sort of error if I came into Visual Studio and tried to run this with the debugger or
+
+27
+00:02:25,000 --> 00:02:30,000
+even without the debugger. Visual Studio will tell me a project with an output type of Class Library cannot
+
+28
+00:02:30,000 --> 00:02:37,000
+be started directly. So a dynamic-length library that is a .dll file, or what we would more commonly call
+
+29
+00:02:37,000 --> 00:02:43,000
+inside of Visual Studio a class library, that is an assembly, but it's not an assembly that can execute directly.
+
+30
+00:02:43,000 --> 00:02:49,000
+It has to be loaded into some other program, which will use the classes inside of that dll to do work.
+
+31
+00:02:49,000 --> 00:02:55,000
+So let me come back and change this back to being a Console Application, and then if I try to run with or
+
+32
+00:02:55,000 --> 00:03:01,000
+without the debugger, Visual Studio will rebuild that project, and I have a working executable again.
+
+33
+00:03:01,000 --> 00:03:08,000
+So Grades.exe is again an assembly that I have on disk that I can execute directly.
+
+34
+00:03:08,000 --> 00:03:12,000
+And this is not the only assembly involved in the execution of this program.
+
+35
+00:03:12,000 --> 00:03:18,000
+I'm also relying on other assemblies like MSCorLib to give me classes like Console and Math.
+
+36
+00:03:18,000 --> 00:03:24,000
+We used the Math class in the last module to help compute some of our statistics like highest grade and lowest grade.
+
+37
+00:03:24,000 --> 00:03:29,000
+That was inside of GradeBook.cs. Here you can see I'm using the Math type.
+
+38
+00:03:29,000 --> 00:03:34,000
+Whenever you're using a class from the .NET Framework, or really any other third-party assembly,
+
+39
+00:03:34,000 --> 00:03:40,000
+you can always place the cursor on the name of that class and press the F12 key.
+
+40
+00:03:40,000 --> 00:03:47,000
+What Visual Studio will do is open up an editor window with what looks like the source code to that particular class.
+
+41
+00:03:47,000 --> 00:03:51,000
+It's not really the full source code, Visual Studio is just trying to show you what's available on the Math
+
+42
+00:03:51,000 --> 00:03:57,000
+class, and here I can see there are methods to call to get an absolute number and an arctangent and a logarithm.
+
+43
+00:03:57,000 --> 00:04:02,000
+What I just want to point out here is at the very top of the file Visual Studio will tell me what assembly
+
+44
+00:04:02,000 --> 00:04:10,000
+this type lives in. So the Math class that has static methods we can invoke directly, it lives in the assembly mscorlib.
+
+45
+00:04:10,000 --> 00:04:16,000
+And if I want to see all of the assemblies that I might be using during execution of my program, I can come
+
+46
+00:04:16,000 --> 00:04:20,000
+into the Solution Explorer window and open this References node.
+
+47
+00:04:20,000 --> 00:04:27,000
+All of the little block icons in here are specifying the names of other assemblies that my project references.
+
+48
+00:04:27,000 --> 00:04:32,000
+So there's a couple of things to note here. One, by default when you create a new project with Visual Studio,
+
+49
+00:04:32,000 --> 00:04:36,000
+Visual Studio will give you a number of assembly references. These are common assemblies that many
+
+50
+00:04:36,000 --> 00:04:41,000
+applications use, but our application doesn't actually use all of the assemblies that are listed here.
+
+51
+00:04:41,000 --> 00:04:45,000
+And that's okay. It's not an error to reference an assembly that you don't use.
+
+52
+00:04:45,000 --> 00:04:51,000
+In fact, there may not even be a performance overhead to that because .NET will only load an assembly when
+
+53
+00:04:51,000 --> 00:04:55,000
+you actually start to use a class from that assembly inside of a program.
+
+54
+00:04:55,000 --> 00:05:02,000
+But an assembly like System.Net.Http, that's an assembly that I could use to make calls over the network
+
+55
+00:05:02,000 --> 00:05:06,000
+using the HTTP protocol. It's not something that my program actually does.
+
+56
+00:05:06,000 --> 00:05:13,000
+I can right-click this assembly and Remove, and I'll still be able to build the program and everything works.
+
+57
+00:05:13,000 --> 00:05:17,000
+If you remove an assembly that has a class that you are using, you will get a build error.
+
+58
+00:05:17,000 --> 00:05:23,000
+Now one assembly that you might notice is not here is MSCorLib, and that's because MSCorLib is such an
+
+59
+00:05:23,000 --> 00:05:29,000
+essential assembly that nearly every .NET application has to have that Visual Studio doesn't even list that
+
+60
+00:05:29,000 --> 00:05:34,000
+assembly in the references. It's just implied that you'll be using MSCorLib.
+
+61
+00:05:34,000 --> 00:05:38,000
+Now one additional feature that I want to point out is quite often you'll want to be able to see what
+
+62
+00:05:38,000 --> 00:05:43,000
+inside of an assembly. You just want to be able to explore and see what classes might be available.
+
+63
+00:05:43,000 --> 00:05:49,000
+That's the job of the Object Browser. So if I come to the View menu one, of the options here will be the
+
+64
+00:05:49,000 --> 00:05:52,000
+Object Browser window. There's actually a couple of ways to open this.
+
+65
+00:05:52,000 --> 00:05:58,000
+I can get to it from the View menu. I can also right-click an assembly over here and say View in Object Browser.
+
+66
+00:05:58,000 --> 00:06:03,000
+That will open the Object Browser and put the focus right on that assembly inside the Object Browser.
+
+67
+00:06:03,000 --> 00:06:09,000
+So the Object Browser allows you to look through all of the namespaces and all of the types that are inside
+
+68
+00:06:09,000 --> 00:06:15,000
+of an assembly. So I can see here's my Grades assembly. What's inside of my Grades assembly?
+
+69
+00:06:15,000 --> 00:06:21,000
+There is a Grades namespace, and inside of that namespace I have three classes, the GradeBook Class,
+
+70
+00:06:21,000 --> 00:06:26,000
+and the GradeStatistics, and the Program classes. Those are all classes that we implemented.
+
+71
+00:06:26,000 --> 00:06:32,000
+And what's inside of mscorlib? Inside of mscorlib you'll find dozens of namespaces, and inside of each
+
+72
+00:06:32,000 --> 00:06:36,000
+namespace can be dozens, maybe even over a hundred different types.
+
+73
+00:06:36,000 --> 00:06:43,000
+So here inside of mscorlib inside of the System namespace, this is where I will find classes like Console.
+
+74
+00:06:43,000 --> 00:06:46,000
+And if I click on Console, the Object Browser goes one step further.
+
+75
+00:06:46,000 --> 00:06:51,000
+Over here on the right hand side I can see all of the methods that are available on that Console class.
+
+76
+00:06:51,000 --> 00:06:57,000
+So I can see that there is a ReadLine, which is a method we used in the first module of this course to read a
+
+77
+00:06:57,000 --> 00:07:01,000
+user's name and find out how much sleep they had the previous evening.
+
+78
+00:07:01,000 --> 00:07:06,000
+Also inside of here would be the Math class, so that's another way I could look and explore what can I do
+
+79
+00:07:06,000 --> 00:07:13,000
+with this Math class that is in mscorlib. Now so far inside of our Grades program we haven't needed any
+
+80
+00:07:13,000 --> 00:07:19,000
+classes from assemblies that we don't have referenced. That is when Visual Studio set up this project,
+
+81
+00:07:19,000 --> 00:07:23,000
+it gave us access to all of the classes that we'd ever need for this GradeBook.
+
+82
+00:07:23,000 --> 00:07:28,000
+Most of things that we use are in mscorlib or in System. But in the next clip let's try something a little
+
+83
+00:07:28,000 --> 00:07:34,000
+bit different and see what we have to do if we need to use a class that is in an assembly that we don't
+
+84
+00:07:34,000 --> 00:59:00,000
+currently have referenced.
+

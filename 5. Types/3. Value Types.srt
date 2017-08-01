@@ -1,0 +1,240 @@
+1
+00:00:00,000 --> 00:00:06,000
+As I mentioned earlier, every type in .NET falls into one of two categories. Every time is either a
+
+2
+00:00:06,000 --> 00:00:13,000
+reference type or a value type. A variable that is typed as a value type does not hold a memory address or a
+
+3
+00:00:13,000 --> 00:00:20,000
+pointer, it holds a value itself. For example, integers and floats are value types in .NET.
+
+4
+00:00:20,000 --> 00:00:25,000
+If I have a variable called x1, and it's of type int, and I use it as a variable inside of a method,
+
+5
+00:00:25,000 --> 00:00:32,000
+if I give that variable the value 100, the value 100 is literally stored inside the memory location of variable x1.
+
+6
+00:00:32,000 --> 00:00:35,000
+There's no pointer here, the value is wholly inside that variable.
+
+7
+00:00:35,000 --> 00:00:40,000
+I can have another variable of type int, let's call it x2, and I can assign it the value 4, and that value 4
+
+8
+00:00:40,000 --> 00:00:46,000
+is inside the variable, this is unlike the GradeBook variables we've created, g1 and g2,
+
+9
+00:00:46,000 --> 00:00:51,000
+because those variables hold pointers to an object. Now why do we have these two different types?
+
+10
+00:00:51,000 --> 00:00:56,000
+Well value types exist because they are generally faster to allocate in memory than reference types,
+
+11
+00:00:56,000 --> 00:01:02,000
+that's one reason for the distinction. Creating an object is more expensive than creating a value type like
+
+12
+00:01:02,000 --> 00:01:10,000
+an integer, and some programs need lots of value types to exist, millions of number for example in a mathematically-oriented program.
+
+13
+00:01:10,000 --> 00:01:14,000
+So value types are very fast, and they are also usually small. It takes a lot less memory to store an
+
+14
+00:01:14,000 --> 00:01:20,000
+integer than it does to store an entire GradeBook. Many primitive types in .NET are value types,
+
+15
+00:01:20,000 --> 00:01:25,000
+primitive types being those low-level primitives that we can't program without, types like integers and
+
+16
+00:01:25,000 --> 00:01:30,000
+floating point numbers, these are small values that store themselves directly in a variable.
+
+17
+00:01:30,000 --> 00:01:35,000
+And one thing we'll revisit later is that value types are typically immutable, meaning you cannot change the
+
+18
+00:01:35,000 --> 00:01:42,000
+value of a value type. That doesn't mean I cannot change the value inside of a variable, I can always walk
+
+19
+00:01:42,000 --> 00:01:48,000
+up to an integer variable named x2 and give it a different value, I could change it from a 4 to a 3,
+
+20
+00:01:48,000 --> 00:01:54,000
+but that value 4 and that value 3, those values I cannot change, the value 4 is always the value 4,
+
+21
+00:01:54,000 --> 00:01:59,000
+the value 3 is always the value 3. And an obvious question at this point would be how do you know when
+
+22
+00:01:59,000 --> 00:02:03,000
+you're working with a value type, and how do you know when you're working with a reference type, and how do
+
+23
+00:02:03,000 --> 00:02:07,000
+you create your own value types, we've seen how to create reference types.
+
+24
+00:02:07,000 --> 00:02:12,000
+Any time we create a class like the GradeBook we're creating a reference type, but what about value types,
+
+25
+00:02:12,000 --> 00:02:17,000
+we'll answer these questions very soon, but first let's jump into Visual Studio, and do some more experiments.
+
+26
+00:02:17,000 --> 00:02:23,000
+Inside of Visual Studio we're doing some experiments with types inside of unit tests, and so far we've
+
+27
+00:02:23,000 --> 00:02:29,000
+written a test that says variables hold a reference, but now we know this is only true if the variable is
+
+28
+00:02:29,000 --> 00:02:33,000
+typed as a reference type, which is the case for GradeBook, it's a reference type.
+
+29
+00:02:33,000 --> 00:02:39,000
+So let's be a little more explicit with this test name, and say that GradeBookVariablesHoldAReference,
+
+30
+00:02:39,000 --> 00:02:43,000
+and now write a test that looks very similar, but with a value type.
+
+31
+00:02:43,000 --> 00:02:48,000
+I'm going to create a new test by using a code snippet, we've use d code snippets before, in this case the
+
+32
+00:02:48,000 --> 00:02:55,000
+code snippet is testm, I just need to type those characters, and press Tab twice, Visual Studio will generate
+
+33
+00:02:55,000 --> 00:03:00,000
+a test method for me, so press Tab twice, and now after inserting the snippet the name of this method is
+
+34
+00:03:00,000 --> 00:03:09,000
+selected by the editor, I can immediately start typing to change the name, so let's name this method IntVariablesHoldavalue.
+
+35
+00:03:09,000 --> 00:03:15,000
+And I want to write a test that is very similar to our other test, I want to create one variable,
+
+36
+00:03:15,000 --> 00:03:21,000
+let's call it x1, and we'll give it the value 100, create a second variable x2, and copy the value that is
+
+37
+00:03:21,000 --> 00:03:27,000
+inside of x1 into x2. We did the same thing with the GradeBook, but in the case of the GradeBook the value
+
+38
+00:03:27,000 --> 00:03:33,000
+that is inside the variable is a pointer, so with GradeBooks we have two variables pointing to the same object.
+
+39
+00:03:33,000 --> 00:03:42,000
+The question is with integers, if I make a change to x1, and give it the value 4, can I still assert that x1
+
+40
+00:03:42,000 --> 00:03:51,000
+and x2 are equal? Let's press Ctrl+ RA to run all the tests and find out, and the answer is no,
+
+41
+00:03:51,000 --> 00:03:59,000
+that test failed because x1 now holds the value 4, x2 still holds the value 100 that I copied into it.
+
+42
+00:03:59,000 --> 00:04:04,000
+So with the GradeBook variables I can point two variables to the same object, and then make a change to that
+
+43
+00:04:04,000 --> 00:04:08,000
+object through either of those variables, and the change will be visible through the other variable,
+
+44
+00:04:08,000 --> 00:04:13,000
+but that's not the case with value types. If I copy a different value into the x2 variable,
+
+45
+00:04:13,000 --> 00:04:18,000
+that's completely independent from the storage location of x1, so I don't see that change reflected here,
+
+46
+00:04:18,000 --> 00:04:28,000
+I would have to assert that these two are not equal, and then run the test, it should pass, which it does.
+
+47
+00:04:28,000 --> 00:04:34,000
+Now if you want a good exercise to test yourself and really grasp this concept of reference types versus
+
+48
+00:04:34,000 --> 00:04:40,000
+values types, try to figure out what would happen if I add this line of code inside of GradeBookVariablesHoldAReference.
+
+49
+00:04:40,000 --> 00:04:46,000
+I'm going to say just before assigning g1.Name g1 equals a new GradeBook.
+
+50
+00:04:46,000 --> 00:04:51,000
+What you should do is pause the video, and then think about if any other changes are required inside of this
+
+51
+00:04:51,000 --> 00:04:59,000
+test method to make the test pass. That is do you have to change the assert from are equal to are not equal?
+
+52
+00:04:59,000 --> 00:05:02,000
+And hopefully you have tried that, hopefully you came up with the correct answer.
+
+53
+00:05:02,000 --> 00:05:07,000
+The correct answer is that I would have to change the assert because I have assigned a new value into g1,
+
+54
+00:05:07,000 --> 00:05:12,000
+I have given it a pointer to a new GradeBook, a second GradeBook object.
+
+55
+00:05:12,000 --> 00:05:17,000
+I'm changing the name of that second GradeBook, but g2 is still pointing to the first GradeBook that I
+
+56
+00:05:17,000 --> 00:05:26,000
+created, therefore that first GradeBook doesn't have a name, and that assert.AreEqual g1.Name, g2.Name, that would fail.
+
+57
+00:05:26,000 --> 00:05:30,000
+So these are the kinds of tests and experiments that you can do inside of Visual Studio with unit tests to
+
+58
+00:05:30,000 --> 00:05:34,000
+really see if you are understanding some of the language concepts and features.
+
+59
+00:05:34,000 --> 00:05:39,000
+And now that we've seen how these two behave, let's answer those questions of how do I know I'm working with
+
+60
+00:05:39,000 --> 00:59:00,000
+a value type, and how do I create a value type.
+

@@ -1,0 +1,448 @@
+1
+00:00:00,000 --> 00:00:06,000
+After a try statement you can optionally include a finally statement.
+
+2
+00:00:06,000 --> 00:00:12,000
+The finally statement allows you to specify a block of code that is always going to execute even if there's
+
+3
+00:00:12,000 --> 00:00:17,000
+an exception inside of the try block. So the finally code executes when there is an exception,
+
+4
+00:00:17,000 --> 00:00:23,000
+and when there is no exception, and that makes the finally block a good place to add finalization code,
+
+5
+00:00:23,000 --> 00:00:27,000
+that is, code that will clean up resources that you might have acquired previously.
+
+6
+00:00:27,000 --> 00:00:34,000
+In .NET we talk about managed resources, but really the only resource being managed by the .NET runtime is memory.
+
+7
+00:00:34,000 --> 00:00:40,000
+The runtime knows what memory you are using and what memory you are no longer using and it cleans things up for you.
+
+8
+00:00:40,000 --> 00:00:45,000
+There are other resources you'll probably need in an application, resources like a data file,
+
+9
+00:00:45,000 --> 00:00:50,000
+or a network socket, or a database connection, and when you're working with these resources it's important
+
+10
+00:00:50,000 --> 00:00:54,000
+to close, or release, or free these resources when you're finished.
+
+11
+00:00:54,000 --> 00:00:58,000
+Otherwise you can leave behind corrupt data or run out of these resources.
+
+12
+00:00:58,000 --> 00:01:02,000
+In this sample we're opening up a file on disk, and we want to make sure it's closed even if there's an
+
+13
+00:01:02,000 --> 00:01:09,000
+exception that's thrown. We can do that with a try finally by putting a file.Close call inside of the
+
+14
+00:01:09,000 --> 00:01:14,000
+finally block, and although I didn't show it in this example, you can also have one or more catch statements
+
+15
+00:01:14,000 --> 00:01:20,000
+in here that try to catch exceptions. Many of the classes in .NET that represent unmanaged resources,
+
+16
+00:01:20,000 --> 00:01:27,000
+that is resources that you have to explicitly close, they all implement a special interface known as IDisposible.
+
+17
+00:01:27,000 --> 00:01:32,000
+We'll talk more about interfaces in the next module too, for now just know that if an object has
+
+18
+00:01:32,000 --> 00:01:38,000
+a disposed method that you can see in IntelliSense, chances are the object is a disposable object,
+
+19
+00:01:38,000 --> 00:01:42,000
+and you can implement the try finally logic in a cleaner way with a using statement.
+
+20
+00:01:42,000 --> 00:01:47,000
+This is not a using statement for namespaces like we saw earlier, this is a using statement that will make
+
+21
+00:01:47,000 --> 00:01:53,000
+sure an object is properly disposed and resources are freed, even if there is an exception.
+
+22
+00:01:53,000 --> 00:01:58,000
+So in the code snippet I'm using two FileStreams, and these FileStreams will be available throughout the code
+
+23
+00:01:58,000 --> 00:02:04,000
+that is inside of the curly braces beneath the using statements, and once we reach the bottom curly brace,
+
+24
+00:02:04,000 --> 00:02:11,000
+the C# compiler will generate code to make that these FileStreams are properly disposed and they're properly closed.
+
+25
+00:02:11,000 --> 00:02:16,000
+That makes sure that all the data that we might have written to a file will be flushed out to disk,
+
+26
+00:02:16,000 --> 00:02:20,000
+and also these files won't be locked and prevent someone else from opening up the file.
+
+27
+00:02:20,000 --> 00:02:23,000
+Let's take a closer look in code.
+
+28
+00:02:23,000 --> 00:02:28,000
+Let's work with a file in the Grades project. What I'd like to do is have the GradeBook write the grades
+
+29
+00:02:28,000 --> 00:02:33,000
+that it stores into a text file, and we already have a WriteGrades method on the GradeBook that allows the
+
+30
+00:02:33,000 --> 00:02:39,000
+caller to set the destination using a parameter. In this case the destination is the Console,
+
+31
+00:02:39,000 --> 00:02:46,000
+so all my program really needs to do is swap Console.Out with an object that will write to a file instead.
+
+32
+00:02:46,000 --> 00:02:51,000
+And this can be fairly easy with the .NET Framework. There is a file class in the .NET Framework,
+
+33
+00:02:51,000 --> 00:02:57,000
+it's in the System.IO namespace, so I'm going to type in file and press Ctrl., that will bring up the action
+
+34
+00:02:57,000 --> 00:03:04,000
+menu that allows me to select this top entry, which says please add a using statement for System.IO at the top of this file.
+
+35
+00:03:04,000 --> 00:03:10,000
+And now on this file class, there's number of static methods that allow me to easily create, and append,
+
+36
+00:03:10,000 --> 00:03:16,000
+and delete files from the file system. I'm going to choose the method CreateText, I need to give this method
+
+37
+00:03:16,000 --> 00:03:22,000
+a string parameter that tells the framework the name of the file that I want to create, and let's call that
+
+38
+00:03:22,000 --> 00:03:29,000
+file Grades.Text, and you can see this method returns an object that is of type StreamWriter, and it turns
+
+39
+00:03:29,000 --> 00:03:35,000
+out that a StreamWriter is compatible with a TextWriter that the WriteGrades methods expects.
+
+40
+00:03:35,000 --> 00:03:41,000
+So if I press F12 to go that method definition, you'll remember we created this method taking a TextWriter,
+
+41
+00:03:41,000 --> 00:03:50,000
+and a StreamWriter is a type of TextWriter. So let me save the return from File.CreateText into a new
+
+42
+00:03:50,000 --> 00:03:55,000
+variable of type StreamWriter, let's call it outputFile, and now what I should be able to do is pass
+
+43
+00:03:55,000 --> 00:04:03,000
+outputFile into the WriteGrades method, and let's try it out by running the program with Ctrl+F5.
+
+44
+00:04:03,000 --> 00:04:08,000
+I'll need to give the GradeBook a name, let's just give it the name Z, and now I no longer see the grades
+
+45
+00:04:08,000 --> 00:04:12,000
+being written to the console, but let's go out and check our Grades.Text file.
+
+46
+00:04:12,000 --> 00:04:18,000
+Since I didn't specify a full path when I did File.CreateText, this file should be created in the same
+
+47
+00:04:18,000 --> 00:04:23,000
+directory where the program is executing, and one easy way to get to that directory is right-click on the
+
+48
+00:04:23,000 --> 00:04:30,000
+Grades project, say Open Folder in File Explorer, and then I can navigate to the folder where the actual
+
+49
+00:04:30,000 --> 00:04:36,000
+assembly lives, so that's the bin, Debug folder, and it's inside of here where I can see a text document,
+
+50
+00:04:36,000 --> 00:04:40,000
+grades.Text, let's open that up and you can see that it is empty.
+
+51
+00:04:40,000 --> 00:04:44,000
+Now this file may not always be empty, it might depend on other things that you're doing in your program,
+
+52
+00:04:44,000 --> 00:04:50,000
+or if you're doing anything with the debugger, but what's happened here is I have written information into
+
+53
+00:04:50,000 --> 00:04:55,000
+a stream, and you have to be a little bit careful with any type of stream, whether it's a FileStream or a
+
+54
+00:04:55,000 --> 00:05:01,000
+NetworkStream, streams have a tendency to buffer information that you write into them, and if you don't
+
+55
+00:05:01,000 --> 00:05:07,000
+properly flush that stream, or close that stream, or dispose that stream, there's a chance your program could
+
+56
+00:05:07,000 --> 00:05:11,000
+exit without the information ever arriving at the actual destination.
+
+57
+00:05:11,000 --> 00:05:18,000
+So this StreamWriter, it does have a Close method, and let's just see what happens if I explicitly invoke
+
+58
+00:05:18,000 --> 00:05:24,000
+this Close method, run the program again, give the GradeBook a simple name, and now come back out to the
+
+59
+00:05:24,000 --> 00:05:30,000
+folder, and open up this text file, and I can see the grades did successfully arrive inside of the text file,
+
+60
+00:05:30,000 --> 00:05:37,000
+so that's good, but typically you don't want to write your code in this style when you're writing a real C# application.
+
+61
+00:05:37,000 --> 00:05:42,000
+Anytime you're working with input and output, there's always a chance for an exception, and you might say
+
+62
+00:05:42,000 --> 00:05:47,000
+well, what types of exceptions? For example, you might be wondering what types of exceptions could
+
+63
+00:05:47,000 --> 00:05:53,000
+File.CreateText throw? And one way to answer that question is to go to the documentation.
+
+64
+00:05:53,000 --> 00:05:58,000
+Since the File class is part of the .NET Framework, I can go to msdn.microsoft.com,
+
+65
+00:05:58,000 --> 00:06:03,000
+the Microsoft Developer Network, and I should be able to find documentation of File.Create.
+
+66
+00:06:03,000 --> 00:06:13,000
+So let me do a search for File.CreateText, and here is that method as the first result in the search list,
+
+67
+00:06:13,000 --> 00:06:18,000
+and as part of the documentation for this method, there will be a list of exceptions that this method could
+
+68
+00:06:18,000 --> 00:06:22,000
+potentially throw. And you can see there might be an UnauthorizedAccessException,
+
+69
+00:06:22,000 --> 00:06:29,000
+or an ArgumentException if I pass an invalid path. The path could also be too long, Windows has a limitation
+
+70
+00:06:29,000 --> 00:06:36,000
+on the maximum length of a path and file name. I could also be trying to create this file in a directory
+
+71
+00:06:36,000 --> 00:06:42,000
+that doesn't exist. So all sorts of things could go wrong. And ideally what I would do, is I would use this
+
+72
+00:06:42,000 --> 00:06:50,000
+StreamWriter inside of a try, catch, finally construct, where inside of the finally I would do something like,
+
+73
+00:06:50,000 --> 00:06:55,000
+outputFile.Close to make sure that no matter what goes wrong inside of creating the file or writing the
+
+74
+00:06:55,000 --> 00:07:02,000
+grades, I'll always be closing this file that I'm creating. But the try and the catch is only useful if I
+
+75
+00:07:02,000 --> 00:07:06,000
+actually want to do some sort of exception handling and process exceptions.
+
+76
+00:07:06,000 --> 00:07:13,000
+And so an alternative approach to making sure this output file is always closed, is to wrap this StreamWriter
+
+77
+00:07:13,000 --> 00:07:19,000
+with a using statement. The using statement is essentially saying I'm going to be using this unmanaged
+
+78
+00:07:19,000 --> 00:07:25,000
+resource, this StreamWriter in the following block of code. So I will use curly braces to contain all the
+
+79
+00:07:25,000 --> 00:07:30,000
+code that's going to be using that resource, and behind the scenes what the C# complier will do is
+
+80
+00:07:30,000 --> 00:07:36,000
+essentially set up a try finally to make sure that if there are any exceptions inside of this block of code,
+
+81
+00:07:36,000 --> 00:07:41,000
+then it will always dispose of this output file. And you can see in the IntelliSense window that there is
+
+82
+00:07:41,000 --> 00:07:47,000
+both a Close method and a Dispose method. And any time you see a Dispose method that's a good indication that
+
+83
+00:07:47,000 --> 00:07:53,000
+you would be able to use this object in a using statement. And many classes in .NET will offer both a
+
+84
+00:07:53,000 --> 00:07:58,000
+Dispose method and then some sort of explicit Close method, and you can think of them as synonyms for one
+
+85
+00:07:58,000 --> 00:08:04,000
+another, and they both ultimately achieve the same effect which is to make sure this unmanaged resources
+
+86
+00:08:04,000 --> 00:08:10,000
+released, and closed, and flushed properly. And since I now have outputFile wrapped with a using statement,
+
+87
+00:08:10,000 --> 00:08:15,000
+I no longer need to explicitly invoke close or dispose, that's going to happen for me.
+
+88
+00:08:15,000 --> 00:08:21,000
+And if book.WriteGrades does throw an exception, it will go unhandled and crash the program, but that's okay,
+
+89
+00:08:21,000 --> 00:08:26,000
+I'm still going to make that these resources are cleaned up. If CreateText throws an exception,
+
+90
+00:08:26,000 --> 00:08:31,000
+that will also be an unhandled exception, I have no try catch block here, and in that situation we'll have to
+
+91
+00:08:31,000 --> 00:08:36,000
+assume that the .NET Framework is properly cleaning things up, because if CreateText throws an exception,
+
+92
+00:08:36,000 --> 00:08:42,000
+I'm not going to get an outputFile object back, I'm not going to get a StreamWriter.
+
+93
+00:08:42,000 --> 00:08:46,000
+So this code should be a little more robust now, and I should be able to still run the program, enter a name
+
+94
+00:08:46,000 --> 00:08:53,000
+for my GradeBook, and come out to the Grades.Text file, and see that it's populated.
+
+95
+00:08:53,000 --> 00:08:57,000
+And any time you're working with an object and you see there is a dispose method, you'll probably want to
+
+96
+00:08:57,000 --> 00:09:02,000
+consider if you should be using a using statement or not. Now there's one more thing that I want to do to
+
+97
+00:09:02,000 --> 00:09:08,000
+this program before we leave, and that's just clean a few things up because we have various bits of code
+
+98
+00:09:08,000 --> 00:09:14,000
+scattered around this main method doing all sorts of different things, and to me the method just feels messy.
+
+99
+00:09:14,000 --> 00:09:19,000
+So one thing I would like to do is highlight the lines of code that try to achieve a specific goal,
+
+100
+00:09:19,000 --> 00:09:25,000
+like getting the name for a GradeBook, and refactor these bits into individual methods that have a name.
+
+101
+00:09:25,000 --> 00:09:32,000
+And one easy way to do that is to select the code, and then press Ctrl., the only option that pops up here
+
+102
+00:09:32,000 --> 00:09:37,000
+is an ExtractMethod option. This is part of the built-in refactoring tools in Visual Studio,
+
+103
+00:09:37,000 --> 00:09:42,000
+and if I just select this option, Visual Studio will create that method for me and I can name this method
+
+104
+00:09:42,000 --> 00:09:51,000
+now, I could name it something like GetBookName, and when I press Enter, Visual Studio will apply changes
+
+105
+00:09:51,000 --> 00:09:57,000
+throughout my source code, I now have a method that I can call GetBookName, which will contain the code that
+
+106
+00:09:57,000 --> 00:10:04,000
+was previously inside of the main method. Let's do this a few more times, let's also use ExtractMethod on
+
+107
+00:10:04,000 --> 00:10:10,000
+these three lines of code, because what these three lines of code are doing are really adding grades to the
+
+108
+00:10:10,000 --> 00:10:20,000
+GradeBook, then, I'm using a few lines of code here to save the grades to the file system, and finally at the
+
+109
+00:10:20,000 --> 00:10:28,000
+end I'm going to extract a method to write the results. And now to me the main method looks much better because
+
+110
+00:10:28,000 --> 00:10:34,000
+we're breaking down the small steps and individual pieces of the program into named methods that have just a
+
+111
+00:10:34,000 --> 00:10:40,000
+little bit of code inside of each one, and to me that's always a better design that is going to be easier to maintain.
+
+112
+00:10:40,000 --> 00:59:00,000
+We're going to be talking more about design in the next module on Object-Oriented Programming.
+

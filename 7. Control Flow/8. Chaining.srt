@@ -1,0 +1,224 @@
+1
+00:00:00,000 --> 00:00:07,000
+You can follow a try block with multiple catch statements. This is known as chaining the catch statements.
+
+2
+00:00:07,000 --> 00:00:13,000
+And even though we have multiple catch statements, only one of these catch blocks can execute after an
+
+3
+00:00:13,000 --> 00:00:18,000
+exception is thrown from inside of the try block. The catch blocks will be evaluated from top to bottom,
+
+4
+00:00:18,000 --> 00:00:23,000
+and the first one that specifies a matching exception type will be the catch block that executes.
+
+5
+00:00:23,000 --> 00:00:29,000
+And that's why when you chain blocks like this, you want to include the most specific exception types first.
+
+6
+00:00:29,000 --> 00:00:35,000
+And by specific I mean this, DivideByZeroException is specific exception type, but all exception types in
+
+7
+00:00:35,000 --> 00:00:42,000
+.NET derive or inherit from a base exception class with the name just Exception.
+
+8
+00:00:42,000 --> 00:00:47,000
+And we're going to talk more about inheritance and derivation in the next module, for now you can just know
+
+9
+00:00:47,000 --> 00:00:53,000
+that this exception type is special that will catch nearly every type of exception that can be thrown in a C#
+
+10
+00:00:53,000 --> 00:00:59,000
+application, there's just a few very special and very catastrophic exceptions that will always crash a
+
+11
+00:00:59,000 --> 00:01:04,000
+program, you cannot catch them. But because I can catch nearly everything with this exception type,
+
+12
+00:01:04,000 --> 00:01:09,000
+I want to include that catch statement after other catch statements, like a catch statement for
+
+13
+00:01:09,000 --> 00:01:14,000
+DivideByZeroException. If the exception was on the top I'd never get the DivideByZeroException because that
+
+14
+00:01:14,000 --> 00:01:20,000
+is also an instance of an exception type. Let's look at chaining in the demo.
+
+15
+00:01:20,000 --> 00:01:27,000
+Back in Visual Studio let's run the application with the debugger by pressing F5, and now let me enter a name
+
+16
+00:01:27,000 --> 00:01:32,000
+for the GradeBook, and when I press Enter the program generates an unhandled exception.
+
+17
+00:01:32,000 --> 00:01:37,000
+The debugger will automatically stop on a line of code that generates an unhandled exception,
+
+18
+00:01:37,000 --> 00:01:42,000
+and in this case we stopped on the line of code where we are invoking the NameChanged event.
+
+19
+00:01:42,000 --> 00:01:47,000
+And you can see the exception is a NullReferenceException. And what's happened here is that we have
+
+20
+00:01:47,000 --> 00:01:53,000
+declared this public event, NameChanged, but this event currently has the value null because there are no
+
+21
+00:01:53,000 --> 00:01:59,000
+subscribers to this event. And as I've said before, if you try to invoke or use a variable that contains a
+
+22
+00:01:59,000 --> 00:02:05,000
+null reference, you can end up with this NullReferenceException, and currently this exception is unhandled,
+
+23
+00:02:05,000 --> 00:02:09,000
+and this is something to be careful of when you're using events, if no one has subscribed to an event,
+
+24
+00:02:09,000 --> 00:02:13,000
+the event will be null, and that can create a NullReferenceException.
+
+25
+00:02:13,000 --> 00:02:19,000
+This is an unhandled exception because we do not have an exception handler for a NullReferenceException,
+
+26
+00:02:19,000 --> 00:02:25,000
+just an ArgumentException, but let's stop debugging and see if we can prevent the program from crashing.
+
+27
+00:02:25,000 --> 00:02:32,000
+Now the ideal solution to this problem is to make sure that that event is not null before trying to use that
+
+28
+00:02:32,000 --> 00:02:37,000
+NameChanged event. But before we do that, I wanted to use this scenario to show you how you can also catch
+
+29
+00:02:37,000 --> 00:02:45,000
+a NullReferenceException, I can also name this variable ex because it is in a different scope than the ex
+
+30
+00:02:45,000 --> 00:02:50,000
+variable for my ArgumentException, that only exists for the first catch block, and here in the second catch
+
+31
+00:02:50,000 --> 00:02:56,000
+block I can now do a Console.WriteLine, and perhaps just provide a generic error message here like Something
+
+32
+00:02:56,000 --> 00:03:02,000
+went wrong, and you'll notice in this case I'm not even using that variable ex, well the variable is
+
+33
+00:03:02,000 --> 00:03:07,000
+optional, this is a way of telling the C# compiler I want to catch a NullReferenceException, but then I don't
+
+34
+00:03:07,000 --> 00:03:14,000
+need a reference to that exception object, my code has all the logic and data that it needs, I don't need the variable.
+
+35
+00:03:14,000 --> 00:03:21,000
+Now if I run the program, this time I'll run it with Ctrl+F5 without the debugger, enter in some name,
+
+36
+00:03:21,000 --> 00:03:27,000
+and we now get the exception message Something went wrong. I could also try to catch Exception,
+
+37
+00:03:27,000 --> 00:03:35,000
+and let's try to do that first. If I catch Exception, so not ArgumentException but just Exception,
+
+38
+00:03:35,000 --> 00:03:42,000
+both ArgumentException and NullReferenceException, they both are of this exception type, and you can see I
+
+39
+00:03:42,000 --> 00:03:48,000
+even get a complier error that says A previous catch clause already catches all exceptions of this type or a super type.
+
+40
+00:03:48,000 --> 00:03:55,000
+So again more on super types and inheritance in the next module, but if I wanted to catch all exceptions,
+
+41
+00:03:55,000 --> 00:04:02,000
+that catch clause would have to come here at the end. And I could also just use my existing block,
+
+42
+00:04:02,000 --> 00:04:08,000
+and instead of catching a NullReferenceException just catch all exceptions and write out Something went wrong.
+
+43
+00:04:08,000 --> 00:04:13,000
+But I will caution you that that is potentially dangerous, because you won't know if you're catching an
+
+44
+00:04:13,000 --> 00:04:19,000
+exception that is related to security settings, or memory settings, or something went wrong in the input
+
+45
+00:04:19,000 --> 00:04:25,000
+output system, when you catch exception you're catching everything, and we might be allowing the program to
+
+46
+00:04:25,000 --> 00:04:31,000
+continue execution when what really should have let happen is let that exception go unhandled and terminate the program.
+
+47
+00:04:31,000 --> 00:04:36,000
+But when I catch exception I can still enter a name and get that message Something went wrong.
+
+48
+00:04:36,000 --> 00:04:41,000
+And like I say, the proper way to handle this is inside of the GradeBook, and it would actually be rather
+
+49
+00:04:41,000 --> 00:04:48,000
+important to make sure that NameChanged is not a null value before I try to invoke it, and I could do that by
+
+50
+00:04:48,000 --> 00:04:54,000
+adding an additional if statement here, we've talked about nested ifs earlier in this module, or I could also
+
+51
+00:04:54,000 --> 00:04:58,000
+add an additional condition to this Boolean expression. So I could say name is not equal to the existing
+
+52
+00:04:58,000 --> 00:05:07,000
+value, and NameChanged is not equal to null, that way both of those conditions have to be true before we go
+
+53
+00:05:07,000 --> 00:05:15,000
+out and instantiate NameChangedEventArgs and raise this event. And with logic in place, I shouldn't need to
+
+54
+00:05:15,000 --> 00:05:23,000
+catch a NullReferenceException, I should just be able to run the program, enter in a name, and the program continues normally.
+
+55
+00:05:23,000 --> 00:05:27,000
+We're not listening for the NameChanged event, but that's okay, we didn't need any logic in the program
+
+56
+00:05:27,000 --> 00:59:00,000
+to do any sort of processing when that event occurs.
+

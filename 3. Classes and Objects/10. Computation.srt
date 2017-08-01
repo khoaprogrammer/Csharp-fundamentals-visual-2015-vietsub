@@ -1,0 +1,940 @@
+1
+00:00:01,000 --> 00:00:05,000
+Inside of ComputeStatistics in the GradeBook, I need to be able to work with this object
+
+2
+00:00:05,000 --> 00:00:06,000
+of type GradeStatistics.
+
+3
+00:00:06,000 --> 00:00:08,000
+I need to do some calculations and ultimately,
+
+4
+00:00:08,000 --> 00:00:10,000
+I will need to add some fields to that class
+
+5
+00:00:10,000 --> 00:00:13,000
+so that I can store the calculation somewhere.
+
+6
+00:00:13,000 --> 00:00:15,000
+So instead of returning an object immediately,
+
+7
+00:00:15,000 --> 00:00:18,000
+let me create a variable of type GradeStatistics.
+
+8
+00:00:18,000 --> 00:00:21,000
+We can call it stats, point it to that new instance
+
+9
+00:00:21,000 --> 00:00:23,000
+of GradeStatistics.
+
+10
+00:00:23,000 --> 00:00:24,000
+Then we'll need to write some code
+
+11
+00:00:24,000 --> 00:00:26,000
+to compute the statistics and then ultimately,
+
+12
+00:00:26,000 --> 00:00:27,000
+here at the bottom of the method,
+
+13
+00:00:27,000 --> 00:00:29,000
+we will return those statistics.
+
+14
+00:00:29,000 --> 00:00:31,000
+I know I need to find the highest grade, the lowest grade
+
+15
+00:00:31,000 --> 00:00:33,000
+and the average grade, so let's start by computing
+
+16
+00:00:33,000 --> 00:00:34,000
+the average grade.
+
+17
+00:00:34,000 --> 00:00:37,000
+We all know that to compute an average,
+
+18
+00:00:37,000 --> 00:00:39,000
+I need to sum all of the grades in the grades list
+
+19
+00:00:39,000 --> 00:00:41,000
+and then divided by the total number of grades.
+
+20
+00:00:41,000 --> 00:00:43,000
+So let me create a variable.
+
+21
+00:00:43,000 --> 00:00:46,000
+Let's call it sum and initialize it to zero.
+
+22
+00:00:46,000 --> 00:00:48,000
+This will represent the sum of all the grades
+
+23
+00:00:48,000 --> 00:00:50,000
+in the GradeBook, and now I need to go to each grade
+
+24
+00:00:50,000 --> 00:00:52,000
+that is in that GradeBook and add it to the sum.
+
+25
+00:00:52,000 --> 00:00:54,000
+There's an easy way to do this in C#,
+
+26
+00:00:54,000 --> 00:00:57,000
+and that is to use a foreach statement.
+
+27
+00:00:57,000 --> 00:00:59,000
+We will look at the statement in a little more depth
+
+28
+00:00:59,000 --> 00:01:02,000
+later in this course, but what I can do with a foreach
+
+29
+00:01:02,000 --> 00:01:05,000
+is say foreach grade in the grade collection,
+
+30
+00:01:05,000 --> 00:01:07,000
+please take that grade and put it into a variable for me.
+
+31
+00:01:07,000 --> 00:01:10,000
+And I can actually declare this variable inside
+
+32
+00:01:10,000 --> 00:01:11,000
+of the foreach statement.
+
+33
+00:01:11,000 --> 00:01:14,000
+Let's declare the variable, its name will be grade.
+
+34
+00:01:14,000 --> 00:01:19,000
+And I say foreach grade in this field grades,
+
+35
+00:01:19,000 --> 00:01:22,000
+then I apply some curly braces and here's what will happen.
+
+36
+00:01:22,000 --> 00:01:24,000
+Any code that I put inside of these curly braces
+
+37
+00:01:24,000 --> 00:01:26,000
+will execute once for each grade
+
+38
+00:01:26,000 --> 00:01:28,000
+that is in the grades collection.
+
+39
+00:01:28,000 --> 00:01:31,000
+If I have the grades 93, 85 and 80,
+
+40
+00:01:31,000 --> 00:01:33,000
+I'll execute the code inside of this foreach
+
+41
+00:01:33,000 --> 00:01:36,000
+once with the value 93 inside of grade,
+
+42
+00:01:36,000 --> 00:01:38,000
+and then with an 85 and then with an 80.
+
+43
+00:01:38,000 --> 00:01:41,000
+So we are looping over this code once for each grade.
+
+44
+00:01:41,000 --> 00:01:44,000
+And what I need to do with each grade is add that grade
+
+45
+00:01:44,000 --> 00:01:47,000
+to the sum, so I can say sum = sum
+
+46
+00:01:47,000 --> 00:01:49,000
+plus the current grade that I'm looking at.
+
+47
+00:01:49,000 --> 00:01:53,000
+And there's actually a shortcut syntax for this in C#.
+
+48
+00:01:53,000 --> 00:01:54,000
+I can say sum = sum + grade,
+
+49
+00:01:54,000 --> 00:01:58,000
+or I can say sum += grade,
+
+50
+00:01:58,000 --> 00:02:00,000
+and those two statements are equivalent.
+
+51
+00:02:00,000 --> 00:02:03,000
+So sum = sum + grade or sum += grade.
+
+52
+00:02:03,000 --> 00:02:06,000
+That will add the value of the grade into that sum variable,
+
+53
+00:02:06,000 --> 00:02:09,000
+and then I can compute the average just by taking the sum
+
+54
+00:02:09,000 --> 00:02:11,000
+and dividing it by the total number of grades
+
+55
+00:02:11,000 --> 00:02:13,000
+that are in the list, which I can get easily
+
+56
+00:02:13,000 --> 00:02:15,000
+because the list will tell me how many items it holds.
+
+57
+00:02:15,000 --> 00:02:16,000
+But where do I store that value?
+
+58
+00:02:16,000 --> 00:02:17,000
+That number, the AverageGrade,
+
+59
+00:02:17,000 --> 00:02:20,000
+is part of the statistics that I want to publish.
+
+60
+00:02:20,000 --> 00:02:22,000
+So it's probably something that I want to add
+
+61
+00:02:22,000 --> 00:02:24,000
+to the GradeStatistics class.
+
+62
+00:02:24,000 --> 00:02:26,000
+Let's come over there,
+
+63
+00:02:26,000 --> 00:02:28,000
+and I'm going to give this class three fields.
+
+64
+00:02:28,000 --> 00:02:32,000
+The AverageGrade, and I also need to store
+
+65
+00:02:32,000 --> 00:02:36,000
+the HighestGrade and the LowestGrade.
+
+66
+00:02:36,000 --> 00:02:38,000
+So these are three fields that will be present
+
+67
+00:02:38,000 --> 00:02:40,000
+for every instance of GradeStatistics.
+
+68
+00:02:40,000 --> 00:02:43,000
+And over in the GradeBook, I ultimately want to say
+
+69
+00:02:43,000 --> 00:02:46,000
+stats.AverageGrade equals the average,
+
+70
+00:02:46,000 --> 00:02:49,000
+except I don't have access to AverageGrade
+
+71
+00:02:49,000 --> 00:02:51,000
+because AverageGrade, remember,
+
+72
+00:02:51,000 --> 00:02:55,000
+if I don't specify an access modifier for a field or method,
+
+73
+00:02:55,000 --> 00:02:57,000
+the default is for that class member to be private.
+
+74
+00:02:57,000 --> 00:02:59,000
+So AverageGrade is only available
+
+75
+00:02:59,000 --> 00:03:01,000
+inside of the class, GradeStatistics.
+
+76
+00:03:01,000 --> 00:03:04,000
+I need to add public in front of all three of these fields.
+
+77
+00:03:04,000 --> 00:03:05,000
+Now earlier, I said you typically want
+
+78
+00:03:05,000 --> 00:03:07,000
+to encapsulate fields.
+
+79
+00:03:07,000 --> 00:03:09,000
+But in this case, the entire purpose of GradeStatistics
+
+80
+00:03:09,000 --> 00:03:13,000
+is to collect all those data together and expose it.
+
+81
+00:03:13,000 --> 00:03:15,000
+I'm going to make all three of these public.
+
+82
+00:03:15,000 --> 00:03:17,000
+There's an easy way to do that with Visual Studio.
+
+83
+00:03:17,000 --> 00:03:19,000
+I'm going to hold down the alt key on the keyboard
+
+84
+00:03:19,000 --> 00:03:22,000
+and then click the mouse to select
+
+85
+00:03:22,000 --> 00:03:24,000
+three rows inside of the editor.
+
+86
+00:03:24,000 --> 00:03:26,000
+And now when I type the word public,
+
+87
+00:03:26,000 --> 00:03:28,000
+I'm typing that across all three lines of code.
+
+88
+00:03:28,000 --> 00:03:30,000
+So just hold down the alt key and then click
+
+89
+00:03:30,000 --> 00:03:34,000
+and hold the mouse to select multiple lines of code.
+
+90
+00:03:34,000 --> 00:03:36,000
+So I now have three public fields inside of GradeStatistics,
+
+91
+00:03:36,000 --> 00:03:38,000
+and I should be able to say stats.AverageGrade.
+
+92
+00:03:38,000 --> 00:03:42,000
+I can see I have access to that now.
+
+93
+00:03:42,000 --> 00:03:45,000
+It will equal sum divided by,
+
+94
+00:03:45,000 --> 00:03:47,000
+and this is where I can walk up to that list of float,
+
+95
+00:03:47,000 --> 00:03:51,000
+the grades field, and one of the members that it has in here
+
+96
+00:03:51,000 --> 00:03:53,000
+is a member called Count, which will tell me exactly
+
+97
+00:03:53,000 --> 00:03:56,000
+how many items are in that list.
+
+98
+00:03:56,000 --> 00:03:58,000
+One thing I should be careful about is what happens
+
+99
+00:03:58,000 --> 00:04:00,000
+if there are no grades that have been entered?
+
+100
+00:04:00,000 --> 00:04:02,000
+What if I tried to divide by zero
+
+101
+00:04:02,000 --> 00:04:04,000
+because grades.Count is zero?
+
+102
+00:04:04,000 --> 00:04:05,000
+That would be a runtime error
+
+103
+00:04:05,000 --> 00:04:07,000
+and something that would crash the program.
+
+104
+00:04:07,000 --> 00:04:09,000
+This will be a line of code that I need to be careful about.
+
+105
+00:04:09,000 --> 00:04:11,000
+We're going to talk about error handling
+
+106
+00:04:11,000 --> 00:04:13,000
+in a later module of this course.
+
+107
+00:04:13,000 --> 00:04:14,000
+For now, we're just going to assume that the user
+
+108
+00:04:14,000 --> 00:04:16,000
+knows what they're doing
+
+109
+00:04:16,000 --> 00:04:18,000
+and they'll always add at least one grade to the gradebook
+
+110
+00:04:18,000 --> 00:04:20,000
+before they call ComputeStatistics.
+
+111
+00:04:20,000 --> 00:04:23,000
+If the user doesn't enter a grade, the program will crash
+
+112
+00:04:23,000 --> 00:04:25,000
+and say that it tried to divide something by zero.
+
+113
+00:04:25,000 --> 00:04:27,000
+But now we have the average grade computer.
+
+114
+00:04:27,000 --> 00:04:29,000
+What about the highest grade and the lowest grade?
+
+115
+00:04:29,000 --> 00:04:31,000
+In order to compute that, I'm going to need to keep track
+
+116
+00:04:31,000 --> 00:04:34,000
+of what is the highest grade that I've seen so far.
+
+117
+00:04:34,000 --> 00:04:37,000
+So as I'm looking at each grade inside of a foreach loop,
+
+118
+00:04:37,000 --> 00:04:39,000
+I need to compare that grade to some sort of record
+
+119
+00:04:39,000 --> 00:04:41,000
+that I've kept about the current highest grade.
+
+120
+00:04:41,000 --> 00:04:44,000
+And one way to do that would just be
+
+121
+00:04:44,000 --> 00:04:46,000
+to keep a running record of what is the highest grade
+
+122
+00:04:46,000 --> 00:04:48,000
+that I've seen so far.
+
+123
+00:04:48,000 --> 00:04:50,000
+I can do that directly on the stats class and say
+
+124
+00:04:50,000 --> 00:04:54,000
+let's initialize stats.HighestGrade to a very small value,
+
+125
+00:04:54,000 --> 00:04:56,000
+like zero, so that as we're executing the code
+
+126
+00:04:56,000 --> 00:04:58,000
+inside of here, we can always check to see
+
+127
+00:04:58,000 --> 00:05:01,000
+if the current grade is greater than stats.HighestGrade.
+
+128
+00:05:01,000 --> 00:05:03,000
+But many times, I want to examine a piece of code
+
+129
+00:05:03,000 --> 00:05:05,000
+and really think a minute about the responsibilities
+
+130
+00:05:05,000 --> 00:05:06,000
+about the line of code.
+
+131
+00:05:06,000 --> 00:05:07,000
+Where does this code belong?
+
+132
+00:05:07,000 --> 00:05:10,000
+Where should I initialize highest grade?
+
+133
+00:05:10,000 --> 00:05:12,000
+And I'm thinking that the initialization
+
+134
+00:05:12,000 --> 00:05:14,000
+of the highest grade and the lowest grade members
+
+135
+00:05:14,000 --> 00:05:18,000
+will ideally be inside of the GradeStatistics class itself.
+
+136
+00:05:18,000 --> 00:05:21,000
+I could do that by adding a constructor to this class.
+
+137
+00:05:21,000 --> 00:05:25,000
+So once again, the code snippet, ctor, press tab twice,
+
+138
+00:05:25,000 --> 00:05:27,000
+and I can now say inside of here
+
+139
+00:05:27,000 --> 00:05:28,000
+that HighestGrade = 0.
+
+140
+00:05:28,000 --> 00:05:30,000
+And notice I don't have to say stats
+
+141
+00:05:30,000 --> 00:05:33,000
+or access highest grade through some variable.
+
+142
+00:05:33,000 --> 00:05:35,000
+When you're inside of a class, you can always access
+
+143
+00:05:35,000 --> 00:05:37,000
+a member of that class without going through
+
+144
+00:05:37,000 --> 00:05:39,000
+some sort of variable.
+
+145
+00:05:39,000 --> 00:05:41,000
+More on that later, but HighestGrade now starts
+
+146
+00:05:41,000 --> 00:05:46,000
+as a very small value, and I need to initialize LowestGrade
+
+147
+00:05:46,000 --> 00:05:48,000
+ideally to some really high value.
+
+148
+00:05:48,000 --> 00:05:51,000
+Perhaps I could just initialize LowestGrade to 100.
+
+149
+00:05:51,000 --> 00:05:54,000
+I know all of my grades are between zero and 100,
+
+150
+00:05:54,000 --> 00:05:57,000
+but I do want to show you that on this float type,
+
+151
+00:05:57,000 --> 00:05:58,000
+there are some static members.
+
+152
+00:05:58,000 --> 00:06:00,000
+I can see that if I just type float.,
+
+153
+00:06:00,000 --> 00:06:03,000
+the IntelliSense window shows me some static members
+
+154
+00:06:03,000 --> 00:06:05,000
+that are available on the float type.
+
+155
+00:06:05,000 --> 00:06:08,000
+And one of the static members is max value.
+
+156
+00:06:08,000 --> 00:06:10,000
+That's the largest possible number that you could fit
+
+157
+00:06:10,000 --> 00:06:12,000
+into a variable of type float.
+
+158
+00:06:12,000 --> 00:06:15,000
+So I'm going to make LowestGrade this really high value,
+
+159
+00:06:15,000 --> 00:06:17,000
+and now I can come back to the GradeBook
+
+160
+00:06:17,000 --> 00:06:19,000
+and as I inspect each grade, I can see if that grade
+
+161
+00:06:19,000 --> 00:06:21,000
+is higher than the highest grade
+
+162
+00:06:21,000 --> 00:06:23,000
+or lower than the lowest grade.
+
+163
+00:06:23,000 --> 00:06:25,000
+I could do that with an if statement.
+
+164
+00:06:25,000 --> 00:06:28,000
+I could say if the grade is greater than
+
+165
+00:06:28,000 --> 00:06:33,000
+stats.HighestGrade, only then will I execute
+
+166
+00:06:33,000 --> 00:06:34,000
+the following code.
+
+167
+00:06:34,000 --> 00:06:36,000
+We've talked about if statements and branching execution
+
+168
+00:06:36,000 --> 00:06:37,000
+earlier in the course.
+
+169
+00:06:37,000 --> 00:06:39,000
+It's inside of here where I would say okay,
+
+170
+00:06:39,000 --> 00:06:41,000
+the new highest grade for stats
+
+171
+00:06:41,000 --> 00:06:44,000
+will be the grade that I'm currently looking at.
+
+172
+00:06:44,000 --> 00:06:46,000
+This is one way to write the code.
+
+173
+00:06:46,000 --> 00:06:48,000
+But let me show you another approach.
+
+174
+00:06:48,000 --> 00:06:50,000
+I'm going to remove the if statement,
+
+175
+00:06:50,000 --> 00:06:52,000
+and now I'm going to use another class
+
+176
+00:06:52,000 --> 00:06:55,000
+of the .NET framework, the Math class.
+
+177
+00:06:55,000 --> 00:06:57,000
+Math also has some static members,
+
+178
+00:06:57,000 --> 00:07:00,000
+members that make it easy to compute a cosine
+
+179
+00:07:00,000 --> 00:07:03,000
+or a sine, raise a number to a power and so forth.
+
+180
+00:07:03,000 --> 00:07:06,000
+It also has these static members, max and min.
+
+181
+00:07:06,000 --> 00:07:08,000
+These are methods that I can invoke.
+
+182
+00:07:08,000 --> 00:07:10,000
+And what I do when I invoke Math.Max
+
+183
+00:07:10,000 --> 00:07:13,000
+is I pass in two numbers, and Math.Max will return
+
+184
+00:07:13,000 --> 00:07:15,000
+the highest or the maximum of those two numbers.
+
+185
+00:07:15,000 --> 00:07:19,000
+So if I just pass in grade and stats.HighestGrade
+
+186
+00:07:19,000 --> 00:07:22,000
+and assign the result of this operation
+
+187
+00:07:22,000 --> 00:07:25,000
+to stats.HighestGrade, stats.HighestGrade will contain
+
+188
+00:07:25,000 --> 00:07:27,000
+the highest number of these two.
+
+189
+00:07:27,000 --> 00:07:30,000
+I can also do this to set the lowest grade.
+
+190
+00:07:30,000 --> 00:07:34,000
+So the lowest grade would equal Math.Min,
+
+191
+00:07:34,000 --> 00:07:39,000
+or the minimum value between grade and stats.LowestGrade.
+
+192
+00:07:39,000 --> 00:07:42,000
+And now we have some code that will loop over
+
+193
+00:07:42,000 --> 00:07:44,000
+all of the grades in our grade collection,
+
+194
+00:07:44,000 --> 00:07:45,000
+keep track of the highest grade its seen,
+
+195
+00:07:45,000 --> 00:07:47,000
+the lowest grade its seen;
+
+196
+00:07:47,000 --> 00:07:50,000
+and also compute a sum so that it can compute an average.
+
+197
+00:07:50,000 --> 00:07:52,000
+Once all those numbers are put together
+
+198
+00:07:52,000 --> 00:07:54,000
+inside of the GradeStatistics object,
+
+199
+00:07:54,000 --> 00:07:56,000
+we'll return it from ComputeStatistics,
+
+200
+00:07:56,000 --> 00:07:59,000
+and now I should be able to come over into my program
+
+201
+00:07:59,000 --> 00:08:01,000
+and use those statistics.
+
+202
+00:08:01,000 --> 00:08:03,000
+Let's remove some of those code we added earlier,
+
+203
+00:08:03,000 --> 00:08:05,000
+and I just want to write out the stats.
+
+204
+00:08:05,000 --> 00:08:07,000
+First I will also add another grade.
+
+205
+00:08:07,000 --> 00:08:10,000
+Let's add a grade of 75,
+
+206
+00:08:10,000 --> 00:08:12,000
+then we will compute statistics.
+
+207
+00:08:12,000 --> 00:08:14,000
+And I want to write out the average, the highest
+
+208
+00:08:14,000 --> 00:08:15,000
+and the lowest.
+
+209
+00:08:15,000 --> 00:08:17,000
+One way to do a Console.WriteLine really quickly
+
+210
+00:08:17,000 --> 00:08:20,000
+is to use another code snippet, a cw snippet.
+
+211
+00:08:20,000 --> 00:08:25,000
+All I need to do is type the characters cw, press tab twice,
+
+212
+00:08:25,000 --> 00:08:28,000
+and I now have a line of code to invoke Console.WriteLine.
+
+213
+00:08:28,000 --> 00:08:31,000
+Let's write out stats.AverageGrade
+
+214
+00:08:31,000 --> 00:08:35,000
+and then Console.WriteLine, stats.HighestGrade
+
+215
+00:08:35,000 --> 00:08:39,000
+and Console.WriteLine, stats.LowestGrade.
+
+216
+00:08:39,000 --> 00:08:41,000
+I want to run this program without the debugger
+
+217
+00:08:41,000 --> 00:08:44,000
+so Control + F5 will do that,
+
+218
+00:08:44,000 --> 00:08:45,000
+or go to the Debug menu.
+
+219
+00:08:45,000 --> 00:08:47,000
+And the results I get out would show me that
+
+220
+00:08:47,000 --> 00:08:50,000
+the average grade is an 85.16.
+
+221
+00:08:50,000 --> 00:08:53,000
+The highest grade is a 91, the lowest grade is a 75,
+
+222
+00:08:53,000 --> 00:08:54,000
+this whole looks correct.
+
+223
+00:08:54,000 --> 00:08:56,000
+I should change the output so that I put some
+
+224
+00:08:56,000 --> 00:08:58,000
+additional text in front of these numbers
+
+225
+00:08:58,000 --> 00:09:00,000
+to tell the user exactly what numbers they're seeing,
+
+226
+00:09:00,000 --> 00:09:02,000
+but it does look like the gradebook
+
+227
+00:09:02,000 --> 00:09:03,000
+is doing the right computations,
+
+228
+00:09:03,000 --> 00:09:06,000
+and that's all thanks to a couple of classes
+
+229
+00:09:06,000 --> 00:09:08,000
+that we've implemented: the GradeBook and GradeStatistics.
+
+230
+00:09:08,000 --> 00:09:10,000
+Also, thanks to some static members on types
+
+231
+00:09:10,000 --> 00:09:11,000
+in the .NET Framework,
+
+232
+00:09:11,000 --> 00:09:14,000
+things like Float.MaxValue and Math.Min.
+
+233
+00:09:14,000 --> 00:09:17,000
+And we now have a GradeBook with some minimal features
+
+234
+00:09:17,000 --> 00:09:19,000
+but it's something that we can build on
+
+235
+00:09:19,000 --> 00:59:00,000
+throughout the rest of this course.
+

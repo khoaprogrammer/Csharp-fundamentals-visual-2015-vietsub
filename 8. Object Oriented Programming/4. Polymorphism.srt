@@ -1,0 +1,324 @@
+1
+00:00:02,000 --> 00:00:07,000
+Polymorphism is the third pillar of object-oriented programming, and if you know a little bit about the Greek
+
+2
+00:00:07,000 --> 00:00:13,000
+language, which I don't, you'd know that poly stands for many, and morph stands for shape, and thus we're
+
+3
+00:00:13,000 --> 00:00:19,000
+talking about the concept of many shapes. That's a good description for the behavior that we can achieve with C#.
+
+4
+00:00:19,000 --> 00:00:25,000
+I can have a variable of type GradeBook, and I can point to objects with different shapes, so objects with
+
+5
+00:00:25,000 --> 00:00:31,000
+different types, as long as all those objects inherit from or are a GradeBook, then it's legal.
+
+6
+00:00:31,000 --> 00:00:36,000
+So my GradeBook variable can point to a GradeBook, but it can also point to a ThrowAwayGradeBook because
+
+7
+00:00:36,000 --> 00:00:40,000
+again, another way to think about inheritance is to think about is a relationships.
+
+8
+00:00:40,000 --> 00:00:46,000
+We say that a ThrowAwayGradeBook is a GradeBook, it derives from GradeBook, GradeBook is a base class,
+
+9
+00:00:46,000 --> 00:00:51,000
+and any time you have an inheritance relationship you can have a variable typed as a base class that points
+
+10
+00:00:51,000 --> 00:00:57,000
+to an object derived from that base class. I cannot have a variable typed as string that holds an integer
+
+11
+00:00:57,000 --> 00:01:03,000
+value because those two types have no inheritance relationship, but I can declare a variable typed as object
+
+12
+00:01:03,000 --> 00:01:10,000
+and point it to anything, a string, an integer, a date time, a GradeBook, because System.Object is the
+
+13
+00:01:10,000 --> 00:01:15,000
+ultimate base class for anything and everything in .NET. Everything in .NET ultimately derives from
+
+14
+00:01:15,000 --> 00:01:21,000
+System.Object, so if you declare a class and do not explicitly declare a base class for that class,
+
+15
+00:01:21,000 --> 00:01:27,000
+the base class is System.Object, just like the code on the screen is being very explicit in saying the class A
+
+16
+00:01:27,000 --> 00:01:32,000
+inherits from object. I could leave the :object off and have the same result.
+
+17
+00:01:32,000 --> 00:01:41,000
+And class B inherits from class A, which inherits from Object. So an instance of B is an A and is an object.
+
+18
+00:01:41,000 --> 00:01:47,000
+There's also a keyword in C# to work with System.Object, and that's just the word object with a lowercase O.
+
+19
+00:01:47,000 --> 00:01:53,000
+Now in this code, both class A and class B have a DoWork method, and just like with the GradeBooks that we're
+
+20
+00:01:53,000 --> 00:01:56,000
+working with, we want these two methods to behave differently.
+
+21
+00:01:56,000 --> 00:02:02,000
+Now currently we have a ThrowAwayGradeBook, but we assigned that object to a GradeBook variable,
+
+22
+00:02:02,000 --> 00:02:08,000
+and when I call ComputeStatistics, we saw that we're invoking the ComputeStatistics method in the GradeBook,
+
+23
+00:02:08,000 --> 00:02:14,000
+not the ThrowAwayGradeBook, and that's because the C# compiler without any other information, is going to
+
+24
+00:02:14,000 --> 00:02:21,000
+choose the method to invoke based on the type of the variable. If I define a method or a property with a
+
+25
+00:02:21,000 --> 00:02:28,000
+virtual keyword, then the C# compiler will generate code to invoke that method by looking at the type of
+
+26
+00:02:28,000 --> 00:02:33,000
+object it's working against at runtime. Without the virtual keyword the method we invoke is determined by
+
+27
+00:02:33,000 --> 00:02:39,000
+the type of variable that we're invoking the method through. It's the virtual keyword that gives us
+
+28
+00:02:39,000 --> 00:02:44,000
+polymorphism, because now, I can have a variable that points to different objects, and when I invoke methods
+
+29
+00:02:44,000 --> 00:02:49,000
+or properties on those objects, they can all behave differently.
+
+30
+00:02:49,000 --> 00:02:55,000
+Classes that inherit from class A can override that DoWork to behave differently.
+
+31
+00:02:55,000 --> 00:03:00,000
+Let's get a concrete example with our GradeBook.
+
+32
+00:03:00,000 --> 00:03:04,000
+Currently in the GradeBook project we are not achieving polymorphism.
+
+33
+00:03:04,000 --> 00:03:11,000
+We're not achieving polymorphism because ComputeStatistics in my GradeBook class does not use a virtual
+
+34
+00:03:11,000 --> 00:03:19,000
+keyword, and thus, when the C# compiler sees a call to ComputeStatistics through a variable typed as
+
+35
+00:03:19,000 --> 00:03:23,000
+GradeBook, the C# compiler will determine the method to call based on the type of this variable.
+
+36
+00:03:23,000 --> 00:03:29,000
+So it sees GradeBook.ComputeStatistics, it's going to invoke ComputeStatistics, the one that is defined
+
+37
+00:03:29,000 --> 00:03:33,000
+inside of GradeBook.cs. Now let's do a little bit of an experiment.
+
+38
+00:03:33,000 --> 00:03:40,000
+Let's temporarily say that WriteResults has to take an object of type ThrowAwayGradeBook, which means I also
+
+39
+00:03:40,000 --> 00:03:47,000
+need to type this variable as ThrowAwayGradeBook because WriteResults will no longer accept just a GradeBook,
+
+40
+00:03:47,000 --> 00:03:54,000
+it has to have a more specific type, the ThrowAwayGradeBook, and now if I run the program, I can see I call
+
+41
+00:03:54,000 --> 00:04:00,000
+into ThrowAwayGradeBook: :ComputeStatistics, which calls into GradeBook: :ComputeStatistics, and now the
+
+42
+00:04:00,000 --> 00:04:06,000
+average is up to a 90.25 which is an A, we've thrown away the lowest grade, which is what we wanted to do.
+
+43
+00:04:06,000 --> 00:04:11,000
+But I'd like to achieve the same behavior using polymorphism, I'd like to achieve the same behavior leaving
+
+44
+00:04:11,000 --> 00:04:18,000
+this variable typed as GradeBook, and having WriteResults take an object that is just a GradeBook,
+
+45
+00:04:18,000 --> 00:04:24,000
+because with the magic of polymorphism I can implement WriteResults to take a GradeBook and have many
+
+46
+00:04:24,000 --> 00:04:30,000
+different types of GradeBooks and have those objects behave differently without me doing any additional work
+
+47
+00:04:30,000 --> 00:04:36,000
+inside of WriteResults, or tying myself to a specific type of GradeBook, like the ThrowAwayGradeBook.
+
+48
+00:04:36,000 --> 00:04:43,000
+In fact, I'm even going to take this line of code and press Ctrl+., and tell Visual Studio that I want to
+
+49
+00:04:43,000 --> 00:04:51,000
+extract this into a new method. I'm going to call this method CreateGradeBook, and although it might not
+
+50
+00:04:51,000 --> 00:04:57,000
+make a lot of sense here in a simple application like we have with the GradeBook, but there are many times in
+
+51
+00:04:57,000 --> 00:05:03,000
+software where you want the flexibility of having something created for you via a factory class,
+
+52
+00:05:03,000 --> 00:05:08,000
+or a provider, or some sort of infrastructure that's in your application, you just want something to be
+
+53
+00:05:08,000 --> 00:05:14,000
+created for you, know that it has some type like a GradeBook type, that you don't ultimately want to know
+
+54
+00:05:14,000 --> 00:05:20,000
+exactly what type you're working with. Is it a regular GradeBook, is it a ThrowAwayGradeBook, really all the
+
+55
+00:05:20,000 --> 00:05:26,000
+rest of the code that I have inside of Program.cs doesn't care, so I want to work with variables of type
+
+56
+00:05:26,000 --> 00:05:32,000
+GradeBook, but have polymorphic behavior when I invoke methods like ComputeStatistics, and that's when I have
+
+57
+00:05:32,000 --> 00:05:41,000
+to come into GradeBook.cs and use the virtual keyword, because now when the C# compiler sees me invoke
+
+58
+00:05:41,000 --> 00:05:47,000
+ComputeStatistics through a variable typed as GradeBook, it's no longer going to use the type of variable to
+
+59
+00:05:47,000 --> 00:05:53,000
+figure out which method to call, instead it's going to use the type of object, the type that it sees at runtime.
+
+60
+00:05:53,000 --> 00:05:58,000
+So if it sees ultimately that that GradeBook is a ThrowAwayGradeBook it will go looking to see if the
+
+61
+00:05:58,000 --> 00:06:05,000
+ThrowAwayGradeBook overrides ComputeStatistics. And this doesn't mean that I hide or replace the
+
+62
+00:06:05,000 --> 00:06:10,000
+ComputeStatistics method that is in the GradeBook, I can still access that method using
+
+63
+00:06:10,000 --> 00:06:16,000
+base.ComputeStatistics, it just means that if someone does invoke ComputeStatistics, I have the ability,
+
+64
+00:06:16,000 --> 00:06:21,000
+if we're really working with a ThrowAwayGradeBook to change the behavior of what's going to happen,
+
+65
+00:06:21,000 --> 00:06:27,000
+in this case invoke my method that I've implemented for ComputeStatistics, instead of the method defined in GradeBook.
+
+66
+00:06:27,000 --> 00:06:33,000
+And just to go back and talk about what was on the slide GradeBook, I haven't defined a base class for
+
+67
+00:06:33,000 --> 00:06:41,000
+GradeBook, but technically GradeBook does inherit from System.Object, and that's why inside of Program.cs,
+
+68
+00:06:41,000 --> 00:06:47,000
+any time I'm using IntelliSense against GradeBook, I can see methods that I haven't defined in the GradeBook
+
+69
+00:06:47,000 --> 00:06:53,000
+methods like get GetHashCode, GetType, ToString, those are all methods that are defined on System.Object,
+
+70
+00:06:53,000 --> 00:07:01,000
+and those are all methods that I can override. If I just type override in Visual Studio and press space,
+
+71
+00:07:01,000 --> 00:07:06,000
+Visual Studio is smart enough to figure out which methods that I have my inheritance chain that are virtual
+
+72
+00:07:06,000 --> 00:07:12,000
+that I can override. So if I wanted ToString to behave differently, I can override that method,
+
+73
+00:07:12,000 --> 00:07:17,000
+and provide my own custom implementation of what will happen if someone says book.ToString.
+
+74
+00:07:17,000 --> 00:07:25,000
+But now we're working with variables of type GradeBook, but GradeBook has a virtual method, ComputeStatistics,
+
+75
+00:07:25,000 --> 00:07:30,000
+and ThrowAwayGradeBook, which inherits from GradeBook, it's going to override that behavior, I should be able
+
+76
+00:07:30,000 --> 00:07:34,000
+to achieve polymorphic behavior when I say book.ComputeStatistics.
+
+77
+00:07:34,000 --> 00:07:40,000
+I'm not going to know exactly what happens at this point at compile time, I don't know what ComputeStatistics
+
+78
+00:07:40,000 --> 00:07:45,000
+will be invoked, because the method that is invoked will depend of the type of object that is passed in here,
+
+79
+00:07:45,000 --> 00:07:50,000
+not the type of variable, so Ctrl+F5, and I can see, even though I'm working with a variable of type
+
+80
+00:07:50,000 --> 00:07:56,000
+GradeBook, I am calling ThrowAwayGradeBook, and the lowest grade is an 89.5, which means the low grade has
+
+81
+00:07:56,000 --> 00:59:00,000
+been thrown away, and the letter grade is an A.
+

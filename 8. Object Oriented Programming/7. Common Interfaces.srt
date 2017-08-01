@@ -1,0 +1,288 @@
+1
+00:00:00,000 --> 00:00:07,000
+Now that we know about interfaces, I wanted to tell you that .NET is full of many useful interface definitions.
+
+2
+00:00:07,000 --> 00:00:12,000
+Because the interfaces are flexible, and because C# allows you to implement multiple interfaces on a type,
+
+3
+00:00:12,000 --> 00:00:16,000
+you'll see interfaces in use to provide many low-level and essential features.
+
+4
+00:00:16,000 --> 00:00:22,000
+For example, one interface we've already used is IDisposible. You might remember in the last module when
+
+5
+00:00:22,000 --> 00:00:27,000
+we talked about exception handling, I showed you that we can have a using statement in C# to automatically close
+
+6
+00:00:27,000 --> 00:00:34,000
+a file, even if there is an exception. The interface that the using statement looks for is IDisposible.
+
+7
+00:00:34,000 --> 00:00:38,000
+Any object that implements IDisposible is an object that needs some help cleaning up.
+
+8
+00:00:38,000 --> 00:00:43,000
+So it opens files, or database connections, or network connections, and in order to keep this system running
+
+9
+00:00:43,000 --> 00:00:48,000
+in a good state, we want to make sure these resources are properly cleaned up, that's the purpose of IDisposible.
+
+10
+00:00:48,000 --> 00:00:54,000
+IDisposible forces an object to have a dispose method that you can call directly, or indirectly through a
+
+11
+00:00:54,000 --> 00:01:00,000
+using statement, and dispose will clean up resources. Another interface is IEnumerable.
+
+12
+00:01:00,000 --> 00:01:05,000
+An object that implements this interface is an object that you can enumerate, that is you can use it as a
+
+13
+00:01:05,000 --> 00:01:09,000
+collection in a foreach statement. There's also INotifyPropertyChanged.
+
+14
+00:01:09,000 --> 00:01:14,000
+This is an interface you'll implement if you get into desktop XAML development, it requires you to raise an
+
+15
+00:01:14,000 --> 00:01:20,000
+event when a property changes its value, much like we're doing in the GradeBook when we raise a NameChangedEvent.
+
+16
+00:01:20,000 --> 00:01:26,000
+The INotifyPropertyChanged interface defines an event that a UI framework can listen to and know when to
+
+17
+00:01:26,000 --> 00:01:32,000
+update the data on the screen. And then there are lots of little interfaces, interfaces like IComparable,
+
+18
+00:01:32,000 --> 00:01:37,000
+IEquatable, these interfaces allow you to compare objects, or check to see if two objects are equal.
+
+19
+00:01:37,000 --> 00:01:42,000
+And these types of interfaces are commonly used by collections, like the sorted list collection,
+
+20
+00:01:42,000 --> 00:01:49,000
+because the sorted list can use methods defined by IComparable to compare objects and keep them in sorted order.
+
+21
+00:01:49,000 --> 00:01:52,000
+Let's take a look.
+
+22
+00:01:52,000 --> 00:01:58,000
+Inside of the WriteResults method let's say that instead of just writing the statistical results to the
+
+23
+00:01:58,000 --> 00:02:00,000
+screen, I also want the ability to write out the individual grades.
+
+24
+00:02:00,000 --> 00:02:03,000
+And ideally what I'd like to be able to do is a foreach statement.
+
+25
+00:02:03,000 --> 00:02:10,000
+So I'd like to be able to say, foreach grade that is in the book, or the tracker, I'd like to be able to
+
+26
+00:02:10,000 --> 00:02:16,000
+Console.WriteLine that grade. But currently the C# compiler is going to give me an error because it knows
+
+27
+00:02:16,000 --> 00:02:20,000
+that book is not something that I can use the foreach statement against.
+
+28
+00:02:20,000 --> 00:02:26,000
+Technically what's happening is an object that implements IGradeTracker is not guaranteed to have a public
+
+29
+00:02:26,000 --> 00:02:32,000
+method GetEnumerator. At the lowest level that's all an object needs, just a method called GetEnumerator.
+
+30
+00:02:32,000 --> 00:02:36,000
+But it's more common if you have a type that you explicitly want to make enumerable, you will say that that
+
+31
+00:02:36,000 --> 00:02:43,000
+type inherits from the IEnumerable interface. So if I swing over to IGradeTracker, I can say that an
+
+32
+00:02:43,000 --> 00:02:53,000
+IGradeTracker is something that is also IEnumerable, and IEnumerable is an interface that is defined in the
+
+33
+00:02:53,000 --> 00:02:58,000
+System.Collections namespace, so I need to have a using statement for System.Collections.
+
+34
+00:02:58,000 --> 00:03:06,000
+And now back in Program.cs, I will have no problem using a foreach statement with an IGradeTracker,
+
+35
+00:03:06,000 --> 00:03:11,000
+because anything that isn't IGradeTracker is guaranteed to have GetEnumerator.
+
+36
+00:03:11,000 --> 00:03:15,000
+But just because I have that interface listed on IGradeTracker doesn't mean I'm completely finished,
+
+37
+00:03:15,000 --> 00:03:22,000
+because now what the C# complier will tell me if I do a build, is that I don't have any implementation of IEnumerable.
+
+38
+00:03:22,000 --> 00:03:32,000
+So GradeTracker, our abstract base class, it has to implement IGradeTracker, it does not define the method GetEnumerator.
+
+39
+00:03:32,000 --> 00:03:37,000
+And where does GetEnumerator come from? Well remember when I'm implementing an interface, I have to provide
+
+40
+00:03:37,000 --> 00:03:40,000
+a definition for all of the members that that interface defines.
+
+41
+00:03:40,000 --> 00:03:47,000
+So IGradeTracker defines four members, IEnumerable, if I go to the definition for that by pressing F12,
+
+42
+00:03:47,000 --> 00:03:52,000
+it's a very simple interface that only defines one method that you have to have, it's a method called
+
+43
+00:03:52,000 --> 00:03:59,000
+GetEnumerator, and GetEnumerator has to return an object that implements another interface, an IEnumerator.
+
+44
+00:03:59,000 --> 00:04:04,000
+Something that implements that interface knows how to step through a collection one object at a time.
+
+45
+00:04:04,000 --> 00:04:09,000
+And this is an extremely powerful interface definition, because you can hide all sorts of work behind an
+
+46
+00:04:09,000 --> 00:04:14,000
+IEnumerable and an IEnumerator. So what I currently need to do is I need to guarantee the GradeTracker
+
+47
+00:04:14,000 --> 00:04:27,000
+implements this interface, so I need to have a method, a public method, that returns an IEnumerator, and it's called GetEnumerator.
+
+48
+00:04:27,000 --> 00:04:32,000
+But the problem is a GradeTracker will not know how to enumerate the grades that it holds.
+
+49
+00:04:32,000 --> 00:04:37,000
+So first, IEnumerator, that's also an interface defined in the System.Collections namespace,
+
+50
+00:04:37,000 --> 00:04:43,000
+I'm going to bring that namespace in. And the problem is now I do not how to implement this method inside of
+
+51
+00:04:43,000 --> 00:04:48,000
+an abstract class GradeTracker. So I will also mark this member as abstract.
+
+52
+00:04:48,000 --> 00:04:53,000
+I don't know how to implement GetEnumerator, because from the perspective of GradeTracker, I don't know where
+
+53
+00:04:53,000 --> 00:04:59,000
+the grades are stored, are they in memory in a list? Are they in a database? Are they behind a web service call?
+
+54
+00:04:59,000 --> 00:05:05,000
+I don't know, but I need to have this member here to satisfy the constraint that I am in IGradeTracker,
+
+55
+00:05:05,000 --> 00:05:11,000
+I'll just mark this member as abstract, so whoever derives from this class will have to provide an implementation.
+
+56
+00:05:11,000 --> 00:05:17,000
+Now before we do that, I just want to show that a GradeTracker could implement as many interfaces as it likes.
+
+57
+00:05:17,000 --> 00:05:23,000
+So it could derive from a specific base class, like object, and then I could go on and say this also
+
+58
+00:05:23,000 --> 00:05:29,000
+implements IGradeTracker, and IDisposible, and IClonable, I could list all sorts of interfaces,
+
+59
+00:05:29,000 --> 00:05:34,000
+or course, I would have to have the members that these interfaces define, but I'm just trying to show you the
+
+60
+00:05:34,000 --> 00:05:41,000
+syntax for how this would work, I can list interfaces, as many I need, and just separate them with commas.
+
+61
+00:05:41,000 --> 00:05:49,000
+So let's go back to being just IGradeTracker, and of course if I do a Build now, my problem is pushed up one class.
+
+62
+00:05:49,000 --> 00:05:55,000
+Now if go to the GradeBook, well I've said that GradeBook is a concrete type, it's not using the abstract
+
+63
+00:05:55,000 --> 00:06:01,000
+keyword here, and therefore I need to provide an implementation for GetEnumerator.
+
+64
+00:06:01,000 --> 00:06:08,000
+And fortunately, a list is something that's also IEnumerable, so all the collection classes in .NET,
+
+65
+00:06:08,000 --> 00:06:16,000
+they implement the IEnumerable interface, and so I could provide an override for GetEnumerator,
+
+66
+00:06:16,000 --> 00:06:22,000
+that simply calls into Grades, and returns Grades.GetEnumerator.
+
+67
+00:06:22,000 --> 00:06:28,000
+That's the easiest way to implement this logic, and so now, inside of Program.cs, when I say foreach across
+
+68
+00:06:28,000 --> 00:06:34,000
+an IGradeTracker, I don't know if I'll be getting those numbers back out of a list, or a database, or a web
+
+69
+00:06:34,000 --> 00:06:40,000
+service call, again that's the great advantage to using interfaces, you can build very powerful abstractions,
+
+70
+00:06:40,000 --> 00:06:46,000
+and hide all sorts of complexity behind simple polymorphism. If I run the program, I am now printing out the
+
+71
+00:06:46,000 --> 00:06:51,000
+grades, as well as the statistics, as well as the letter grade.
+
+72
+00:06:51,000 --> 00:59:00,000
+And hopefully that will demonstrate some of the flexibilities that interfaces can provide.
+

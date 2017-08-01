@@ -1,0 +1,64 @@
+1
+00:00:00,000 --> 00:00:05,000
+While the CLR works in the background to manage your application while it is running, it is the Framework
+
+2
+00:00:05,000 --> 00:00:10,000
+Class Library of .NET that you will interact with on a day-to-day basis because it's the FCL that contains
+
+3
+00:00:10,000 --> 00:00:15,000
+reusable software that you use to build applications. It provides you all the functionality to do useful
+
+4
+00:00:15,000 --> 00:00:20,000
+work like use regular expressions and read and write data from a disk.
+
+5
+00:00:20,000 --> 00:00:26,000
+You will also hear people refer to the BCL, or Base Case Library, which technically is a subset of the FCL.
+
+6
+00:00:26,000 --> 00:00:31,000
+It's contained inside the FCL, but it's a subset so it doesn't contain quiet as many features, but it does
+
+7
+00:00:31,000 --> 00:00:36,000
+work everywhere, and that's what we'll be using for this course, the subset that works everywhere.
+
+8
+00:00:36,000 --> 00:00:41,000
+But chances are when you start building your own applications you'll be using pieces of the more expansive
+
+9
+00:00:41,000 --> 00:00:46,000
+Framework Class Library because it is the Framework Class Library that includes software to help you write
+
+10
+00:00:46,000 --> 00:00:50,000
+desktop applications and web applications and web services and apps.
+
+11
+00:00:50,000 --> 00:00:57,000
+The FCL is so large and so varied that it is rare for one person to know all the ins and outs of the entire library.
+
+12
+00:00:57,000 --> 00:01:01,000
+Typically you're going to focus on just a couple areas of the FCL and master those.
+
+13
+00:01:01,000 --> 00:01:07,000
+Like you might become a master of ASP.NET to build web applications because that's what your business requires.
+
+14
+00:01:07,000 --> 00:01:13,000
+ASP.NET is just one part of this .NET Framework. And now that we know that we're using C# on top of .NET,
+
+15
+00:01:13,000 --> 00:01:18,000
+and .NET gives us the CLR to run our applications and the Framework Class Library to give us software
+
+16
+00:01:18,000 --> 00:59:00,000
+components to build on, let's make this all a little more concrete by writing our first C# program.
+

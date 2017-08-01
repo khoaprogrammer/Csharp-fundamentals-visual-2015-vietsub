@@ -1,0 +1,48 @@
+1
+00:00:00,000 --> 00:00:04,000
+If you enjoyed this course you might enjoy a few of my other courses.
+
+2
+00:00:04,000 --> 00:00:07,000
+I do suggest you watch these to get the complete C# fundamentals experience.
+
+3
+00:00:07,000 --> 00:00:12,000
+First is my C# Generics course, at least watch a couple modules here because generics are an incredibly
+
+4
+00:00:12,000 --> 00:00:17,000
+important feature of the C# language. We just didn't have time to cover generics in this course with the
+
+5
+00:00:17,000 --> 00:00:23,000
+amount of detail they deserve, although we did use a generic type when we declared a list to store our grades.
+
+6
+00:00:23,000 --> 00:00:29,000
+Another important set of features in the C# language are the LINQ features, where LINQ stands for Language Integrated Query.
+
+7
+00:00:29,000 --> 00:00:34,000
+It sounds like something data related, but in truth, LINQ added a number of wonderful features to the C#
+
+8
+00:00:34,000 --> 00:00:39,000
+language, features like extension methods and lambda expressions, and you don't have the full C# experience
+
+9
+00:00:39,000 --> 00:00:45,000
+until you see these features. And finally there is my C# Fundamentals Part 2 course, which is C# programming
+
+10
+00:00:45,000 --> 00:00:50,000
+paradigms, this course includes some additional material on not just object-oriented programming,
+
+11
+00:00:50,000 --> 00:00:55,000
+but also functional programming, and what I call language-oriented programming with C#.
+
+12
+00:00:55,000 --> 00:59:00,000
+I also offer some tips, tricks, and rules to live by as a C# developer.
+

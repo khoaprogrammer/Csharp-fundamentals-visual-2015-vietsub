@@ -1,0 +1,84 @@
+1
+00:00:01,000 --> 00:00:08,000
+The C# language provides the syntax and tools to build on what is known as the three pillars of object-oriented programming.
+
+2
+00:00:08,000 --> 00:00:11,000
+These three pillars are encapsulation, inheritance, and polymorphism.
+
+3
+00:00:11,000 --> 00:00:17,000
+My personal view is that encapsulation is the primary pillar of object-oriented programming, and most classes
+
+4
+00:00:17,000 --> 00:00:23,000
+and training tend to overemphasize inheritance and polymorphism as being more useful than they really in day
+
+5
+00:00:23,000 --> 00:00:29,000
+to day programming. But that's my personal view. We are going to talk about all three pillars however,
+
+6
+00:00:29,000 --> 00:00:34,000
+and understanding how inheritance and polymorphism work in C# is important, even if you don't put those two
+
+7
+00:00:34,000 --> 00:00:40,000
+pillars to work all the time in the software that you write. Encapsulation is the key pillar of OOP,
+
+8
+00:00:40,000 --> 00:00:45,000
+because without encapsulation we could never build large applications or large systems.
+
+9
+00:00:45,000 --> 00:00:50,000
+Encapsulation helps us hide complexity, and it allows me to reason about something like a grade book,
+
+10
+00:00:50,000 --> 00:00:54,000
+which we've been building in this course, and think about what I can do with a grade book, which is add
+
+11
+00:00:54,000 --> 00:00:59,000
+grades and compute statistics. And I don't have to worry about the details, and the data structures,
+
+12
+00:00:59,000 --> 00:01:06,000
+and the calculations involved. So classes are one way to achieve encapsulation in C#, but taking 10 lines of
+
+13
+00:01:06,000 --> 00:01:10,000
+code and putting that code into a method is another form of encapsulation.
+
+14
+00:01:10,000 --> 00:01:15,000
+Instead of knowing the details about those 10 lines of code, I can now think and reason about just the method
+
+15
+00:01:15,000 --> 00:01:19,000
+and what it can do, what inputs does it take, what does it return.
+
+16
+00:01:19,000 --> 00:01:25,000
+And that method even has name that I can use to refer to everything that is happening within those 10 lines of code.
+
+17
+00:01:25,000 --> 00:01:31,000
+Encapsulation then is all about hiding complexity and building models, which logically group together functionality.
+
+18
+00:01:31,000 --> 00:01:36,000
+But inheritance and polymorphism are different, these two pillars of object-oriented programming are about
+
+19
+00:01:36,000 --> 00:01:42,000
+reusing code and reusing data. It's almost never a good idea to have duplicated code inside of an
+
+20
+00:01:42,000 --> 00:01:49,000
+application, and inheritance and polymorphism are two techniques to avoid duplicated code and reuse that code instead.
+
+21
+00:01:49,000 --> 00:59:00,000
+So let's turn our attention to inheritance.
+

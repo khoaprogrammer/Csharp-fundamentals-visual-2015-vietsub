@@ -1,0 +1,300 @@
+1
+00:00:00,000 --> 00:00:02,000
+When we define a class in C#,
+
+2
+00:00:02,000 --> 00:00:05,000
+we are creating something that is called a reference type.
+
+3
+00:00:05,000 --> 00:00:07,000
+We will explore another category of types
+
+4
+00:00:07,000 --> 00:00:09,000
+later in the course, but reference types
+
+5
+00:00:09,000 --> 00:00:11,000
+are important to understand in C#
+
+6
+00:00:11,000 --> 00:00:13,000
+because when we have a variable that is typed
+
+7
+00:00:13,000 --> 00:00:16,000
+as a class like GradeBook, which is a reference type,
+
+8
+00:00:16,000 --> 00:00:19,000
+the variable gives us a place to remember the GradeBook.
+
+9
+00:00:19,000 --> 00:00:22,000
+But the variable does not hold the GradeBook itself.
+
+10
+00:00:22,000 --> 00:00:24,000
+The GradeBook is somewhere else in memory,
+
+11
+00:00:24,000 --> 00:00:27,000
+and the variable holds a pointer to that object in memory.
+
+12
+00:00:27,000 --> 00:00:30,000
+The variable literally contains a memory address.
+
+13
+00:00:30,000 --> 00:00:33,000
+So imagine the table on the right-hand side of the screen
+
+14
+00:00:33,000 --> 00:00:35,000
+representing a section of memory on your computer,
+
+15
+00:00:35,000 --> 00:00:38,000
+and each memory location has an address like
+
+16
+00:00:38,000 --> 00:00:40,000
+six, seven, eight, nine, 10.
+
+17
+00:00:40,000 --> 00:00:41,000
+There are billions of these memory cells.
+
+18
+00:00:41,000 --> 00:00:44,000
+Let's say when we create the GradeBook object,
+
+19
+00:00:44,000 --> 00:00:46,000
+the runtime placed the start of the object
+
+20
+00:00:46,000 --> 00:00:48,000
+at location eight in our computer.
+
+21
+00:00:48,000 --> 00:00:50,000
+That means the book1 variable, you can think of it
+
+22
+00:00:50,000 --> 00:00:52,000
+as holding the value eight, which indicates where
+
+23
+00:00:52,000 --> 00:00:55,000
+the GradeBook lives inside of those billions
+
+24
+00:00:55,000 --> 00:00:57,000
+of memory addresses in the computer.
+
+25
+00:00:57,000 --> 00:00:59,000
+It's like when someone gives you their business card,
+
+26
+00:00:59,000 --> 00:01:01,000
+you don't hold the other person, you hold a pointer
+
+27
+00:01:01,000 --> 00:01:03,000
+or an address and something that can lead you
+
+28
+00:01:03,000 --> 00:01:05,000
+to that person when you need to talk to them
+
+29
+00:01:05,000 --> 00:01:07,000
+or you need them to do something for you.
+
+30
+00:01:07,000 --> 00:01:09,000
+A variable for a reference type holds a pointer.
+
+31
+00:01:09,000 --> 00:01:11,000
+And when I do something like invoke a method
+
+32
+00:01:11,000 --> 00:01:14,000
+with .AddGrade, the runtime takes care
+
+33
+00:01:14,000 --> 00:01:16,000
+of following that pointer for me
+
+34
+00:01:16,000 --> 00:01:18,000
+and invoking the correct method on the proper object.
+
+35
+00:01:18,000 --> 00:01:21,000
+One important implication of reference types
+
+36
+00:01:21,000 --> 00:01:23,000
+is that I can have multiple variables
+
+37
+00:01:23,000 --> 00:01:25,000
+all pointing to the same object.
+
+38
+00:01:25,000 --> 00:01:28,000
+If I use a line of code like book2 = book1,
+
+39
+00:01:28,000 --> 00:01:31,000
+then the runtime will copy the value of the book1 variable
+
+40
+00:01:31,000 --> 00:01:34,000
+into book2, which means the runtime will copy
+
+41
+00:01:34,000 --> 00:01:37,000
+the memory address, eight, into book2.
+
+42
+00:01:37,000 --> 00:01:39,000
+And now I can use both book1 and book2
+
+43
+00:01:39,000 --> 00:01:43,000
+to interact with the exact same GradeBook object.
+
+44
+00:01:43,000 --> 00:01:46,000
+Let's take a look at this scenario with the debugger.
+
+45
+00:01:46,000 --> 00:01:48,000
+At the end of the last clip, I included this line of code
+
+46
+00:01:48,000 --> 00:01:51,000
+in the project that says book2 = book.
+
+47
+00:01:51,000 --> 00:01:53,000
+And the way to think about this is that the value
+
+48
+00:01:53,000 --> 00:01:56,000
+that is inside of book is copied and placed into book2.
+
+49
+00:01:56,000 --> 00:01:58,000
+But you must always remember with C#,
+
+50
+00:01:58,000 --> 00:02:02,000
+that the value inside of book is not a GradeBook object.
+
+51
+00:02:02,000 --> 00:02:04,000
+It's just a pointer to a GradeBook object.
+
+52
+00:02:04,000 --> 00:02:06,000
+So what I'm doing is I'm copying that pointer
+
+53
+00:02:06,000 --> 00:02:10,000
+into another variable, and both book and book2
+
+54
+00:02:10,000 --> 00:02:12,000
+should now be referencing the same GradeBook.
+
+55
+00:02:12,000 --> 00:02:15,000
+I can verify that by right clicking and saying
+
+56
+00:02:15,000 --> 00:02:18,000
+run to cursor here at the bottom of the main method.
+
+57
+00:02:18,000 --> 00:02:20,000
+And if we look inside of book, we will see it has
+
+58
+00:02:20,000 --> 00:02:25,000
+three grades, 91, 89.5, and then the 75 was added through
+
+59
+00:02:25,000 --> 00:02:28,000
+the book2 variable, because book2 points
+
+60
+00:02:28,000 --> 00:02:30,000
+to the exact same GradeBook.
+
+61
+00:02:30,000 --> 00:02:32,000
+Now one thing that might have occurred to you
+
+62
+00:02:32,000 --> 00:02:34,000
+as we've been using the debugger is:  why can the debugger
+
+63
+00:02:34,000 --> 00:02:37,000
+see the grades that are inside of a GradeBook,
+
+64
+00:02:37,000 --> 00:02:41,000
+but I cannot see those same grades if I stop debugging
+
+65
+00:02:41,000 --> 00:02:44,000
+and try to access those grades through
+
+66
+00:02:44,000 --> 00:02:46,000
+one of these variables?
+
+67
+00:02:46,000 --> 00:02:48,000
+For instance, if I say book2.grades,
+
+68
+00:02:48,000 --> 00:02:51,000
+this isn't available in the IntelliSense list.
+
+69
+00:02:51,000 --> 00:02:53,000
+The only thing I can get to is really AddGrade
+
+70
+00:02:53,000 --> 00:02:55,000
+on that book2 variable; and the same goes
+
+71
+00:02:55,000 --> 00:02:57,000
+for the book variable.
+
+72
+00:02:57,000 --> 00:02:59,000
+So what is it that makes AddGrade available to me
+
+73
+00:02:59,000 --> 00:03:02,000
+but not the grades field that is the list of float
+
+74
+00:03:02,000 --> 00:03:03,000
+that is inside of a GradeBook?
+
+75
+00:03:03,000 --> 00:59:00,000
+Let's talk about that topic next.
+

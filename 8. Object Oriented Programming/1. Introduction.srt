@@ -1,0 +1,24 @@
+1
+00:00:00,000 --> 00:00:06,000
+Hi, this is Scott, and this is the final module in this C# course.
+
+2
+00:00:06,000 --> 00:00:11,000
+In this module I want to give you the concepts and syntax for Object-Oriented Programming in C#.
+
+3
+00:00:11,000 --> 00:00:17,000
+C# is an object-oriented programming language, although you can do more than just object-oriented programming
+
+4
+00:00:17,000 --> 00:00:22,000
+in C#, and I talk about those topics in the C# Programming Paradigms course on Pluralsight.
+
+5
+00:00:22,000 --> 00:00:28,000
+In this module of this course we're going to look at inheritance and polymorphism and how to use abstract
+
+6
+00:00:28,000 --> 00:59:00,000
+classes and interfaces.
+

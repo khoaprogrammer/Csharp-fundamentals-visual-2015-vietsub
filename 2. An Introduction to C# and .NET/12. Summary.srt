@@ -1,0 +1,32 @@
+1
+00:00:00,000 --> 00:00:07,000
+In this first module I intended to introduce you to Visual Studio and get you up and running by writing a simple program.
+
+2
+00:00:07,000 --> 00:00:11,000
+This program gives you an idea of what the C# language looks like.
+
+3
+00:00:11,000 --> 00:00:15,000
+And we talked about quite a few concepts, concepts like classes, types, variables, expressions.
+
+4
+00:00:15,000 --> 00:00:19,000
+Those are all topics that we'll cover in more detail throughout the rest of this course.
+
+5
+00:00:19,000 --> 00:00:23,000
+What you really want to do right now is try your hand at writing that same program and just getting familiar
+
+6
+00:00:23,000 --> 00:00:28,000
+with the Visual Studio environment. Make sure you know how to create a new project, edit some source code,
+
+7
+00:00:28,000 --> 00:00:34,000
+save a file, build a project, and run with the debugger. Learning those basics will help you move a little
+
+8
+00:00:34,000 --> 00:59:00,000
+bit quicker in the rest of the course.
+

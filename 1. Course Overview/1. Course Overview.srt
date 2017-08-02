@@ -4,7 +4,7 @@ Xin chào, tôi là Scott Allen
 
 2
 00:00:07,000 --> 00:00:10,000
-and welcome to my course on the C# programming language.
+chào mừng các bạn đến với khóa học lập trình C#.
 
 3
 00:00:10,000 --> 00:00:11,000

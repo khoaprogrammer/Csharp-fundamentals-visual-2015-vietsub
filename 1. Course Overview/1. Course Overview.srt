@@ -1,6 +1,6 @@
 1
 00:00:00,000 --> 00:00:07,000
-Hi, this is Scott Allen
+Xin chào, tôi là Scott Allen
 
 2
 00:00:07,000 --> 00:00:10,000

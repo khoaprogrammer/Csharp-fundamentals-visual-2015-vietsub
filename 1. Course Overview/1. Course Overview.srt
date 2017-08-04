@@ -8,121 +8,121 @@ chào mừng các bạn đến với khóa học lập trình C#.
 
 3
 00:00:10,000 --> 00:00:11,000
-I've been using the C# language// tôi đang sử dụng ngôn ngữ lập trình C#
+ tôi đang sử dụng ngôn ngữ lập trình C#
 
 4
 00:00:11,000 --> 00:00:14,000
-for over 15 years at this point// khoảng 15 năm tính đến thời điểm hiện tại
+ khoảng 15 năm tính đến thời điểm hiện tại
 
 5
 00:00:14,000 --> 00:00:16,000
-because I love working in C#, and I want to show you// Bỡi vì tôi yêu thích công việc lập trình trên C#, va tôi muốn cho ban xem
+ Bỡi vì tôi yêu thích công việc lập trình trên C#, va tôi muốn cho ban xem
 
 6
 00:00:16,000 --> 00:00:18,000
-all the great features of this language// tất cả các tính năng tuyệt vời của ngôn ngữ này
+ tất cả các tính năng tuyệt vời của ngôn ngữ này
 
 7
 00:00:18,000 --> 00:00:20,000
-so that you will love it too.// từ đó bạn cũng sẽ yêu thích nó
+ từ đó bạn cũng sẽ yêu thích nó
 
 8
 00:00:20,000 --> 00:00:21,000
-In the course we'll work// Trong khóa học này chúng ta sẽ làm 
+ Trong khóa học này chúng ta sẽ làm 
 
 9
 00:00:21,000 --> 00:00:22,000
-on building some simple applications// 1 vài các ứng dụng đơn giản
+ 1 vài các ứng dụng đơn giản
 
 10
 00:00:22,000 --> 00:00:25,000
-and focusing on different areas of the language.// và tập trung vào các phần khác của ngôn ngữ
+ và tập trung vào các phần khác của ngôn ngữ
 
 11
 00:00:25,000 --> 00:00:26,000
-Like how to use classes,// như là: Tạo 1 class như thế nào,
+ như là: Tạo 1 class như thế nào,
 
 12
 00:00:26,000 --> 00:00:28,000
-how to write methods and properties,//viết phương thức và các thuộc tính như thế nào,
+viết phương thức và các thuộc tính như thế nào,
 
 13
 00:00:28,000 --> 00:00:31,000
-and how to raise and handle events.// làm thế nào để tạo,sử dụng và xử lý sự kiện.
+làm thế nào để tạo,sử dụng và xử lý sự kiện.
 
 14
 00:00:31,000 --> 00:00:32,000
-I'll also give you some tips//Tôi cũng sẽ mách cho bạn 1 số mẹo
+Tôi cũng sẽ mách cho bạn 1 số mẹo
 
 15
 00:00:32,000 --> 00:00:33,000
-on how to keep your code readable// để làm cho code bạn dễ đọc
+ để làm cho code bạn dễ đọc
 
 16
 00:00:33,000 --> 00:00:35,000
-and tell about common conventions that you'll see// và nói cho bạn nghe về các quy ước chung , bạn sẽ thấy những quy ước chung ấy
+ và nói cho bạn nghe về các quy ước chung , bạn sẽ thấy những quy ước chung ấy
 
 17
 00:00:35,000 --> 00:00:38,000
-in day-to-day programming with C#.//  Trong ngày qua ngày  lập trình với C#.
+  Trong ngày qua ngày  lập trình với C#.
 
 18
 00:00:38,000 --> 00:00:40,000
-We'll also be looking at how to handle errors in your program.// Chúng ta cũng sẽ xem xét xử lý lỗi trong chương trình của bạn.
+ Chúng ta cũng sẽ xem xét xử lý lỗi trong chương trình của bạn.
 
 19
 00:00:40,000 --> 00:00:42,000
-And of course, I'll show you a few features// Và dĩ nhiên, tôi  cũng sẽ cho bạn xem 1 vài đặc tính 
+ Và dĩ nhiên, tôi  cũng sẽ cho bạn xem 1 vài đặc tính 
 
 20
 00:00:42,000 --> 00:00:44,000
-of Visual Studio, too.// của Visual Studio.
+ của Visual Studio.
 
 21
 00:00:44,000 --> 00:00:46,000
-It will be fun for you to follow along.// Điều đó sẽ rất vui cho bạn để bạn phải theo nó suốt(=]]])
+ Điều đó sẽ rất thú vị cho bạn để bạn phải theo nó suốt(=]]])
 
 22
 00:00:46,000 --> 00:00:48,000
-By the end of the course you'll feel comfortable// Kết thúc khóa học bạn sẽ cảm thấy thỏa mái
+Kết thúc khóa học bạn sẽ cảm thấy thỏa mái
 
 23
 00:00:48,000 --> 00:00:51,000
-reading and writing C# code in your own applications.// đọc và viết code C# trong chướng trình của riêng mình
+ đọc và viết code C# trong chướng trình của riêng mình
 
 24
 00:00:51,000 --> 00:00:54,000
-I do expect that you have some programming experience//  Tôi trông chờ vào điều đó, bạn sẽ có 1 vài Kinh nghiệm lập trình
+  Tôi trông chờ vào điều đó, bạn sẽ có 1 vài Kinh nghiệm lập trình
 
 25
 00:00:54,000 --> 00:00:55,000
-before you start this course.// Trước khi bắt đầu với buổi học.
+Trước khi bắt đầu với buổi học.
 
 26
 00:00:55,000 --> 00:00:58,000
-Ideally you feel comfortable with concepts//theo lý tưởng bạn cảm thấy thỏa mái với những khái niệm này
+ bạn sẽ cảm thấy thỏa mái với những khái niệm này
 
 27
 00:00:58,000 --> 00:01:00,000
-like loops and branching in programming.// như vòng lặp và việc phân nhánh trong lập trình.
+như vòng lặp và việc phân nhánh trong lập trình.
 
 28
 00:01:00,000 --> 00:01:03,000
-I'll show you how to write loops and branches in C#,// tôi sẽ cho bạn biết cách viết vòng lặp và phân nhánh trong C#,
+tôi sẽ cho bạn biết cách viết vòng lặp và phân nhánh trong C#,
 
 29
 00:01:03,000 --> 00:01:06,000
-but the course will definitely be easier if you know// nhưng trong khóa học sẽ dễ dàng rạch ròi hơn nếu bạn biết
+ nhưng trong khóa học sẽ dễ dàng rạch ròi hơn nếu bạn biết
 
 30
 00:01:06,000 --> 00:01:09,000
-some of these fundamental programming concepts already.// 1 vài cái khái niện lập trình cơ bản trước đó!
+ 1 vài cái khái niện lập trình cơ bản trước đó!
 
 31
 00:01:09,000 --> 00:01:12,000
-And if not, there are plenty of courses on Pluralsight.com// Và nếu không,có nhiếu khóa học trên trang Pluralsight.com
+ Và nếu không,có nhiếu khóa học trên trang Pluralsight.com
 
 32
 00:01:12,000 --> 00:59:00,000
-to help you get started programming as an absolute beginner.// sẽ giúp bạn bắt đầu lập trình như 1 người mới.
+ sẽ giúp bạn bắt đầu lập trình như 1 người mới.
 

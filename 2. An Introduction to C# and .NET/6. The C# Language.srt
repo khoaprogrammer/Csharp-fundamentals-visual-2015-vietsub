@@ -1,76 +1,94 @@
 1
 00:00:00,000 --> 00:00:07,000
-C# is one of the languages that you can use to write applications with .NET, and the syntax of C# was
+C# là 1 trong những ngôn ngữ mà bạn có thể sử dụng để viết các ứng dụng với .Net,và cú pháp của C# là
 
 2
 00:00:07,000 --> 00:00:14,000
-inspired by C++, so C#, Java, and JavaScript, all three of these languages look somewhat similar.
+cảm hứng từ C++,Java, và JavaScript, cả 3 ngôn ngữ trên trông có vẻ như có gì đó giống nhau.
+
 
 3
 00:00:14,000 --> 00:00:19,000
-Here is a snippet of C# code. This snippet contains many different concepts that we will investigate further
+Đây là một đoạn code C #. Đoạn code này chứa nhiều khái niệm khác nhau mà chúng tôi sẽ tìm hiểu thêm
+
 
 4
 00:00:19,000 --> 00:00:26,000
-throughout this course, but let me give you a quick preview. This snippet of code is defining a method named Main.
+Trong suốt khóa học này, nhưng hãy để tôi cho bạn xem trước nhanh. Đoạn mã được trích này đang định nghĩa một phương thức có tên Main.
+
 
 5
 00:00:26,000 --> 00:00:31,000
-A method is a place where you can organize your code so that you can call this method from other places and
+1 phương thức là 1 nơi mà bạn có thể tổ chúc code của bạn để bạn có thể gọi phương thức này từ những nơi khác và
+
 
 6
 00:00:31,000 --> 00:00:37,000
-force the code inside to execute and run. The code inside of this method is using the DateTime class,
+buộc code bên trong sẽ thực thi và chạy. Cái code bên trong phương thức đang sử dụng DateTime class,
+
 
 7
 00:00:37,000 --> 00:00:44,000
-which is part of the .NET Framework Class Library. I can use DateTime.Now to find out the current time,
+nó là 1 phần của .NET Framework Class Library. Bạn có thể sử dụng DateTime.Bây giờ tìm ra thời điểm hiện tại,
+
 
 8
 00:00:44,000 --> 00:00:48,000
-and I can use .DayOFWeek after that to find out the current day of the week.
+và bạn có thể sử dụng .DayOFWeek sau khi tìm ra ngày hiện tại của tuần.
+
 
 9
 00:00:48,000 --> 00:00:53,000
-And if the current day of the week is equal to Monday, and we'll check that by using a double equal sign,
+Và nếu như ngày hiện tại của tuần là bằng Thứ hai, và chúng ta sẽ kiểm tra nó  sử dụng dấu ==,
+
 
 10
 00:00:53,000 --> 00:00:58,000
-that checks to see if two values are equal, if the current day of the week is Monday, then we will branch
+Dấu đó kiểm tra xem nếu 2 giá trị bằng nhau, nếu ngày thực tế trong tuần là thứ 2, sau đó chúng ta sẽ rẽ nhánh
+
 
 11
 00:00:58,000 --> 00:01:03,000
-inside of this if statement and execute the code inside of the curly braces.
+vào bên trong thân phương thức nếu câu lệnh thực thi code bên trong dấu ngoặc nhọn.
+
 
 12
 00:01:03,000 --> 00:01:09,000
-Inside of here we're calling another method, WriteLine. This method is attached to a console class,
+Bên trong đây chúng ta sẽ gọi 1 phương thức khác, WriteLine(). đây là phương thức được gắn với 1 lớp console,
+
 
 13
 00:01:09,000 --> 00:01:16,000
-also part of the FCL, so we're forcing WriteLine to execute, and we're passing it some data, a parameter.
+cũng là 1 phần của (FCL), chúng ta đang buộc WriteLine để thực hiện,và chúng ta truyền cho nó 1 số dữ liệu,1 tham số.
+
 
 14
 00:01:16,000 --> 00:01:18,000
-We're passing it information that is going to write onto the screen.
+chúng ta đang truyền cho nó thông tin đó là viết lên màn hình.
+
 
 15
 00:01:18,000 --> 00:01:22,000
-In this case, it's going to write out the text, Another case of the Mondays!
+Trong trường hợp này nó sẽ viết ra văn bản ("Another case of the Mondays!")
+
 
 16
 00:01:22,000 --> 00:01:27,000
-But again, that only happens if the current day is a Monday. If the current day is not a Monday,
+Nhưng một lần nữa, điều đó chỉ xảy ra nếu ngày hiện tại là thứ Hai. Nếu ngày hiện tại không phải là Thứ Hai,
+
 
 17
 00:01:27,000 --> 00:01:33,000
-we don't execute the code inside of here. We come straight down to the bottom where the method will exit and
+chúng ta sẽ không thực thi được code bên trong phương thức. Chúng ta đi thẳng xuống chỗ mà phương thức sẽ thoát và
+
 
 18
 00:01:33,000 --> 00:01:38,000
-return without writing any information to the screen. Let's take code very similar to this code and place it
+trả về không có bất kỳ thông tin nào được viết lên màn hình. Hãy lấy code tương tự như code này và đặt nó
+
 
 19
 00:01:38,000 --> 00:59:00,000
-into a program that we can execute from the command line.
+vào trong 1 chương trình mà bạn có thể thực thi nó từ command line.
+
 

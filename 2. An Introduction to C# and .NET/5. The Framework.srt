@@ -1,64 +1,79 @@
 1
 00:00:00,000 --> 00:00:05,000
-While the CLR works in the background to manage your application while it is running, it is the Framework
+Trong khi (CLR) làm công việc trong background để quản lý ứng dụng của bạn trong khi nó đang chạy,đó là Framework
+
 
 2
 00:00:05,000 --> 00:00:10,000
-Class Library of .NET that you will interact with on a day-to-day basis because it's the FCL that contains
+lớp Library của .Net mà bạn sẽ tuơng tác hàng ngày bởi vỉ nó là (FCL) có chứa
+
 
 3
 00:00:10,000 --> 00:00:15,000
-reusable software that you use to build applications. It provides you all the functionality to do useful
+Phần mềm có thể sử dụng lại mà bạn sử dụng để xây dựng các ứng dụng. Nó cung cấp cho bạn tất cả các chức năng để làm hữu ích
+
 
 4
 00:00:15,000 --> 00:00:20,000
-work like use regular expressions and read and write data from a disk.
+công việc như dùng regular expressions(Biểu thức chính quy hay Regex)à viết và đọc viết dữ liệu từ đĩa.
+
 
 5
 00:00:20,000 --> 00:00:26,000
-You will also hear people refer to the BCL, or Base Case Library, which technically is a subset of the FCL.
+Bạn cũng sẽ nghe mọi người tham khảo BCL, hoặc Base Case Library,mà kỹ thuật là một tập hợp con của FCL.
+
 
 6
-00:00:26,000 --> 00:00:31,000
-It's contained inside the FCL, but it's a subset so it doesn't contain quiet as many features, but it does
+00:00:26,000 --> 00:00:31,00075c 
+Nó đã được bao gồm bên trong FCL, nhưng nó là 1 tập con cho nên nó không bao gồm khá nhiều đặc tính, nhưng nó
+
 
 7
 00:00:31,000 --> 00:00:36,000
-work everywhere, and that's what we'll be using for this course, the subset that works everywhere.
+làm việc ở mọi nơi, và đó là những gì chúng ta sẽ sử dụng cho khóa học này, tập hợp con đó hoạt động ở mọi nơi.
+
 
 8
 00:00:36,000 --> 00:00:41,000
-But chances are when you start building your own applications you'll be using pieces of the more expansive
+Nhưng rất có thể là khi bạn bắt đầu xây dựng các ứng dụng của riêng bạn, bạn sẽ sử dụng các phần của phần mở rộng hơn
+
 
 9
 00:00:41,000 --> 00:00:46,000
-Framework Class Library because it is the Framework Class Library that includes software to help you write
+Framework Class Library bởi nó bao gồm các phần mềm giúp bạn viết
+
 
 10
 00:00:46,000 --> 00:00:50,000
-desktop applications and web applications and web services and apps.
+các ứng dụng web, dịch vụ web, desktop và các App.
+
 
 11
 00:00:50,000 --> 00:00:57,000
-The FCL is so large and so varied that it is rare for one person to know all the ins and outs of the entire library.
+(FCL) thì rất lớn và rất đa dạng nên rất hiếm khi một người biết được tất cả các phần của toàn bộ thư viện.
+
 
 12
 00:00:57,000 --> 00:01:01,000
-Typically you're going to focus on just a couple areas of the FCL and master those.
+Thông thường bạn sẽ tập trung vào chỉ một vài khu vực của FCL và làm chủ được những điều đó.
+
 
 13
 00:01:01,000 --> 00:01:07,000
-Like you might become a master of ASP.NET to build web applications because that's what your business requires.
+Giống như bạn có thể trở thành 1 chuyên gia ASP.NET để xây dựng các ứng dụng web bởi vì đó là những gì doanh nghiệp của bạn yêu cầu.
+
 
 14
 00:01:07,000 --> 00:01:13,000
-ASP.NET is just one part of this .NET Framework. And now that we know that we're using C# on top of .NET,
+ASP.NET chỉ là 1 phần của .Net framework. Và bây giờ chúng ta biết chúng ta đang sử dụng C# trên .Net,
+
 
 15
 00:01:13,000 --> 00:01:18,000
-and .NET gives us the CLR to run our applications and the Framework Class Library to give us software
+và .NET cho chúng ta (CLR) để chạy các ứng dụng của chúng ta và Framework Class Library cho chúng ta các phần mềm
+
 
 16
 00:01:18,000 --> 00:59:00,000
-components to build on, let's make this all a little more concrete by writing our first C# program.
+các thành phần để xây dựng trên, hãy làm cho tất cả một chút cụ thể hơn bằng cách viết chương trình C # đầu tiên của chúng ta.
 

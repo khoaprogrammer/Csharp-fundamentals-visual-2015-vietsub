@@ -1,288 +1,341 @@
 1
 00:00:00,000 --> 00:00:09,000
-Inside of Windows I'm going to go to the Start menu, and I'm going to do a search just by typing for command
+Tôi đang đến di chuyển đến Start menu trong Windows, và tôi chỉ gõ vào thanh tìm kiếm từ command
+
 
 2
 00:00:09,000 --> 00:00:13,000
-because what I want to open up is the command prompt. We're going to write our first program using some
+bởi vì cái mà tôi muốn mở là command prompt. Chúng ta sẽ viết chương trình đầu tiên của chúng ta sử dụng 1 vài
+
 
 3
 00:00:13,000 --> 00:00:19,000
-low-level tools and without Visual Studio just so you can see a little bit about what is happening behind the scenes.
+công cụ ở mức thấp và không xài VS bạn có thể thấy 1 vài cái đang xảy ra phía sau màn hình.
+
 
 4
 00:00:19,000 --> 00:00:26,000
-When you install Visual Studio, Visual Studio will install some command line tools that you can use to create applications.
+khi bạn cài đặt VS, VS sẽ cài 1 vài công cụ dòng lệnh mà bạn có thể dùng để tạo ứng dụng.
+
 
 5
 00:00:26,000 --> 00:00:31,000
-Not many people will use the command line tools on a day-to-day basis, they'll use Visual Studio instead,
+Không nhiều người sẽ sử dụng các công cụ dòng lệnh này hàng ngày, họ sẽ sử dụng Visual Studio thay vào đó,
+
 
 6
 00:00:31,000 --> 00:00:33,000
-but what I'm just trying to do right now is simplify some things.
+Nhưng bây giờ tôi đang thử làm 1 vài điều đơn giản.
+
 
 7
 00:00:33,000 --> 00:00:40,000
-So I'm going to go into my Documents folder, and I'm just going to use notepad to create a file called hello.cs.
+Tôi sẽ vào tập tin my Documents, và tôi chỉ sẽ dùng notepad để tao 1 file gọi là hello.cs.
+
 
 8
 00:00:40,000 --> 00:00:46,000
-The goal is to create the canonical hello world example, something I can run and just print the string hello
+kết quả là là tạo ra 1 ví dụ kinh điển (hello world), tôi có thể chạy 1 vài thứ và chỉ là in ra chuỗi hello
+
 
 9
 00:00:46,000 --> 00:00:50,000
-world to the screen, and I'll do that by placing my code inside a file called hello.cs.
+hiện lên màn hình, và tôi sẽ làm bằng cách thay code của mình vào 1 file được gọi là hello.cs.
+
 
 10
 00:00:50,000 --> 00:00:57,000
-Dot cs is the common extension for C# source code. All of the .NET tools and every .NET developer will know
+(.cs) là 1 phần mở rộng cho code nguồn C#. Tất cả các  của .Net và mỗi Dev .NET sẽ biết
+
 
 11
 00:00:57,000 --> 00:01:05,000
-that a .cs file will contain C# source code. And inside of here I'm going to create a class.
+là 1  (file).cs sẽ  bao ngồm C# source code. và bên trong đây tôi sẽ tạo 1 class.
+
 
 12
 00:01:05,000 --> 00:01:09,000
-So there are many concepts that we're going to have to come to grips with in this very simple demo,
+Có khá nhiều khái niệm mà chúng ta phải nắm bắt trong 1 demo vô cùng đơn giản này,
+
 
 13
 00:01:09,000 --> 00:01:15,000
-things like classes and strange keywords, and we will cover all of these things in detail throughout this course.
+những thứ như là classes và từ khóa mới, và chúng ta sẽ sẽ học chúng trong suốt khóa học này.
+
 
 14
 00:01:15,000 --> 00:01:20,000
-For right now, just know that most of the code that you write for .NET will live inside of a class.
+Bây giờ, chỉ biết rằng phần lớn code mà ta viết cho .Net sẽ nằm bên trong 1 class.
+
 
 15
 00:01:20,000 --> 00:01:28,000
-And inside of a class I can create methods. I'm going to create a method called Main.
+Và bên trong 1 class tôi có thể tạo các phương thức. Tôi sẽ tạo 1 phương thước là Main.
+
 
 16
 00:01:28,000 --> 00:01:33,000
-The start of this method begins with this opening curly brace and ends with this closing curly brace.
+Bắt đầu với phương thức này với dấu ngoặc nhọn và kết thúc với dấu ngoặc nhọn.
+
+
 
 17
 00:01:33,000 --> 00:01:39,000
-Just like with the class, anything I put between those outer curly braces will be part of this class or
+Giống như với class, Tôi đặt bất cứ thứ gì tôi đặt bên ngoài giữa các dấu ngoặc nhọn  sẽ là một phần của lớp này hoặc
+
 
 18
 00:01:39,000 --> 00:01:45,000
-inside of this class, and now anything I put inside of this Main method will be code that executes when I
+Bên trong lớp này,và bây giờ tôi sẽ đặt code bất cứ thứ gì là trong phương thức main này mà được thực thi khi tôi 
+
 
 19
 00:01:45,000 --> 00:01:48,000
-run this program. And that's because there's a little bit of magic happening here.
+chạy chương trình này, và đó là nơi mà 1 ít ma thuật xuất hiện ở đây.
+
 
 20
 00:01:48,000 --> 00:01:54,000
-When the CLR starts a command line application, what we call a console application, something that I would
+khi (CLR) bắt đấu 1 command line application, cái mà chúng ta gọi là console application,1 vài cái tôi sẽ
+
 
 21
 00:01:54,000 --> 00:02:00,000
-run from the command prompt, it will automatically look for a program class with a Main method and just start
+chạy từ command prompt, nó sẽ tự động tìm kiếm cho 1 chương trình class với 1 phương thức Main và chỉ bắt đầu
+
 
 22
 00:02:00,000 --> 00:02:06,000
-executing the code inside of there for me. So if I were to place inside of here something like
+thực thi code bên trong đây cho tôi. Nếu tôi đã thay thế bên trong đấy 1 vài thứ như
+
 
 23
 00:02:06,000 --> 00:02:14,000
-System.Console.WriteLine, Hello World, then this is something very similar to the code that we had on the slide.
+System.Console.WriteLine, Hello World, sau đó đây là 1 vài code giống giống nhau mà chúng ta có trên silde.
+
 
 24
 00:02:14,000 --> 00:02:20,000
-We had Console.WriteLine. What's new here is this System word, and this System word exists because inside
+chúng ta có Console.WriteLine.Cái gì mới ở đây có phải từ khóa System, và từ khóa System này tồn bởi vì bên trong
+
 
 25
 00:02:20,000 --> 00:02:26,000
-of .NET there are thousands and thousands of classes that I can use, classes like Console.
+của .NET có hàng ngàn và hàng ngàn class mà bạn có thể dùng, như class Console.
+
 
 26
 00:02:26,000 --> 00:02:31,000
-And we don't want all 10,000 or more classes available at one time, so what .NET does is it partitions
+Và chúng ta không càn tất cả 10,000 hoặc hơn nhiều class khả thi trong 1 lần, cho cái mà .NET làm nó có phải là phân vùng
+
 
 27
 00:02:31,000 --> 00:02:38,000
-classes into various namespaces. And to use a class, you have to be very explicit and let .NET know from
+nhiều class vào trong nhiều namespaces. Và để dùng 1 class, bạn phải  rất rõ ràng và để cho. NET  biết từ
+
 
 28
 00:02:38,000 --> 00:02:44,000
-what namespace that class lives in. So to use the Console class, it lives in the namespace called System,
+tên namespace mà class ở trong đó mà dùng Console class, nó ở trong 1 namespace được gọi là System,
+
 
 29
 00:02:44,000 --> 00:02:51,000
-so I either have to use the word System here or there's another way to tell .NET about the namespaces that I
+Vì vậy tôi hoặc là phải sử dụng từ System ở đây hay ở 1 chỗ nào đó để nói .NET về cái namespaces mà tôi
+
 
 30
 00:02:51,000 --> 00:02:57,000
-need, and that is with the using keyword. So if I say using System and a semicolon, and yes there are
+cần, và nó đang sử dụng với từ khóa using. Nếu bạn nói using System và 1 dấu (;)có cần ko? , và câu trả lời sẽ nói là : có nó là 
+
 
 31
 00:02:57,000 --> 00:03:01,000
-certain pieces of code that have to end with a semicolon and certain pieces of code that don't need a
+1 phần chắc chắn của code mà phải kết thúc với dấu (;) và 1 trong những phần chắc chắn của code mà không cần 1
+
 
 32
 00:03:01,000 --> 00:03:07,000
+dấu (;), chúng ta sẽ nói về điều này nhiều hơn trong suốt khóa học, khi tôi nói sử dụng System, tôi đang nói .NET và
 semicolon, we'll talk about that more throughout the course, when I say using System, I'm telling .NET and
 
 33
 00:03:07,000 --> 00:03:13,000
-this tool we're about to see, known as the C# compiler, that when it encounters classes inside of this
+công cụ này chúng ta sắp sửa xem, được biết như C# compiler, rằng khi nó gặp các lớp  bên trong này
+
 
 34
 00:03:13,000 --> 00:03:18,000
-program, classes like Console, it should look for them inside of the System namespace.
+chương trình, các lớp như Console,nó sẽ tìm kiếm chúng bên trong của System namespace. 
+
 
 35
 00:03:18,000 --> 00:03:21,000
-And this is about the simplest possible C# program that I could write.
+và đây là về những chương trình c# đơn giản nhất mà tôi có thể viết.
+
 
 36
 00:03:21,000 --> 00:03:28,000
-I'm going to save this file and come out to the command line and run a tool called csc.exe.
+Tôi sẽ lưu file này lại và ra command line và chạy 1 công cụ tên csc.exe. 
+
 
 37
 00:03:28,000 --> 00:03:34,000
-This tool exists, by default, in my Windows directory under a folder called Microsoft.NET.
+Công cụ này tồn tại, bởi mặc địng, trong Windos dưới một thư mục gọi là Microsoft.NET.
+
 
 38
 00:03:34,000 --> 00:03:40,000
+Bên trong đây, sẽ có 1 tập tin Framework, và sau đó bên trong 1 tập tin Framework,bạn có thể cài đặt đa dạng
 Inside of there, there will be a Framework folder, and then inside of a Framework folder you can have various
 
 39
 00:03:40,000 --> 00:03:46,000
-installations of the .NET Framework, multiple versions. And if I tab through here, you can see I have
+của .NET Framework,đa phiên bản. và nếu tôi qua tab này, bạn có thể thấy tôi có
+
 
 40
 00:03:46,000 --> 00:03:51,000
-various versions installed, version 1, version 1.1, version 2. I want to go to the latest version,
+nhiếu phiên bản đã cài đặt, v1, v1.1, v 2.Tôi muốn đi đến phiên bản cuối cùng,
+
 
 41
 00:03:51,000 --> 00:03:58,000
-which is the version 4 directory because inside of there, there will be a little program that I can run called csc.
+nó là v4 bởi vì bên trong đây ,sẽ có 1 vài chương trình nhỏ mà tôi có thể chạy csc.
+
 
 42
 00:03:58,000 --> 00:04:06,000
-Csc, as you can see, is the Visual C# Compiler, so C# code is code that needs to be compiled before it can execute.
+Csc, như bạn có thể thấy, nó là Visual C# Compiler, mà  code C#  cần để  compiled trước khi nó có thể thực thi.
 
 43
 00:04:06,000 --> 00:04:11,000
-This is unlike some other languages, languages like Perl, and Ruby, and Python.
+Đây không giống như 1 vài ngôn ngữ khác, như Perl,Python.
+
 
 44
 00:04:11,000 --> 00:04:17,000
+Cái mà tôi cần làm với code C# là chuyển nó qua cho C# compiler, và cái mà C# compiler sẽ làm là sẽ làm  
 What I need to do with the C# code is pass it through the C# compiler, and what the C# compiler will do is
 
 45
 00:04:17,000 --> 00:04:24,000
-produce an executable that I can run. So if I say csc, and then follow that with the parameter hello.cs,
+Tạo ra một thực thi được mà tôi có thể chạy. Vì vậy, nếu tôi nói csc, và sau đó làm theo đó với tham số hello.cs,
+
+
 
 46
 00:04:24,000 --> 00:04:32,000
-I'm asking the C# compiler to compile hello.cs. And if the compiler encounters any problems, it will complain,
+Tôi đang yêu cầu các trình biên dịch C # để biên dịch hello.cs. Và nếu trình biên dịch gặp bất kỳ vấn đề, nó sẽ "phàn nàn",
+
 
 47
 00:04:32,000 --> 00:04:37,000
-but it looks like it finished successfully. And inside of this folder now I can see hello.exe, so the act of
+Nhưng có vẻ như nó đã thành công. Và bên trong thư mục này bây giờ tôi có thể thấy hello.exe, vì vậy hành động của
+
 
 48
 00:04:37,000 --> 00:04:45,000
-compiling hello.cs produced hello.exe, and the exe extension means this is a executable file,
+Biên dịch hello.cs  và phần mở rộng của exe có nghĩa là đây là một tập tin thực thi,
+
 
 49
 00:04:45,000 --> 00:04:52,000
-something that I can run from the command line. And if I run it just by typing in hello.exe, I get Hello, World!
+Một cái gì đó mà tôi có thể chạy từ dòng lệnh. Và nếu tôi chạy nó chỉ bằng cách gõ vào hello.exe, tôi nhận được Hello, World!
+
 
 50
 00:04:52,000 --> 00:04:57,000
-Now as I said before, typically you don't use csc directly. Instead, you use Visual Studio, and Visual Studio
+Bây giờ như tôi đã nói, thông thường bạn không sử dụng csc trực tiếp. Thay vào đó, bạn sử dụng Visual Studio, và Visual Studio
+
 
 51
 00:04:57,000 --> 00:05:04,000
-will figure out the way to call csc correctly. But I do just want to point out that csc might give you some error messages.
+Sẽ tìm ra cách để gọi csc chính xác. Nhưng tôi chỉ muốn chỉ ra rằng csc có thể cung cấp cho bạn một số thông báo lỗi.
 
 52
 00:05:04,000 --> 00:05:11,000
-So, for example, let's say that I forget the semicolon after using system, and I recompile the application.
+Ví dụ, giả sử tôi quên dấu chấm phẩy sau khi sử dụng hệ thống, và tôi biên dịch lại ứng dụng.
 
 53
 00:05:11,000 --> 00:05:20,000
-The C# compiler here is very explicit, and it says semicolon was expected on line 1, column 13.
+Bộ biên dịch C # ở đây rất rõ ràng, và nó nói rằng dấu chấm phẩy được mong đợi ở dòng 1, cột 13.
 
 54
 00:05:20,000 --> 00:05:27,000
-Unfortunately, not all error messages are so explicit. Let's come down and leave off an opening curly brace
-
+Thật không may, không phải tất cả các thông báo lỗi rất rõ ràng. Chúng ta hãy xuống và bỏ một 1 dấu ({);
 55
 00:05:27,000 --> 00:05:31,000
-here on my method because now the C# compiler won't know where this method starts.
+Ở đây trên phương thức của tôi bởi vì bây giờ trình biên dịch C # sẽ không biết nơi mà phương thức này bắt đầu.
 
 56
 00:05:31,000 --> 00:05:36,000
-And if I save that file and try to compile it again, this one missing character actually generated three
+
+Và nếu tôi lưu tệp đó và cố gắng biên dịch lại lần nữa, thì một dấu thiếu này thực sự đã tạo ra ba
 
 57
 00:05:36,000 --> 00:05:42,000
-different error messages, is telling me a semicolon was expected, and there's an invalid token.
+Các thông báo lỗi khác nhau, đang nói cho tôi một dấu chấm phẩy đã được mong đợi, và có một mã thông báo không hợp lệ.
 
 58
 00:05:42,000 --> 00:05:46,000
-And over time you'll become accustomed to these error messages and become accustomed to looking at your C#
+Và qua thời gian bạn sẽ trở nên quen với những thông báo lỗi này và trở nên quen với việc nhìn vào C #
 
 59
 00:05:46,000 --> 00:05:51,000
-code and figuring out things like, oh I just had a missing curly brace here.
+
+code và tìm ra những thứ như, oh tôi chỉ có một cái ngoặc nhọn bị mất tích ở đây
 
 60
 00:05:51,000 --> 00:05:56,000
-And if I save this file again, we should be back in working order, but let's make one more change.
+Và nếu tôi lưu lại tệp này, chúng ta nên trở lại làm việc, nhưng chúng ta hãy thực hiện một thay đổi nữa.
+
 
 61
 00:05:56,000 --> 00:06:02,000
-Instead of displaying the text Hello, World, let's use some more code from that previous slide, and I want
+Thay vì hiển thị văn bản Hello, World, hãy sử dụng một số mã khác từ trang trình bày trước đó, và tôi muốn
 
 62
 00:06:02,000 --> 00:06:06,000
-to print out the current day of the week. And I can do that by using the DateTime class.
+
+Để in ra ngày hiện tại trong tuần. Và tôi có thể làm điều đó bằng cách sử dụng lớp DateTime.
 
 63
 00:06:06,000 --> 00:06:11,000
-That DateTime class is also in the system namespace, so it is available to me.
+That DateTime class là cũng trong the system namespace, Vì vậy nó có sẵn cho tôi.
 
 64
 00:06:11,000 --> 00:06:16,000
-I can have multiple using statements here, but the only classes I'm using for this simple example are classes
+Tôi có thể có nhiều báo cáo sử dụng ở đây, nhưng các lớp  duy nhất tôi đang sử dụng cho ví dụ đơn giản này là các lớp 
 
 65
 00:06:16,000 --> 00:06:25,000
-that are in the System namespace. I'm going to say please print out DataTime.Now.DayOfWeek.
+Đó là trong không gian tên System. Tôi sẽ nói xin vui lòng in ra DataTime.Now.DayOfWeek
 
 66
 00:06:25,000 --> 00:06:32,000
-And I'll save hello.cs again. I need to recompile it for csc to pick up those changes and produce a new
+Và tôi sẽ lưu lại hello.cs một lần nữa. Tôi cần biên dịch lại nó cho csc để nhận những thay đổi và tạo ra một
 
 67
 00:06:32,000 --> 00:06:38,000
-executable, but now I should be able to run hello.exe. And you can see that this example is being recorded
+Thực thi, nhưng bây giờ tôi sẽ có thể chạy hello.exe. Và bạn có thể thấy rằng ví dụ này đang được ghi lại
 
 68
 00:06:38,000 --> 00:06:44,000
-on a Wednesday. So this simple example has a lot of very deep concepts, concepts like classes and strange
 
+Vào thứ Tư. Vì vậy, ví dụ đơn giản này có rất nhiều khái niệm rất sâu sắc, khái niệm như các lớp  và kỳ lạ
 69
 00:06:44,000 --> 00:06:50,000
-keywords like static and void. I want you to ignore some of those specific syntax details for right now.
+từ khóa như static và void. Ngay bây giờ yôi muốn bạn bỏ qua một số chi tiết cú pháp cụ thể  .
 
 70
 00:06:50,000 --> 00:06:54,000
-We'll get to the point where you can understand all of those. For right now, I just want to take a step back
+Chúng ta sẽ đi đến mức bạn có thể hiểu tất cả những điều đó. Đối với ngay bây giờ, tôi chỉ muốn đi một bước trở lại
 
 71
 00:06:54,000 --> 00:06:59,000
-and talk about this compiler that we're using, and after that we can jump into Visual Studio
+Và nói về trình biên dịch này mà chúng ta đang sử dụng, và sau đó chúng ta có thể nhảy vào Visual Studio
 
 72
 00:06:59,000 --> 00:59:00,000
-and get the same code running from Visual Studio.
-
+Và nhận được cùng một code chạy từ Visual Studio
